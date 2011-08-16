@@ -60,11 +60,11 @@ $maxbutton_text_shadow_color_default = '#618926';
 $maxbutton_text_shadow_color_key = 'maxbutton_text_shadow_color';
 $maxbutton_text_shadow_color_hover_default = '#12295d';
 $maxbutton_text_shadow_color_hover_key = 'maxbutton_text_shadow_color_hover';
-$maxbutton_text_shadow_offset_left_default = '2px';
+$maxbutton_text_shadow_offset_left_default = '-1px';
 $maxbutton_text_shadow_offset_left_key = 'maxbutton_text_shadow_offset_left';
-$maxbutton_text_shadow_offset_top_default = '2px';
+$maxbutton_text_shadow_offset_top_default = '-1px';
 $maxbutton_text_shadow_offset_top_key = 'maxbutton_text_shadow_offset_top';
-$maxbutton_text_shadow_width_default = '2px';
+$maxbutton_text_shadow_width_default = '0px';
 $maxbutton_text_shadow_width_key = 'maxbutton_text_shadow_width';
 $maxbutton_url_key = 'maxbutton_url';
 ?>
