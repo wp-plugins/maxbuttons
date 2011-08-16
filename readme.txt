@@ -21,13 +21,13 @@ This plugin allows you to quickly and easily create great-looking CSS3 call-to-a
 * See your buttons on different color backgrounds
 * Pre-defined defaults make getting started super easy
 
-Use the buttons you create on your [landing pages](http://maxfoundry.com/plugins/maxlanding/), [squeeze pages](http://maxfoundry.com/plugins/maxsqueeze/), and [sales pages](http://maxfoundry.com/plugins/maxsales/) to increase your conversion rates.
+Use the buttons you create on your [WordPress landing pages](http://maxfoundry.com/plugins/maxlanding/), [WordPress squeeze pages](http://maxfoundry.com/plugins/maxsqueeze/), and [WordPress sales pages](http://maxfoundry.com/plugins/maxsales/) to increase your conversion rates.
 
 And because you can create buttons to correspond to any design, this plugin is perfect for any [WordPress theme](http://maxfoundry.com/themes/).
 
 = How To Use =
 
-MaxButtons makes it incredibly easy to build beautiful CSS3 buttons. Simply enter and select from all of the options (see the screenshot) and the button is built as you make selections. Once you save a button, a shortcode is generated for you, which you can then use anywhere in your site's content.
+MaxButtons makes it incredibly easy to build beautiful CSS3 buttons. Simply enter and select from all of the options (see screenshots) and the button is built as you make selections. Once you save a button, a shortcode is generated for you, which you can then use anywhere in your site's content.
 
 == Installation ==
 
