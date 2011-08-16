@@ -25,6 +25,10 @@ Use the buttons you create on your [WordPress landing pages](http://maxfoundry.c
 
 And because you can create buttons to correspond to any design, this plugin is perfect for any [WordPress theme](http://maxfoundry.com/themes/).
 
+= Samples =
+
+To see some example buttons, check out the [MaxButtons page](http://maxfoundry.com/plugins/maxbuttons/) on the Max Foundry website.
+
 = How To Use =
 
 MaxButtons makes it incredibly easy to build beautiful CSS3 buttons. Simply enter and select from all of the options (see screenshots) and the button is built as you make selections. Once you save a button, a shortcode is generated for you, which you can then use anywhere in your site's content.
