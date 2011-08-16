@@ -13,11 +13,16 @@ This plugin allows you to quickly and easily create great-looking CSS3 call-to-a
 = Highlights =
 
 * Create unlimited number of call-to-action buttons
+* Buttons are built on-the-fly as you enter and select options
 * Works with all modern browsers, degrades gracefully for others
 * Fully CSS3 compliant with text shadowing, box shadowing, and gradients
 * Color picker for unlimited color combinations
 * Copy an existing button to use as starting point for others
 * See your buttons on different color backgrounds
+
+Use the buttons you create on your [landing pages](http://maxfoundry.com/plugins/maxlanding/), [squeeze pages](http://maxfoundry.com/plugins/maxsqueeze/), and [sales pages](http://maxfoundry.com/plugins/maxsales/) to increase your conversion rates.
+
+And because you can create buttons to correspond to any design, this plugin is perfect for any [WordPress theme](http://maxfoundry.com/themes/).
 
 == Installation ==
 
@@ -39,6 +44,8 @@ For manual installation:
 1. Look for "Buttons" and click Activate.
 
 == Screenshots ==
+
+1. Adding and editing a button.
 
 == Changelog ==
 
