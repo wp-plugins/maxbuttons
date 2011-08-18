@@ -31,7 +31,19 @@ To see some example buttons, check out the [MaxButtons page](http://maxfoundry.c
 
 = How To Use =
 
-MaxButtons makes it incredibly easy to build beautiful CSS3 buttons. Simply enter and select from all of the options (see screenshots) and the button is built as you make selections. Once you save a button, a shortcode is generated for you, which you can then use anywhere in your site's content.
+1. Click the MaxButtons page from the admin menu.
+1. Click the Add New button.
+1. Fill out and select the options needed to build your button.
+1. Once you're ready, click Save.
+1. A shortcode will be generated (ex: [maxbutton id="17"]).
+1. Use the shortcode anywhere in your content.
+
+You can also pass the button text and URL as parameters in the shortcode, giving you even greater flexibility. For example, if you want to create a set of buttons that look exactly the same, except for the text and its URL, you could do something like this:
+
+[maxbutton id="17" text="Search with Google" url="http://google.com" ]
+[maxbutton id="17" text="Search with Yahoo" url="http://yahoo.com" ]
+
+NOTE: Using the text and URL parameters overrides those settings saved as part of the button.
 
 == Installation ==
 
@@ -57,6 +69,9 @@ For manual installation:
 1. Adding and editing a button.
 
 == Changelog ==
+
+= 1.1.0 =
+* Added text and url parameters to shortcode.
 
 = 1.0.0 =
 * Initial version.

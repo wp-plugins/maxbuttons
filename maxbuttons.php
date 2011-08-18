@@ -3,7 +3,7 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxfoundry.com/plugins/maxbuttons/
 Description: The ultimate plugin for creating beautiful CSS3 call-to-action buttons.
-Version: 1.0.0
+Version: 1.1.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -11,7 +11,7 @@ Copyright 2011 Max Foundry, LLC (http://maxfoundry.com)
 */
 
 define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-define('MAXBUTTONS_VERSION_NUM', '1.0.0');
+define('MAXBUTTONS_VERSION_NUM', '1.1.0');
 
 maxbuttons_set_global_paths();
 maxbuttons_set_activation_hooks();
