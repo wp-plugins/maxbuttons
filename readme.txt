@@ -68,6 +68,12 @@ For manual installation:
 
 1. Adding and editing a button.
 
+== Frequently Asked Questions ==
+
+= How do I use the shortcode in a sidebar/widget? =
+
+See [this forum post](http://wordpress.org/support/topic/how-to-make-shortcodes-work-in-a-widget?replies=3). It walks you through the simple process of enabling shortcodes in widgets.
+
 == Changelog ==
 
 = 1.1.0 =
@@ -75,3 +81,7 @@ For manual installation:
 
 = 1.0.0 =
 * Initial version.
+
+== Upgrade Notice ==
+
+= 1.1.0 =
