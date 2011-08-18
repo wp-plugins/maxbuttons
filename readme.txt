@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware
 Tags: buttons, call-to-action, call-to-action buttons, CSS, CSS buttons, CSS3, CSS3 buttons
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable tag: trunk
+Stable tag: 1.1.0
 
 Easily create beautiful CSS3 call-to-action buttons to use anywhere on your WordPress site.
 
