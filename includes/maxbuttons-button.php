@@ -291,6 +291,7 @@ function maxbuttons_strip_px($value) {
 		jQuery("#maxbuttons .output .result a").css("text-shadow", "<?php echo $maxbutton_text_shadow_offset_left_display ?> <?php echo $maxbutton_text_shadow_offset_top_display ?> <?php echo $maxbutton_text_shadow_width_display ?> <?php echo $maxbutton_text_shadow_color_display ?>");
 		jQuery("#maxbuttons .output .result a").css("box-shadow", "<?php echo $maxbutton_box_shadow_offset_left_display ?> <?php echo $maxbutton_box_shadow_offset_top_display ?> <?php echo $maxbutton_box_shadow_width_display ?> <?php echo $maxbutton_box_shadow_color_display ?>");
 		
+		jQuery("#maxbuttons .output .result a.hover").css("text-decoration", "none");
 		jQuery("#maxbuttons .output .result a.hover").css("color", "<?php echo $maxbutton_text_color_hover_display ?>");
 		jQuery("#maxbuttons .output .result a.hover").css("background-color", "<?php echo $maxbutton_gradient_start_color_hover_display ?>");
 		jQuery("#maxbuttons .output .result a.hover").css("background", "linear-gradient(<?php echo $maxbutton_gradient_start_color_hover_display ?> 45%, <?php echo $maxbutton_gradient_end_color_hover_display ?>)");

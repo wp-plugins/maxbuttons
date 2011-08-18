@@ -1,7 +1,11 @@
 <?php
 add_shortcode('maxbutton', 'maxbuttons_button_shortcode');
 function maxbuttons_button_shortcode($atts) {
-	extract(shortcode_atts(array('id' => ''), $atts));
+	extract(shortcode_atts(array(
+		'id' => '',
+		'text' => '',
+		'url' => ''
+	), $atts));
 	
 	$button_id = "{$id}";
 	
@@ -62,7 +66,10 @@ function maxbuttons_button_shortcode($atts) {
 			echo '</style>' . "\n";
 			
 			$element_id = 'maxbutton-' . $button->id;
-			return '<a id="' . $element_id . '" href="' . $button->url . '">' . $button->text . '</a>';
+			$text = "{$text}" != '' ? "{$text}" : $button->text;
+			$url = "{$url}" != '' ? "{$url}" : $button->url;
+			
+			return '<a id="' . $element_id . '" href="' . $url . '">' . $text . '</a>';
 		}
 	}
 }
