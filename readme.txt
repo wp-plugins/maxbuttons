@@ -40,8 +40,8 @@ To see some example buttons, check out the [MaxButtons page](http://maxfoundry.c
 
 You can also pass the button text and URL as parameters in the shortcode, giving you even greater flexibility. For example, if you want to create a set of buttons that look exactly the same, except for the text and its URL, you could do something like this:
 
-[maxbutton id="17" text="Search with Google" url="http://google.com" ]
-[maxbutton id="17" text="Search with Yahoo" url="http://yahoo.com" ]
+[maxbutton id="17" text="Search with Google" url="http://google.com"]
+[maxbutton id="17" text="Search with Yahoo" url="http://yahoo.com"]
 
 NOTE: Using the text and URL parameters overrides those settings saved as part of the button.
 
