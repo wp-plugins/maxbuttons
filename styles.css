@@ -17,6 +17,10 @@
 #maxbuttons input[type='text'].tiny-nopad {
 	width: 35px;
 }
+#maxbuttons input[type='checkbox'] {
+	margin-top: 7px;
+	margin-left: 2px;
+}
 #maxbuttons select {
 	width: 150px;
 }

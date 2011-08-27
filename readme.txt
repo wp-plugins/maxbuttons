@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware
 Tags: buttons, call-to-action, call-to-action buttons, CSS, CSS buttons, CSS3, CSS3 buttons
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 
 Easily create beautiful CSS3 call-to-action buttons to use anywhere on your WordPress site.
 
@@ -38,12 +38,16 @@ To see some example buttons, check out the [MaxButtons page](http://maxfoundry.c
 1. A shortcode will be generated (ex: [maxbutton id="17"]).
 1. Use the shortcode anywhere in your content.
 
-You can also pass the button text and URL as parameters in the shortcode, giving you even greater flexibility. For example, if you want to create a set of buttons that look exactly the same, except for the text and its URL, you could do something like this:
+You can also pass the button text and URL as parameters in the shortcode, giving you even greater flexibility. For example, if you want to create a set of buttons that look exactly the same, except for the text and URL, you could do something like this:
 
-[maxbutton id="17" text="Search with Google" url="http://google.com"]
-[maxbutton id="17" text="Search with Yahoo" url="http://yahoo.com"]
+[maxbutton id="17" text="Search Google" url="http://google.com"]
+[maxbutton id="17" text="Search Yahoo" url="http://yahoo.com"]
 
-NOTE: Using the text and URL parameters overrides those settings saved as part of the button.
+One other parameter you can give the shortcode is window, which tells the button whether or not to open the URL in a new window (by default the button opens the URL in the current window). To do so you always give the window parameter the value "new", shown below. Anything else will open the button URL in the current window.
+
+[maxbutton id="17" window="new"]
+
+NOTE: Passing parameters to the shortcode overrides those settings saved as part of the button.
 
 == Installation ==
 
@@ -76,6 +80,9 @@ See [this forum post](http://wordpress.org/support/topic/how-to-make-shortcodes-
 
 == Changelog ==
 
+= 1.2.0 =
+* Added option for opening url in a new window.
+
 = 1.1.0 =
 * Added text and url parameters to shortcode.
 
@@ -84,4 +91,4 @@ See [this forum post](http://wordpress.org/support/topic/how-to-make-shortcodes-
 
 == Upgrade Notice ==
 
-= 1.1.0 =
+= 1.2.0 =

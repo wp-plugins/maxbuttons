@@ -3,7 +3,7 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxfoundry.com/plugins/maxbuttons/
 Description: The ultimate plugin for creating beautiful CSS3 call-to-action buttons.
-Version: 1.1.0
+Version: 1.2.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -11,7 +11,9 @@ Copyright 2011 Max Foundry, LLC (http://maxfoundry.com)
 */
 
 define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-define('MAXBUTTONS_VERSION_NUM', '1.1.0');
+define('MAXBUTTONS_VERSION_NUM', '1.2.0');
+
+$installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
 maxbuttons_set_global_paths();
 maxbuttons_set_activation_hooks();
@@ -45,6 +47,7 @@ function maxbuttons_register_activation_hook() {
 }
 
 function maxbuttons_activate() {
+	// Also used below for automatic upgrades
 	maxbuttons_create_database_table();
 	update_option(MAXBUTTONS_VERSION_KEY, MAXBUTTONS_VERSION_NUM);
 }
@@ -80,6 +83,16 @@ function maxbuttons_call_function_for_each_site($function) {
 	
 	// Now switch back to the root blog
 	switch_to_blog($root_blog);
+}
+
+// For automatic upgrades (since WP 3.1)
+add_action('plugins_loaded', 'maxbuttons_plugins_loaded');
+function maxbuttons_plugins_loaded() {
+	global $installed_version;
+	
+	if ($installed_version != MAXBUTTONS_VERSION_NUM) {
+		maxbuttons_activate();
+	}
 }
 
 add_filter('plugin_action_links', 'maxbuttons_plugin_action_links', 10, 2);
@@ -145,49 +158,60 @@ function maxbuttons_enqueue_colorpicker_script_into_wp_admin() {
 }
 
 function maxbuttons_create_database_table() {
+	global $installed_version;
+	
 	$table_name = maxbuttons_get_buttons_table_name();
 	
-	if (!maxbuttons_database_table_exists($table_name)) {
-		$sql = "CREATE TABLE " . $table_name . " (
-					id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-					name VARCHAR(100) NULL,
-					description TEXT NULL,
-					url VARCHAR(500) NULL,
-					text VARCHAR(100) NULL,
-					text_font_family VARCHAR(50) NULL,
-					text_font_size VARCHAR(10) NULL,
-					text_font_style VARCHAR(10) NULL,
-					text_font_weight VARCHAR(10) NULL,
-					text_color VARCHAR(10) NULL,
-					text_color_hover VARCHAR(10) NULL,
-					text_shadow_offset_left VARCHAR(10) NULL,
-					text_shadow_offset_top VARCHAR(10) NULL,
-					text_shadow_width VARCHAR(10) NULL,
-					text_shadow_color VARCHAR(10) NULL,
-					text_shadow_color_hover VARCHAR(10) NULL,
-					text_padding_top VARCHAR(10) NULL,
-					text_padding_bottom VARCHAR(10) NULL,
-					text_padding_left VARCHAR(10) NULL,
-					text_padding_right VARCHAR(10) NULL,
-					border_radius_top_left VARCHAR(10) NULL,
-					border_radius_top_right VARCHAR(10) NULL,
-					border_radius_bottom_left VARCHAR(10) NULL,
-					border_radius_bottom_right VARCHAR(10) NULL,
-					border_style VARCHAR(10) NULL,
-					border_width VARCHAR(10) NULL,
-					border_color VARCHAR(10) NULL,
-					border_color_hover VARCHAR(10) NULL,
-					box_shadow_offset_left VARCHAR(10) NULL,
-					box_shadow_offset_top VARCHAR(10) NULL,
-					box_shadow_width VARCHAR(10) NULL,
-					box_shadow_color VARCHAR(10) NULL,
-					box_shadow_color_hover VARCHAR(10) NULL,
-					gradient_start_color VARCHAR(10) NULL,
-					gradient_start_color_hover VARCHAR(10) NULL,
-					gradient_end_color VARCHAR(10) NULL,
-					gradient_end_color_hover VARCHAR(10) NULL
-				);";
+	// IMPORTANT: There MUST be two spaces between the PRIMARY KEY keywords
+	// and the column name, and the column name MUST be in parenthesis.
+	$sql = "CREATE TABLE " . $table_name . " (
+				id INT NOT NULL AUTO_INCREMENT,
+				name VARCHAR(100) NULL,
+				description TEXT NULL,
+				url VARCHAR(500) NULL,
+				text VARCHAR(100) NULL,
+				text_font_family VARCHAR(50) NULL,
+				text_font_size VARCHAR(10) NULL,
+				text_font_style VARCHAR(10) NULL,
+				text_font_weight VARCHAR(10) NULL,
+				text_color VARCHAR(10) NULL,
+				text_color_hover VARCHAR(10) NULL,
+				text_shadow_offset_left VARCHAR(10) NULL,
+				text_shadow_offset_top VARCHAR(10) NULL,
+				text_shadow_width VARCHAR(10) NULL,
+				text_shadow_color VARCHAR(10) NULL,
+				text_shadow_color_hover VARCHAR(10) NULL,
+				text_padding_top VARCHAR(10) NULL,
+				text_padding_bottom VARCHAR(10) NULL,
+				text_padding_left VARCHAR(10) NULL,
+				text_padding_right VARCHAR(10) NULL,
+				border_radius_top_left VARCHAR(10) NULL,
+				border_radius_top_right VARCHAR(10) NULL,
+				border_radius_bottom_left VARCHAR(10) NULL,
+				border_radius_bottom_right VARCHAR(10) NULL,
+				border_style VARCHAR(10) NULL,
+				border_width VARCHAR(10) NULL,
+				border_color VARCHAR(10) NULL,
+				border_color_hover VARCHAR(10) NULL,
+				box_shadow_offset_left VARCHAR(10) NULL,
+				box_shadow_offset_top VARCHAR(10) NULL,
+				box_shadow_width VARCHAR(10) NULL,
+				box_shadow_color VARCHAR(10) NULL,
+				box_shadow_color_hover VARCHAR(10) NULL,
+				gradient_start_color VARCHAR(10) NULL,
+				gradient_start_color_hover VARCHAR(10) NULL,
+				gradient_end_color VARCHAR(10) NULL,
+				gradient_end_color_hover VARCHAR(10) NULL,
+				new_window VARCHAR(10) NULL,
+				PRIMARY KEY  (id)
+			);";
 
+	if (!maxbuttons_database_table_exists($table_name)) {
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+		dbDelta($sql);
+	}
+	
+	if (maxbuttons_database_table_exists($table_name) && $installed_version != MAXBUTTONS_VERSION_NUM) {
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		dbDelta($sql);
 	}

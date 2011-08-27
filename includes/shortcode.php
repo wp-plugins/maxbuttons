@@ -4,7 +4,8 @@ function maxbuttons_button_shortcode($atts) {
 	extract(shortcode_atts(array(
 		'id' => '',
 		'text' => '',
-		'url' => ''
+		'url' => '',
+		'window' => ''
 	), $atts));
 	
 	$button_id = "{$id}";
@@ -66,10 +67,23 @@ function maxbuttons_button_shortcode($atts) {
 			echo '</style>' . "\n";
 			
 			$element_id = 'maxbutton-' . $button->id;
-			$text = "{$text}" != '' ? "{$text}" : $button->text;
-			$url = "{$url}" != '' ? "{$url}" : $button->url;
 			
-			return '<a id="' . $element_id . '" href="' . $url . '">' . $text . '</a>';
+			$button_text = "{$text}" != '' ? "{$text}" : $button->text;
+			$button_url = "{$url}" != '' ? "{$url}" : $button->url;
+			
+			$button_window = '';
+			
+			if ("{$window}" != '') {
+				if ("{$window}" == 'new') {
+					$button_window = 'target="_blank"';
+				}
+			} else {
+				if ($button->new_window == 'on') {
+					$button_window = 'target="_blank"';
+				}
+			}
+			
+			return '<a id="' . $element_id . '" href="' . $button_url . '" ' . $button_window . '>' . $button_text . '</a>';
 		}
 	}
 }

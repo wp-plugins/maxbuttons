@@ -12,6 +12,7 @@ $maxbutton_name_value = isset($button) ? $button->name : '';
 $maxbutton_description_value = isset($button) ? $button->description : '';
 $maxbutton_url_value = isset($button) ? $button->url : '';
 $maxbutton_text_value = isset($button) ? $button->text : '';
+$maxbutton_new_window_value = isset($button) ? $button->new_window : '';
 $maxbutton_text_font_family_value = isset($button) ? $button->text_font_family : '';
 $maxbutton_text_font_family_display = ($maxbutton_text_font_family_value != '') ? $maxbutton_text_font_family_value : $maxbutton_text_font_family_default;
 $maxbutton_text_font_size_value = isset($button) ? $button->text_font_size : '';
@@ -86,6 +87,7 @@ if ($_POST) {
 		'description' => $wpdb->escape($_POST[$maxbutton_description_key]),
 		'url' => $wpdb->escape($_POST[$maxbutton_url_key]),
 		'text' => $wpdb->escape($_POST[$maxbutton_text_key]),
+		'new_window' => $wpdb->escape($_POST[$maxbutton_new_window_key]),
 		'text_font_family' => $_POST[$maxbutton_text_font_family_key] != '' ? $wpdb->escape($_POST[$maxbutton_text_font_family_key]) : $maxbutton_text_font_family_default,
 		'text_font_size' => $_POST[$maxbutton_text_font_size_key] != '' ? $wpdb->escape($_POST[$maxbutton_text_font_size_key]) : $maxbutton_text_font_size_default,
 		'text_font_style' => $_POST[$maxbutton_text_font_style_key] != '' ? $wpdb->escape($_POST[$maxbutton_text_font_style_key]) : $maxbutton_text_font_style_default,
@@ -127,7 +129,7 @@ if ($_POST) {
 	} else {
 		// Updating an existing button
 		$where = array('id' => $_GET['id']);
-		$data_format = array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');
+		$data_format = array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');
 		$where_format = array('%d');
 		$wpdb->update(maxbuttons_get_buttons_table_name(), $data, $where, $data_format, $where_format);
 		$button_id = $_GET['id'];
@@ -575,6 +577,14 @@ function maxbuttons_strip_px($value) {
 			<div class="input">
 				<input type="text" id="<?php echo $maxbutton_text_key ?>" name="<?php echo $maxbutton_text_key ?>" value="<?php echo $maxbutton_text_value ?>" maxlength="100"/>
 			</div>
+		</div>
+		
+		<div class="option-design">
+			<div class="label">Open in New Window</div>
+			<div class="input">
+				<input type="checkbox" id="<?php echo $maxbutton_new_window_key ?>" name="<?php echo $maxbutton_new_window_key ?>" <?php if ($maxbutton_new_window_value == 'on') { echo 'checked="checked"'; } else { echo ''; } ?>>
+			</div>
+			<div class="clear"></div>
 		</div>
 		
 		<div class="option-design">

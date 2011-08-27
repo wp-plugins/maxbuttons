@@ -35,6 +35,7 @@ $maxbutton_gradient_start_color_key = 'maxbutton_gradient_start_color';
 $maxbutton_gradient_start_color_hover_default = '#2270df';
 $maxbutton_gradient_start_color_hover_key = 'maxbutton_gradient_start_color_hover';
 $maxbutton_name_key = 'maxbutton_name';
+$maxbutton_new_window_key = 'maxbutton_new_window';
 $maxbutton_text_color_default = '#ffffff';
 $maxbutton_text_color_key = 'maxbutton_text_color';
 $maxbutton_text_color_hover_default = '#ffffff';
