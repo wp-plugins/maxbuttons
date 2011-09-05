@@ -41,6 +41,7 @@ To see some example buttons, check out the [MaxButtons page](http://maxfoundry.c
 You can also pass the button text and URL as parameters in the shortcode, giving you even greater flexibility. For example, if you want to create a set of buttons that look exactly the same, except for the text and URL, you could do something like this:
 
 [maxbutton id="17" text="Search Google" url="http://google.com"]
+
 [maxbutton id="17" text="Search Yahoo" url="http://yahoo.com"]
 
 One other parameter you can give the shortcode is window, which tells the button whether or not to open the URL in a new window (by default the button opens the URL in the current window). To do so you always give the window parameter the value "new", shown below. Anything else will open the button URL in the current window.
