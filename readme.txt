@@ -67,7 +67,7 @@ For manual installation:
 1. Copy the plugin zip file up to your server and unzip it somewhere on the file system.
 1. Copy the "maxbuttons" folder into the /wp-content/plugins directory of your WordPress installation.
 1. Login to your website and go to the Plugins section of your admin panel.
-1. Look for "Buttons" and click Activate.
+1. Look for "MaxButtons" and click Activate.
 
 == Screenshots ==
 
