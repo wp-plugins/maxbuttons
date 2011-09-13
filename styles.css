@@ -1,0 +1,178 @@
+#maxbuttons {
+	margin: 20px 20px 20px 0px;
+}
+#maxbuttons h2.tabs {
+	border-bottom: solid 1px #cccccc;
+}
+#maxbuttons h2.tabs .spacer {
+	padding-right: 20px;
+}
+#maxbuttons input[type='text'] {
+	width: 400px;
+}
+#maxbuttons input[type='text'].tiny {
+	width: 35px;
+	margin-top: 5px;
+}
+#maxbuttons input[type='text'].tiny-nopad {
+	width: 35px;
+}
+#maxbuttons input[type='checkbox'] {
+	margin-top: 7px;
+}
+#maxbuttons select {
+	width: 150px;
+}
+#maxbuttons textarea {
+	width: 400px;
+	height: 100px;
+	white-space: nowrap;
+	overflow: scroll;
+}
+#maxbuttons .clear {
+	clear: both;
+}
+#maxbuttons .default {
+	float: left;
+	padding-left: 10px;
+	padding-top: 4px;
+	font-style: italic;
+	color: #808080;
+}
+#maxbuttons .default-color {
+	float: left;
+	padding-left: 54px;
+	padding-top: 8px;
+	font-style: italic;
+	color: #808080;
+}
+#maxbuttons .default-other {
+	float: left;
+	padding-left: 40px;
+	padding-top: 8px;
+	font-style: italic;
+	color: #808080;
+}
+#maxbuttons .option {
+	margin-bottom: 20px;
+}
+#maxbuttons .option .label {
+	float: left;
+	font-weight: bold;
+	padding-left: 3px;
+	width: 100px;
+}
+#maxbuttons .option .note {
+	float: left;
+	font-weight: normal;
+	font-style: italic;
+	color: #808080;
+}
+#maxbuttons .option .input {
+	margin-top: 3px;
+}
+#maxbuttons .option-design {
+	margin-bottom: 5px;
+}
+#maxbuttons .option-design .label {
+	float: left;
+	font-weight: bold;
+	padding-left: 3px;
+	padding-top: 3px;
+	width: 160px;
+}
+#maxbuttons .option-design .input {
+	float: left;
+}
+#maxbuttons .option-design .input td {
+	padding: 0px 20px 20px 0px;
+}
+#maxbuttons .option-design .input td div.cell-label {
+	padding: 1px 10px 0px 5px;
+	font-weight: bold;
+	border-bottom: solid 1px #d1d1d1;
+	width: 180px;
+}
+#maxbuttons .form-actions {
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	border-bottom: dashed 1px #d1d1d1;
+}
+#maxbuttons .form-actions a {
+	margin-right: 10px;
+}
+#maxbuttons .spacer {
+	margin-bottom: 20px;
+}
+#maxbuttons .colorpicker-box {
+	background: url('js/colorpicker/images/select2.png') transparent repeat scroll 0 0;
+	display: block;
+	float: left;
+	width: 36px;
+	height: 36px;
+	position: relative;
+}
+#maxbuttons .colorpicker-box span {
+	background: url('js/colorpicker/images/select2.png') transparent center;
+	display: block;
+	width: 28px;
+	height: 28px;
+	position: absolute;
+	top: 4px;
+	left: 4px;
+}
+#maxbuttons .shortcode {
+	position: absolute;
+	top: 230px;
+	left: 650px;
+	width: 500px;
+	background-color: #ffffe0;
+	border: solid 1px #e6db55;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	padding: 5px;
+	display: none;
+}
+#maxbuttons .output {
+	position: absolute;
+	top: 305px;
+	left: 650px;
+	background-color: #f1f1f1;
+	border: solid 1px #d1d1d1;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	padding: 5px;
+}
+#maxbuttons .output .note {
+	float: left;
+	margin: 8px 0px 0px 10px;
+}
+#maxbuttons .output .result {
+	padding: 50px;
+}
+#maxbuttons .output .result p {
+	padding: 5px 0px 5px 0px;
+}
+#maxbuttons .button-list {
+	margin-top: 15px;
+	margin-right: 20px;
+	padding-top: 15px;
+	border-top: dashed 1px #d1d1d1;
+}
+#maxbuttons .button-list p {
+	font-size: 13px;
+}
+#maxbuttons .button-list a.button-name {
+	font-weight: bold;
+	text-decoration: none;
+}
+#maxbuttons .button-list td.cell-button {
+	padding-right: 40px;
+	padding-bottom: 20px;
+}
+#maxbuttons .button-list td.cell-words {
+	width: 500px;
+	padding-bottom: 20px;
+}
