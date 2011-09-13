@@ -3,7 +3,7 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxfoundry.com/plugins/maxbuttons/
 Description: The ultimate plugin for creating beautiful CSS3 call-to-action buttons.
-Version: 1.2.0
+Version: 1.2.1
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -11,7 +11,7 @@ Copyright 2011 Max Foundry, LLC (http://maxfoundry.com)
 */
 
 define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-define('MAXBUTTONS_VERSION_NUM', '1.2.0');
+define('MAXBUTTONS_VERSION_NUM', '1.2.1');
 
 $installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
@@ -47,7 +47,6 @@ function maxbuttons_register_activation_hook() {
 }
 
 function maxbuttons_activate() {
-	// Also used below for automatic upgrades
 	maxbuttons_create_database_table();
 	update_option(MAXBUTTONS_VERSION_KEY, MAXBUTTONS_VERSION_NUM);
 }
@@ -83,16 +82,6 @@ function maxbuttons_call_function_for_each_site($function) {
 	
 	// Now switch back to the root blog
 	switch_to_blog($root_blog);
-}
-
-// For automatic upgrades (since WP 3.1)
-add_action('plugins_loaded', 'maxbuttons_plugins_loaded');
-function maxbuttons_plugins_loaded() {
-	global $installed_version;
-	
-	if ($installed_version != MAXBUTTONS_VERSION_NUM) {
-		maxbuttons_activate();
-	}
 }
 
 add_filter('plugin_action_links', 'maxbuttons_plugin_action_links', 10, 2);

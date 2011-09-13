@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware
 Tags: buttons, call-to-action, call-to-action buttons, CSS, CSS buttons, CSS3, CSS3 buttons
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 
 Easily create beautiful CSS3 call-to-action buttons to use anywhere on your WordPress site.
 
@@ -81,6 +81,9 @@ See [this forum post](http://wordpress.org/support/topic/how-to-make-shortcodes-
 
 == Changelog ==
 
+= 1.2.1 =
+* Fixed issue when new sites are added with multisite/network.
+
 = 1.2.0 =
 * Added option for opening url in a new window.
 
@@ -92,4 +95,4 @@ See [this forum post](http://wordpress.org/support/topic/how-to-make-shortcodes-
 
 == Upgrade Notice ==
 
-= 1.2.0 =
+= 1.2.1 =
