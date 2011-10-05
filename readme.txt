@@ -79,6 +79,10 @@ For manual installation:
 
 See [this forum post](http://wordpress.org/support/topic/how-to-make-shortcodes-work-in-a-widget?replies=3). It walks you through the simple process of enabling shortcodes in widgets.
 
+= How can I add the shortcode to my post/page template? =
+
+Simply add this code snippet to any of your theme template files: `<?php echo do_shortcode('[maxbutton id="17"]'); ?>`
+
 == Changelog ==
 
 = 1.2.1 =
