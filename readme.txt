@@ -77,7 +77,7 @@ For manual installation:
 
 = How do I use the shortcode in a sidebar/widget? =
 
-See [this forum post](http://wordpress.org/support/topic/how-to-make-shortcodes-work-in-a-widget?replies=3). It walks you through the simple process of enabling shortcodes in widgets.
+See [this forum post](http://wordpress.org/support/topic/how-to-make-shortcodes-work-in-a-widget). It walks you through the simple process of enabling shortcodes in widgets.
 
 = How can I add the shortcode to my post/page template? =
 
