@@ -1,33 +1,39 @@
 === MaxButtons ===
 Contributors: maxfoundry, arcware
-Tags: buttons, call-to-action, call-to-action buttons, CSS, CSS buttons, CSS3, CSS3 buttons
+Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable tag: 1.2.1
+Stable tag: 1.3.0
 
-Easily create beautiful CSS3 call-to-action buttons to use anywhere on your WordPress site.
+The ultimate plugin for creating awesome buttons in WordPress.
 
 == Description ==
-This plugin allows you to quickly and easily create great-looking CSS3 call-to-action buttons that can be used on any post or page in your site.
+This plugin allows you to quickly and easily create great-looking CSS3 buttons that can be used on any post or page in your WordPress site.
 
 = Highlights =
 
-* Create unlimited number of call-to-action buttons
+* Create unlimited number of buttons
 * Buttons are built on-the-fly as you enter and select options
 * Works with all modern browsers, degrades gracefully for others
-* Fully CSS3 compliant with text shadowing, box shadowing, and gradients
+* Fully CSS3 compliant with text shadowing, box shadowing, gradients, etc
 * Color picker for unlimited color combinations
 * Copy an existing button to use as starting point for others
 * See your buttons on different color backgrounds
 * Pre-defined defaults make getting started super easy
 
-Use the buttons you create on your [WordPress landing pages](http://maxfoundry.com/plugins/maxlanding/), [WordPress squeeze pages](http://maxfoundry.com/plugins/maxsqueeze/), and [WordPress sales pages](http://maxfoundry.com/plugins/maxsales/) to increase your conversion rates.
+= Go Pro =
 
-And because you can create buttons to correspond to any design, this plugin is perfect for any [WordPress theme](http://maxfoundry.com/themes/).
+Very soon the ultimate button resource for WordPress will be released: **MaxButtons Pro**.
 
-= Samples =
+MaxButtons Pro takes WordPress buttons to the next level, with features such as:
 
-To see some example buttons, check out the [MaxButtons page](http://maxfoundry.com/plugins/maxbuttons/) on the Max Foundry website.
+* Packs of pre-defined buttons to use as-is or to tweak and customize as you see fit.
+* A wide selection of Google Web Fonts for beautiful typography.
+* Import and export functionality. This alone is a huge time-saver.
+
+And to kick things off, we're offering MaxButtons Pro for **HALF OFF** to anyone who signs up before it launches.
+
+Simply visit the official [MaxButtons website](http://maxbuttons.com/), enter your email address, and we'll send you the discount code when the plugin is released.
 
 = How To Use =
 
@@ -83,7 +89,22 @@ See [this forum post](http://wordpress.org/support/topic/how-to-make-shortcodes-
 
 Simply add this code snippet to any of your theme template files: `<?php echo do_shortcode('[maxbutton id="17"]'); ?>`
 
+= Part of my button is cutoff, how do I fix that? =
+
+You probably need to surround your button shortcode with a div element with margins. For example:
+
+`<div style="margin: 10px 10px 10px 10px;">`
+`    <?php echo do_shortcode('[maxbutton id="17"]'); ?>`
+`</div>`
+
+Then adjust the margin values as needed (the order is: top, right, bottom, left).
+
 == Changelog ==
+
+= 1.3.0 =
+* Changed the style of the output div so that it floats.
+* Updated shortcode so that the <style> element is returned with the <a> element.
+* Added option for gradient stop.
 
 = 1.2.1 =
 * Fixed issue when new sites are added with multisite/network.
@@ -99,4 +120,5 @@ Simply add this code snippet to any of your theme template files: `<?php echo do
 
 == Upgrade Notice ==
 
-= 1.2.1 =
+= 1.3.0 =
+Please deactivate and then reactivate before using.

@@ -1,8 +1,24 @@
 #maxbuttons {
-	margin: 20px 20px 20px 0px;
+	margin: 0px 20px 20px 0px;
+}
+#maxbuttons .logo {
+	float: left;
+	margin-top: 10px;
+	margin-left: 50px;
+	font-weight: bold;
+	font-style: italic;
+}
+#maxbuttons .logo img {
+	vertical-align: middle;
+	padding-left: 5px;
+}
+#maxbuttons h2.title {
+	float: left;
 }
 #maxbuttons h2.tabs {
 	border-bottom: solid 1px #cccccc;
+	padding-bottom: 0px;
+	margin-top: 10px;
 }
 #maxbuttons h2.tabs .spacer {
 	padding-right: 20px;
@@ -94,6 +110,7 @@
 	width: 180px;
 }
 #maxbuttons .form-actions {
+	margin-top: 15px;
 	margin-bottom: 15px;
 	padding-bottom: 15px;
 	border-bottom: dashed 1px #d1d1d1;
@@ -122,28 +139,26 @@
 	left: 4px;
 }
 #maxbuttons .shortcode {
-	position: absolute;
-	top: 230px;
-	left: 650px;
-	width: 500px;
 	background-color: #ffffe0;
 	border: solid 1px #e6db55;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	padding: 5px;
+	padding: 10px;
+	margin: 10px 0px 20px 0px;
 	display: none;
 }
 #maxbuttons .output {
-	position: absolute;
-	top: 305px;
-	left: 650px;
+	position: fixed;
+	top: 240px;
+	left: 750px;
 	background-color: #f1f1f1;
 	border: solid 1px #d1d1d1;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	padding: 5px;
+	z-index: 99;
 }
 #maxbuttons .output .note {
 	float: left;
@@ -156,10 +171,8 @@
 	padding: 5px 0px 5px 0px;
 }
 #maxbuttons .button-list {
-	margin-top: 15px;
+	margin-top: 10px;
 	margin-right: 20px;
-	padding-top: 15px;
-	border-top: dashed 1px #d1d1d1;
 }
 #maxbuttons .button-list p {
 	font-size: 13px;
@@ -175,4 +188,17 @@
 #maxbuttons .button-list td.cell-words {
 	width: 500px;
 	padding-bottom: 20px;
+}
+#maxbuttons .pro-offer {
+	width: 600px;
+}
+#maxbuttons .pro-offer p,
+#maxbuttons .pro-offer ul,
+#maxbuttons .pro-offer form, 
+#maxbuttons .pro-offer input {
+	font-size: 14px;
+}
+#maxbuttons .pro-offer ul {
+	list-style-type: disc;
+	margin-left: 30px;
 }

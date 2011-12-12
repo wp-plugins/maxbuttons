@@ -2,8 +2,8 @@
 /*
 Plugin Name: MaxButtons
 Plugin URI: http://maxfoundry.com/plugins/maxbuttons/
-Description: The ultimate plugin for creating beautiful CSS3 call-to-action buttons.
-Version: 1.2.1
+Description: The ultimate plugin for creating awesome buttons in WordPress. This is the FREE version.
+Version: 1.3.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -11,7 +11,7 @@ Copyright 2011 Max Foundry, LLC (http://maxfoundry.com)
 */
 
 define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-define('MAXBUTTONS_VERSION_NUM', '1.2.1');
+define('MAXBUTTONS_VERSION_NUM', '1.3.0');
 
 $installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
@@ -100,6 +100,15 @@ function maxbuttons_plugin_action_links($links, $file) {
 	return $links;
 }
 
+add_filter('plugin_row_meta', 'maxbuttons_plugin_row_meta', 10, 2);
+function maxbuttons_plugin_row_meta($links, $file) {
+	if ($file == plugin_basename(dirname(__FILE__) . '/maxbuttons.php')) {
+		$links[] = '<a href="http://maxbuttons.com" target="_blank">Upgrade to Pro Version</a>';
+	}
+	
+	return $links;
+}
+
 add_action('admin_menu', 'maxbuttons_admin_menu');
 function maxbuttons_admin_menu() {
 	$page_title = 'MaxButtons : Buttons';
@@ -107,11 +116,27 @@ function maxbuttons_admin_menu() {
 	$capability = 'manage_options';
 	$menu_slug = 'maxbuttons-controller';
 	$function = 'maxbuttons_controller';
-	add_menu_page($page_title, $menu_title, $capability, $menu_slug, $function);
+	$icon_url = MAXBUTTONS_PLUGIN_URL . '/images/mb-16.png';
+	add_menu_page($page_title, $menu_title, $capability, $menu_slug, $function, $icon_url);
+	
+	// We add this submenu page with the same slug as the parent to ensure we don't get duplicates
+	$sub_menu_title = 'All Buttons';
+	add_submenu_page($menu_slug, $page_title, $sub_menu_title, $capability, $menu_slug, $function);
+	
+	// Now add the submenu page for the Pro page
+	$submenu_page_title = 'MaxButtons : Go Pro';
+	$submenu_title = 'Go Pro';
+	$submenu_slug = 'maxbuttons-pro';
+	$submenu_function = 'maxbuttons_pro';
+	add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
 }
 
 function maxbuttons_controller() {
 	include_once 'includes/maxbuttons-controller.php';
+}
+
+function maxbuttons_pro() {
+	include_once 'includes/maxbuttons-pro.php';
 }
 
 add_action('wp_print_scripts', 'maxbuttons_add_jquery_to_output');
@@ -191,6 +216,7 @@ function maxbuttons_create_database_table() {
 				gradient_start_color_hover VARCHAR(10) NULL,
 				gradient_end_color VARCHAR(10) NULL,
 				gradient_end_color_hover VARCHAR(10) NULL,
+				gradient_stop VARCHAR(2) NULL,
 				new_window VARCHAR(10) NULL,
 				PRIMARY KEY  (id)
 			);";
