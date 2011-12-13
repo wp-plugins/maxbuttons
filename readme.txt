@@ -2,7 +2,7 @@
 Contributors: maxfoundry, arcware
 Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
 Requires at least: 3.0
-Tested up to: 3.2.1
+Tested up to: 3.3
 Stable tag: 1.3.1
 
 The ultimate plugin for creating awesome buttons in WordPress.
@@ -87,7 +87,8 @@ See [this forum post](http://wordpress.org/support/topic/how-to-make-shortcodes-
 
 = How can I add the shortcode to my post/page template? =
 
-Simply add this code snippet to any of your theme template files: `<?php echo do_shortcode('[maxbutton id="17"]'); ?>`
+Simply add this code snippet to any of your theme template files:
+`<?php echo do_shortcode('[maxbutton id="17"]'); ?>`
 
 = Part of my button is cutoff, how do I fix that? =
 
