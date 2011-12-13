@@ -3,7 +3,7 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxfoundry.com/plugins/maxbuttons/
 Description: The ultimate plugin for creating awesome buttons in WordPress. This is the FREE version.
-Version: 1.3.0
+Version: 1.3.1
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -11,7 +11,7 @@ Copyright 2011 Max Foundry, LLC (http://maxfoundry.com)
 */
 
 define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-define('MAXBUTTONS_VERSION_NUM', '1.3.0');
+define('MAXBUTTONS_VERSION_NUM', '1.3.1');
 
 $installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 

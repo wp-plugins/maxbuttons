@@ -15,7 +15,11 @@ function maxbuttons_button_shortcode($atts) {
 		$button = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxbuttons_get_buttons_table_name() . " WHERE id = %d", $button_id));
 		
 		if (isset($button)) {
-			$gradient_stop = strlen($button->gradient_stop) == 1 ? '0' . $button->gradient_stop : $button->gradient_stop;
+			if ($button->gradient_stop != '') {
+				$gradient_stop = strlen($button->gradient_stop) == 1 ? '0' . $button->gradient_stop : $button->gradient_stop;
+			} else {
+				$gradient_stop = '45'; // Default
+			}
 			
 			// Begin style element
 			$style = '<style type="text/css">';

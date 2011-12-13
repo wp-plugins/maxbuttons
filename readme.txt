@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware
 Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 
 The ultimate plugin for creating awesome buttons in WordPress.
 
@@ -93,13 +93,16 @@ Simply add this code snippet to any of your theme template files: `<?php echo do
 
 You probably need to surround your button shortcode with a div element with margins. For example:
 
-`<div style="margin: 10px 10px 10px 10px;">`
-`    <?php echo do_shortcode('[maxbutton id="17"]'); ?>`
-`</div>`
+`<div style="margin: 10px 10px 10px 10px;">
+    <?php echo do_shortcode('[maxbutton id="17"]'); ?>
+</div>`
 
 Then adjust the margin values as needed (the order is: top, right, bottom, left).
 
 == Changelog ==
+
+= 1.3.1 =
+* Fixed issue where gradient stop value was empty after upgrade to 1.3.0 (default value now used in this scenario).
 
 = 1.3.0 =
 * Changed the style of the output div so that it floats.
@@ -120,5 +123,5 @@ Then adjust the margin values as needed (the order is: top, right, bottom, left)
 
 == Upgrade Notice ==
 
-= 1.3.0 =
+= 1.3.1 =
 Please deactivate and then reactivate before using.
