@@ -8,7 +8,7 @@ Stable tag: 1.3.2
 The ultimate CSS button generator for WordPress.
 
 == Description ==
-This plugin allows you to quickly and easily create great-looking CSS3 buttons that can be used on any post or page in your WordPress site.
+Create great-looking CSS3 buttons that can be used on any post or page in your WordPress site. The easy-to-use button editor makes it a snap to generate awesome CSS buttons in very little time.
 
 = Highlights =
 
