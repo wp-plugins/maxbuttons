@@ -154,7 +154,7 @@ function maxbuttons_strip_px($value) {
 	
 	jQuery(document).ready(function() {		
 		<?php if ($_GET['id'] > 0) { ?>
-			jQuery("#maxbuttons .shortcode").show();
+			jQuery("#maxbuttons .message").show();
 		<?php } ?>
 		
 		showColorPickerForButtonTextColor();
@@ -558,7 +558,7 @@ function maxbuttons_strip_px($value) {
 				<a id="delete-button" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $_GET['id'] ?>">Delete</a>
 			</div>
 			
-			<div class="shortcode">
+			<div class="message">
 				To use this button, place the following shortcode anywhere in your site content:
 				<strong>[maxbutton id="<?php echo $_GET['id'] ?>"]</strong>
 			</div>

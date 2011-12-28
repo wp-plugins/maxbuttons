@@ -36,6 +36,8 @@ $maxbutton_gradient_start_color_hover_default = '#2270df';
 $maxbutton_gradient_start_color_hover_key = 'maxbutton_gradient_start_color_hover';
 $maxbutton_gradient_stop_default = '45';
 $maxbutton_gradient_stop_key = 'maxbutton_gradient_stop';
+$maxbutton_height_default = '';
+$maxbutton_height_key = 'maxbutton_height';
 $maxbutton_name_key = 'maxbutton_name';
 $maxbutton_new_window_key = 'maxbutton_new_window';
 $maxbutton_text_color_default = '#ffffff';
@@ -70,4 +72,6 @@ $maxbutton_text_shadow_offset_top_key = 'maxbutton_text_shadow_offset_top';
 $maxbutton_text_shadow_width_default = '0px';
 $maxbutton_text_shadow_width_key = 'maxbutton_text_shadow_width';
 $maxbutton_url_key = 'maxbutton_url';
+$maxbutton_width_default = '';
+$maxbutton_width_key = 'maxbutton_width';
 ?>

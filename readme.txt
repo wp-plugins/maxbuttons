@@ -3,9 +3,9 @@ Contributors: maxfoundry, arcware
 Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
 Requires at least: 3.0
 Tested up to: 3.3
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 
-The ultimate plugin for creating awesome buttons in WordPress.
+The ultimate CSS button generator for WordPress.
 
 == Description ==
 This plugin allows you to quickly and easily create great-looking CSS3 buttons that can be used on any post or page in your WordPress site.
@@ -25,11 +25,12 @@ This plugin allows you to quickly and easily create great-looking CSS3 buttons t
 
 Very soon the ultimate button resource for WordPress will be released: **MaxButtons Pro**.
 
-MaxButtons Pro takes WordPress buttons to the next level, with features such as:
+MaxButtons Pro takes WordPress buttons to a whole new level, with features such as:
 
+* Support for two lines of text instead of just one.
 * Packs of pre-defined buttons to use as-is or to tweak and customize as you see fit.
-* A wide selection of Google Web Fonts for beautiful typography.
-* Import and export functionality. This alone is a huge time-saver.
+* A large selection of Google Web Fonts for beautiful typography.
+* Import and export functionality, a huge time-saver.
 
 And to kick things off, we're offering MaxButtons Pro for **HALF OFF** to anyone who signs up before it launches.
 
@@ -102,6 +103,12 @@ Then adjust the margin values as needed (the order is: top, right, bottom, left)
 
 == Changelog ==
 
+= 1.3.2 =
+* Added "Add New" to the admin menu.
+* Fixed issue where gradient stop value wasn't used when copying a button.
+* Fixed issue where new window option wasn't used when copying a button.
+* Fixed issue where the gradient stop value wasn't being used in the button list.
+
 = 1.3.1 =
 * Fixed issue where gradient stop value was empty after upgrade to 1.3.0 (default value now used in this scenario).
 
@@ -124,5 +131,5 @@ Then adjust the margin values as needed (the order is: top, right, bottom, left)
 
 == Upgrade Notice ==
 
-= 1.3.1 =
+= 1.3.2 =
 Please deactivate and then reactivate before using.

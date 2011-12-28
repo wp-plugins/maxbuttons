@@ -7,6 +7,7 @@ if ($_GET['id'] != '') {
 		'name' => $button->name,
 		'description' => $button->description,
 		'url' => $button->url,
+		'new_window' => $button->new_window,
 		'text' => $button->text,
 		'text_font_family' => $button->text_font_family,
 		'text_font_size' => $button->text_font_size,
@@ -39,7 +40,8 @@ if ($_GET['id'] != '') {
 		'gradient_start_color' => $button->gradient_start_color,
 		'gradient_start_color_hover' => $button->gradient_start_color_hover,
 		'gradient_end_color' => $button->gradient_end_color,
-		'gradient_end_color_hover' => $button->gradient_end_color_hover
+		'gradient_end_color_hover' => $button->gradient_end_color_hover,
+		'gradient_stop' => $button->gradient_stop
 	);
 
 	$wpdb->insert(maxbuttons_get_buttons_table_name(), $data);

@@ -19,7 +19,8 @@
 		
 		<h2 class="tabs">
 			<span class="spacer"></span>
-			<a class="nav-tab nav-tab-active" href="">MaxButtons Pro</a>
+			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list">Buttons</a>
+			<a class="nav-tab nav-tab-active" href="">Go Pro</a>
 		</h2>
 		
 		<div class="pro-offer">
@@ -30,14 +31,15 @@
 			<p>Those things are great, but what if it could do more? For example:</p>
 			
 			<ul>
+				<li>Support for two lines of text instead of just one.</li>
 				<li>Packs of pre-defined buttons to use as-is or to tweak and customize as you see fit.</li>
-				<li>A wide selection of Google Web Fonts for beautiful typography.</li>
-				<li>Import and export functionality. This alone is a huge time-saver.</li>
+				<li>A large selection of Google Web Fonts for beautiful typography.</li>
+				<li>Import and export functionality, a huge time-saver.</li>
 			</ul>
 			
 			<p>Soon you can have all that and more with <strong>MaxButtons Pro</strong>.</p>
 			
-			<p>And to kick things off, we're offering MaxButtons Pro for <strong>HALF OFF</strong> to anyone who signs up before it launches.</p>
+			<p>And for anyone using the free version of MaxButtons (you), we're offering the Pro version for <strong>HALF OFF</strong>.</p>
 			
 			<p>All you have to do is enter your email address below and we'll send you the discount code as soon as MaxButtons Pro is released.</p>
 			

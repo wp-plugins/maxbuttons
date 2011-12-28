@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: MaxButtons
-Plugin URI: http://maxfoundry.com/plugins/maxbuttons/
-Description: The ultimate plugin for creating awesome buttons in WordPress. This is the FREE version.
-Version: 1.3.1
+Plugin URI: http://maxbuttons.com
+Description: The ultimate CSS button generator for WordPress. This is the FREE version.
+Version: 1.3.2
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -11,7 +11,7 @@ Copyright 2011 Max Foundry, LLC (http://maxfoundry.com)
 */
 
 define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-define('MAXBUTTONS_VERSION_NUM', '1.3.1');
+define('MAXBUTTONS_VERSION_NUM', '1.3.2');
 
 $installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
@@ -120,8 +120,15 @@ function maxbuttons_admin_menu() {
 	add_menu_page($page_title, $menu_title, $capability, $menu_slug, $function, $icon_url);
 	
 	// We add this submenu page with the same slug as the parent to ensure we don't get duplicates
-	$sub_menu_title = 'All Buttons';
+	$sub_menu_title = 'Buttons';
 	add_submenu_page($menu_slug, $page_title, $sub_menu_title, $capability, $menu_slug, $function);
+	
+	// Now add the submenu page for the Add New page
+	$submenu_page_title = 'MaxButtons Pro : Add/Edit Button';
+	$submenu_title = 'Add New';
+	$submenu_slug = 'maxbuttons-button';
+	$submenu_function = 'maxbuttons_button';
+	add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
 	
 	// Now add the submenu page for the Pro page
 	$submenu_page_title = 'MaxButtons : Go Pro';
@@ -133,6 +140,10 @@ function maxbuttons_admin_menu() {
 
 function maxbuttons_controller() {
 	include_once 'includes/maxbuttons-controller.php';
+}
+
+function maxbuttons_button() {
+	include_once 'includes/maxbuttons-button.php';
 }
 
 function maxbuttons_pro() {

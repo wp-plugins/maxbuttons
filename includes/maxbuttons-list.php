@@ -34,6 +34,12 @@ $buttons = $wpdb->get_results("SELECT * FROM " . maxbuttons_get_buttons_table_na
 					<tr>
 						<td class="cell-button">
 							<?php
+							if ($b->gradient_stop != '') {
+								$gradient_stop = strlen($b->gradient_stop) == 1 ? '0' . $b->gradient_stop : $b->gradient_stop;
+							} else {
+								$gradient_stop = '45'; // Default
+							}
+							
 							$css_id = 'a#maxbutton-' . $b->id;
 							$css_id_hover = 'a#maxbutton-' . $b->id . ':hover';
 							
@@ -49,10 +55,10 @@ $buttons = $wpdb->get_results("SELECT * FROM " . maxbuttons_get_buttons_table_na
 							echo $css_id . ' { padding-left: ' . $b->text_padding_left . '; }' . "\n";
 							echo $css_id . ' { padding-right: ' . $b->text_padding_right . '; }' . "\n";
 							echo $css_id . ' { background-color: ' . $b->gradient_start_color . '; }' . "\n";
-							echo $css_id . ' { background: linear-gradient(' . $b->gradient_start_color . ' 45%, ' . $b->gradient_end_color . '); }' . "\n";
-							echo $css_id . ' { background: -moz-linear-gradient(' . $b->gradient_start_color . ' 45%, ' . $b->gradient_end_color . '); }' . "\n";
-							echo $css_id . ' { background: -o-linear-gradient(' . $b->gradient_start_color . ' 45%, ' . $b->gradient_end_color . '); }' . "\n";
-							echo $css_id . ' { background: -webkit-gradient(linear, left top, left bottom, color-stop(.45, ' . $b->gradient_start_color . '), color-stop(1, ' . $b->gradient_end_color . ')); }' . "\n";
+							echo $css_id . ' { background: linear-gradient(' . $b->gradient_start_color . ' ' . $gradient_stop . '%, ' . $b->gradient_end_color . '); }' . "\n";
+							echo $css_id . ' { background: -moz-linear-gradient(' . $b->gradient_start_color . ' ' . $gradient_stop . '%, ' . $b->gradient_end_color . '); }' . "\n";
+							echo $css_id . ' { background: -o-linear-gradient(' . $b->gradient_start_color . ' ' . $gradient_stop . '%, ' . $b->gradient_end_color . '); }' . "\n";
+							echo $css_id . ' { background: -webkit-gradient(linear, left top, left bottom, color-stop(.' . $gradient_stop . ', ' . $b->gradient_start_color . '), color-stop(1, ' . $b->gradient_end_color . ')); }' . "\n";
 							echo $css_id . ' { filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="' . $b->gradient_start_color . '", endColorStr="' . $b->gradient_end_color . '"); }' . "\n";
 							echo $css_id . ' { -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="' . $b->gradient_start_color . '", endColorStr="' . $b->gradient_end_color . '"); }' . "\n";
 							echo $css_id . ' { border-style: ' . $b->border_style . '; }' . "\n";
@@ -74,10 +80,10 @@ $buttons = $wpdb->get_results("SELECT * FROM " . maxbuttons_get_buttons_table_na
 							echo $css_id . ' { box-shadow: ' . $b->box_shadow_offset_left . ' ' . $b->box_shadow_offset_top . ' ' . $b->box_shadow_width . ' ' . $b->box_shadow_color . '; }' . "\n";
 							echo $css_id_hover . ' { color: ' . $b->text_color_hover . '; }' . "\n";
 							echo $css_id_hover . ' { background-color: ' . $b->gradient_start_color_hover . '; }' . "\n";
-							echo $css_id_hover . ' { background: linear-gradient(' . $b->gradient_start_color_hover . ' 45%, ' . $b->gradient_end_color_hover . '); }' . "\n";
-							echo $css_id_hover . ' { background: -moz-linear-gradient(' . $b->gradient_start_color_hover . ' 45%, ' . $b->gradient_end_color_hover . '); }' . "\n";
-							echo $css_id_hover . ' { background: -o-linear-gradient(' . $b->gradient_start_color_hover . ' 45%, ' . $b->gradient_end_color_hover . '); }' . "\n";
-							echo $css_id_hover . ' { background: -webkit-gradient(linear, left top, left bottom, color-stop(.45, ' . $b->gradient_start_color_hover . '), color-stop(1, ' . $b->gradient_end_color_hover . ')); }' . "\n";
+							echo $css_id_hover . ' { background: linear-gradient(' . $b->gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $b->gradient_end_color_hover . '); }' . "\n";
+							echo $css_id_hover . ' { background: -moz-linear-gradient(' . $b->gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $b->gradient_end_color_hover . '); }' . "\n";
+							echo $css_id_hover . ' { background: -o-linear-gradient(' . $b->gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $b->gradient_end_color_hover . '); }' . "\n";
+							echo $css_id_hover . ' { background: -webkit-gradient(linear, left top, left bottom, color-stop(.' . $gradient_stop . ', ' . $b->gradient_start_color_hover . '), color-stop(1, ' . $b->gradient_end_color_hover . ')); }' . "\n";
 							echo $css_id_hover . ' { filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="' . $b->gradient_start_color_hover . '", endColorStr="' . $b->gradient_end_color_hover . '"); }' . "\n";
 							echo $css_id_hover . ' { -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="' . $b->gradient_start_color_hover . '", endColorStr="' . $b->gradient_end_color_hover . '"); }' . "\n";
 							echo $css_id_hover . ' { border-color: ' . $b->border_color_hover . '; }' . "\n";
