@@ -32,7 +32,7 @@ Take your buttons to the next level with [MaxButtons Pro](http://maxbuttons.com/
 * Button packs, to import pre-defined sets of buttons into your website
 * Import/export functionality (useful for backing up and/or moving your buttons)
 
-And for a limited time, you can [get it for only $10](http://maxbuttons.com/shop/maxbuttons-pro/)! That's **HALF OFF** its regular price.
+And for a limited time, you can get this awesome [CSS3 button generator](http://maxbuttons.com/shop/maxbuttons-pro/) for only 10! That's **HALF OFF** its regular price.
 
 = How To Use =
 
