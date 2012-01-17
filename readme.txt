@@ -1,17 +1,18 @@
-=== MaxButtons ===
+=== MaxButtons: The Ultimate CSS3 Button Generator ===
 Contributors: maxfoundry, arcware
 Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
 Requires at least: 3.0
-Tested up to: 3.3
-Stable tag: 1.3.2
+Tested up to: 3.3.1
+Stable tag: 1.3.3
 
-The ultimate CSS button generator for WordPress.
+The ultimate CSS3 button generator for WordPress. A powerful, easy to use plugin that anyone can use to create beautiful buttons.
 
 == Description ==
-Create great-looking CSS3 buttons that can be used on any post or page in your WordPress site. The easy-to-use button editor makes it a snap to generate awesome CSS buttons in very little time.
+Create great-looking CSS3 buttons that can be used on any post or page in your WordPress site. The easy to use button editor makes it a snap to generate awesome CSS3 buttons in very little time.
 
 = Highlights =
 
+* No coding, the plugin takes care of everything
 * Create unlimited number of buttons
 * Buttons are built on-the-fly as you enter and select options
 * Works with all modern browsers, degrades gracefully for others
@@ -21,20 +22,17 @@ Create great-looking CSS3 buttons that can be used on any post or page in your W
 * See your buttons on different color backgrounds
 * Pre-defined defaults make getting started super easy
 
-= Go Pro =
+= Upgrade to MaxButtons Pro =
 
-Very soon the ultimate button resource for WordPress will be released: **MaxButtons Pro**.
+Take your buttons to the next level with [MaxButtons Pro](http://maxbuttons.com/), which gives you additional features such as:
 
-MaxButtons Pro takes WordPress buttons to a whole new level, with features such as:
+* Icon support (put icons to the left, right, top, or bottom of your text)
+* Multi-line text, to communicate extra information to your users and customers
+* Google Web Fonts, to make your buttons stand out with beautiful typography
+* Button packs, to import pre-defined sets of buttons into your website
+* Import/export functionality (useful for backing up and/or moving your buttons)
 
-* Support for two lines of text instead of just one.
-* Packs of pre-defined buttons to use as-is or to tweak and customize as you see fit.
-* A large selection of Google Web Fonts for beautiful typography.
-* Import and export functionality, a huge time-saver.
-
-And to kick things off, we're offering MaxButtons Pro for **HALF OFF** to anyone who signs up before it launches.
-
-Simply visit the official [MaxButtons website](http://maxbuttons.com/), enter your email address, and we'll send you the discount code when the plugin is released.
+And for a limited time, you can [get it for only $10](http://maxbuttons.com/shop/maxbuttons-pro/)! That's **HALF OFF** its regular price.
 
 = How To Use =
 
@@ -102,6 +100,12 @@ You probably need to surround your button shortcode with a div element with marg
 Then adjust the margin values as needed (the order is: top, right, bottom, left).
 
 == Changelog ==
+= 1.3.3 =
+* Modified the description database field to be VARCHAR(500) instead of TEXT.
+* Modified button list page to use button shortcodes to render each button.
+* Updated the UI for the button list page.
+* Added the button count to the button list page.
+* Updated "Go Pro" page with copy for MaxButtons Pro.
 
 = 1.3.2 =
 * Added "Add New" to the admin menu.
@@ -131,5 +135,5 @@ Then adjust the margin values as needed (the order is: top, right, bottom, left)
 
 == Upgrade Notice ==
 
-= 1.3.2 =
+= 1.3.3 =
 Please deactivate and then reactivate before using.

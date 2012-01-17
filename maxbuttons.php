@@ -2,8 +2,8 @@
 /*
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
-Description: The ultimate CSS button generator for WordPress. This is the FREE version.
-Version: 1.3.2
+Description: The ultimate CSS3 button generator for WordPress. This is the FREE version.
+Version: 1.3.3
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -11,7 +11,7 @@ Copyright 2011 Max Foundry, LLC (http://maxfoundry.com)
 */
 
 define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-define('MAXBUTTONS_VERSION_NUM', '1.3.2');
+define('MAXBUTTONS_VERSION_NUM', '1.3.3');
 
 $installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
@@ -192,7 +192,7 @@ function maxbuttons_create_database_table() {
 	$sql = "CREATE TABLE " . $table_name . " (
 				id INT NOT NULL AUTO_INCREMENT,
 				name VARCHAR(100) NULL,
-				description TEXT NULL,
+				description VARCHAR(500) NULL,
 				url VARCHAR(500) NULL,
 				text VARCHAR(100) NULL,
 				text_font_family VARCHAR(50) NULL,

@@ -24,29 +24,136 @@
 		</h2>
 		
 		<div class="pro-offer">
-			<p>Everyone loves buttons, including you apparently.</p>
+			<h2>Upgrade to MaxButtons Pro - It's Currently Just $10!</h2>
 			
-			<p>If you've created at least one button with MaxButtons, then you know what it can do: Unlimited colors. Rounded corners. Gradients. Text shadowing. Box shadowing. CSS3 that degrades gracefully.</p>
+			<p>If you've created at least one button with MaxButtons, then you know what it can do: Unlimited colors. Rounded corners. Gradients. Text shadowing. Box shadowing.</p>
 			
-			<p>Those things are great, but what if it could do more? For example:</p>
+			<p>Now you can take your buttons to the next level with <a href="http://maxbuttons.com/" target="_blank">MaxButtons Pro</a>. The Pro version gives you all the CSS3 goodness and so much more:</p>
 			
 			<ul>
-				<li>Support for two lines of text instead of just one.</li>
-				<li>Packs of pre-defined buttons to use as-is or to tweak and customize as you see fit.</li>
-				<li>A large selection of Google Web Fonts for beautiful typography.</li>
-				<li>Import and export functionality, a huge time-saver.</li>
+				<li><strong>Icon Support</strong> - Like buttons, everyone loves icons. Put them together for near-endless possibilities.</li>
+				<li><strong>Multi-Line Text</strong> - Use a second a line of text to communicate extra information to your users and customers.</li>
+				<li><strong>Google Web Fonts</strong> - Great typography can take your buttons up several notches.</li>
+				<li><strong>Button Packs</strong> - Import sets of pre-defined buttons, which you can then use as-is or customize as you need.</li>
 			</ul>
 			
-			<p>Soon you can have all that and more with <strong>MaxButtons Pro</strong>.</p>
+			<p>And did we mention you can <a href="http://maxbuttons.com/shop/maxbuttons-pro/" target="_blank">get MaxButtons Pro for only $10</a>? That's <strong>HALF OFF</strong> its regular price.</p>
 			
-			<p>And for anyone using the free version of MaxButtons (you), we're offering the Pro version for <strong>HALF OFF</strong>.</p>
+			<h2>CSS3 Button Examples</h2>
 			
-			<p>All you have to do is enter your email address below and we'll send you the discount code as soon as MaxButtons Pro is released.</p>
+			<p>Just take a look at the types of buttons you can make with MaxButtons Pro:</p>
 			
-			<form action="http://maxfoundry.createsend.com/t/r/s/vuubd/" method="post" id="subForm">
-				Email: <input type="text" name="cm-vuubd-vuubd" id="vuubd-vuubd" />
-				<input type="submit" value="Sign Me Up" class="button-primary" />
-			</form>
+			<p><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/css3-button-examples.png" alt="CSS3 Button Examples" /></p>
+			
+			<h2>Button Packs: Pre-Defined Sets of CSS3 and Icon Goodness</h2>
+			
+			<p>Button packs are sets of buttons with icons and settings already pre-defined for you, saving you loads of time. We have an <a href="http://maxbuttons.com/shop/category/button-packs/" target="_blank">ever-growing collection of button packs</a> that you can buy and import into your website (only $5 each). You can then use those buttons as they are, or customize them to fit your needs. Here are a few to get you started:</p>
+			
+			<div class="button-packs">
+				<div class="pack">
+					<a href="http://maxbuttons.com/shop/colored-round-social-icons-1/" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/button-pack-colored-round-social-icons-1.png" alt="Colored Round Social Icons 1" border="0" /></a>
+					<br />
+					<a href="http://maxbuttons.com/shop/colored-round-social-icons-1/" target="_blank">Colored Round Social Icons Set #1</a>
+				</div>
+				<div class="pack">
+					<a href="http://maxbuttons.com/shop/chrome-icons/" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/button-pack-chrome-icons.png" alt="Chrome Icons" border="0" /></a>
+					<br />
+					<a href="http://maxbuttons.com/shop/chrome-icons/" target="_blank">Chrome Icons</a>
+				</div>
+				<div class="pack">
+					<a href="http://maxbuttons.com/shop/ignition/" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/button-pack-ignition.png" alt="Ignition" border="0" /></a>
+					<br />
+					<a href="http://maxbuttons.com/shop/ignition/" target="_blank">Ignition</a>
+				</div>
+				<div class="pack">
+					<a href="http://maxbuttons.com/shop/dark-round-social-icons-1/" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/button-pack-dark-round-social-icons-1.png" alt="Dark Round Social Icons 1" border="0" /></a>
+					<br />
+					<a href="http://maxbuttons.com/shop/dark-round-social-icons-1/" target="_blank">Dark Round Social Icons Set #1</a>
+				</div>
+				<div class="pack">
+					<a href="http://maxbuttons.com/shop/social-sign-in/" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/button-pack-social-sign-in.png" alt="Social Sign-In" border="0" /></a>
+					<br />
+					<a href="http://maxbuttons.com/shop/social-sign-in/" target="_blank">Social Sign-In</a>
+				</div>
+				<div class="pack">
+					<a href="http://maxbuttons.com/shop/chrome-downloads/" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/button-pack-chrome-downloads.png" alt="Chrome Downloads" border="0" /></a>
+					<br />
+					<a href="http://maxbuttons.com/shop/chrome-downloads/" target="_blank">Chrome Downloads</a>
+				</div>
+			</div>
+			
+			<h2>Feature Comparison</h2>
+			
+			<p>There's nothing like a nice, straightforward checklist to do a product comparison, so here's another one:</p>
+			
+			<table class="compare" cellpadding="0" cellspacing="0">
+				<tr>
+					<th>&nbsp;</th>
+					<th>Free Version</th>
+					<th>MaxButtons Pro</th>
+				</tr>
+				<tr>
+					<td>Major browser support (Firefox, Chrome, Opera, Safari, and IE9)</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
+					<td>Gradients for background colors</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
+					<td>Border radius for rounded corners</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
+					<td>Text and box shadowing</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
+					<td>Hover effects and styles</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
+					<td>Shortcodes to use anywhere in your WordPress site</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
+					<td>Icon support (put icons to the left, right, top, or bottom of your text)</td>
+					<td align="center">&nbsp;</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
+					<td>Multi-line text, to communicate extra information to your users and customers</td>
+					<td align="center">&nbsp;</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
+					<td>Google Web Fonts, to make your buttons stand out with beautiful typography</td>
+					<td align="center">&nbsp;</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
+					<td>Button packs, to import pre-defined sets of buttons into your website</td>
+					<td align="center">&nbsp;</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
+					<td>Import/export functionality (useful for backing up and/or moving your buttons)</td>
+					<td align="center">&nbsp;</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+			</table>
+			
+			<h2>Get Your Copy Today</h2>
+			
+			<p>We don't know how long we're going to offer MaxButtons Pro for the super low price of $10.</p>
+			
+			<p>All we know is that it won't be forever, so don't wait any longer. <a href="http://maxbuttons.com/shop/maxbuttons-pro/" target="_blank">Grab your copy of MaxButtons Pro today</a>!</p>
 		</div>
 	</div>
 </div>

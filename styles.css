@@ -172,33 +172,115 @@
 }
 #maxbuttons .button-list {
 	margin-top: 10px;
-	margin-right: 20px;
 }
 #maxbuttons .button-list p {
 	font-size: 13px;
 }
-#maxbuttons .button-list a.button-name {
-	font-weight: bold;
+#maxbuttons .button-list a {
 	text-decoration: none;
 }
-#maxbuttons .button-list td.cell-button {
-	padding-right: 40px;
-	padding-bottom: 20px;
+#maxbuttons .button-list a.button-name {
+	font-weight: bold;
 }
-#maxbuttons .button-list td.cell-words {
-	width: 500px;
-	padding-bottom: 20px;
+#maxbuttons .button-list a.action {
+	padding-right: 10px;
+}
+#maxbuttons .button-list .shortcode-container {
+	margin: 10px 0px 10px 2px;
+	padding: 10px 0px 10px 2px;
+}
+#maxbuttons .button-list table {
+	background-color: #f9f9f9;
+	border-top: solid 1px #dfdfdf;
+	border-left: solid 1px #dfdfdf;
+	border-right: solid 1px #dfdfdf;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+#maxbuttons .button-list th {
+	font-family: Georgia;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 10px 8px 10px 8px;
+	text-align: left;
+	text-shadow: 0px 1px 0px #ffffff;
+	border-bottom: solid 1px #dfdfdf;
+	background-color: #f1f1f1;
+	background: linear-gradient(#f9f9f9 50%, #ececec);
+	background: -moz-linear-gradient(#f9f9f9 50%, #ececec);
+	background: -o-linear-gradient(#f9f9f9 50%, #ececec);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(.50, #f9f9f9), color-stop(1, #ececec));
+}
+#maxbuttons .button-list tr:nth-child(odd) {
+	background-color: #fcfcfc;
+}
+#maxbuttons .button-list td {
+	padding: 10px 8px 10px 8px;
+	border-top: solid 1px #ffffff;
+	border-bottom: solid 1px #dfdfdf;
+	vertical-align: top;
+	font-size: 13px;
 }
 #maxbuttons .pro-offer {
-	width: 600px;
-}
-#maxbuttons .pro-offer p,
-#maxbuttons .pro-offer ul,
-#maxbuttons .pro-offer form, 
-#maxbuttons .pro-offer input {
 	font-size: 14px;
+}
+#maxbuttons .pro-offer img {
+	width: auto !important;
+	height: auto !important;
+	max-width: 100%;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	box-shadow: 0px 0px 5px #808080;
 }
 #maxbuttons .pro-offer ul {
 	list-style-type: disc;
 	margin-left: 30px;
+}
+#maxbuttons .pro-offer .button-packs {
+	width: 850px;
+}
+#maxbuttons .pro-offer .button-packs .pack {
+	display: inline-block;
+	vertical-align: top;
+	margin: 10px 20px 10px 20px;
+	text-align: center;
+}
+#maxbuttons .pro-offer table.compare {
+	background-color: #f9f9f9;
+	border-top: solid 1px #dfdfdf;
+	border-left: solid 1px #dfdfdf;
+	border-right: solid 1px #dfdfdf;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	margin-bottom: 10px;
+}
+#maxbuttons .pro-offer table.compare th {
+	font-weight: bold;
+	padding: 7px 10px 7px 10px;
+	text-align: center;
+	text-shadow: 0px 1px 0px #ffffff;
+	border-bottom: solid 1px #dfdfdf;
+	background-color: #f1f1f1;
+	background: linear-gradient(#f9f9f9 50%, #ececec);
+	background: -moz-linear-gradient(#f9f9f9 50%, #ececec);
+	background: -o-linear-gradient(#f9f9f9 50%, #ececec);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(.50, #f9f9f9), color-stop(1, #ececec));
+}
+#maxbuttons .pro-offer table.compare tr:nth-child(odd) {
+	background-color: #fcfcfc;
+}
+#maxbuttons .pro-offer table.compare td {
+	padding: 7px 10px 7px 10px;
+	border-top: solid 1px #ffffff;
+	border-bottom: solid 1px #dfdfdf;
+	vertical-align: top;
+}
+#maxbuttons .pro-offer table.compare img {
+	border-radius: 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	box-shadow: none;
 }
