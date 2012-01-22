@@ -86,10 +86,10 @@ $button_id = 0;
 
 if ($_POST) {
 	$data = array(
-		'name' => $_POST[$maxbutton_name_key] != '' ? $wpdb->escape($_POST[$maxbutton_name_key]) : 'Unnamed Button',
-		'description' => $wpdb->escape($_POST[$maxbutton_description_key]),
-		'url' => $wpdb->escape($_POST[$maxbutton_url_key]),
-		'text' => $wpdb->escape($_POST[$maxbutton_text_key]),
+		'name' => $_POST[$maxbutton_name_key] != '' ? stripslashes($_POST[$maxbutton_name_key]) : 'Unnamed Button',
+		'description' => stripslashes($_POST[$maxbutton_description_key]),
+		'url' => stripslashes($_POST[$maxbutton_url_key]),
+		'text' => stripslashes($_POST[$maxbutton_text_key]),
 		'new_window' => $wpdb->escape($_POST[$maxbutton_new_window_key]),
 		'text_font_family' => $_POST[$maxbutton_text_font_family_key] != '' ? $wpdb->escape($_POST[$maxbutton_text_font_family_key]) : $maxbutton_text_font_family_default,
 		'text_font_size' => $_POST[$maxbutton_text_font_size_key] != '' ? $wpdb->escape($_POST[$maxbutton_text_font_size_key]) : $maxbutton_text_font_size_default,
