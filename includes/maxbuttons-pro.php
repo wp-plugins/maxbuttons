@@ -93,6 +93,31 @@
 					<th>MaxButtons Pro</th>
 				</tr>
 				<tr>
+					<td>Icon support (put icons to the left, right, top, or bottom of your text)</td>
+					<td align="center">&nbsp;</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
+					<td>Multi-line text, to communicate extra information to your users and customers</td>
+					<td align="center">&nbsp;</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
+					<td>Google Web Fonts, to make your buttons stand out with beautiful typography</td>
+					<td align="center">&nbsp;</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
+					<td>Button packs, to import pre-defined sets of buttons into your website</td>
+					<td align="center">&nbsp;</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
+					<td>Import/export functionality (useful for backing up and/or moving your buttons)</td>
+					<td align="center">&nbsp;</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
 					<td>Major browser support (Firefox, Chrome, Opera, Safari, and IE9)</td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
@@ -120,31 +145,6 @@
 				<tr>
 					<td>Shortcodes to use anywhere in your WordPress site</td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
-					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td>Icon support (put icons to the left, right, top, or bottom of your text)</td>
-					<td align="center">&nbsp;</td>
-					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td>Multi-line text, to communicate extra information to your users and customers</td>
-					<td align="center">&nbsp;</td>
-					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td>Google Web Fonts, to make your buttons stand out with beautiful typography</td>
-					<td align="center">&nbsp;</td>
-					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td>Button packs, to import pre-defined sets of buttons into your website</td>
-					<td align="center">&nbsp;</td>
-					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
-				</tr>
-				<tr>
-					<td>Import/export functionality (useful for backing up and/or moving your buttons)</td>
-					<td align="center">&nbsp;</td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
 			</table>

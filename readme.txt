@@ -1,11 +1,11 @@
-=== MaxButtons: The Ultimate CSS3 Button Generator ===
+=== MaxButtons: CSS3 Button Generator for WordPress ===
 Contributors: maxfoundry, arcware
 Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
 Requires at least: 3.0
 Tested up to: 3.3.1
-Stable tag: 1.3.3
+Stable tag: 1.4.0
 
-The ultimate CSS3 button generator for WordPress. A powerful, easy to use plugin that anyone can use to create beautiful buttons.
+A CSS3 button generator for WordPress. Powerful, easy to use plugin that anyone can use to create beautiful buttons.
 
 == Description ==
 Create great-looking CSS3 buttons that can be used on any post or page in your WordPress site. The easy to use button editor makes it a snap to generate awesome CSS3 buttons in very little time.
@@ -26,13 +26,13 @@ Create great-looking CSS3 buttons that can be used on any post or page in your W
 
 Take your buttons to the next level with [MaxButtons Pro](http://maxbuttons.com/), which gives you additional features such as:
 
-* Icon support (put icons to the left, right, top, or bottom of your text)
-* Multi-line text, to communicate extra information to your users and customers
-* Google Web Fonts, to make your buttons stand out with beautiful typography
-* Button packs, to import pre-defined sets of buttons into your website
-* Import/export functionality (useful for backing up and/or moving your buttons)
+* **Icon support** (put icons to the left, right, top, or bottom of your text)
+* **Multi-line text**, to communicate extra information to your users and customers
+* **Google Web Fonts**, to make your buttons stand out with beautiful typography
+* **Button packs**, to import pre-defined sets of buttons into your website
+* **Import/export functionality** (useful for backing up and/or moving your buttons)
 
-And for a limited time, you can get this awesome [CSS3 button generator](http://maxbuttons.com/shop/maxbuttons-pro/) for only 10! That's **HALF OFF** its regular price.
+And for a limited time, you can get this awesome [CSS3 button generator](http://maxbuttons.com/) for **only 10!** That's HALF OFF its regular price.
 
 = How To Use =
 
@@ -100,6 +100,11 @@ You probably need to surround your button shortcode with a div element with marg
 Then adjust the margin values as needed (the order is: top, right, bottom, left).
 
 == Changelog ==
+= 1.4.0 =
+* Made the button output div in the button editor draggable.
+* Updated styles and scripts to be used only on plugin admin pages instead of all admin pages.
+* Added filter for widget_text to recognize and execute the button shortcode.
+
 = 1.3.3 =
 * Modified the description database field to be VARCHAR(500) instead of TEXT.
 * Modified button list page to use button shortcodes to render each button.
@@ -135,5 +140,5 @@ Then adjust the margin values as needed (the order is: top, right, bottom, left)
 
 == Upgrade Notice ==
 
-= 1.3.3 =
+= 1.4.0 =
 Please deactivate and then reactivate before using.

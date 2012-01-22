@@ -157,6 +157,8 @@ function maxbuttons_strip_px($value) {
 			jQuery("#maxbuttons .message").show();
 		<?php } ?>
 		
+		jQuery("#maxbuttons .output").draggable();
+		
 		showColorPickerForButtonTextColor();
 		showColorPickerForButtonTextHoverColor();
 		showColorPickerForButtonTextShadowColor();
@@ -179,7 +181,7 @@ function maxbuttons_strip_px($value) {
 		jQuery("#<?php echo $maxbutton_url_key ?>").keyup(function() {
 			jQuery("#maxbuttons .output .result a").attr("href", jQuery(this).val());
 		});
-		
+
 		jQuery("#<?php echo $maxbutton_text_key ?>").keyup(function() {
 			jQuery("#maxbuttons .output .result a").text(jQuery(this).val());
 		});
@@ -960,18 +962,22 @@ function maxbuttons_strip_px($value) {
 		</form>
 	
 		<div class="output">
-			The top is the normal button, the bottom one is the hover.
-			<div class="result" align="center">
-				<a href="<?php echo $maxbutton_url_value ?>"><?php echo $maxbutton_text_value ?></a>
-				<p>&nbsp;</p>
-				<a href="<?php echo $maxbutton_url_value ?>" class="hover"><?php echo $maxbutton_text_value ?></a>
+			<div class="header">Button Output</div>
+			<div class="inner">
+				The top is the normal button, the bottom one is the hover.
+				<div class="result">
+					<a href="<?php echo $maxbutton_url_value ?>"><?php echo $maxbutton_text_value ?></a>
+					<p>&nbsp;</p>
+					<a href="<?php echo $maxbutton_url_value ?>" class="hover"><?php echo $maxbutton_text_value ?></a>
+				</div>
+				
+				<span class="colorpicker-box" id="button_output_box">
+					<span></span>
+				</span>
+				<input style="display: none;" type="text" id="button_output" name="button_output" value="" />
+				<div class="note">Change this color to see your button on a different background.</div>
+				<div class="clear"></div>
 			</div>
-			<span class="colorpicker-box" id="button_output_box">
-				<span></span>
-			</span>
-			<input style="display: none;" type="text" id="button_output" name="button_output" value="" />
-			<div class="note">Change this color to see your button on a different background.</div>
-			<div class="clear"></div>
 		</div>
 	</div>
 </div>

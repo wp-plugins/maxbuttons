@@ -2,8 +2,8 @@
 /*
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
-Description: The ultimate CSS3 button generator for WordPress. This is the FREE version.
-Version: 1.3.3
+Description: CSS3 button generator for WordPress. This is the free version; the Pro version <a href="http://maxbuttons.com">can be found here</a>.
+Version: 1.4.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -11,9 +11,9 @@ Copyright 2011 Max Foundry, LLC (http://maxfoundry.com)
 */
 
 define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-define('MAXBUTTONS_VERSION_NUM', '1.3.3');
+define('MAXBUTTONS_VERSION_NUM', '1.4.0');
 
-$installed_version = get_option('MAXBUTTONS_VERSION_KEY');
+$maxbuttons_installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
 maxbuttons_set_global_paths();
 maxbuttons_set_activation_hooks();
@@ -111,6 +111,8 @@ function maxbuttons_plugin_row_meta($links, $file) {
 
 add_action('admin_menu', 'maxbuttons_admin_menu');
 function maxbuttons_admin_menu() {
+	$admin_pages = array();
+
 	$page_title = 'MaxButtons : Buttons';
 	$menu_title = 'MaxButtons';
 	$capability = 'manage_options';
@@ -121,21 +123,26 @@ function maxbuttons_admin_menu() {
 	
 	// We add this submenu page with the same slug as the parent to ensure we don't get duplicates
 	$sub_menu_title = 'Buttons';
-	add_submenu_page($menu_slug, $page_title, $sub_menu_title, $capability, $menu_slug, $function);
+	$admin_pages[] = add_submenu_page($menu_slug, $page_title, $sub_menu_title, $capability, $menu_slug, $function);
 	
 	// Now add the submenu page for the Add New page
 	$submenu_page_title = 'MaxButtons Pro : Add/Edit Button';
 	$submenu_title = 'Add New';
 	$submenu_slug = 'maxbuttons-button';
 	$submenu_function = 'maxbuttons_button';
-	add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
+	$admin_pages[] = add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
 	
 	// Now add the submenu page for the Pro page
 	$submenu_page_title = 'MaxButtons : Go Pro';
 	$submenu_title = 'Go Pro';
 	$submenu_slug = 'maxbuttons-pro';
 	$submenu_function = 'maxbuttons_pro';
-	add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
+	$admin_pages[] = add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
+	
+	foreach ($admin_pages as $admin_page) {
+		add_action("admin_print_styles-{$admin_page}", 'maxbuttons_add_admin_styles');
+		add_action("admin_print_scripts-{$admin_page}", 'maxbuttons_add_admin_scripts');
+	}
 }
 
 function maxbuttons_controller() {
@@ -150,40 +157,18 @@ function maxbuttons_pro() {
 	include_once 'includes/maxbuttons-pro.php';
 }
 
-add_action('wp_print_scripts', 'maxbuttons_add_jquery_to_output');
-function maxbuttons_add_jquery_to_output() {
-	wp_enqueue_script('jquery');
-	do_action('maxbuttons_add_jquery_to_output');
+function maxbuttons_add_admin_styles() {	
+	wp_enqueue_style('maxbuttons-css', MAXBUTTONS_PLUGIN_URL . '/styles.css');
+	wp_enqueue_style('maxbuttons-colorpicker-css', MAXBUTTONS_PLUGIN_URL . '/js/colorpicker/css/colorpicker.css');
 }
 
-add_action('admin_print_styles', 'maxbuttons_enqueue_styles_into_wp_admin');
-function maxbuttons_enqueue_styles_into_wp_admin() {
-	$handle = 'maxbuttons-css';
-	$src = MAXBUTTONS_PLUGIN_URL . '/styles.css';
-	
-	wp_register_style($handle, $src);
-	wp_enqueue_style($handle);
-}
-
-add_action('admin_print_styles', 'maxbuttons_enqueue_colorpicker_styles_into_wp_admin');
-function maxbuttons_enqueue_colorpicker_styles_into_wp_admin() {
-	$handle = 'maxbuttons-colorpicker-css';
-	$src = MAXBUTTONS_PLUGIN_URL . '/js/colorpicker/css/colorpicker.css';
-	
-	wp_register_style($handle, $src);
-	wp_enqueue_style($handle);
-}
-
-add_action('admin_print_scripts', 'maxbuttons_enqueue_colorpicker_script_into_wp_admin');
-function maxbuttons_enqueue_colorpicker_script_into_wp_admin() {
-	$handle = 'maxbuttons-colorpicker-js';
-	$src = MAXBUTTONS_PLUGIN_URL . '/js/colorpicker/colorpicker.js';
-	
-	wp_enqueue_script($handle, $src);
+function maxbuttons_add_admin_scripts() {	
+	wp_enqueue_script('jquery-ui-draggable');
+	wp_enqueue_script('maxbuttons-colorpicker-js', MAXBUTTONS_PLUGIN_URL . '/js/colorpicker/colorpicker.js', array('jquery'));
 }
 
 function maxbuttons_create_database_table() {
-	global $installed_version;
+	global $maxbuttons_installed_version;
 	
 	$table_name = maxbuttons_get_buttons_table_name();
 	
@@ -237,7 +222,7 @@ function maxbuttons_create_database_table() {
 		dbDelta($sql);
 	}
 	
-	if (maxbuttons_database_table_exists($table_name) && $installed_version != MAXBUTTONS_VERSION_NUM) {
+	if (maxbuttons_database_table_exists($table_name) && $maxbuttons_installed_version != MAXBUTTONS_VERSION_NUM) {
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		dbDelta($sql);
 	}
@@ -263,5 +248,6 @@ function maxbuttons_log_me($message) {
     }
 }
 
+add_filter('widget_text', 'do_shortcode');
 include_once 'includes/shortcode.php';
 ?>
