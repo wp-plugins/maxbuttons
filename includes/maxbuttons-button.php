@@ -322,7 +322,11 @@ function maxbuttons_strip_px($value) {
 			'onChange': function(hsb, hex, rgb) {
 				jQuery('#<?php echo $maxbutton_text_color_key ?>').attr('value', '#' + hex);
 				jQuery('#<?php echo $maxbutton_text_color_key ?>_box span').css('background-color', '#' + hex);
-				jQuery("#maxbuttons .output .result a").css("color", '#' + hex);
+				jQuery("#button-normal").css("color", '#' + hex);
+				
+				// Need this so that the hover color doesn't change when the normal color changes
+				var text_color_hover = jQuery("#<?php echo $maxbutton_text_color_hover_key ?>").val();
+				jQuery("#button-hover").css("color", text_color_hover);
 			}
 		});
 	}
@@ -336,7 +340,11 @@ function maxbuttons_strip_px($value) {
 			'onChange': function(hsb, hex, rgb) {
 				jQuery('#<?php echo $maxbutton_text_color_hover_key ?>').attr('value', '#' + hex);
 				jQuery('#<?php echo $maxbutton_text_color_hover_key ?>_box span').css('background-color', '#' + hex);
-				jQuery("#maxbuttons .output .result a.hover").css("color", '#' + hex);
+				jQuery("#button-hover").css("color", '#' + hex);
+				
+				// Need this so that the normal color doesn't change when the hover color changes
+				var text_color = jQuery("#<?php echo $maxbutton_text_color_key ?>").val();
+				jQuery("#button-normal").css("color", text_color);
 			}
 		});
 	}
@@ -350,7 +358,11 @@ function maxbuttons_strip_px($value) {
 			'onChange': function(hsb, hex, rgb) {
 				jQuery('#<?php echo $maxbutton_text_shadow_color_key ?>').attr('value', '#' + hex);
 				jQuery('#<?php echo $maxbutton_text_shadow_color_key ?>_box span').css('background-color', '#' + hex);
-				jQuery("#maxbuttons .output .result a").css("text-shadow", "<?php echo $maxbutton_text_shadow_offset_left_default ?> <?php echo $maxbutton_text_shadow_offset_top_default ?> <?php echo $maxbutton_text_shadow_width_default ?> " + '#' + hex);
+				jQuery("#button-normal").css("text-shadow", "<?php echo $maxbutton_text_shadow_offset_left_default ?> <?php echo $maxbutton_text_shadow_offset_top_default ?> <?php echo $maxbutton_text_shadow_width_default ?> " + '#' + hex);
+				
+				// Need this so that the hover color doesn't change when the normal color changes
+				var text_shadow_color_hover = jQuery("#<?php echo $maxbutton_text_shadow_color_hover_key ?>").val();
+				jQuery("#button-hover").css("text-shadow", "<?php echo $maxbutton_text_shadow_offset_left_default ?> <?php echo $maxbutton_text_shadow_offset_top_default ?> <?php echo $maxbutton_text_shadow_width_default ?> " + text_shadow_color_hover);
 			}
 		});
 	}
@@ -364,7 +376,11 @@ function maxbuttons_strip_px($value) {
 			'onChange': function(hsb, hex, rgb) {
 				jQuery('#<?php echo $maxbutton_text_shadow_color_hover_key ?>').attr('value', '#' + hex);
 				jQuery('#<?php echo $maxbutton_text_shadow_color_hover_key ?>_box span').css('background-color', '#' + hex);
-				jQuery("#maxbuttons .output .result a.hover").css("text-shadow", "<?php echo $maxbutton_text_shadow_offset_left_default ?> <?php echo $maxbutton_text_shadow_offset_top_default ?> <?php echo $maxbutton_text_shadow_width_default ?> " + '#' + hex);
+				jQuery("#button-hover").css("text-shadow", "<?php echo $maxbutton_text_shadow_offset_left_default ?> <?php echo $maxbutton_text_shadow_offset_top_default ?> <?php echo $maxbutton_text_shadow_width_default ?> " + '#' + hex);
+				
+				// Need this so that the normal color doesn't change when the hover color changes
+				var text_shadow_color = jQuery("#<?php echo $maxbutton_text_shadow_color_key ?>").val();
+				jQuery("#button-normal").css("text-shadow", "<?php echo $maxbutton_text_shadow_offset_left_default ?> <?php echo $maxbutton_text_shadow_offset_top_default ?> <?php echo $maxbutton_text_shadow_width_default ?> " + text_shadow_color);
 			}
 		});
 	}
@@ -381,13 +397,24 @@ function maxbuttons_strip_px($value) {
 				
 				var start_color = '#' + hex;
 				var end_color = jQuery("#<?php echo $maxbutton_gradient_end_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_end_color_key ?>").val() : "<?php echo $maxbutton_gradient_end_color_default ?>";
-				jQuery("#maxbuttons .output .result a").css("background-color", start_color);
-				jQuery("#maxbuttons .output .result a").css("background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#maxbuttons .output .result a").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#maxbuttons .output .result a").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#maxbuttons .output .result a").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
-				jQuery("#maxbuttons .output .result a").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
-				jQuery("#maxbuttons .output .result a").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
+				jQuery("#button-normal").css("background-color", start_color);
+				jQuery("#button-normal").css("background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+				jQuery("#button-normal").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+				jQuery("#button-normal").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+				jQuery("#button-normal").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
+				jQuery("#button-normal").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
+				jQuery("#button-normal").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
+				
+				// Need this so that the hover color doesn't change when the normal color changes
+				var start_color_hover = jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_hover_default ?>";
+				var end_color_hover = jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_end_color_hover_default ?>";
+				jQuery("#button-hover").css("background-color", start_color_hover);
+				jQuery("#button-hover").css("background", "linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
+				jQuery("#button-hover").css("background", "-moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
+				jQuery("#button-hover").css("background", "-o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
+				jQuery("#button-hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "))");
+				jQuery("#button-hover").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
+				jQuery("#button-hover").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
 			}
 		});
 	}
@@ -402,15 +429,26 @@ function maxbuttons_strip_px($value) {
 				jQuery('#<?php echo $maxbutton_gradient_start_color_hover_key ?>').attr('value', '#' + hex);
 				jQuery('#<?php echo $maxbutton_gradient_start_color_hover_key ?>_box span').css('background-color', '#' + hex);
 				
-				var start_color = '#' + hex;
-				var end_color = jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_end_color_hover_default ?>";
-				jQuery("#maxbuttons .output .result a.hover").css("background-color", start_color);
-				jQuery("#maxbuttons .output .result a.hover").css("background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#maxbuttons .output .result a.hover").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#maxbuttons .output .result a.hover").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#maxbuttons .output .result a.hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
-				jQuery("#maxbuttons .output .result a.hover").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
-				jQuery("#maxbuttons .output .result a.hover").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
+				var start_color_hover = '#' + hex;
+				var end_color_hover = jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_end_color_hover_default ?>";
+				jQuery("#button-hover").css("background-color", start_color_hover);
+				jQuery("#button-hover").css("background", "linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
+				jQuery("#button-hover").css("background", "-moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
+				jQuery("#button-hover").css("background", "-o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
+				jQuery("#button-hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "))");
+				jQuery("#button-hover").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
+				jQuery("#button-hover").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
+				
+				// Need this so that the normal color doesn't change when the hover color changes
+				var start_color = jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_default ?>";
+				var end_color = jQuery("#<?php echo $maxbutton_gradient_end_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_end_color_key ?>").val() : "<?php echo $maxbutton_gradient_end_color_default ?>";
+				jQuery("#button-normal").css("background-color", start_color);
+				jQuery("#button-normal").css("background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+				jQuery("#button-normal").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+				jQuery("#button-normal").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+				jQuery("#button-normal").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
+				jQuery("#button-normal").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
+				jQuery("#button-normal").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
 			}
 		});
 	}
@@ -427,13 +465,24 @@ function maxbuttons_strip_px($value) {
 				
 				var start_color = jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_default ?>";
 				var end_color = '#' + hex;
-				jQuery("#maxbuttons .output .result a").css("background-color", start_color);
-				jQuery("#maxbuttons .output .result a").css("background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#maxbuttons .output .result a").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#maxbuttons .output .result a").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#maxbuttons .output .result a").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
-				jQuery("#maxbuttons .output .result a").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
-				jQuery("#maxbuttons .output .result a").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
+				jQuery("#button-normal").css("background-color", start_color);
+				jQuery("#button-normal").css("background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+				jQuery("#button-normal").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+				jQuery("#button-normal").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+				jQuery("#button-normal").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
+				jQuery("#button-normal").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
+				jQuery("#button-normal").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
+				
+				// Need this so that the hover color doesn't change when the normal color changes
+				var start_color_hover = jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_hover_default ?>";
+				var end_color_hover = jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_end_color_hover_default ?>";
+				jQuery("#button-hover").css("background-color", start_color_hover);
+				jQuery("#button-hover").css("background", "linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
+				jQuery("#button-hover").css("background", "-moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
+				jQuery("#button-hover").css("background", "-o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
+				jQuery("#button-hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "))");
+				jQuery("#button-hover").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
+				jQuery("#button-hover").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
 			}
 		});
 	}
@@ -448,15 +497,26 @@ function maxbuttons_strip_px($value) {
 				jQuery('#<?php echo $maxbutton_gradient_end_color_hover_key ?>').attr('value', '#' + hex);
 				jQuery('#<?php echo $maxbutton_gradient_end_color_hover_key ?>_box span').css('background-color', '#' + hex);
 				
-				var start_color = jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_hover_default ?>";
-				var end_color = '#' + hex;
-				jQuery("#maxbuttons .output .result a.hover").css("background-color", start_color);
-				jQuery("#maxbuttons .output .result a.hover").css("background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#maxbuttons .output .result a.hover").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#maxbuttons .output .result a.hover").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#maxbuttons .output .result a.hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
-				jQuery("#maxbuttons .output .result a.hover").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
-				jQuery("#maxbuttons .output .result a.hover").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
+				var start_color_hover = jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_hover_default ?>";
+				var end_color_hover = '#' + hex;
+				jQuery("#button-hover").css("background-color", start_color_hover);
+				jQuery("#button-hover").css("background", "linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
+				jQuery("#button-hover").css("background", "-moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
+				jQuery("#button-hover").css("background", "-o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
+				jQuery("#button-hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "))");
+				jQuery("#button-hover").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
+				jQuery("#button-hover").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
+				
+				// Need this so that the normal color doesn't change when the hover color changes
+				var start_color = jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_default ?>";
+				var end_color = jQuery("#<?php echo $maxbutton_gradient_end_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_end_color_key ?>").val() : "<?php echo $maxbutton_gradient_end_color_default ?>";
+				jQuery("#button-normal").css("background-color", start_color);
+				jQuery("#button-normal").css("background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+				jQuery("#button-normal").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+				jQuery("#button-normal").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+				jQuery("#button-normal").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
+				jQuery("#button-normal").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
+				jQuery("#button-normal").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
 			}
 		});
 	}
@@ -470,7 +530,11 @@ function maxbuttons_strip_px($value) {
 			'onChange': function(hsb, hex, rgb) {
 				jQuery('#<?php echo $maxbutton_border_color_key ?>').attr('value', '#' + hex);
 				jQuery('#<?php echo $maxbutton_border_color_key ?>_box span').css('background-color', '#' + hex);
-				jQuery("#maxbuttons .output .result a").css("border-color", '#' + hex);
+				jQuery("#button-normal").css("border-color", '#' + hex);
+				
+				// Need this so that the hover color doesn't change when the normal color changes
+				var border_color_hover = jQuery("#<?php echo $maxbutton_border_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_border_color_hover_key ?>").val() : "<?php echo $maxbutton_border_color_hover_default ?>";
+				jQuery("#button-hover").css("border-color", border_color_hover);
 			}
 		});
 	}
@@ -484,7 +548,11 @@ function maxbuttons_strip_px($value) {
 			'onChange': function(hsb, hex, rgb) {
 				jQuery('#<?php echo $maxbutton_border_color_hover_key ?>').attr('value', '#' + hex);
 				jQuery('#<?php echo $maxbutton_border_color_hover_key ?>_box span').css('background-color', '#' + hex);
-				jQuery("#maxbuttons .output .result a.hover").css("border-color", '#' + hex);
+				jQuery("#button-hover").css("border-color", '#' + hex);
+				
+				// Need this so that the normal color doesn't change when the hover color changes
+				var border_color = jQuery("#<?php echo $maxbutton_border_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_border_color_key ?>").val() : "<?php echo $maxbutton_border_color_default ?>";
+				jQuery("#button-normal").css("border-color", border_color);
 			}
 		});
 	}
@@ -498,7 +566,11 @@ function maxbuttons_strip_px($value) {
 			'onChange': function(hsb, hex, rgb) {
 				jQuery('#<?php echo $maxbutton_box_shadow_color_key ?>').attr('value', '#' + hex);
 				jQuery('#<?php echo $maxbutton_box_shadow_color_key ?>_box span').css('background-color', '#' + hex);
-				jQuery("#maxbuttons .output .result a").css("box-shadow", "<?php echo $maxbutton_box_shadow_offset_left_default ?> <?php echo $maxbutton_box_shadow_offset_top_default ?> <?php echo $maxbutton_box_shadow_width_default ?> " + '#' + hex);
+				jQuery("#button-normal").css("box-shadow", "<?php echo $maxbutton_box_shadow_offset_left_default ?> <?php echo $maxbutton_box_shadow_offset_top_default ?> <?php echo $maxbutton_box_shadow_width_default ?> " + '#' + hex);
+				
+				// Need this so that the hover color doesn't change when the normal color changes
+				var box_shadow_color_hover = jQuery("#<?php echo $maxbutton_box_shadow_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_box_shadow_color_hover_key ?>").val() : "<?php echo $maxbutton_box_shadow_color_hover_default ?>";
+				jQuery("#button-hover").css("box-shadow", "<?php echo $maxbutton_box_shadow_offset_left_default ?> <?php echo $maxbutton_box_shadow_offset_top_default ?> <?php echo $maxbutton_box_shadow_width_default ?> " + box_shadow_color_hover);
 			}
 		});
 	}
@@ -512,7 +584,11 @@ function maxbuttons_strip_px($value) {
 			'onChange': function(hsb, hex, rgb) {
 				jQuery('#<?php echo $maxbutton_box_shadow_color_hover_key ?>').attr('value', '#' + hex);
 				jQuery('#<?php echo $maxbutton_box_shadow_color_hover_key ?>_box span').css('background-color', '#' + hex);
-				jQuery("#maxbuttons .output .result a.hover").css("box-shadow", "<?php echo $maxbutton_box_shadow_offset_left_default ?> <?php echo $maxbutton_box_shadow_offset_top_default ?> <?php echo $maxbutton_box_shadow_width_default ?> " + '#' + hex);
+				jQuery("#button-hover").css("box-shadow", "<?php echo $maxbutton_box_shadow_offset_left_default ?> <?php echo $maxbutton_box_shadow_offset_top_default ?> <?php echo $maxbutton_box_shadow_width_default ?> " + '#' + hex);
+				
+				// Need this so that the normal color doesn't change when the hover color changes
+				var box_shadow_color = jQuery("#<?php echo $maxbutton_box_shadow_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_box_shadow_color_key ?>").val() : "<?php echo $maxbutton_box_shadow_color_default ?>";
+				jQuery("#button-normal").css("box-shadow", "<?php echo $maxbutton_box_shadow_offset_left_default ?> <?php echo $maxbutton_box_shadow_offset_top_default ?> <?php echo $maxbutton_box_shadow_width_default ?> " + box_shadow_color_hover);
 			}
 		});
 	}
@@ -966,9 +1042,9 @@ function maxbuttons_strip_px($value) {
 			<div class="inner">
 				The top is the normal button, the bottom one is the hover.
 				<div class="result">
-					<a href="<?php echo $maxbutton_url_value ?>"><?php echo $maxbutton_text_value ?></a>
+					<a id="button-normal" href="<?php echo $maxbutton_url_value ?>"><?php echo $maxbutton_text_value ?></a>
 					<p>&nbsp;</p>
-					<a href="<?php echo $maxbutton_url_value ?>" class="hover"><?php echo $maxbutton_text_value ?></a>
+					<a id="button-hover" href="<?php echo $maxbutton_url_value ?>" class="hover"><?php echo $maxbutton_text_value ?></a>
 				</div>
 				
 				<span class="colorpicker-box" id="button_output_box">
