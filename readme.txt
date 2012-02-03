@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware
 Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
 Requires at least: 3.0
 Tested up to: 3.3.1
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 
 A CSS3 button generator for WordPress. Powerful, easy to use plugin that anyone can use to create beautiful buttons.
 
@@ -100,6 +100,9 @@ You probably need to surround your button shortcode with a div element with marg
 Then adjust the margin values as needed (the order is: top, right, bottom, left).
 
 == Changelog ==
+= 1.4.3 =
+* Added :visited style to the shortcode output.
+
 = 1.4.2 =
 * Fixed issue in button editor where the colorpickers changed the value of the hover colorpickers.
 
@@ -146,5 +149,5 @@ Then adjust the margin values as needed (the order is: top, right, bottom, left)
 
 == Upgrade Notice ==
 
-= 1.4.2 =
+= 1.4.3 =
 Please deactivate and then reactivate before using.

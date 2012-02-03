@@ -62,8 +62,15 @@ function maxbuttons_button_shortcode($atts) {
 			$style .= 'box-shadow: ' . $button->box_shadow_offset_left . ' ' . $button->box_shadow_offset_top . ' ' . $button->box_shadow_width . ' ' . $button->box_shadow_color . '; ';
 			$style .= '} ';
 			
+			// The button style - visited
+			$style .= 'a#maxbutton-' . $button->id . ':visited { ';
+			$style .= 'text-decoration: none; ';
+			$style .= 'color: ' . $button->text_color . '; ';
+			$style .= '} ';
+			
 			// The button style - hover
 			$style .= 'a#maxbutton-' . $button->id . ':hover { ';
+			$style .= 'text-decoration: none; ';
 			$style .= 'color: ' . $button->text_color_hover . '; ';
 			$style .= 'background-color: ' . $button->gradient_start_color_hover . '; ';
 			$style .= 'background: linear-gradient(' . $button->gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color_hover . '); ';
