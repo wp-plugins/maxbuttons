@@ -80,6 +80,13 @@ $maxbutton_box_shadow_width_display = ($maxbutton_box_shadow_width_value != '') 
 $maxbutton_gradient_stop_value = isset($button) ? $button->gradient_stop : '';
 $maxbutton_gradient_stop_display = ($maxbutton_gradient_stop_value != '') ? $maxbutton_gradient_stop_value : $maxbutton_gradient_stop_default;
 $maxbutton_gradient_stop_display = strlen($maxbutton_gradient_stop_display) == 1 ? '0' . $maxbutton_gradient_stop_display : $maxbutton_gradient_stop_display;
+$maxbutton_container_enabled_value = isset($button) ? $button->container_enabled : '';
+$maxbutton_container_width_value = isset($button) ? $button->container_width : '';
+$maxbutton_container_margin_top_value = isset($button) ? $button->container_margin_top : '';
+$maxbutton_container_margin_right_value = isset($button) ? $button->container_margin_right : '';
+$maxbutton_container_margin_bottom_value = isset($button) ? $button->container_margin_bottom : '';
+$maxbutton_container_margin_left_value = isset($button) ? $button->container_margin_left : '';
+$maxbutton_container_alignment_value = isset($button) ? $button->container_alignment : '';
 
 $redirect = false;
 $button_id = 0;
@@ -123,7 +130,14 @@ if ($_POST) {
 		'gradient_start_color_hover' => $_POST[$maxbutton_gradient_start_color_hover_key] != '' ? $wpdb->escape($_POST[$maxbutton_gradient_start_color_hover_key]) : $maxbutton_gradient_start_color_hover_default,
 		'gradient_end_color' => $_POST[$maxbutton_gradient_end_color_key] != '' ? $wpdb->escape($_POST[$maxbutton_gradient_end_color_key]) : $maxbutton_gradient_end_color_default,
 		'gradient_end_color_hover' => $_POST[$maxbutton_gradient_end_color_hover_key] != '' ? $wpdb->escape($_POST[$maxbutton_gradient_end_color_hover_key]) : $maxbutton_gradient_end_color_hover_default,
-		'gradient_stop' => $_POST[$maxbutton_gradient_stop_key] != '' ? $wpdb->escape($_POST[$maxbutton_gradient_stop_key]) : $maxbutton_gradient_stop_default
+		'gradient_stop' => $_POST[$maxbutton_gradient_stop_key] != '' ? $wpdb->escape($_POST[$maxbutton_gradient_stop_key]) : $maxbutton_gradient_stop_default,
+		'container_enabled' => $wpdb->escape($_POST[$maxbutton_container_enabled_key]),
+		'container_width' => $_POST[$maxbutton_container_width_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_width_key]) . 'px' : '',
+		'container_margin_top' => $_POST[$maxbutton_container_margin_top_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_margin_top_key]) . 'px' : '',
+		'container_margin_right' => $_POST[$maxbutton_container_margin_right_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_margin_right_key]) . 'px' : '',
+		'container_margin_bottom' => $_POST[$maxbutton_container_margin_bottom_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_margin_bottom_key]) . 'px' : '',
+		'container_margin_left' => $_POST[$maxbutton_container_margin_left_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_margin_left_key]) . 'px' : '',
+		'container_alignment' => $_POST[$maxbutton_container_alignment_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_alignment_key]) : ''
 	);
 
 	if ($_GET['id'] == '') {
@@ -133,7 +147,7 @@ if ($_POST) {
 	} else {
 		// Updating an existing button
 		$where = array('id' => $_GET['id']);
-		$data_format = array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');
+		$data_format = array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');
 		$where_format = array('%d');
 		$wpdb->update(maxbuttons_get_buttons_table_name(), $data, $where, $data_format, $where_format);
 		$button_id = $_GET['id'];
@@ -685,6 +699,8 @@ function maxbuttons_strip_px($value) {
 				<div class="clear"></div>
 			</div>
 			
+			<div class="spacer"></div>
+			
 			<div class="option-design">
 				<div class="label">Text Font</div>
 				<div class="input">
@@ -1032,6 +1048,59 @@ function maxbuttons_strip_px($value) {
 							</td>
 						</tr>
 					</table>
+				</div>
+				<div class="clear"></div>
+			</div>
+			
+			<div class="spacer"></div>
+			
+			<div class="option-design">
+				<div class="label">Use Container</div>
+				<div class="input"><input type="checkbox" id="<?php echo $maxbutton_container_enabled_key ?>" name="<?php echo $maxbutton_container_enabled_key ?>" <?php if ($maxbutton_container_enabled_value == 'on') { echo 'checked="checked"'; } else { echo ''; } ?>></div>
+				<div class="clear"></div>
+			</div>
+			
+			<div class="option-design">
+				<div class="label">Container Width</div>
+				<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_container_width_key ?>" name="<?php echo $maxbutton_container_width_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_container_width_value) ?>" />px</div>
+				<div class="clear"></div>
+			</div>
+			
+			<div class="option-design">
+				<div class="label">Container Margin Top</div>
+				<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_container_margin_top_key ?>" name="<?php echo $maxbutton_container_margin_top_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_container_margin_top_value) ?>" />px</div>
+				<div class="clear"></div>
+			</div>
+			
+			<div class="option-design">
+				<div class="label">Container Margin Right</div>
+				<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_container_margin_right_key ?>" name="<?php echo $maxbutton_container_margin_right_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_container_margin_right_value) ?>" />px</div>
+				<div class="clear"></div>
+			</div>
+			
+			<div class="option-design">
+				<div class="label">Container Margin Bottom</div>
+				<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_container_margin_bottom_key ?>" name="<?php echo $maxbutton_container_margin_bottom_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_container_margin_bottom_value) ?>" />px</div>
+				<div class="clear"></div>
+			</div>
+
+			<div class="option-design">
+				<div class="label">Container Margin Left</div>
+				<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_container_margin_left_key ?>" name="<?php echo $maxbutton_container_margin_left_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_container_margin_left_value) ?>" />px</div>
+				<div class="clear"></div>
+			</div>
+			
+			<div class="option-design">
+				<div class="label">Container Alignment</div>
+				<div class="input">
+					<select id="<?php echo $maxbutton_container_alignment_key ?>" name="<?php echo $maxbutton_container_alignment_key ?>">
+					<?php
+					foreach ($maxbuttons_container_alignments as $name => $value) {
+						$selected = ($maxbutton_container_alignment_value == $value) ? 'selected="selected"' : '';
+						echo '<option value="' . $value . '" ' . $selected . '>' . $name . '</option>';
+					}
+					?>
+					</select>
 				</div>
 				<div class="clear"></div>
 			</div>

@@ -41,7 +41,14 @@ if ($_GET['id'] != '') {
 		'gradient_start_color_hover' => $button->gradient_start_color_hover,
 		'gradient_end_color' => $button->gradient_end_color,
 		'gradient_end_color_hover' => $button->gradient_end_color_hover,
-		'gradient_stop' => $button->gradient_stop
+		'gradient_stop' => $button->gradient_stop,
+		'container_enabled' => $button->container_enabled,
+		'container_width' => $button->container_width,
+		'container_margin_top' => $button->container_margin_top,
+		'container_margin_right' => $button->container_margin_right,
+		'container_margin_bottom' => $button->container_margin_bottom,
+		'container_margin_left' => $button->container_margin_left,
+		'container_alignment' => $button->container_alignment
 	);
 
 	$wpdb->insert(maxbuttons_get_buttons_table_name(), $data);

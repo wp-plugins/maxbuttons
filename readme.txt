@@ -3,9 +3,9 @@ Contributors: maxfoundry, arcware
 Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
 Requires at least: 3.0
 Tested up to: 3.3.1
-Stable tag: 1.4.3
+Stable tag: 1.5.0
 
-A CSS3 button generator for WordPress. Powerful, easy to use plugin that anyone can use to create beautiful buttons.
+A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
 == Description ==
 Create great-looking CSS3 buttons that can be used on any post or page in your WordPress site. The easy to use button editor makes it a snap to generate awesome CSS3 buttons in very little time.
@@ -91,7 +91,7 @@ Simply add this code snippet to any of your theme template files:
 
 = Part of my button is cutoff, how do I fix that? =
 
-You probably need to surround your button shortcode with a div element with margins. For example:
+Try enabling the container and setting its margin options. You could also fix this manually by surrounding your button shortcode with a div element with margins. For example:
 
 `<div style="margin: 10px 10px 10px 10px;">
     <?php echo do_shortcode('[maxbutton id="17"]'); ?>
@@ -100,6 +100,9 @@ You probably need to surround your button shortcode with a div element with marg
 Then adjust the margin values as needed (the order is: top, right, bottom, left).
 
 == Changelog ==
+= 1.5.0 =
+* Added container options.
+
 = 1.4.3 =
 * Added :visited style to the shortcode output.
 
@@ -149,5 +152,5 @@ Then adjust the margin values as needed (the order is: top, right, bottom, left)
 
 == Upgrade Notice ==
 
-= 1.4.3 =
+= 1.5.0 =
 Please deactivate and then reactivate before using.

@@ -7,6 +7,13 @@ $maxbuttons_border_styles = array(
 	'solid' => 'solid'
 );
 
+$maxbuttons_container_alignments = array(
+	'' => '',
+	'display: inline-block' => 'display: inline-block',
+	'float: left' => 'float: left',
+	'float: right' => 'float: right'
+);
+
 $maxbuttons_font_families = array(
 	'' => '',
 	'Arial' => 'Arial',

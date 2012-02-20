@@ -22,70 +22,101 @@ function maxbuttons_button_shortcode($atts) {
 			}
 			
 			// Begin style element
-			$style = '<style type="text/css">';
+			$output = '<style type="text/css">';
+			
+			// The container style
+			if ($button->container_enabled == 'on') {
+				$output .= 'div#maxbutton-' . $button->id . '-container { ';
+
+				if ($button->container_alignment != '') {
+					$output .= $button->container_alignment . '; ';
+				}
+				
+				if ($button->container_width != '') {
+					$output .= 'width: ' . $button->container_width . '; ';
+				}
+				
+				if ($button->container_margin_top != '') {
+					$output .= 'margin-top: ' . $button->container_margin_top . '; ';
+				}
+
+				if ($button->container_margin_right != '') {
+					$output .= 'margin-right: ' . $button->container_margin_right . '; ';
+				}
+				
+				if ($button->container_margin_bottom != '') {
+					$output .= 'margin-bottom: ' . $button->container_margin_bottom . '; ';
+				}
+				
+				if ($button->container_margin_left != '') {
+					$output .= 'margin-left: ' . $button->container_margin_left . '; ';
+				}
+				
+				$output .= '} ';
+			}
 			
 			// The button style
-			$style .= 'a#maxbutton-' . $button->id . ' { ';
-			$style .= 'text-decoration: none; ';
-			$style .= 'color: ' . $button->text_color . '; ';
-			$style .= 'font-family: ' . $button->text_font_family . '; ';
-			$style .= 'font-size: ' . $button->text_font_size . '; ';
-			$style .= 'font-style: ' . $button->text_font_style . '; ';
-			$style .= 'font-weight: ' . $button->text_font_weight . '; ';
-			$style .= 'padding-top: ' . $button->text_padding_top . '; ';
-			$style .= 'padding-right: ' . $button->text_padding_right . '; ';
-			$style .= 'padding-bottom: ' . $button->text_padding_bottom . '; ';
-			$style .= 'padding-left: ' . $button->text_padding_left . '; ';
-			$style .= 'background-color: ' . $button->gradient_start_color . '; ';
-			$style .= 'background: linear-gradient(' . $button->gradient_start_color . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color . '); ';
-			$style .= 'background: -moz-linear-gradient(' . $button->gradient_start_color . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color . '); ';
-			$style .= 'background: -o-linear-gradient(' . $button->gradient_start_color . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color . '); ';
-			$style .= 'background: -webkit-gradient(linear, left top, left bottom, color-stop(.' . $gradient_stop . ', ' . $button->gradient_start_color . '), color-stop(1, ' . $button->gradient_end_color . ')); ';
-			$style .= 'filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="' . $button->gradient_start_color . '", endColorStr="' . $button->gradient_end_color . '"); ';
-			$style .= '-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="' . $button->gradient_start_color . '", endColorStr="' . $button->gradient_end_color . '"); ';
-			$style .= 'border-style: ' . $button->border_style . '; ';
-			$style .= 'border-width: ' . $button->border_width . '; ';
-			$style .= 'border-color: ' . $button->border_color . '; ';
-			$style .= 'border-top-left-radius: ' . $button->border_radius_top_left . '; ';
-			$style .= 'border-top-right-radius: ' . $button->border_radius_top_right . '; ';
-			$style .= 'border-bottom-left-radius: ' . $button->border_radius_bottom_left . '; ';
-			$style .= 'border-bottom-right-radius: ' . $button->border_radius_bottom_right . '; ';
-			$style .= '-moz-border-radius-topleft: ' . $button->border_radius_top_left . '; ';
-			$style .= '-moz-border-radius-topright: ' . $button->border_radius_top_right . '; ';
-			$style .= '-moz-border-radius-bottomleft: ' . $button->border_radius_bottom_left . '; ';
-			$style .= '-moz-border-radius-bottomright: ' . $button->border_radius_bottom_right . '; ';
-			$style .= '-webkit-border-top-left-radius: ' . $button->border_radius_top_left . '; ';
-			$style .= '-webkit-border-top-right-radius: ' . $button->border_radius_top_right . '; ';
-			$style .= '-webkit-border-bottom-left-radius: ' . $button->border_radius_bottom_left . '; ';
-			$style .= '-webkit-border-bottom-right-radius: ' . $button->border_radius_bottom_right . '; ';
-			$style .= 'text-shadow: ' . $button->text_shadow_offset_left . ' ' . $button->text_shadow_offset_top . ' ' . $button->text_shadow_width . ' ' . $button->text_shadow_color . '; ';
-			$style .= 'box-shadow: ' . $button->box_shadow_offset_left . ' ' . $button->box_shadow_offset_top . ' ' . $button->box_shadow_width . ' ' . $button->box_shadow_color . '; ';
-			$style .= '} ';
+			$output .= 'a#maxbutton-' . $button->id . ' { ';
+			$output .= 'text-decoration: none; ';
+			$output .= 'color: ' . $button->text_color . '; ';
+			$output .= 'font-family: ' . $button->text_font_family . '; ';
+			$output .= 'font-size: ' . $button->text_font_size . '; ';
+			$output .= 'font-style: ' . $button->text_font_style . '; ';
+			$output .= 'font-weight: ' . $button->text_font_weight . '; ';
+			$output .= 'padding-top: ' . $button->text_padding_top . '; ';
+			$output .= 'padding-right: ' . $button->text_padding_right . '; ';
+			$output .= 'padding-bottom: ' . $button->text_padding_bottom . '; ';
+			$output .= 'padding-left: ' . $button->text_padding_left . '; ';
+			$output .= 'background-color: ' . $button->gradient_start_color . '; ';
+			$output .= 'background: linear-gradient(' . $button->gradient_start_color . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color . '); ';
+			$output .= 'background: -moz-linear-gradient(' . $button->gradient_start_color . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color . '); ';
+			$output .= 'background: -o-linear-gradient(' . $button->gradient_start_color . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color . '); ';
+			$output .= 'background: -webkit-gradient(linear, left top, left bottom, color-stop(.' . $gradient_stop . ', ' . $button->gradient_start_color . '), color-stop(1, ' . $button->gradient_end_color . ')); ';
+			$output .= 'filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="' . $button->gradient_start_color . '", endColorStr="' . $button->gradient_end_color . '"); ';
+			$output .= '-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="' . $button->gradient_start_color . '", endColorStr="' . $button->gradient_end_color . '"); ';
+			$output .= 'border-style: ' . $button->border_style . '; ';
+			$output .= 'border-width: ' . $button->border_width . '; ';
+			$output .= 'border-color: ' . $button->border_color . '; ';
+			$output .= 'border-top-left-radius: ' . $button->border_radius_top_left . '; ';
+			$output .= 'border-top-right-radius: ' . $button->border_radius_top_right . '; ';
+			$output .= 'border-bottom-left-radius: ' . $button->border_radius_bottom_left . '; ';
+			$output .= 'border-bottom-right-radius: ' . $button->border_radius_bottom_right . '; ';
+			$output .= '-moz-border-radius-topleft: ' . $button->border_radius_top_left . '; ';
+			$output .= '-moz-border-radius-topright: ' . $button->border_radius_top_right . '; ';
+			$output .= '-moz-border-radius-bottomleft: ' . $button->border_radius_bottom_left . '; ';
+			$output .= '-moz-border-radius-bottomright: ' . $button->border_radius_bottom_right . '; ';
+			$output .= '-webkit-border-top-left-radius: ' . $button->border_radius_top_left . '; ';
+			$output .= '-webkit-border-top-right-radius: ' . $button->border_radius_top_right . '; ';
+			$output .= '-webkit-border-bottom-left-radius: ' . $button->border_radius_bottom_left . '; ';
+			$output .= '-webkit-border-bottom-right-radius: ' . $button->border_radius_bottom_right . '; ';
+			$output .= 'text-shadow: ' . $button->text_shadow_offset_left . ' ' . $button->text_shadow_offset_top . ' ' . $button->text_shadow_width . ' ' . $button->text_shadow_color . '; ';
+			$output .= 'box-shadow: ' . $button->box_shadow_offset_left . ' ' . $button->box_shadow_offset_top . ' ' . $button->box_shadow_width . ' ' . $button->box_shadow_color . '; ';
+			$output .= '} ';
 			
 			// The button style - visited
-			$style .= 'a#maxbutton-' . $button->id . ':visited { ';
-			$style .= 'text-decoration: none; ';
-			$style .= 'color: ' . $button->text_color . '; ';
-			$style .= '} ';
+			$output .= 'a#maxbutton-' . $button->id . ':visited { ';
+			$output .= 'text-decoration: none; ';
+			$output .= 'color: ' . $button->text_color . '; ';
+			$output .= '} ';
 			
 			// The button style - hover
-			$style .= 'a#maxbutton-' . $button->id . ':hover { ';
-			$style .= 'text-decoration: none; ';
-			$style .= 'color: ' . $button->text_color_hover . '; ';
-			$style .= 'background-color: ' . $button->gradient_start_color_hover . '; ';
-			$style .= 'background: linear-gradient(' . $button->gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color_hover . '); ';
-			$style .= 'background: -moz-linear-gradient(' . $button->gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color_hover . '); ';
-			$style .= 'background: -o-linear-gradient(' . $button->gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color_hover . '); ';
-			$style .= 'background: -webkit-gradient(linear, left top, left bottom, color-stop(.' . $gradient_stop . ', ' . $button->gradient_start_color_hover . '), color-stop(1, ' . $button->gradient_end_color_hover . ')); ';
-			$style .= 'filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="' . $button->gradient_start_color_hover . '", endColorStr="' . $button->gradient_end_color_hover . '"); ';
-			$style .= '-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="' . $button->gradient_start_color_hover . '", endColorStr="' . $button->gradient_end_color_hover . '"); ';
-			$style .= 'border-color: ' . $button->border_color_hover . '; ';
-			$style .= 'text-shadow: ' . $button->text_shadow_offset_left . ' ' . $button->text_shadow_offset_top . ' ' . $button->text_shadow_width . ' ' . $button->text_shadow_color_hover . '; ';
-			$style .= 'box-shadow: ' . $button->box_shadow_offset_left . ' ' . $button->box_shadow_offset_top . ' ' . $button->box_shadow_width . ' ' . $button->box_shadow_color_hover . '; ';
-			$style .= '}';
+			$output .= 'a#maxbutton-' . $button->id . ':hover { ';
+			$output .= 'text-decoration: none; ';
+			$output .= 'color: ' . $button->text_color_hover . '; ';
+			$output .= 'background-color: ' . $button->gradient_start_color_hover . '; ';
+			$output .= 'background: linear-gradient(' . $button->gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color_hover . '); ';
+			$output .= 'background: -moz-linear-gradient(' . $button->gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color_hover . '); ';
+			$output .= 'background: -o-linear-gradient(' . $button->gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color_hover . '); ';
+			$output .= 'background: -webkit-gradient(linear, left top, left bottom, color-stop(.' . $gradient_stop . ', ' . $button->gradient_start_color_hover . '), color-stop(1, ' . $button->gradient_end_color_hover . ')); ';
+			$output .= 'filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="' . $button->gradient_start_color_hover . '", endColorStr="' . $button->gradient_end_color_hover . '"); ';
+			$output .= '-ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorStr="' . $button->gradient_start_color_hover . '", endColorStr="' . $button->gradient_end_color_hover . '"); ';
+			$output .= 'border-color: ' . $button->border_color_hover . '; ';
+			$output .= 'text-shadow: ' . $button->text_shadow_offset_left . ' ' . $button->text_shadow_offset_top . ' ' . $button->text_shadow_width . ' ' . $button->text_shadow_color_hover . '; ';
+			$output .= 'box-shadow: ' . $button->box_shadow_offset_left . ' ' . $button->box_shadow_offset_top . ' ' . $button->box_shadow_width . ' ' . $button->box_shadow_color_hover . '; ';
+			$output .= '}';
 			
 			// End the style element
-			$style .= '</style>';
+			$output .= '</style>';
 						
 			$button_text = "{$text}" != '' ? "{$text}" : $button->text;
 			$button_url = "{$url}" != '' ? "{$url}" : $button->url;
@@ -101,7 +132,24 @@ function maxbuttons_button_shortcode($atts) {
 				}
 			}
 			
-			return $style . '<a id="maxbutton-' . $button->id . '" href="' . $button_url . '" ' . $button_window . '>' . $button_text . '</a>';
+			// Check to add the container
+			if ($button->container_enabled == 'on') {				
+				$output .= '<div id="maxbutton-' . $button->id . '-container">';
+			}
+			
+			$output .= '<a id="maxbutton-' . $button->id . '" href="' . $button_url . '" ' . $button_window . '>' . $button_text . '</a>';
+			
+			// Check to close the container
+			if ($button->container_enabled == 'on') {
+				$output .= '</div>';
+				
+				// Might need to clear the float
+				if ($button->container_alignment == 'float: right' || $button->container_alignment == 'float: left') {
+					$output .= '<div style="clear: both;"></div>';
+				}
+			}
+			
+			return $output;
 		}
 	}
 }
