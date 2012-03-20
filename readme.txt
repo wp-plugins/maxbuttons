@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware
 Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
 Requires at least: 3.0
 Tested up to: 3.3.1
-Stable tag: 1.5.0
+Stable tag: 1.6.0
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -158,5 +158,5 @@ Then adjust the margin values as needed (the order is: top, right, bottom, left)
 
 == Upgrade Notice ==
 
-= 1.5.0 =
+= 1.6.0 =
 Please deactivate and then reactivate before using.
