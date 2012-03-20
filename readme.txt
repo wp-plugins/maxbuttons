@@ -100,6 +100,12 @@ Try enabling the container and setting its margin options. You could also fix th
 Then adjust the margin values as needed (the order is: top, right, bottom, left).
 
 == Changelog ==
+= 1.6.0 =
+* Updated UI for button editor.
+* The container is now enabled by default.
+* Removed the IE-specific gradient filter and -ms-filter styles from shortcode output due to issue when used with rounded corners.
+* Changed url database field to be VARCHAR(250) instead of VARCHAR(500).
+
 = 1.5.0 =
 * Added container options.
 

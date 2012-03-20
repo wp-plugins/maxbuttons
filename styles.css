@@ -69,6 +69,30 @@
 	font-style: italic;
 	color: #808080;
 }
+#maxbuttons .option-container {
+	margin-bottom: 20px;
+	border: solid 1px #cccccc;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+#maxbuttons .option-container .title {	
+	font-family: Georgia;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 9px 8px 9px 8px;
+	text-align: left;
+	text-shadow: 0px 1px 0px #ffffff;
+	background-color: #f1f1f1;
+	background: linear-gradient(#f9f9f9 50%, #ececec);
+	background: -moz-linear-gradient(#f9f9f9 50%, #ececec);
+	background: -o-linear-gradient(#f9f9f9 50%, #ececec);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(.50, #f9f9f9), color-stop(1, #ececec));
+}
+#maxbuttons .option-container .inside {
+	padding: 10px 15px 10px 15px;
+	border-top: solid 1px #cccccc;
+}
 #maxbuttons .option {
 	margin-bottom: 20px;
 }
