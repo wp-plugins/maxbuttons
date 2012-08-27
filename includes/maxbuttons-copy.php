@@ -1,13 +1,13 @@
 <?php
-if ($_GET['id'] != '') {
-	global $wpdb;
-	$button = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxbuttons_get_buttons_table_name() . " WHERE id = %d", $_GET['id']));
-
+if (isset($_GET['id']) && $_GET['id'] != '') {
+	$button = maxbuttons_get_button($_GET['id']);
+	
 	$data = array(
 		'name' => $button->name,
 		'description' => $button->description,
 		'url' => $button->url,
 		'new_window' => $button->new_window,
+		'nofollow' => $button->nofollow,
 		'text' => $button->text,
 		'text_font_family' => $button->text_font_family,
 		'text_font_size' => $button->text_font_size,
@@ -48,15 +48,18 @@ if ($_GET['id'] != '') {
 		'container_margin_right' => $button->container_margin_right,
 		'container_margin_bottom' => $button->container_margin_bottom,
 		'container_margin_left' => $button->container_margin_left,
-		'container_alignment' => $button->container_alignment
+		'container_alignment' => $button->container_alignment,
+		'container_center_div_wrap_enabled' => $button->container_center_div_wrap_enabled,
+		'status' => $button->status
 	);
 
+	global $wpdb;
 	$wpdb->insert(maxbuttons_get_buttons_table_name(), $data);
 	$button_id = $wpdb->insert_id;
 }
 ?>
 <script type="text/javascript">
-	<?php if ($_GET['id'] != '') { ?>
+	<?php if (isset($_GET['id']) && $_GET['id'] != '') { ?>
 		window.location = "<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $button_id ?>";
 	<?php } else { ?>
 		window.location = "<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=list";

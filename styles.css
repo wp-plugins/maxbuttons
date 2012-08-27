@@ -210,6 +210,16 @@
 #maxbuttons .output .result p {
 	padding: 5px 0px 5px 0px;
 }
+#maxbuttons p.status a {
+	text-decoration: none;
+}
+#maxbuttons p.status span.count {
+	color: #999999;
+}
+#maxbuttons span.separator {
+	padding-left: 3px;
+	padding-right: 3px;
+}
 #maxbuttons .button-list {
 	margin-top: 10px;
 }
@@ -221,9 +231,6 @@
 }
 #maxbuttons .button-list a.button-name {
 	font-weight: bold;
-}
-#maxbuttons .button-list a.action {
-	padding-right: 10px;
 }
 #maxbuttons .button-list .shortcode-container {
 	margin: 10px 0px 10px 2px;

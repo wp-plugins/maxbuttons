@@ -2,10 +2,8 @@
 include_once 'arrays.php';
 include_once 'constants.php';
 
-global $wpdb;
-
-if ($_GET['id'] != '') {
-	$button = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxbuttons_get_buttons_table_name() . " WHERE id = %d", $_GET['id']));
+if (isset($_GET['id']) && $_GET['id'] != '') {
+	$button = maxbuttons_get_button($_GET['id']);
 }
 
 $maxbutton_name_value = isset($button) ? $button->name : '';
@@ -13,6 +11,7 @@ $maxbutton_description_value = isset($button) ? $button->description : '';
 $maxbutton_url_value = isset($button) ? $button->url : '';
 $maxbutton_text_value = isset($button) ? $button->text : '';
 $maxbutton_new_window_value = isset($button) ? $button->new_window : '';
+$maxbutton_nofollow_value = isset($button) ? $button->nofollow : '';
 $maxbutton_text_font_family_value = isset($button) ? $button->text_font_family : '';
 $maxbutton_text_font_family_display = ($maxbutton_text_font_family_value != '') ? $maxbutton_text_font_family_value : $maxbutton_text_font_family_default;
 $maxbutton_text_font_size_value = isset($button) ? $button->text_font_size : '';
@@ -87,17 +86,21 @@ $maxbutton_container_margin_right_value = isset($button) ? $button->container_ma
 $maxbutton_container_margin_bottom_value = isset($button) ? $button->container_margin_bottom : '';
 $maxbutton_container_margin_left_value = isset($button) ? $button->container_margin_left : '';
 $maxbutton_container_alignment_value = isset($button) ? $button->container_alignment : '';
+$maxbutton_container_center_div_wrap_enabled_value = isset($button) ? $button->container_center_div_wrap_enabled : 'on';
 
 $redirect = false;
 $button_id = 0;
 
 if ($_POST) {
+	global $wpdb;
+	
 	$data = array(
 		'name' => $_POST[$maxbutton_name_key] != '' ? stripslashes($_POST[$maxbutton_name_key]) : 'Unnamed Button',
 		'description' => stripslashes($_POST[$maxbutton_description_key]),
 		'url' => stripslashes($_POST[$maxbutton_url_key]),
 		'text' => stripslashes($_POST[$maxbutton_text_key]),
 		'new_window' => $wpdb->escape($_POST[$maxbutton_new_window_key]),
+		'nofollow' => $wpdb->escape($_POST[$maxbutton_nofollow_key]),
 		'text_font_family' => $_POST[$maxbutton_text_font_family_key] != '' ? $wpdb->escape($_POST[$maxbutton_text_font_family_key]) : $maxbutton_text_font_family_default,
 		'text_font_size' => $_POST[$maxbutton_text_font_size_key] != '' ? $wpdb->escape($_POST[$maxbutton_text_font_size_key]) : $maxbutton_text_font_size_default,
 		'text_font_style' => $_POST[$maxbutton_text_font_style_key] != '' ? $wpdb->escape($_POST[$maxbutton_text_font_style_key]) : $maxbutton_text_font_style_default,
@@ -137,7 +140,8 @@ if ($_POST) {
 		'container_margin_right' => $_POST[$maxbutton_container_margin_right_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_margin_right_key]) . 'px' : '',
 		'container_margin_bottom' => $_POST[$maxbutton_container_margin_bottom_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_margin_bottom_key]) . 'px' : '',
 		'container_margin_left' => $_POST[$maxbutton_container_margin_left_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_margin_left_key]) . 'px' : '',
-		'container_alignment' => $_POST[$maxbutton_container_alignment_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_alignment_key]) : ''
+		'container_alignment' => $_POST[$maxbutton_container_alignment_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_alignment_key]) : '',
+		'container_center_div_wrap_enabled' => $wpdb->escape($_POST[$maxbutton_container_center_div_wrap_enabled_key])
 	);
 
 	if ($_GET['id'] == '') {
@@ -147,7 +151,7 @@ if ($_POST) {
 	} else {
 		// Updating an existing button
 		$where = array('id' => $_GET['id']);
-		$data_format = array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');
+		$data_format = array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');
 		$where_format = array('%d');
 		$wpdb->update(maxbuttons_get_buttons_table_name(), $data, $where, $data_format, $where_format);
 		$button_id = $_GET['id'];
@@ -167,7 +171,7 @@ function maxbuttons_strip_px($value) {
 	<?php } ?>
 	
 	jQuery(document).ready(function() {		
-		<?php if ($_GET['id'] > 0) { ?>
+		<?php if (isset($_GET['id']) && $_GET['id'] > 0) { ?>
 			jQuery("#maxbuttons .message").show();
 		<?php } ?>
 		
@@ -187,7 +191,7 @@ function maxbuttons_strip_px($value) {
 		showColorPickerForButtonBoxShadowHoverColor();
 		showColorPickerForOutputBackgroundColor();
 		
-		jQuery("#save-button").click(function() {			
+		jQuery("#button-save").click(function() {			
 			jQuery("#new-button-form").submit();
 			return false;
 		});
@@ -293,8 +297,6 @@ function maxbuttons_strip_px($value) {
 		jQuery("#maxbuttons .output .result a").css("background", "-moz-linear-gradient(<?php echo $maxbutton_gradient_start_color_display ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $maxbutton_gradient_end_color_display ?>)");
 		jQuery("#maxbuttons .output .result a").css("background", "-o-linear-gradient(<?php echo $maxbutton_gradient_start_color_display ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $maxbutton_gradient_end_color_display ?>)");
 		jQuery("#maxbuttons .output .result a").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, <?php echo $maxbutton_gradient_start_color_display ?>), color-stop(1, <?php echo $maxbutton_gradient_end_color_display ?>))");
-		jQuery("#maxbuttons .output .result a").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='<?php echo $maxbutton_gradient_start_color_display ?>', endColorStr='<?php echo $maxbutton_gradient_end_color_display ?>')");
-		jQuery("#maxbuttons .output .result a").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='<?php echo $maxbutton_gradient_start_color_display ?>', endColorStr='<?php echo $maxbutton_gradient_end_color_display ?>')");
 		jQuery("#maxbuttons .output .result a").css("border-style", "<?php echo $maxbutton_border_style_display ?>");
 		jQuery("#maxbuttons .output .result a").css("border-width", "<?php echo $maxbutton_border_width_display ?>");
 		jQuery("#maxbuttons .output .result a").css("border-color", "<?php echo $maxbutton_border_color_display ?>");
@@ -312,6 +314,9 @@ function maxbuttons_strip_px($value) {
 		jQuery("#maxbuttons .output .result a").css("-webkit-border-bottom-right-radius", "<?php echo $maxbutton_border_radius_bottom_right_display ?>");
 		jQuery("#maxbuttons .output .result a").css("text-shadow", "<?php echo $maxbutton_text_shadow_offset_left_display ?> <?php echo $maxbutton_text_shadow_offset_top_display ?> <?php echo $maxbutton_text_shadow_width_display ?> <?php echo $maxbutton_text_shadow_color_display ?>");
 		jQuery("#maxbuttons .output .result a").css("box-shadow", "<?php echo $maxbutton_box_shadow_offset_left_display ?> <?php echo $maxbutton_box_shadow_offset_top_display ?> <?php echo $maxbutton_box_shadow_width_display ?> <?php echo $maxbutton_box_shadow_color_display ?>");
+		jQuery("#maxbuttons .output .result a").css("-pie-background", "linear-gradient(<?php echo $maxbutton_gradient_start_color_display ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $maxbutton_gradient_end_color_display ?>)");
+		jQuery("#maxbuttons .output .result a").css("position", "relative");
+		jQuery("#maxbuttons .output .result a").css("behavior", "url('<?php echo MAXBUTTONS_PLUGIN_URL ?>/pie/PIE.htc')");
 		
 		jQuery("#maxbuttons .output .result a.hover").css("text-decoration", "none");
 		jQuery("#maxbuttons .output .result a.hover").css("color", "<?php echo $maxbutton_text_color_hover_display ?>");
@@ -320,11 +325,12 @@ function maxbuttons_strip_px($value) {
 		jQuery("#maxbuttons .output .result a.hover").css("background", "-moz-linear-gradient(<?php echo $maxbutton_gradient_start_color_hover_display ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $maxbutton_gradient_end_color_hover_display ?>)");
 		jQuery("#maxbuttons .output .result a.hover").css("background", "-o-linear-gradient(<?php echo $maxbutton_gradient_start_color_hover_display ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $maxbutton_gradient_end_color_hover_display ?>)");
 		jQuery("#maxbuttons .output .result a.hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, <?php echo $maxbutton_gradient_start_color_hover_display ?>), color-stop(1, <?php echo $maxbutton_gradient_end_color_hover_display ?>))");
-		jQuery("#maxbuttons .output .result a.hover").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='<?php echo $maxbutton_gradient_start_color_hover_display ?>', endColorStr='<?php echo $maxbutton_gradient_end_color_hover_display ?>')");
-		jQuery("#maxbuttons .output .result a.hover").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='<?php echo $maxbutton_gradient_start_color_hover_display ?>', endColorStr='<?php echo $maxbutton_gradient_end_color_hover_display ?>')");
 		jQuery("#maxbuttons .output .result a.hover").css("border-color", "<?php echo $maxbutton_border_color_hover_display ?>");
 		jQuery("#maxbuttons .output .result a.hover").css("text-shadow", "<?php echo $maxbutton_text_shadow_offset_left_display ?> <?php echo $maxbutton_text_shadow_offset_top_display ?> <?php echo $maxbutton_text_shadow_width_display ?> <?php echo $maxbutton_text_shadow_color_hover_display ?>");
 		jQuery("#maxbuttons .output .result a.hover").css("box-shadow", "<?php echo $maxbutton_box_shadow_offset_left_display ?> <?php echo $maxbutton_box_shadow_offset_top_display ?> <?php echo $maxbutton_box_shadow_width_display ?> <?php echo $maxbutton_box_shadow_color_hover_display ?>");
+		jQuery("#maxbuttons .output .result a.hover").css("-pie-background", "linear-gradient(<?php echo $maxbutton_gradient_start_color_hover_display ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $maxbutton_gradient_end_color_hover_display ?>)");
+		jQuery("#maxbuttons .output .result a.hover").css("position", "relative");
+		jQuery("#maxbuttons .output .result a.hover").css("behavior", "url('<?php echo MAXBUTTONS_PLUGIN_URL ?>/pie/PIE.htc')");
 	});
 	
 	function showColorPickerForButtonTextColor() {
@@ -416,9 +422,10 @@ function maxbuttons_strip_px($value) {
 				jQuery("#button-normal").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
 				jQuery("#button-normal").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
 				jQuery("#button-normal").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
-				jQuery("#button-normal").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
-				jQuery("#button-normal").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
-				
+				jQuery("#button-normal").css("-pie-background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+				jQuery("#button-normal").css("position", "relative");
+				jQuery("#button-normal").css("behavior", "url('<?php echo MAXBUTTONS_PLUGIN_URL ?>/pie/PIE.htc')");
+		
 				// Need this so that the hover color doesn't change when the normal color changes
 				var start_color_hover = jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_hover_default ?>";
 				var end_color_hover = jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_end_color_hover_default ?>";
@@ -427,8 +434,6 @@ function maxbuttons_strip_px($value) {
 				jQuery("#button-hover").css("background", "-moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
 				jQuery("#button-hover").css("background", "-o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
 				jQuery("#button-hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "))");
-				jQuery("#button-hover").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
-				jQuery("#button-hover").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
 			}
 		});
 	}
@@ -450,8 +455,9 @@ function maxbuttons_strip_px($value) {
 				jQuery("#button-hover").css("background", "-moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
 				jQuery("#button-hover").css("background", "-o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
 				jQuery("#button-hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "))");
-				jQuery("#button-hover").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
-				jQuery("#button-hover").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
+				jQuery("#button-hover").css("-pie-background", "linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
+				jQuery("#button-hover").css("position", "relative");
+				jQuery("#button-hover").css("behavior", "url('<?php echo MAXBUTTONS_PLUGIN_URL ?>/pie/PIE.htc')");
 				
 				// Need this so that the normal color doesn't change when the hover color changes
 				var start_color = jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_default ?>";
@@ -461,8 +467,6 @@ function maxbuttons_strip_px($value) {
 				jQuery("#button-normal").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
 				jQuery("#button-normal").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
 				jQuery("#button-normal").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
-				jQuery("#button-normal").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
-				jQuery("#button-normal").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
 			}
 		});
 	}
@@ -484,8 +488,9 @@ function maxbuttons_strip_px($value) {
 				jQuery("#button-normal").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
 				jQuery("#button-normal").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
 				jQuery("#button-normal").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
-				jQuery("#button-normal").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
-				jQuery("#button-normal").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
+				jQuery("#button-normal").css("-pie-background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+				jQuery("#button-normal").css("position", "relative");
+				jQuery("#button-normal").css("behavior", "url('<?php echo MAXBUTTONS_PLUGIN_URL ?>/pie/PIE.htc')");
 				
 				// Need this so that the hover color doesn't change when the normal color changes
 				var start_color_hover = jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_hover_default ?>";
@@ -495,8 +500,6 @@ function maxbuttons_strip_px($value) {
 				jQuery("#button-hover").css("background", "-moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
 				jQuery("#button-hover").css("background", "-o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
 				jQuery("#button-hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "))");
-				jQuery("#button-hover").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
-				jQuery("#button-hover").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
 			}
 		});
 	}
@@ -518,8 +521,9 @@ function maxbuttons_strip_px($value) {
 				jQuery("#button-hover").css("background", "-moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
 				jQuery("#button-hover").css("background", "-o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
 				jQuery("#button-hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "))");
-				jQuery("#button-hover").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
-				jQuery("#button-hover").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color_hover + "', endColorStr='" + end_color_hover + "')");
+				jQuery("#button-hover").css("-pie-background", "linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
+				jQuery("#button-hover").css("position", "relative");
+				jQuery("#button-hover").css("behavior", "url('<?php echo MAXBUTTONS_PLUGIN_URL ?>/pie/PIE.htc')");
 				
 				// Need this so that the normal color doesn't change when the hover color changes
 				var start_color = jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_default ?>";
@@ -529,8 +533,6 @@ function maxbuttons_strip_px($value) {
 				jQuery("#button-normal").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
 				jQuery("#button-normal").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
 				jQuery("#button-normal").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
-				jQuery("#button-normal").css("filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
-				jQuery("#button-normal").css("-ms-filter", "progid:DXImageTransform.Microsoft.gradient(startColorStr='" + start_color + "', endColorStr='" + end_color + "')");
 			}
 		});
 	}
@@ -644,10 +646,11 @@ function maxbuttons_strip_px($value) {
 		</h2>
 	
 		<form id="new-button-form" method="post">
-			<div class="form-actions">
-				<a id="save-button" class="button-primary">Save</a>
-				<a id="make-copy-button" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=copy&id=<?php echo $_GET['id'] ?>">Copy</a>
-				<a id="delete-button" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $_GET['id'] ?>">Delete</a>
+			<div class="form-actions">				
+				<a id="button-save" class="button-primary">Save</a>
+				<a id="button-copy" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=copy&id=<?php echo $_GET['id'] ?>">Copy</a>
+				<a id="button-trash" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=trash&id=<?php echo $_GET['id'] ?>">Move to Trash</a>
+				<a id="button-delete" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $_GET['id'] ?>">Delete Permanently</a>
 			</div>
 			
 			<div class="message">
@@ -698,6 +701,14 @@ function maxbuttons_strip_px($value) {
 						<div class="label">Open in New Window</div>
 						<div class="input">
 							<input type="checkbox" id="<?php echo $maxbutton_new_window_key ?>" name="<?php echo $maxbutton_new_window_key ?>" <?php if ($maxbutton_new_window_value == 'on') { echo 'checked="checked"'; } else { echo ''; } ?>>
+						</div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="option-design">
+						<div class="label">Use rel="nofollow"</div>
+						<div class="input">
+							<input type="checkbox" id="<?php echo $maxbutton_nofollow_key ?>" name="<?php echo $maxbutton_nofollow_key ?>" <?php if ($maxbutton_nofollow_value == 'on') { echo 'checked="checked"'; } else { echo ''; } ?>>
 						</div>
 						<div class="clear"></div>
 					</div>
@@ -1068,6 +1079,13 @@ function maxbuttons_strip_px($value) {
 					<div class="option-design">
 						<div class="label">Use Container</div>
 						<div class="input"><input type="checkbox" id="<?php echo $maxbutton_container_enabled_key ?>" name="<?php echo $maxbutton_container_enabled_key ?>" <?php if ($maxbutton_container_enabled_value == 'on') { echo 'checked="checked"'; } else { echo ''; } ?>></div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="option-design">
+						<div class="label">Wrap with Center Div</div>
+						<div class="input"><input type="checkbox" id="<?php echo $maxbutton_container_center_div_wrap_enabled_key ?>" name="<?php echo $maxbutton_container_center_div_wrap_enabled_key ?>" <?php if ($maxbutton_container_center_div_wrap_enabled_value == 'on') { echo 'checked="checked"'; } else { echo ''; } ?>></div>
+						<div class="default">&lt;div align="center"&gt;</div>
 						<div class="clear"></div>
 					</div>
 					

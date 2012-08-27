@@ -3,7 +3,7 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
 Description: CSS3 button generator for WordPress. This is the free version; the Pro version <a href="http://maxbuttons.com">can be found here</a>.
-Version: 1.6.0
+Version: 1.7.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -11,7 +11,7 @@ Copyright 2011 Max Foundry, LLC (http://maxfoundry.com)
 */
 
 define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-define('MAXBUTTONS_VERSION_NUM', '1.6.0');
+define('MAXBUTTONS_VERSION_NUM', '1.7.0');
 
 $maxbuttons_installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
@@ -221,6 +221,9 @@ function maxbuttons_create_database_table() {
 				container_margin_bottom VARCHAR(5) NULL,
 				container_margin_left VARCHAR(5) NULL,
 				container_alignment VARCHAR(25) NULL,
+				container_center_div_wrap_enabled VARCHAR(5) NULL,
+				nofollow VARCHAR(5) NULL,
+				status VARCHAR(10) DEFAULT 'publish' NOT NULL,
 				PRIMARY KEY  (id)
 			);";
 
@@ -243,6 +246,46 @@ function maxbuttons_get_buttons_table_name() {
 function maxbuttons_database_table_exists($table_name) {
 	global $wpdb;
 	return strtolower($wpdb->get_var("SHOW TABLES LIKE '$table_name'")) == strtolower($table_name);
+}
+
+function maxbuttons_get_button($id) {
+	global $wpdb;
+	return $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxbuttons_get_buttons_table_name() . " WHERE id = %d", $id));
+}
+
+function maxbuttons_get_published_buttons() {
+	global $wpdb;
+	return $wpdb->get_results("SELECT * FROM " . maxbuttons_get_buttons_table_name() . " WHERE status <> 'trash'");
+}
+
+function maxbuttons_get_published_buttons_count() {
+	global $wpdb;
+	return $wpdb->get_var("SELECT COUNT(*) FROM " . maxbuttons_get_buttons_table_name() . " WHERE status <> 'trash'");
+}
+
+function maxbuttons_get_trashed_buttons() {
+	global $wpdb;
+	return $wpdb->get_results("SELECT * FROM " . maxbuttons_get_buttons_table_name() . " WHERE status = 'trash'");
+}
+
+function maxbuttons_get_trashed_buttons_count() {
+	global $wpdb;
+	return $wpdb->get_var("SELECT COUNT(*) FROM " . maxbuttons_get_buttons_table_name() . " WHERE status = 'trash'");
+}
+
+function maxbuttons_button_restore($id) {
+	global $wpdb;
+	$wpdb->query($wpdb->prepare("UPDATE " . maxbuttons_get_buttons_table_name() . " SET status = 'publish' WHERE id = %d", $id));
+}
+
+function maxbuttons_button_move_to_trash($id) {
+	global $wpdb;
+	$wpdb->query($wpdb->prepare("UPDATE " . maxbuttons_get_buttons_table_name() . " SET status = 'trash' WHERE id = %d", $id));
+}
+
+function maxbuttons_button_delete_permanently($id) {
+	global $wpdb;
+	$wpdb->query($wpdb->prepare("DELETE FROM " . maxbuttons_get_buttons_table_name() . " WHERE id = %d", $id));
 }
 
 function maxbuttons_log_me($message) {

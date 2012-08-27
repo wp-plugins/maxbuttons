@@ -2,8 +2,8 @@
 Contributors: maxfoundry, arcware
 Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
 Requires at least: 3.0
-Tested up to: 3.3.1
-Stable tag: 1.6.0
+Tested up to: 3.4.1
+Stable tag: 1.7.0
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -20,19 +20,7 @@ Create great-looking CSS3 buttons that can be used on any post or page in your W
 * Color picker for unlimited color combinations
 * Copy an existing button to use as starting point for others
 * See your buttons on different color backgrounds
-* Pre-defined defaults make getting started super easy
-
-= Upgrade to MaxButtons Pro =
-
-Take your buttons to the next level with [MaxButtons Pro](http://maxbuttons.com/), which gives you additional features such as:
-
-* **Icon support** (put icons to the left, right, top, or bottom of your text)
-* **Multi-line text**, to communicate extra information to your users and customers
-* **Google Web Fonts**, to make your buttons stand out with beautiful typography
-* **Button packs**, to import pre-defined sets of buttons into your website
-* **Import/export functionality** (useful for backing up and/or moving your buttons)
-
-And for a limited time, you can get this awesome [CSS3 button generator](http://maxbuttons.com/) for **only 10!** That's HALF OFF its regular price.
+* Predefined defaults make getting started super easy
 
 = How To Use =
 
@@ -49,11 +37,27 @@ You can also pass the button text and URL as parameters in the shortcode, giving
 
 [maxbutton id="17" text="Search Yahoo" url="http://yahoo.com"]
 
-One other parameter you can give the shortcode is window, which tells the button whether or not to open the URL in a new window (by default the button opens the URL in the current window). To do so you always give the window parameter the value "new", shown below. Anything else will open the button URL in the current window.
+Another parameter you can give the shortcode is window, which tells the button whether or not to open the URL in a new window (by default the button opens the URL in the current window). To do so you always give the window parameter the value "new", shown below. Anything else will open the button URL in the current window.
 
 [maxbutton id="17" window="new"]
 
+You can also use the nofollow parameter, which will add a rel="nofollow" attribute to the button when set to true, as shown below (the default is false):
+
+[maxbutton id="17" nofollow="true"]
+
 NOTE: Passing parameters to the shortcode overrides those settings saved as part of the button.
+
+= Upgrade to MaxButtons Pro =
+
+Take your buttons to the next level with [MaxButtons Pro](http://maxbuttons.com/), which gives you additional features such as:
+
+* **Icon support** (put icons to the left, right, top, or bottom of your text)
+* **Multi-line text**, to add a second line of text for communicating extra information
+* **Google Web Fonts**, to make your buttons stand out with beautiful typography
+* **Button packs**, to import pre-made sets of buttons into your website
+* **Import/export functionality** (useful for backing up and/or moving your buttons)
+
+And the best part is that you can get this awesome [CSS3 button generator](http://maxbuttons.com/) for **only 10!**
 
 == Installation ==
 
@@ -99,7 +103,22 @@ Try enabling the container and setting its margin options. You could also fix th
 
 Then adjust the margin values as needed (the order is: top, right, bottom, left).
 
+= How do I center the button on a page? =
+
+Enable the "Wrap with Center Div" option in the Container settings.
+
+= How do I align multiple buttons next to each other? =
+
+Enable the container option and set the alignment property to either "display: inline-block" or "float: left". You might also want to add some margin values to put some spacing between your buttons.
+
 == Changelog ==
+= 1.7.0 =
+* Added center div wrapper option to Container section in button editor.
+* Added rel="nofollow" option in button editor.
+* Added status field to database table to provide ability to move buttons to trash (default = 'publish').
+* Added actions for Move to Trash, Restore, and Delete Permanently.
+* Added CSS3PIE for better IE support.
+
 = 1.6.0 =
 * Updated UI for button editor.
 * The container is now enabled by default.
@@ -158,5 +177,5 @@ Then adjust the margin values as needed (the order is: top, right, bottom, left)
 
 == Upgrade Notice ==
 
-= 1.6.0 =
+= 1.7.0 =
 Please deactivate and then reactivate before using.

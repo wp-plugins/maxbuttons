@@ -3,32 +3,53 @@ $result = '';
 
 if ($_POST) {
 	if (isset($_POST['button-id']) && isset($_POST['bulk-action-select'])) {
-		if ($_POST['bulk-action-select'] == 'trash') {
+		if ($_POST['bulk-action-select'] == 'restore') {
 			$count = 0;
 			
 			foreach ($_POST['button-id'] as $id) {
-				maxbuttons_button_move_to_trash($id);
+				maxbuttons_button_restore($id);
 				$count++;
 			}
-			
+
 			if ($count == 1) {
-				$result = 'Moved 1 button to the trash.';
+				$result = 'Restored 1 button.';
 			}
 			
 			if ($count > 1) {
-				$result = 'Moved ' . $count . ' buttons to the trash.';
+				$result = 'Restored ' . $count . ' buttons.';
+			}
+		}
+		
+		if ($_POST['bulk-action-select'] == 'delete') {
+			$count = 0;
+			
+			foreach ($_POST['button-id'] as $id) {
+				maxbuttons_button_delete_permanently($id);
+				$count++;
+			}
+
+			if ($count == 1) {
+				$result = 'Deleted 1 button.';
+			}
+			
+			if ($count > 1) {
+				$result = 'Deleted ' . $count . ' buttons.';
 			}
 		}
 	}
 }
 
-if (isset($_GET['message']) && $_GET['message'] == '1') {
-	$result = 'Moved 1 button to the trash.';
+if (isset($_GET['message']) && $_GET['message'] == '1restore') {
+	$result = 'Restored 1 button.';
 }
 
-$published_buttons = maxbuttons_get_published_buttons();
-$published_buttons_count = maxbuttons_get_published_buttons_count();
+if (isset($_GET['message']) && $_GET['message'] == '1delete') {
+	$result = 'Deleted 1 button.';
+}
+
+$trashed_buttons = maxbuttons_get_trashed_buttons();
 $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
+$published_buttons_count = maxbuttons_get_published_buttons_count();
 ?>
 
 <script type="text/javascript">
@@ -80,18 +101,16 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
 		<?php } ?>
 		
 		<p class="status">
-			<strong>All</strong> <span class="count">(<?php echo $published_buttons_count ?>)</span>
-
-			<?php if ($trashed_buttons_count > 0) { ?>
-				<span class="separator">|</span>
-				<a href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list&status=trash">Trash</a> <span class="count">(<?php echo $trashed_buttons_count ?>)</span>
-			<?php } ?>
+			<a href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list">All</a> <span class="count">(<?php echo $published_buttons_count ?>)</span>
+			<span class="separator">|</span>
+			<strong>Trash</strong> <span class="count">(<?php echo $trashed_buttons_count ?>)</span>
 		</p>
 		
 		<form method="post">
 			<select name="bulk-action-select" id="bulk-action-select">
 				<option value="">Bulk Actions</option>
-				<option value="trash">Move to Trash</option>
+				<option value="restore">Restore</option>
+				<option value="delete">Delete Permanently</option>
 			</select>
 			<input type="submit" class="button" value="Apply" />
 		
@@ -104,7 +123,7 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
 						<th>Shortcode</th>
 						<th>Actions</th>
 					</tr>
-					<?php foreach ($published_buttons as $b) { ?>
+					<?php foreach ($trashed_buttons as $b) { ?>
 						<tr>
 							<td valign="center">
 								<input type="checkbox" name="button-id[]" id="button-id-<?php echo $b->id ?>" value="<?php echo $b->id ?>" />
@@ -115,7 +134,7 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
 								</div>
 							</td>
 							<td>
-								<a class="button-name" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $b->id ?>"><?php echo $b->name ?></a>
+								<strong><?php echo $b->name ?></strong>
 								<br />
 								<p><?php echo $b->description ?></p>
 							</td>
@@ -123,11 +142,9 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
 								[maxbutton id="<?php echo $b->id ?>"]
 							</td>
 							<td>
-								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $b->id ?>">Edit</a>
+								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=restore&id=<?php echo $b->id ?>">Restore</a>
 								<span class="separator">|</span>
-								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=copy&id=<?php echo $b->id ?>">Copy</a>
-								<span class="separator">|</span>
-								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=trash&id=<?php echo $b->id ?>">Move to Trash</a>
+								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $b->id ?>">Delete Permanently</a>
 							</td>
 						</tr>
 					<?php } ?>

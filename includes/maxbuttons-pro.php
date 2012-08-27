@@ -24,7 +24,7 @@
 		</h2>
 		
 		<div class="pro-offer">
-			<h2>Upgrade to MaxButtons Pro - It's Currently Just $10!</h2>
+			<h2>Upgrade to MaxButtons Pro - It's Only $10!</h2>
 			
 			<p>If you've created at least one button with MaxButtons, then you know what it can do: Unlimited colors. Rounded corners. Gradients. Text shadowing. Box shadowing.</p>
 			
@@ -37,7 +37,7 @@
 				<li><strong>Button Packs</strong> - Import sets of pre-defined buttons, which you can then use as-is or customize as you need.</li>
 			</ul>
 			
-			<p>And did we mention you can <a href="http://maxbuttons.com/shop/maxbuttons-pro/" target="_blank">get MaxButtons Pro for only $10</a>? That's <strong>HALF OFF</strong> its regular price.</p>
+			<p>And did we mention you can <a href="http://maxbuttons.com/" target="_blank">get MaxButtons Pro for only $10</a>?</p>
 			
 			<h2>CSS3 Button Examples</h2>
 			
@@ -45,9 +45,10 @@
 			
 			<p><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/css3-button-examples.png" alt="CSS3 Button Examples" /></p>
 			
-			<h2>Button Packs: Pre-Defined Sets of CSS3 and Icon Goodness</h2>
+			<h2>Button Packs: Pre-Made Sets of CSS3 and Icon Goodness</h2>
 			
-			<p>Button packs are sets of buttons with icons and settings already pre-defined for you, saving you loads of time. We have an <a href="http://maxbuttons.com/shop/category/button-packs/" target="_blank">ever-growing collection of button packs</a> that you can buy and import into your website (only $5 each). You can then use those buttons as they are, or customize them to fit your needs. Here are a few to get you started:</p>
+			<p>Button packs are sets of buttons with icons and settings already predefined for you, saving you loads of time. We have an <a href="http://maxbuttons.com/shop/category/button-packs/" target="_blank">ever-growing collection of button packs</a> that you can buy and import into your website (only $5 each). You can then use those buttons as they are, or customize them to fit your needs (below are a few to get you started).</p>
+			<p>You can also get <a href="http://maxbuttons.com/shop/category/button-packs/" target="_blank">10 button packs for $25</a>, giving you a <strong>50% savings</strong> compared to buying them individually.</p>
 			
 			<div class="button-packs">
 				<div class="pack">
@@ -98,7 +99,7 @@
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
 				<tr>
-					<td>Multi-line text, to communicate extra information to your users and customers</td>
+					<td>Multi-line text, to add a second line of text for communicating extra information</td>
 					<td align="center">&nbsp;</td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
@@ -108,7 +109,7 @@
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
 				<tr>
-					<td>Button packs, to import pre-defined sets of buttons into your website</td>
+					<td>Button packs, to import pre-made sets of buttons into your website</td>
 					<td align="center">&nbsp;</td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
@@ -151,9 +152,7 @@
 			
 			<h2>Get Your Copy Today</h2>
 			
-			<p>We don't know how long we're going to offer MaxButtons Pro for the super low price of $10.</p>
-			
-			<p>All we know is that it won't be forever, so don't wait any longer. <a href="http://maxbuttons.com/shop/maxbuttons-pro/" target="_blank">Grab your copy of MaxButtons Pro today</a>!</p>
+			<p>So what are you waiting for? <a href="http://maxbuttons.com/" target="_blank">Grab your copy of MaxButtons Pro today</a>!</p>
 		</div>
 	</div>
 </div>
