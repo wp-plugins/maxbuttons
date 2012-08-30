@@ -22,6 +22,18 @@ Create great-looking CSS3 buttons that can be used on any post or page in your W
 * See your buttons on different color backgrounds
 * Predefined defaults make getting started super easy
 
+= Upgrade to MaxButtons Pro =
+
+Take your buttons to the next level with [MaxButtons Pro](http://maxbuttons.com/), which gives you additional features such as:
+
+* **Icon Support** - Put icons to the left, right, top, or bottom of your text.
+* **Multi-line text** - To add a second line of text for communicating extra information.
+* **Google Web Fonts** - To make your buttons stand out with beautiful typography.
+* **Button Packs** - Be more productive through the use of our value priced, ready-made button sets.
+* **Import/Export** - Useful for backing up and/or moving your buttons. Also, use any of the great [free icons](http://maxbuttons.com/free-icons/) listed on our site.
+
+And the best part is that you can get this awesome [CSS3 button generator](http://maxbuttons.com/) for **only 10!**
+
 = How To Use =
 
 1. Click the MaxButtons page from the admin menu.
@@ -46,18 +58,6 @@ You can also use the nofollow parameter, which will add a rel="nofollow" attribu
 [maxbutton id="17" nofollow="true"]
 
 NOTE: Passing parameters to the shortcode overrides those settings saved as part of the button.
-
-= Upgrade to MaxButtons Pro =
-
-Take your buttons to the next level with [MaxButtons Pro](http://maxbuttons.com/), which gives you additional features such as:
-
-* **Icon support** (put icons to the left, right, top, or bottom of your text)
-* **Multi-line text**, to add a second line of text for communicating extra information
-* **Google Web Fonts**, to make your buttons stand out with beautiful typography
-* **Button packs**, to import pre-made sets of buttons into your website
-* **Import/export functionality** (useful for backing up and/or moving your buttons)
-
-And the best part is that you can get this awesome [CSS3 button generator](http://maxbuttons.com/) for **only 10!**
 
 == Installation ==
 
