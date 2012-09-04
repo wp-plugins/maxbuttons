@@ -643,6 +643,7 @@ function maxbuttons_strip_px($value) {
 			<span class="spacer"></span>
 			<a class="nav-tab nav-tab-active" href="">Button</a>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-pro">Go Pro</a>
+			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-support">Support</a>
 		</h2>
 	
 		<form id="new-button-form" method="post">
