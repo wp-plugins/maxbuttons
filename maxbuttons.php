@@ -3,7 +3,7 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
 Description: CSS3 button generator for WordPress. This is the free version; the Pro version <a href="http://maxbuttons.com">can be found here</a>.
-Version: 1.7.0
+Version: 1.8.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -11,7 +11,7 @@ Copyright 2011 Max Foundry, LLC (http://maxfoundry.com)
 */
 
 define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-define('MAXBUTTONS_VERSION_NUM', '1.7.0');
+define('MAXBUTTONS_VERSION_NUM', '1.8.0');
 
 $maxbuttons_installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
@@ -132,11 +132,18 @@ function maxbuttons_admin_menu() {
 	$submenu_function = 'maxbuttons_button';
 	$admin_pages[] = add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
 	
-	// Now add the submenu page for the Pro page
+	// Now add the submenu page for the Go Pro page
 	$submenu_page_title = 'MaxButtons : Go Pro';
 	$submenu_title = 'Go Pro';
 	$submenu_slug = 'maxbuttons-pro';
 	$submenu_function = 'maxbuttons_pro';
+	$admin_pages[] = add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
+
+	// Now add the submenu page for the Support page
+	$submenu_page_title = 'MaxButtons : Support';
+	$submenu_title = 'Support';
+	$submenu_slug = 'maxbuttons-support';
+	$submenu_function = 'maxbuttons_support';
 	$admin_pages[] = add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
 	
 	foreach ($admin_pages as $admin_page) {
@@ -155,6 +162,10 @@ function maxbuttons_button() {
 
 function maxbuttons_pro() {
 	include_once 'includes/maxbuttons-pro.php';
+}
+
+function maxbuttons_support() {
+	include_once 'includes/maxbuttons-support.php';
 }
 
 function maxbuttons_add_admin_styles() {	

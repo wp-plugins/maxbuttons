@@ -331,3 +331,8 @@
 	-webkit-border-radius: 0px;
 	box-shadow: none;
 }
+#maxbuttons textarea.system-info {
+	font-family: Consolas, 'Courier New', 'Courier';
+	width: 700px;
+	height: 400px;
+}

@@ -69,6 +69,7 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
 			<span class="spacer"></span>
 			<a class="nav-tab nav-tab-active" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list">Buttons</a>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-pro">Go Pro</a>
+			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-support">Support</a>
 		</h2>
 
 		<div class="form-actions">

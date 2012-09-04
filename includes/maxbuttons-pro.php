@@ -21,6 +21,7 @@
 			<span class="spacer"></span>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list">Buttons</a>
 			<a class="nav-tab nav-tab-active" href="">Go Pro</a>
+			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-support">Support</a>
 		</h2>
 		
 		<div class="pro-offer">
@@ -115,6 +116,11 @@
 				</tr>
 				<tr>
 					<td>Import/export functionality (useful for backing up and/or moving your buttons)</td>
+					<td align="center">&nbsp;</td>
+					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
+				</tr>
+				<tr>
+					<td>Explicit height and width options, to ensure your buttons are the same size</td>
 					<td align="center">&nbsp;</td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
