@@ -2,8 +2,8 @@
 Contributors: maxfoundry, arcware
 Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
 Requires at least: 3.0
-Tested up to: 3.4.1
-Stable tag: 1.8.0
+Tested up to: 3.4.2
+Stable tag: 1.9.0
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -113,6 +113,9 @@ Enable the "Wrap with Center Div" option in the Container settings.
 Enable the container option and set the alignment property to either "display: inline-block" or "float: left". You might also want to add some margin values to put some spacing between your buttons.
 
 == Changelog ==
+= 1.9.0 =
+* Added support for localization.
+
 = 1.8.0 =
 * Added the Support page that contains system information along with a link to the support forums.
 
@@ -181,5 +184,5 @@ Enable the container option and set the alignment property to either "display: i
 
 == Upgrade Notice ==
 
-= 1.8.0 =
+= 1.9.0 =
 Please deactivate and then reactivate before using.

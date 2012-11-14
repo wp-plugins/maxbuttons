@@ -8,10 +8,10 @@
 			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/mb-32.png" alt="MaxButtons" /></a>
 		</div>
 		
-		<h2 class="title">MaxButtons: Go Pro</h2>
+		<h2 class="title"><?php _e('MaxButtons: Go Pro', 'maxbuttons') ?></h2>
 		
 		<div class="logo">
-			Brought to you by
+			<?php _e('Brought to you by', 'maxbuttons') ?>
 			<a href="http://maxfoundry.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/max-foundry.png" alt="Max Foundry" /></a>
 		</div>
 		
@@ -19,146 +19,147 @@
 		
 		<h2 class="tabs">
 			<span class="spacer"></span>
-			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list">Buttons</a>
-			<a class="nav-tab nav-tab-active" href="">Go Pro</a>
-			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-support">Support</a>
+			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list"><?php _e('Buttons', 'maxbuttons') ?></a>
+			<a class="nav-tab nav-tab-active" href=""><?php _e('Go Pro', 'maxbuttons') ?></a>
+			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-support"><?php _e('Support', 'maxbuttons') ?></a>
 		</h2>
 		
 		<div class="pro-offer">
-			<h2>Upgrade to MaxButtons Pro - It's Only $10!</h2>
+			<h2><?php _e('Upgrade to MaxButtons Pro - It\'s Only $10!', 'maxbuttons') ?></h2>
 			
-			<p>If you've created at least one button with MaxButtons, then you know what it can do: Unlimited colors. Rounded corners. Gradients. Text shadowing. Box shadowing.</p>
+			<p><?php _e('If you\'ve created at least one button with MaxButtons, then you know what it can do: Unlimited colors. Rounded corners. Gradients. Text shadowing. Box shadowing.', 'maxbuttons') ?></p>
 			
-			<p>Now you can take your buttons to the next level with <a href="http://maxbuttons.com/" target="_blank">MaxButtons Pro</a>. The Pro version gives you all the CSS3 goodness and so much more:</p>
-			
+			<p><?php printf(__('Now you can take your buttons to the next level with %sMaxButtons Pro%s. The Pro version gives you all the CSS3 goodness and so much more:', 'maxbuttons'), '<a href="http://maxbuttons.com/" target="_blank">', '</a>') ?></p>
+
 			<ul>
-				<li><strong>Icon Support</strong> - Like buttons, everyone loves icons. Put them together for near-endless possibilities.</li>
-				<li><strong>Multi-Line Text</strong> - Use a second a line of text to communicate extra information to your users and customers.</li>
-				<li><strong>Google Web Fonts</strong> - Great typography can take your buttons up several notches.</li>
-				<li><strong>Button Packs</strong> - Import sets of pre-defined buttons, which you can then use as-is or customize as you need.</li>
+				<li><strong><?php _e('Icon Support', 'maxbuttons') ?></strong> - <?php _e('Like buttons, everyone loves icons. Put them together for near-endless possibilities.', 'maxbuttons') ?></li>
+				<li><strong><?php _e('Multi-Line Text', 'maxbuttons') ?></strong> - <?php _e('Use a second a line of text to communicate extra information to your users and customers.', 'maxbuttons') ?></li>
+				<li><strong><?php _e('Google Web Fonts', 'maxbuttons') ?></strong> - <?php _e('Great typography can take your buttons up several notches.', 'maxbuttons') ?></li>
+				<li><strong><?php _e('Button Packs', 'maxbuttons') ?></strong> - <?php _e('Import sets of pre-defined buttons, which you can then use as-is or customize as you need.', 'maxbuttons') ?></li>
 			</ul>
 			
-			<p>And did we mention you can <a href="http://maxbuttons.com/" target="_blank">get MaxButtons Pro for only $10</a>?</p>
+			<p><?php printf(__('And did we mention you can %sget MaxButtons Pro for only $10%s', 'maxbuttons'), '<a href="http://maxbuttons.com/" target="_blank">', '</a>') ?></a>?</p>
 			
-			<h2>CSS3 Button Examples</h2>
+			<h2><?php _e('CSS3 Button Examples', 'maxbuttons') ?></h2>
 			
-			<p>Just take a look at the types of buttons you can make with MaxButtons Pro:</p>
+			<p><?php _e('Just take a look at the types of buttons you can make with MaxButtons Pro:', 'maxbuttons') ?></p>
 			
 			<p><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/css3-button-examples.png" alt="CSS3 Button Examples" /></p>
 			
-			<h2>Button Packs: Pre-Made Sets of CSS3 and Icon Goodness</h2>
+			<h2><?php _e('Button Packs: Pre-Made Sets of CSS3 and Icon Goodness', 'maxbuttons') ?></h2>
 			
-			<p>Button packs are sets of buttons with icons and settings already predefined for you, saving you loads of time. We have an <a href="http://maxbuttons.com/shop/category/button-packs/" target="_blank">ever-growing collection of button packs</a> that you can buy and import into your website (only $5 each). You can then use those buttons as they are, or customize them to fit your needs (below are a few to get you started).</p>
-			<p>You can also get <a href="http://maxbuttons.com/shop/category/button-packs/" target="_blank">10 button packs for $25</a>, giving you a <strong>50% savings</strong> compared to buying them individually.</p>
+			<p><?php printf(__('Button packs are sets of buttons with icons and settings already predefined for you, saving you loads of time. We have an %sever-growing collection of button packs%s that you can buy and import into your website (only $5 each). You can then use those buttons as they are, or customize them to fit your needs (below are a few to get you started).', 'maxbuttons'), '<a href="http://maxbuttons.com/shop/category/button-packs/" target="_blank">', '</a>') ?></p>
+			
+			<p><?php printf(__('You can also get %s10 button packs for $25%s, giving you <strong>a 50&#37; savings</strong> compared to buying them individually.', 'maxbuttons'), '<a href="http://maxbuttons.com/shop/category/button-packs/" target="_blank">', '</a>') ?></p>
 			
 			<div class="button-packs">
 				<div class="pack">
 					<a href="http://maxbuttons.com/shop/colored-round-social-icons-1/" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/button-pack-colored-round-social-icons-1.png" alt="Colored Round Social Icons 1" border="0" /></a>
 					<br />
-					<a href="http://maxbuttons.com/shop/colored-round-social-icons-1/" target="_blank">Colored Round Social Icons Set #1</a>
+					<a href="http://maxbuttons.com/shop/colored-round-social-icons-1/" target="_blank"><?php _e('Colored Round Social Icons Set #1', 'maxbuttons') ?></a>
 				</div>
 				<div class="pack">
 					<a href="http://maxbuttons.com/shop/chrome-icons/" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/button-pack-chrome-icons.png" alt="Chrome Icons" border="0" /></a>
 					<br />
-					<a href="http://maxbuttons.com/shop/chrome-icons/" target="_blank">Chrome Icons</a>
+					<a href="http://maxbuttons.com/shop/chrome-icons/" target="_blank"><?php _e('Chrome Icons', 'maxbuttons') ?></a>
 				</div>
 				<div class="pack">
 					<a href="http://maxbuttons.com/shop/ignition/" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/button-pack-ignition.png" alt="Ignition" border="0" /></a>
 					<br />
-					<a href="http://maxbuttons.com/shop/ignition/" target="_blank">Ignition</a>
+					<a href="http://maxbuttons.com/shop/ignition/" target="_blank"><?php _e('Ignition', 'maxbuttons') ?></a>
 				</div>
 				<div class="pack">
 					<a href="http://maxbuttons.com/shop/dark-round-social-icons-1/" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/button-pack-dark-round-social-icons-1.png" alt="Dark Round Social Icons 1" border="0" /></a>
 					<br />
-					<a href="http://maxbuttons.com/shop/dark-round-social-icons-1/" target="_blank">Dark Round Social Icons Set #1</a>
+					<a href="http://maxbuttons.com/shop/dark-round-social-icons-1/" target="_blank"><?php _e('Dark Round Social Icons Set #1', 'maxbuttons') ?></a>
 				</div>
 				<div class="pack">
 					<a href="http://maxbuttons.com/shop/social-sign-in/" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/button-pack-social-sign-in.png" alt="Social Sign-In" border="0" /></a>
 					<br />
-					<a href="http://maxbuttons.com/shop/social-sign-in/" target="_blank">Social Sign-In</a>
+					<a href="http://maxbuttons.com/shop/social-sign-in/" target="_blank"><?php _e('Social Sign-In', 'maxbuttons') ?></a>
 				</div>
 				<div class="pack">
 					<a href="http://maxbuttons.com/shop/chrome-downloads/" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/button-pack-chrome-downloads.png" alt="Chrome Downloads" border="0" /></a>
 					<br />
-					<a href="http://maxbuttons.com/shop/chrome-downloads/" target="_blank">Chrome Downloads</a>
+					<a href="http://maxbuttons.com/shop/chrome-downloads/" target="_blank"><?php _e('Chrome Downloads', 'maxbuttons') ?></a>
 				</div>
 			</div>
 			
-			<h2>Feature Comparison</h2>
+			<h2><?php _e('Feature Comparison', 'maxbuttons') ?></h2>
 			
-			<p>There's nothing like a nice, straightforward checklist to do a product comparison, so here's another one:</p>
+			<p><?php _e('There\'s nothing like a nice, straightforward checklist to do a product comparison, so here\'s another one:', 'maxbuttons') ?></p>
 			
 			<table class="compare" cellpadding="0" cellspacing="0">
 				<tr>
 					<th>&nbsp;</th>
-					<th>Free Version</th>
-					<th>MaxButtons Pro</th>
+					<th><?php _e('Free Version', 'maxbuttons') ?></th>
+					<th><?php _e('MaxButtons Pro', 'maxbuttons') ?></th>
 				</tr>
 				<tr>
-					<td>Icon support (put icons to the left, right, top, or bottom of your text)</td>
+					<td><?php _e('Icon support (put icons to the left, right, top, or bottom of your text)', 'maxbuttons') ?></td>
 					<td align="center">&nbsp;</td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
 				<tr>
-					<td>Multi-line text, to add a second line of text for communicating extra information</td>
+					<td><?php _e('Multi-line text, to add a second line of text for communicating extra information', 'maxbuttons') ?></td>
 					<td align="center">&nbsp;</td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
 				<tr>
-					<td>Google Web Fonts, to make your buttons stand out with beautiful typography</td>
+					<td><?php _e('Google Web Fonts, to make your buttons stand out with beautiful typography', 'maxbuttons') ?></td>
 					<td align="center">&nbsp;</td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
 				<tr>
-					<td>Button packs, to import pre-made sets of buttons into your website</td>
+					<td><?php _e('Button packs, to import pre-made sets of buttons into your website', 'maxbuttons') ?></td>
 					<td align="center">&nbsp;</td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
 				<tr>
-					<td>Import/export functionality (useful for backing up and/or moving your buttons)</td>
+					<td><?php _e('Import/export functionality (useful for backing up and/or moving your buttons)', 'maxbuttons') ?></td>
 					<td align="center">&nbsp;</td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
 				<tr>
-					<td>Explicit height and width options, to ensure your buttons are the same size</td>
+					<td><?php _e('Explicit height and width options, to ensure your buttons are the same size', 'maxbuttons') ?></td>
 					<td align="center">&nbsp;</td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
 				<tr>
-					<td>Major browser support (Firefox, Chrome, Opera, Safari, and IE9)</td>
+					<td><?php _e('Major browser support (Firefox, Chrome, Opera, Safari, and IE9)', 'maxbuttons') ?></td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
 				<tr>
-					<td>Gradients for background colors</td>
+					<td><?php _e('Gradients for background colors', 'maxbuttons') ?></td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
 				<tr>
-					<td>Border radius for rounded corners</td>
+					<td><?php _e('Border radius for rounded corners', 'maxbuttons') ?></td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
 				<tr>
-					<td>Text and box shadowing</td>
+					<td><?php _e('Text and box shadowing', 'maxbuttons') ?></td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
 				<tr>
-					<td>Hover effects and styles</td>
+					<td><?php _e('Hover effects and styles', 'maxbuttons') ?></td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
 				<tr>
-					<td>Shortcodes to use anywhere in your WordPress site</td>
+					<td><?php _e('Shortcodes to use anywhere in your WordPress site', 'maxbuttons') ?></td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 					<td align="center"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/checkmark-16.png" alt="Checkmark" /></td>
 				</tr>
 			</table>
 			
-			<h2>Get Your Copy Today</h2>
+			<h2><?php _e('Get Your Copy Today', 'maxbuttons') ?></h2>
 			
-			<p>So what are you waiting for? <a href="http://maxbuttons.com/" target="_blank">Grab your copy of MaxButtons Pro today</a>!</p>
+			<p><?php printf(__('So what are you waiting for? %sGrab your copy of MaxButtons Pro today%s!', 'maxbuttons'), '<a href="http://maxbuttons.com/" target="_blank">', '</a>') ?></p>
 		</div>
 	</div>
 </div>

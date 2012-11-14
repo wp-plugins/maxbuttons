@@ -3,7 +3,7 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
 Description: CSS3 button generator for WordPress. This is the free version; the Pro version <a href="http://maxbuttons.com">can be found here</a>.
-Version: 1.8.0
+Version: 1.9.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -11,7 +11,7 @@ Copyright 2011 Max Foundry, LLC (http://maxfoundry.com)
 */
 
 define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-define('MAXBUTTONS_VERSION_NUM', '1.8.0');
+define('MAXBUTTONS_VERSION_NUM', '1.9.0');
 
 $maxbuttons_installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
@@ -84,6 +84,11 @@ function maxbuttons_call_function_for_each_site($function) {
 	switch_to_blog($root_blog);
 }
 
+add_action('init', 'maxbuttons_load_textdomain');
+function maxbuttons_load_textdomain() {
+	load_plugin_textdomain('maxbuttons', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+}
+
 add_filter('plugin_action_links', 'maxbuttons_plugin_action_links', 10, 2);
 function maxbuttons_plugin_action_links($links, $file) {
 	static $this_plugin;
@@ -93,7 +98,8 @@ function maxbuttons_plugin_action_links($links, $file) {
 	}
 	
 	if ($file == $this_plugin) {
-		$dashboard_link = '<a href="' . admin_url() . 'admin.php?page=maxbuttons-controller&action=list">Buttons</a>';
+		$label = __('Buttons', 'maxbuttons');
+		$dashboard_link = '<a href="' . admin_url() . 'admin.php?page=maxbuttons-controller&action=list">' . $label . '</a>';
 		array_unshift($links, $dashboard_link);
 	}
 
@@ -103,7 +109,7 @@ function maxbuttons_plugin_action_links($links, $file) {
 add_filter('plugin_row_meta', 'maxbuttons_plugin_row_meta', 10, 2);
 function maxbuttons_plugin_row_meta($links, $file) {
 	if ($file == plugin_basename(dirname(__FILE__) . '/maxbuttons.php')) {
-		$links[] = '<a href="http://maxbuttons.com" target="_blank">Upgrade to Pro Version</a>';
+		$links[] = sprintf(__('%sUpgrade to Pro Version%s', 'maxbuttons'), '<a href="http://maxbuttons.com" target="_blank">', '</a>');
 	}
 	
 	return $links;
@@ -113,8 +119,8 @@ add_action('admin_menu', 'maxbuttons_admin_menu');
 function maxbuttons_admin_menu() {
 	$admin_pages = array();
 
-	$page_title = 'MaxButtons : Buttons';
-	$menu_title = 'MaxButtons';
+	$page_title = __('MaxButtons : Buttons', 'maxbuttons');
+	$menu_title = __('MaxButtons', 'maxbuttons');
 	$capability = 'manage_options';
 	$menu_slug = 'maxbuttons-controller';
 	$function = 'maxbuttons_controller';
@@ -122,26 +128,26 @@ function maxbuttons_admin_menu() {
 	add_menu_page($page_title, $menu_title, $capability, $menu_slug, $function, $icon_url);
 	
 	// We add this submenu page with the same slug as the parent to ensure we don't get duplicates
-	$sub_menu_title = 'Buttons';
+	$sub_menu_title = __('Buttons', 'maxbuttons');
 	$admin_pages[] = add_submenu_page($menu_slug, $page_title, $sub_menu_title, $capability, $menu_slug, $function);
 	
 	// Now add the submenu page for the Add New page
-	$submenu_page_title = 'MaxButtons Pro : Add/Edit Button';
-	$submenu_title = 'Add New';
+	$submenu_page_title = __('MaxButtons Pro : Add/Edit Button', 'maxbuttons');
+	$submenu_title = __('Add New', 'maxbuttons');
 	$submenu_slug = 'maxbuttons-button';
 	$submenu_function = 'maxbuttons_button';
 	$admin_pages[] = add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
 	
 	// Now add the submenu page for the Go Pro page
-	$submenu_page_title = 'MaxButtons : Go Pro';
-	$submenu_title = 'Go Pro';
+	$submenu_page_title = __('MaxButtons : Go Pro', 'maxbuttons');
+	$submenu_title = __('Go Pro', 'maxbuttons');
 	$submenu_slug = 'maxbuttons-pro';
 	$submenu_function = 'maxbuttons_pro';
 	$admin_pages[] = add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
 
 	// Now add the submenu page for the Support page
-	$submenu_page_title = 'MaxButtons : Support';
-	$submenu_title = 'Support';
+	$submenu_page_title = __('MaxButtons : Support', 'maxbuttons');
+	$submenu_title = __('Support', 'maxbuttons');
 	$submenu_slug = 'maxbuttons-support';
 	$submenu_function = 'maxbuttons_support';
 	$admin_pages[] = add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);

@@ -95,7 +95,7 @@ if ($_POST) {
 	global $wpdb;
 	
 	$data = array(
-		'name' => $_POST[$maxbutton_name_key] != '' ? stripslashes($_POST[$maxbutton_name_key]) : 'Unnamed Button',
+		'name' => $_POST[$maxbutton_name_key] != '' ? stripslashes($_POST[$maxbutton_name_key]) : __('Unnamed Button', 'maxbuttons'),
 		'description' => stripslashes($_POST[$maxbutton_description_key]),
 		'url' => stripslashes($_POST[$maxbutton_url_key]),
 		'text' => stripslashes($_POST[$maxbutton_text_key]),
@@ -630,10 +630,10 @@ function maxbuttons_strip_px($value) {
 			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/mb-32.png" alt="MaxButtons" /></a>
 		</div>
 		
-		<h2 class="title">MaxButtons: Add/Edit Button</h2>
+		<h2 class="title"><?php _e('MaxButtons: Add/Edit Button', 'maxbuttons') ?></h2>
 		
 		<div class="logo">
-			Brought to you by
+			<?php _e('Brought to you by', 'maxbuttons') ?>
 			<a href="http://maxfoundry.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/max-foundry.png" alt="Max Foundry" /></a>
 		</div>
 		
@@ -641,30 +641,30 @@ function maxbuttons_strip_px($value) {
 
 		<h2 class="tabs">
 			<span class="spacer"></span>
-			<a class="nav-tab nav-tab-active" href="">Button</a>
-			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-pro">Go Pro</a>
-			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-support">Support</a>
+			<a class="nav-tab nav-tab-active" href=""><?php _e('Button', 'maxbuttons') ?></a>
+			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-pro"><?php _e('Go Pro', 'maxbuttons') ?></a>
+			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-support"><?php _e('Support', 'maxbuttons') ?></a>
 		</h2>
 	
 		<form id="new-button-form" method="post">
 			<div class="form-actions">				
-				<a id="button-save" class="button-primary">Save</a>
-				<a id="button-copy" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=copy&id=<?php echo $_GET['id'] ?>">Copy</a>
-				<a id="button-trash" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=trash&id=<?php echo $_GET['id'] ?>">Move to Trash</a>
-				<a id="button-delete" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $_GET['id'] ?>">Delete Permanently</a>
+				<a id="button-save" class="button-primary"><?php _e('Save', 'maxbuttons') ?></a>
+				<a id="button-copy" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=copy&id=<?php echo $_GET['id'] ?>"><?php _e('Copy', 'maxbuttons') ?></a>
+				<a id="button-trash" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=trash&id=<?php echo $_GET['id'] ?>"><?php _e('Move to Trash', 'maxbuttons') ?></a>
+				<a id="button-delete" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $_GET['id'] ?>"><?php _e('Delete Permanently', 'maxbuttons') ?></a>
 			</div>
 			
 			<div class="message">
-				To use this button, place the following shortcode anywhere in your site content:
+				<?php _e('To use this button, place the following shortcode anywhere in your site content:', 'maxbuttons') ?>
 				<strong>[maxbutton id="<?php echo $_GET['id'] ?>"]</strong>
 			</div>
 			
 			<div class="option-container">
-				<div class="title">Basics</div>
+				<div class="title"><?php _e('Basics', 'maxbuttons') ?></div>
 				<div class="inside">
 					<div class="option">
-						<div class="label">Name</div>
-						<div class="note">Something that you can quickly identify the button with.</div>
+						<div class="label"><?php _e('Name', 'maxbuttons') ?></div>
+						<div class="note"><?php _e('Something that you can quickly identify the button with.', 'maxbuttons') ?></div>
 						<div class="clear"></div>
 						<div class="input">
 							<input type="text" id="<?php echo $maxbutton_name_key ?>" name="<?php echo $maxbutton_name_key ?>" value="<?php echo $maxbutton_name_value ?>" maxlength="100" />
@@ -672,8 +672,8 @@ function maxbuttons_strip_px($value) {
 					</div>
 					
 					<div class="option">
-						<div class="label">Description</div>
-						<div class="note">Brief explanation about how and where the button is used.</div>
+						<div class="label"><?php _e('Description', 'maxbuttons') ?></div>
+						<div class="note"><?php _e('Brief explanation about how and where the button is used.', 'maxbuttons') ?></div>
 						<div class="clear"></div>
 						<div class="input">
 							<textarea id="<?php echo $maxbutton_description_key ?>" name="<?php echo $maxbutton_description_key ?>"><?php echo $maxbutton_description_value ?></textarea>
@@ -681,8 +681,8 @@ function maxbuttons_strip_px($value) {
 					</div>
 					
 					<div class="option">
-						<div class="label">URL</div>
-						<div class="note">The link when the button is clicked.</div>
+						<div class="label"><?php _e('URL', 'maxbuttons') ?></div>
+						<div class="note"><?php _e('The link when the button is clicked.', 'maxbuttons') ?></div>
 						<div class="clear"></div>
 						<div class="input">
 							<input type="text" id="<?php echo $maxbutton_url_key ?>" name="<?php echo $maxbutton_url_key ?>" value="<?php echo $maxbutton_url_value ?>" maxlength="500"/>
@@ -690,8 +690,8 @@ function maxbuttons_strip_px($value) {
 					</div>
 					
 					<div class="option">
-						<div class="label">Text</div>
-						<div class="note">The actual words that appear on the button.</div>
+						<div class="label"><?php _e('Text', 'maxbuttons') ?></div>
+						<div class="note"><?php _e('The actual words that appear on the button.', 'maxbuttons') ?></div>
 						<div class="clear"></div>
 						<div class="input">
 							<input type="text" id="<?php echo $maxbutton_text_key ?>" name="<?php echo $maxbutton_text_key ?>" value="<?php echo $maxbutton_text_value ?>" maxlength="100"/>
@@ -699,7 +699,7 @@ function maxbuttons_strip_px($value) {
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Open in New Window</div>
+						<div class="label"><?php _e('Open in New Window', 'maxbuttons') ?></div>
 						<div class="input">
 							<input type="checkbox" id="<?php echo $maxbutton_new_window_key ?>" name="<?php echo $maxbutton_new_window_key ?>" <?php if ($maxbutton_new_window_value == 'on') { echo 'checked="checked"'; } else { echo ''; } ?>>
 						</div>
@@ -707,7 +707,7 @@ function maxbuttons_strip_px($value) {
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Use rel="nofollow"</div>
+						<div class="label"><?php _e('Use rel="nofollow"', 'maxbuttons') ?></div>
 						<div class="input">
 							<input type="checkbox" id="<?php echo $maxbutton_nofollow_key ?>" name="<?php echo $maxbutton_nofollow_key ?>" <?php if ($maxbutton_nofollow_value == 'on') { echo 'checked="checked"'; } else { echo ''; } ?>>
 						</div>
@@ -717,10 +717,10 @@ function maxbuttons_strip_px($value) {
 			</div>
 			
 			<div class="option-container">
-				<div class="title">Text</div>
+				<div class="title"><?php _e('Text', 'maxbuttons') ?></div>
 				<div class="inside">
 					<div class="option-design">
-						<div class="label">Font</div>
+						<div class="label"><?php _e('Font', 'maxbuttons') ?></div>
 						<div class="input">
 							<select id="<?php echo $maxbutton_text_font_family_key ?>" name="<?php echo $maxbutton_text_font_family_key ?>">
 							<?php
@@ -731,12 +731,12 @@ function maxbuttons_strip_px($value) {
 							?>
 							</select>
 						</div>
-						<div class="default">Default: <?php echo $maxbutton_text_font_family_default ?></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_font_family_default ?></div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Size</div>
+						<div class="label"><?php _e('Size', 'maxbuttons') ?></div>
 						<div class="input">
 							<select id="<?php echo $maxbutton_text_font_size_key ?>" name="<?php echo $maxbutton_text_font_size_key ?>">
 							<?php
@@ -747,12 +747,12 @@ function maxbuttons_strip_px($value) {
 							?>
 							</select>
 						</div>
-						<div class="default">Default: <?php echo $maxbutton_text_font_size_default ?></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_font_size_default ?></div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Style</div>
+						<div class="label"><?php _e('Style', 'maxbuttons') ?></div>
 						<div class="input">
 							<select id="<?php echo $maxbutton_text_font_style_key ?>" name="<?php echo $maxbutton_text_font_style_key ?>">
 							<?php
@@ -763,12 +763,12 @@ function maxbuttons_strip_px($value) {
 							?>
 							</select>
 						</div>
-						<div class="default">Default: <?php echo $maxbutton_text_font_style_default ?></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_font_style_default ?></div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Weight</div>
+						<div class="label"><?php _e('Weight', 'maxbuttons') ?></div>
 						<div class="input">
 							<select id="<?php echo $maxbutton_text_font_weight_key ?>" name="<?php echo $maxbutton_text_font_weight_key ?>">
 							<?php
@@ -779,62 +779,62 @@ function maxbuttons_strip_px($value) {
 							?>
 							</select>
 						</div>
-						<div class="default">Default: <?php echo $maxbutton_text_font_weight_default ?></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_font_weight_default ?></div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Shadow Offset Left</div>
+						<div class="label"><?php _e('Shadow Offset Left', 'maxbuttons') ?></div>
 						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_text_shadow_offset_left_key ?>" name="<?php echo $maxbutton_text_shadow_offset_left_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_text_shadow_offset_left_value) ?>" />px</div>
-						<div class="default">Default: <?php echo $maxbutton_text_shadow_offset_left_default ?></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_shadow_offset_left_default ?></div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Shadow Offset Top</div>
+						<div class="label"><?php _e('Shadow Offset Top', 'maxbuttons') ?></div>
 						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_text_shadow_offset_top_key ?>" name="<?php echo $maxbutton_text_shadow_offset_top_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_text_shadow_offset_top_value) ?>" />px</div>
-						<div class="default">Default: <?php echo $maxbutton_text_shadow_offset_top_default ?></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_shadow_offset_top_default ?></div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Shadow Width</div>
+						<div class="label"><?php _e('Shadow Width', 'maxbuttons') ?></div>
 						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_text_shadow_width_key ?>" name="<?php echo $maxbutton_text_shadow_width_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_text_shadow_width_value) ?>" />px</div>
-						<div class="default">Default: <?php echo $maxbutton_text_shadow_width_default ?></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_shadow_width_default ?></div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="spacer"></div>
 					
 					<div class="option-design">
-						<div class="label"><label>Padding</label></div>
+						<div class="label"><label><?php _e('Padding', 'maxbuttons') ?></label></div>
 						<div class="input">
 							<table>
 								<tr>
 									<td>
-										<div class="cell-label">Top</div>
+										<div class="cell-label"><?php _e('Top', 'maxbuttons') ?></div>
 										<div class="input"><input class="tiny" type="text" id="<?php echo $maxbutton_text_padding_top_key ?>" name="<?php echo $maxbutton_text_padding_top_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_text_padding_top_value) ?>" />px</div>
-										<div class="default-other">Default: <?php echo $maxbutton_text_padding_top_default ?></div>
+										<div class="default-other"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_padding_top_default ?></div>
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label">Bottom</div>
+										<div class="cell-label"><?php _e('Bottom', 'maxbuttons') ?></div>
 										<div class="input"><input class="tiny" type="text" id="<?php echo $maxbutton_text_padding_bottom_key ?>" name="<?php echo $maxbutton_text_padding_bottom_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_text_padding_bottom_value) ?>" />px</div>
-										<div class="default-other">Default: <?php echo $maxbutton_text_padding_bottom_default ?></div>
+										<div class="default-other"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_padding_bottom_default ?></div>
 										<div class="clear"></div>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<div class="cell-label">Left</div>
+										<div class="cell-label"><?php _e('Left', 'maxbuttons') ?></div>
 										<div class="input"><input class="tiny" type="text" id="<?php echo $maxbutton_text_padding_left_key ?>" name="<?php echo $maxbutton_text_padding_left_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_text_padding_left_value) ?>" />px</div>
-										<div class="default-other">Default: <?php echo $maxbutton_text_padding_left_default ?></div>
+										<div class="default-other"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_padding_left_default ?></div>
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label">Right</div>
+										<div class="cell-label"><?php _e('Right', 'maxbuttons') ?></div>
 										<div class="input"><input class="tiny" type="text" id="<?php echo $maxbutton_text_padding_right_key ?>" name="<?php echo $maxbutton_text_padding_right_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_text_padding_right_value) ?>" />px</div>
-										<div class="default-other">Default: <?php echo $maxbutton_text_padding_right_default ?></div>
+										<div class="default-other"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_padding_right_default ?></div>
 										<div class="clear"></div>
 									</td>
 								</tr>
@@ -846,37 +846,37 @@ function maxbuttons_strip_px($value) {
 			</div>
 			
 			<div class="option-container">
-				<div class="title">Border</div>
+				<div class="title"><?php _e('Border', 'maxbuttons') ?></div>
 				<div class="inside">
 					<div class="option-design">
-						<div class="label"><label>Radius</label></div>
+						<div class="label"><label><?php _e('Radius', 'maxbuttons') ?></label></div>
 						<div class="input">
 							<table>
 								<tr>
 									<td>
-										<div class="cell-label">Top Left</div>
+										<div class="cell-label"><?php _e('Top Left', 'maxbuttons') ?></div>
 										<div class="input"><input class="tiny" type="text" id="<?php echo $maxbutton_border_radius_top_left_key ?>" name="<?php echo $maxbutton_border_radius_top_left_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_border_radius_top_left_value) ?>" />px</div>
-										<div class="default-other">Default: <?php echo $maxbutton_border_radius_top_left_default ?></div>
+										<div class="default-other"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_border_radius_top_left_default ?></div>
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label">Top Right</div>
+										<div class="cell-label"><?php _e('Top Right', 'maxbuttons') ?></div>
 										<div class="input"><input class="tiny" type="text" id="<?php echo $maxbutton_border_radius_top_right_key ?>" name="<?php echo $maxbutton_border_radius_top_right_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_border_radius_top_right_value) ?>" />px</div>
-										<div class="default-other">Default: <?php echo $maxbutton_border_radius_top_right_default ?></div>
+										<div class="default-other"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_border_radius_top_right_default ?></div>
 										<div class="clear"></div>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<div class="cell-label">Bottom Left</div>
+										<div class="cell-label"><?php _e('Bottom Left', 'maxbuttons') ?></div>
 										<div class="input"><input class="tiny" type="text" id="<?php echo $maxbutton_border_radius_bottom_left_key ?>" name="<?php echo $maxbutton_border_radius_bottom_left_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_border_radius_bottom_left_value) ?>" />px</div>
-										<div class="default-other">Default: <?php echo $maxbutton_border_radius_bottom_left_default ?></div>
+										<div class="default-other"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_border_radius_bottom_left_default ?></div>
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label">Bottom Right</div>
+										<div class="cell-label"><?php _e('Bottom Right', 'maxbuttons') ?></div>
 										<div class="input"><input class="tiny" type="text" id="<?php echo $maxbutton_border_radius_bottom_right_key ?>" name="<?php echo $maxbutton_border_radius_bottom_right_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_border_radius_bottom_right_value) ?>" />px</div>
-										<div class="default-other">Default: <?php echo $maxbutton_border_radius_bottom_right_default ?></div>
+										<div class="default-other"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_border_radius_bottom_right_default ?></div>
 										<div class="clear"></div>
 									</td>
 								</tr>
@@ -886,7 +886,7 @@ function maxbuttons_strip_px($value) {
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Style</div>
+						<div class="label"><?php _e('Style', 'maxbuttons') ?></div>
 						<div class="input">
 							<select id="<?php echo $maxbutton_border_style_key ?>" name="<?php echo $maxbutton_border_style_key ?>">
 							<?php
@@ -897,173 +897,173 @@ function maxbuttons_strip_px($value) {
 							?>
 							</select>
 						</div>
-						<div class="default">Default: <?php echo $maxbutton_border_style_default ?></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_border_style_default ?></div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Width</div>
+						<div class="label"><?php _e('Width', 'maxbuttons') ?></div>
 						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_border_width_key ?>" name="<?php echo $maxbutton_border_width_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_border_width_value) ?>" />px</div>
-						<div class="default">Default: <?php echo $maxbutton_border_width_default ?></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_border_width_default ?></div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Shadow Offset Left</div>
+						<div class="label"><?php _e('Shadow Offset Left', 'maxbuttons') ?></div>
 						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_box_shadow_offset_left_key ?>" name="<?php echo $maxbutton_box_shadow_offset_left_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_box_shadow_offset_left_value) ?>" />px</div>
-						<div class="default">Default: <?php echo $maxbutton_box_shadow_offset_left_default ?></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_box_shadow_offset_left_default ?></div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Shadow Offset Top</div>
+						<div class="label"><?php _e('Shadow Offset Top', 'maxbuttons') ?></div>
 						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_box_shadow_offset_top_key ?>" name="<?php echo $maxbutton_box_shadow_offset_top_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_box_shadow_offset_top_value) ?>" />px</div>
-						<div class="default">Default: <?php echo $maxbutton_box_shadow_offset_top_default ?></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_box_shadow_offset_top_default ?></div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Shadow Width</div>
+						<div class="label"><?php _e('Shadow Width', 'maxbuttons') ?></div>
 						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_box_shadow_width_key ?>" name="<?php echo $maxbutton_box_shadow_width_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_box_shadow_width_value) ?>" />px</div>
-						<div class="default">Default: <?php echo $maxbutton_box_shadow_width_default ?></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_box_shadow_width_default ?></div>
 						<div class="clear"></div>
 					</div>
 				</div>
 			</div>
 			
 			<div class="option-container">
-				<div class="title">Colors</div>
+				<div class="title"><?php _e('Colors', 'maxbuttons') ?></div>
 				<div class="inside">
 					<div class="option-design">
-						<div class="label">Gradient Stop</div>
+						<div class="label"><?php _e('Gradient Stop', 'maxbuttons') ?></div>
 						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_gradient_stop_key ?>" name="<?php echo $maxbutton_gradient_stop_key ?>" value="<?php echo $maxbutton_gradient_stop_value ?>" maxlength="2" /></div>
-						<div class="default">Default: <?php echo $maxbutton_gradient_stop_default ?> (1 - 99 accepted)</div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_gradient_stop_default ?> (1 - 99 accepted)</div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="spacer"></div>
 					
 					<div class="option-design">
-						<div class="label"><label>Colors</label></div>
+						<div class="label"><label><?php _e('Colors', 'maxbuttons') ?></label></div>
 						<div class="input">
 							<table>
 								<tr>
 									<td>
-										<div class="cell-label">Text</div>
+										<div class="cell-label"><?php _e('Text', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_text_color_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_text_color_key ?>" name="<?php echo $maxbutton_text_color_key ?>" value="<?php echo $maxbutton_text_color_value ?>" />
-										<div class="default-color">Default: <?php echo $maxbutton_text_color_default ?></div>
+										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_color_default ?></div>
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label">Text Hover</div>
+										<div class="cell-label"><?php _e('Text Hover', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_text_color_hover_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_text_color_hover_key ?>" name="<?php echo $maxbutton_text_color_hover_key ?>" value="<?php echo $maxbutton_text_color_hover_value ?>" />
-										<div class="default-color">Default: <?php echo $maxbutton_text_color_hover_default ?></div>
+										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_color_hover_default ?></div>
 										<div class="clear"></div>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<div class="cell-label">Text Shadow</div>
+										<div class="cell-label"><?php _e('Text Shadow', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_text_shadow_color_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_text_shadow_color_key ?>" name="<?php echo $maxbutton_text_shadow_color_key ?>" value="<?php echo $maxbutton_text_shadow_color_value ?>" />
-										<div class="default-color">Default: <?php echo $maxbutton_text_shadow_color_default ?></div>
+										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_shadow_color_default ?></div>
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label">Text Shadow Hover</div>
+										<div class="cell-label"><?php _e('Text Shadow Hover', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_text_shadow_color_hover_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_text_shadow_color_hover_key ?>" name="<?php echo $maxbutton_text_shadow_color_hover_key ?>" value="<?php echo $maxbutton_text_shadow_color_hover_value ?>" />
-										<div class="default-color">Default: <?php echo $maxbutton_text_shadow_color_hover_default ?></div>
+										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_shadow_color_hover_default ?></div>
 										<div class="clear"></div>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<div class="cell-label">Gradient Start</div>
+										<div class="cell-label"><?php _e('Gradient Start', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_gradient_start_color_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_gradient_start_color_key ?>" name="<?php echo $maxbutton_gradient_start_color_key ?>" value="<?php echo $maxbutton_gradient_start_color_value ?>" />
-										<div class="default-color">Default: <?php echo $maxbutton_gradient_start_color_default ?></div>
+										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_gradient_start_color_default ?></div>
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label">Gradient Start Hover</div>
+										<div class="cell-label"><?php _e('Gradient Start Hover', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_gradient_start_color_hover_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_gradient_start_color_hover_key ?>" name="<?php echo $maxbutton_gradient_start_color_hover_key ?>" value="<?php echo $maxbutton_gradient_start_color_hover_value ?>" />
-										<div class="default-color">Default: <?php echo $maxbutton_gradient_start_color_hover_default ?></div>
+										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_gradient_start_color_hover_default ?></div>
 										<div class="clear"></div>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<div class="cell-label">Gradient End</div>
+										<div class="cell-label"><?php _e('Gradient End', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_gradient_end_color_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_gradient_end_color_key ?>" name="<?php echo $maxbutton_gradient_end_color_key ?>" value="<?php echo $maxbutton_gradient_end_color_value ?>" />
-										<div class="default-color">Default: <?php echo $maxbutton_gradient_end_color_default ?></div>
+										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_gradient_end_color_default ?></div>
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label">Gradient End Hover</div>
+										<div class="cell-label"><?php _e('Gradient End Hover', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_gradient_end_color_hover_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_gradient_end_color_hover_key ?>" name="<?php echo $maxbutton_gradient_end_color_hover_key ?>" value="<?php echo $maxbutton_gradient_end_color_hover_value ?>" />
-										<div class="default-color">Default: <?php echo $maxbutton_gradient_end_color_hover_default ?></div>
+										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_gradient_end_color_hover_default ?></div>
 										<div class="clear"></div>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<div class="cell-label">Border</div>
+										<div class="cell-label"><?php _e('Border', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_border_color_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_border_color_key ?>" name="<?php echo $maxbutton_border_color_key ?>" value="<?php echo $maxbutton_border_color_value ?>" />
-										<div class="default-color">Default: <?php echo $maxbutton_border_color_default ?></div>
+										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_border_color_default ?></div>
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label">Border Hover</div>
+										<div class="cell-label"><?php _e('Border Hover', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_border_color_hover_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_border_color_hover_key ?>" name="<?php echo $maxbutton_border_color_hover_key ?>" value="<?php echo $maxbutton_border_color_hover_value ?>" />
-										<div class="default-color">Default: <?php echo $maxbutton_border_color_hover_default ?></div>
+										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_border_color_hover_default ?></div>
 										<div class="clear"></div>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<div class="cell-label">Box Shadow</div>
+										<div class="cell-label"><?php _e('Box Shadow', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_box_shadow_color_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_box_shadow_color_key ?>" name="<?php echo $maxbutton_box_shadow_color_key ?>" value="<?php echo $maxbutton_box_shadow_color_value ?>" />
-										<div class="default-color">Default: <?php echo $maxbutton_box_shadow_color_default ?></div>
+										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_box_shadow_color_default ?></div>
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label">Box Shadow Hover</div>
+										<div class="cell-label"><?php _e('Box Shadow Hover', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_box_shadow_color_hover_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_box_shadow_color_hover_key ?>" name="<?php echo $maxbutton_box_shadow_color_hover_key ?>" value="<?php echo $maxbutton_box_shadow_color_hover_value ?>" />
-										<div class="default-color">Default: <?php echo $maxbutton_box_shadow_color_hover_default ?></div>
+										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_box_shadow_color_hover_default ?></div>
 										<div class="clear"></div>
 									</td>
 								</tr>
@@ -1075,53 +1075,53 @@ function maxbuttons_strip_px($value) {
 			</div>
 			
 			<div class="option-container">
-				<div class="title">Container</div>
+				<div class="title"><?php _e('Container', 'maxbuttons') ?></div>
 				<div class="inside">
 					<div class="option-design">
-						<div class="label">Use Container</div>
+						<div class="label"><?php _e('Use Container', 'maxbuttons') ?></div>
 						<div class="input"><input type="checkbox" id="<?php echo $maxbutton_container_enabled_key ?>" name="<?php echo $maxbutton_container_enabled_key ?>" <?php if ($maxbutton_container_enabled_value == 'on') { echo 'checked="checked"'; } else { echo ''; } ?>></div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Wrap with Center Div</div>
+						<div class="label"><?php _e('Wrap with Center Div', 'maxbuttons') ?></div>
 						<div class="input"><input type="checkbox" id="<?php echo $maxbutton_container_center_div_wrap_enabled_key ?>" name="<?php echo $maxbutton_container_center_div_wrap_enabled_key ?>" <?php if ($maxbutton_container_center_div_wrap_enabled_value == 'on') { echo 'checked="checked"'; } else { echo ''; } ?>></div>
 						<div class="default">&lt;div align="center"&gt;</div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Width</div>
+						<div class="label"><?php _e('Width', 'maxbuttons') ?></div>
 						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_container_width_key ?>" name="<?php echo $maxbutton_container_width_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_container_width_value) ?>" />px</div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Margin Top</div>
+						<div class="label"><?php _e('Margin Top', 'maxbuttons') ?></div>
 						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_container_margin_top_key ?>" name="<?php echo $maxbutton_container_margin_top_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_container_margin_top_value) ?>" />px</div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Margin Right</div>
+						<div class="label"><?php _e('Margin Right', 'maxbuttons') ?></div>
 						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_container_margin_right_key ?>" name="<?php echo $maxbutton_container_margin_right_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_container_margin_right_value) ?>" />px</div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Margin Bottom</div>
+						<div class="label"><?php _e('Margin Bottom', 'maxbuttons') ?></div>
 						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_container_margin_bottom_key ?>" name="<?php echo $maxbutton_container_margin_bottom_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_container_margin_bottom_value) ?>" />px</div>
 						<div class="clear"></div>
 					</div>
 
 					<div class="option-design">
-						<div class="label">Margin Left</div>
+						<div class="label"><?php _e('Margin Left', 'maxbuttons') ?></div>
 						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_container_margin_left_key ?>" name="<?php echo $maxbutton_container_margin_left_key ?>" value="<?php echo maxbuttons_strip_px($maxbutton_container_margin_left_value) ?>" />px</div>
 						<div class="clear"></div>
 					</div>
 					
 					<div class="option-design">
-						<div class="label">Alignment</div>
+						<div class="label"><?php _e('Alignment', 'maxbuttons') ?></div>
 						<div class="input">
 							<select id="<?php echo $maxbutton_container_alignment_key ?>" name="<?php echo $maxbutton_container_alignment_key ?>">
 							<?php
@@ -1139,9 +1139,9 @@ function maxbuttons_strip_px($value) {
 		</form>
 	
 		<div class="output">
-			<div class="header">Button Output</div>
+			<div class="header"><?php _e('Button Output', 'maxbuttons') ?></div>
 			<div class="inner">
-				The top is the normal button, the bottom one is the hover.
+				<?php _e('The top is the normal button, the bottom one is the hover.', 'maxbuttons') ?>
 				<div class="result">
 					<a id="button-normal" href="<?php echo $maxbutton_url_value ?>"><?php echo $maxbutton_text_value ?></a>
 					<p>&nbsp;</p>
@@ -1152,7 +1152,7 @@ function maxbuttons_strip_px($value) {
 					<span></span>
 				</span>
 				<input style="display: none;" type="text" id="button_output" name="button_output" value="" />
-				<div class="note">Change this color to see your button on a different background.</div>
+				<div class="note"><?php _e('Change this color to see your button on a different background.', 'maxbuttons') ?></div>
 				<div class="clear"></div>
 			</div>
 		</div>

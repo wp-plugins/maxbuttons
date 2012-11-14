@@ -90,10 +90,10 @@ function maxbuttons_get_browser() {
 			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/mb-32.png" alt="MaxButtons" /></a>
 		</div>
 		
-		<h2 class="title">MaxButtons: Support</h2>
+		<h2 class="title"><?php _e('MaxButtons: Support', 'maxbuttons') ?></h2>
 		
 		<div class="logo">
-			Brought to you by
+			<?php _e('Brought to you by', 'maxbuttons') ?>
 			<a href="http://maxfoundry.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/max-foundry.png" alt="Max Foundry" /></a>
 		</div>
 
@@ -101,14 +101,14 @@ function maxbuttons_get_browser() {
 		
 		<h2 class="tabs">
 			<span class="spacer"></span>
-			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list">Buttons</a>
-			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-pro">Go Pro</a>
-			<a class="nav-tab nav-tab-active" href="">Support</a>
+			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list"><?php _e('Buttons', 'maxbuttons') ?></a>
+			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-pro"><?php _e('Go Pro', 'maxbuttons') ?></a>
+			<a class="nav-tab nav-tab-active" href=""><?php _e('Support', 'maxbuttons') ?></a>
 		</h2>
 		
-		<h3>All support is handled through the <a href="http://wordpress.org/support/plugin/maxbuttons" target="_blank">Support Forums</a>.</h3>
+		<h3><?php printf(__('All support is handled through the %sSupport Forums%s.', 'maxbuttons'), '<a href="http://wordpress.org/support/plugin/maxbuttons" target="_blank">', '</a>') ?></h3>
 		
-		<h3>You may be asked to provide the information below to help troubleshoot your issue.</h3>
+		<h3><?php _e('You may be asked to provide the information below to help troubleshoot your issue.', 'maxbuttons') ?></h3>
 	
 		<textarea class="system-info" readonly="readonly" wrap="off">
 ----- Begin System Info -----

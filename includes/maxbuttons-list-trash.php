@@ -12,11 +12,11 @@ if ($_POST) {
 			}
 
 			if ($count == 1) {
-				$result = 'Restored 1 button.';
+				$result = __('Restored 1 button.', 'maxbuttons');
 			}
 			
 			if ($count > 1) {
-				$result = 'Restored ' . $count . ' buttons.';
+				$result = __('Restored ', 'maxbuttons') . $count . __(' buttons.', 'maxbuttons');
 			}
 		}
 		
@@ -29,22 +29,22 @@ if ($_POST) {
 			}
 
 			if ($count == 1) {
-				$result = 'Deleted 1 button.';
+				$result = __('Deleted 1 button.', 'maxbuttons');
 			}
 			
 			if ($count > 1) {
-				$result = 'Deleted ' . $count . ' buttons.';
+				$result = __('Deleted ', 'maxbuttons') . $count . __(' buttons.', 'maxbuttons');
 			}
 		}
 	}
 }
 
 if (isset($_GET['message']) && $_GET['message'] == '1restore') {
-	$result = 'Restored 1 button.';
+	$result = __('Restored 1 button.', 'maxbuttons');
 }
 
 if (isset($_GET['message']) && $_GET['message'] == '1delete') {
-	$result = 'Deleted 1 button.';
+	$result = __('Deleted 1 button.', 'maxbuttons');
 }
 
 $trashed_buttons = maxbuttons_get_trashed_buttons();
@@ -77,10 +77,10 @@ $published_buttons_count = maxbuttons_get_published_buttons_count();
 			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/mb-32.png" alt="MaxButtons" /></a>
 		</div>
 		
-		<h2 class="title">MaxButtons: Button List</h2>
+		<h2 class="title"><?php _e('MaxButtons: Button List', 'maxbuttons') ?></h2>
 		
 		<div class="logo">
-			Brought to you by
+			<?php _e('Brought to you by', 'maxbuttons') ?>
 			<a href="http://maxfoundry.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/max-foundry.png" alt="Max Foundry" /></a>
 		</div>
 		
@@ -88,12 +88,12 @@ $published_buttons_count = maxbuttons_get_published_buttons_count();
 		
 		<h2 class="tabs">
 			<span class="spacer"></span>
-			<a class="nav-tab nav-tab-active" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list">Buttons</a>
-			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-pro">Go Pro</a>
+			<a class="nav-tab nav-tab-active" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list"><?php _e('Buttons', 'maxbuttons') ?></a>
+			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-pro"><?php _e('Go Pro', 'maxbuttons') ?></a>
 		</h2>
 
 		<div class="form-actions">
-			<a class="button-primary" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=button">Add New</a>
+			<a class="button-primary" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=button"><?php _e('Add New', 'maxbuttons') ?></a>
 		</div>
 
 		<?php if ($result != '') { ?>
@@ -101,27 +101,27 @@ $published_buttons_count = maxbuttons_get_published_buttons_count();
 		<?php } ?>
 		
 		<p class="status">
-			<a href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list">All</a> <span class="count">(<?php echo $published_buttons_count ?>)</span>
+			<a href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list"><?php _e('All', 'maxbuttons') ?></a> <span class="count">(<?php echo $published_buttons_count ?>)</span>
 			<span class="separator">|</span>
-			<strong>Trash</strong> <span class="count">(<?php echo $trashed_buttons_count ?>)</span>
+			<strong><?php _e('Trash', 'maxbuttons') ?></strong> <span class="count">(<?php echo $trashed_buttons_count ?>)</span>
 		</p>
 		
 		<form method="post">
 			<select name="bulk-action-select" id="bulk-action-select">
-				<option value="">Bulk Actions</option>
-				<option value="restore">Restore</option>
-				<option value="delete">Delete Permanently</option>
+				<option value=""><?php _e('Bulk Actions', 'maxbuttons') ?></option>
+				<option value="restore"><?php _e('Restore', 'maxbuttons') ?></option>
+				<option value="delete"><?php _e('Delete Permanently', 'maxbuttons') ?></option>
 			</select>
-			<input type="submit" class="button" value="Apply" />
+			<input type="submit" class="button" value="<?php _e('Apply', 'maxbuttons') ?>" />
 		
 			<div class="button-list">		
 				<table cellpadding="0" cellspacing="0" width="100%">
 					<tr>
 						<th><input type="checkbox" name="bulk-action-all" id="bulk-action-all" /></th>
-						<th>Button</th>
-						<th>Name and Description</th>
-						<th>Shortcode</th>
-						<th>Actions</th>
+						<th><?php _e('Button', 'maxbuttons') ?></th>
+						<th><?php _e('Name and Description', 'maxbuttons') ?></th>
+						<th><?php _e('Shortcode', 'maxbuttons') ?></th>
+						<th><?php _e('Actions', 'maxbuttons') ?></th>
 					</tr>
 					<?php foreach ($trashed_buttons as $b) { ?>
 						<tr>
@@ -142,9 +142,9 @@ $published_buttons_count = maxbuttons_get_published_buttons_count();
 								[maxbutton id="<?php echo $b->id ?>"]
 							</td>
 							<td>
-								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=restore&id=<?php echo $b->id ?>">Restore</a>
+								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=restore&id=<?php echo $b->id ?>"><?php _e('Restore', 'maxbuttons') ?></a>
 								<span class="separator">|</span>
-								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $b->id ?>">Delete Permanently</a>
+								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $b->id ?>"><?php _e('Delete Permanently', 'maxbuttons') ?></a>
 							</td>
 						</tr>
 					<?php } ?>
