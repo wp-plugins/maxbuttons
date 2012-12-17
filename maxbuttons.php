@@ -2,8 +2,8 @@
 /*
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
-Description: CSS3 button generator for WordPress. This is the free version; the Pro version <a href="http://maxbuttons.com">can be found here</a>.
-Version: 1.9.0
+Description: CSS3 button generator for WordPress. This is the free version; the Pro version <a href="http://maxbuttons.com/?ref=mbfree">can be found here</a>.
+Version: 1.9.1
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -11,7 +11,7 @@ Copyright 2011 Max Foundry, LLC (http://maxfoundry.com)
 */
 
 define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-define('MAXBUTTONS_VERSION_NUM', '1.9.0');
+define('MAXBUTTONS_VERSION_NUM', '1.9.1');
 
 $maxbuttons_installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
@@ -109,7 +109,7 @@ function maxbuttons_plugin_action_links($links, $file) {
 add_filter('plugin_row_meta', 'maxbuttons_plugin_row_meta', 10, 2);
 function maxbuttons_plugin_row_meta($links, $file) {
 	if ($file == plugin_basename(dirname(__FILE__) . '/maxbuttons.php')) {
-		$links[] = sprintf(__('%sUpgrade to Pro Version%s', 'maxbuttons'), '<a href="http://maxbuttons.com" target="_blank">', '</a>');
+		$links[] = sprintf(__('%sUpgrade to Pro Version%s', 'maxbuttons'), '<a href="http://maxbuttons.com/?ref=mbfree" target="_blank">', '</a>');
 	}
 	
 	return $links;

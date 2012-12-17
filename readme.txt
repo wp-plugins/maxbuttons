@@ -2,8 +2,8 @@
 Contributors: maxfoundry, arcware
 Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
 Requires at least: 3.0
-Tested up to: 3.4.2
-Stable tag: 1.9.0
+Tested up to: 3.5
+Stable tag: 1.9.1
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -32,6 +32,7 @@ Take your buttons to the next level with [MaxButtons Pro](http://maxbuttons.com/
 * **Button Packs** - Be more productive through the use of our value priced, ready-made button sets.
 * **Import/Export** - Useful for backing up and/or moving your buttons. Also, use any of the great [free icons](http://maxbuttons.com/free-icons/) listed on our site.
 * **Height and Width** - Explicit options to set button height and width.
+* **Shopp Integration** - Use buttons created with MaxButtons Pro as the shopping cart buttons of the Shopp e-commerce plugin.
 
 And the best part is that you can get this awesome [CSS3 button generator](http://maxbuttons.com/) for **only 10!**
 
@@ -113,6 +114,9 @@ Enable the "Wrap with Center Div" option in the Container settings.
 Enable the container option and set the alignment property to either "display: inline-block" or "float: left". You might also want to add some margin values to put some spacing between your buttons.
 
 == Changelog ==
+= 1.9.1 =
+* Fixed issues with spacing of the system info on the Support page.
+
 = 1.9.0 =
 * Added support for localization.
 
@@ -184,5 +188,5 @@ Enable the container option and set the alignment property to either "display: i
 
 == Upgrade Notice ==
 
-= 1.9.0 =
+= 1.9.1 =
 Please deactivate and then reactivate before using.

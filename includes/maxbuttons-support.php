@@ -3,6 +3,18 @@ $plugin_version = get_option(MAXBUTTONS_VERSION_KEY);
 $theme = get_theme_data(get_stylesheet_directory() . '/style.css');
 $browser = maxbuttons_get_browser();
 
+function maxbuttons_system_label($label, $value, $spaces_between) {
+	$output = $label;
+	
+	if ($spaces_between > 0) {
+		for ($i = 0; $i < $spaces_between; $i++) {
+			$output .= '&nbsp;';
+		}
+	}
+	
+	return $output . $value . "\n";
+}
+
 // http://www.php.net/manual/en/function.get-browser.php#101125.
 // Cleaned up a bit, but overall it's the same.
 function maxbuttons_get_browser() {
@@ -94,7 +106,8 @@ function maxbuttons_get_browser() {
 		
 		<div class="logo">
 			<?php _e('Brought to you by', 'maxbuttons') ?>
-			<a href="http://maxfoundry.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/max-foundry.png" alt="Max Foundry" /></a>
+			<a href="http://maxfoundry.com/?ref=mbfree" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/max-foundry.png" alt="Max Foundry" /></a>
+			<?php printf(__('makers of %sMaxGalleria%s and %sMaxInbound%s', 'maxbuttons'), '<a href="http://maxgalleria.com/?ref=mbfree" target="_blank">', '</a>', '<a href="http://maxinbound.com/?ref=mbfree" target="_blank">', '</a>') ?>
 		</div>
 
 		<div class="clear"></div>
@@ -113,31 +126,31 @@ function maxbuttons_get_browser() {
 		<textarea class="system-info" readonly="readonly" wrap="off">
 ----- Begin System Info -----
 
-MaxButtons Version:     <?php echo $plugin_version . "\n"; ?>
-WordPress Version:      <?php echo get_bloginfo('version') . "\n"; ?>
-PHP Version:            <?php echo PHP_VERSION . "\n"; ?>
-MySQL Version:          <?php echo mysql_get_server_info() . "\n"; ?>
-Web Server:             <?php echo $_SERVER['SERVER_SOFTWARE'] . "\n"; ?>
+<?php echo maxbuttons_system_label('MaxButtons Version:', $plugin_version, 3) ?>
+<?php echo maxbuttons_system_label('WordPress Version:', get_bloginfo('version'), 4) ?>
+<?php echo maxbuttons_system_label('PHP Version:', PHP_VERSION, 10) ?>
+<?php echo maxbuttons_system_label('MySQL Version:', mysql_get_server_info(), 8) ?>
+<?php echo maxbuttons_system_label('Web Server:', $_SERVER['SERVER_SOFTWARE'], 11) ?>
 
-WordPress URL:          <?php echo get_bloginfo('wpurl') . "\n"; ?>
-Home URL:               <?php echo get_bloginfo('url') . "\n"; ?>
+<?php echo maxbuttons_system_label('WordPress URL:', get_bloginfo('wpurl'), 8) ?>
+<?php echo maxbuttons_system_label('Home URL:', get_bloginfo('url'), 13) ?>
 
-PHP cURL Support:       <?php echo (function_exists('curl_init')) ? 'Yes' . "\n" : 'No' . "\n"; ?>
-PHP GD Support:         <?php echo (function_exists('gd_info')) ? 'Yes' . "\n" : 'No' . "\n"; ?>
-PHP Memory Limit:       <?php echo ini_get('memory_limit') . "\n"; ?>
-PHP Post Max Size:      <?php echo ini_get('post_max_size') . "\n"; ?>
-PHP Upload Max Size:    <?php echo ini_get('upload_max_filesize') . "\n"; ?>
+<?php echo maxbuttons_system_label('PHP cURL Support:', function_exists('curl_init') ? 'Yes' : 'No', 5) ?>
+<?php echo maxbuttons_system_label('PHP GD Support:', function_exists('gd_info') ? 'Yes' : 'No', 7) ?>
+<?php echo maxbuttons_system_label('PHP Memory Limit:', ini_get('memory_limit'), 5) ?>
+<?php echo maxbuttons_system_label('PHP Post Max Size:', ini_get('post_max_size'), 4) ?>
+<?php echo maxbuttons_system_label('PHP Upload Max Size:', ini_get('upload_max_filesize'), 2) ?>
 
-WP_DEBUG:               <?php echo defined('WP_DEBUG') ? WP_DEBUG ? 'Enabled' . "\n" : 'Disabled' . "\n" : 'Not set' . "\n" ?>
-Multi-Site Active:      <?php echo is_multisite() ? 'Yes' . "\n" : 'No' . "\n" ?>
+<?php echo maxbuttons_system_label('WP_DEBUG:', defined('WP_DEBUG') ? WP_DEBUG ? 'Enabled' : 'Disabled' : 'Not set', 13) ?>
+<?php echo maxbuttons_system_label('Multi-Site Active:', is_multisite() ? 'Yes' : 'No', 4) ?>
 
-Operating System:       <?php echo $browser['platform'] . "\n"; ?>
-Browser:                <?php echo $browser['name'] . ' ' . $browser['version'] . "\n"; ?>
-User Agent:             <?php echo $browser['user_agent'] . "\n"; ?>
+<?php echo maxbuttons_system_label('Operating System:', $browser['platform'], 5) ?>
+<?php echo maxbuttons_system_label('Browser:', $browser['name'] . ' ' . $browser['version'], 14) ?>
+<?php echo maxbuttons_system_label('User Agent:', $browser['user_agent'], 11) ?>
 
 Active Theme:
-- <?php echo $theme['Name'] ?> <?php echo $theme['Version'] . "\n"; ?>
-  <?php echo $theme['URI'] . "\n"; ?>
+<?php echo maxbuttons_system_label('-', $theme['Name'] . ' ' . $theme['Version'], 1) ?>
+<?php echo maxbuttons_system_label('', $theme['URI'], 2) ?>
 
 Active Plugins:
 <?php
@@ -145,13 +158,12 @@ $plugins = get_plugins();
 $active_plugins = get_option('active_plugins', array());
 
 foreach ($plugins as $plugin_path => $plugin) {
-	
 	// Only show active plugins
 	if (in_array($plugin_path, $active_plugins)) {
-		echo '- ' . $plugin['Name'] . ' ' . $plugin['Version'] . "\n";
+		echo maxbuttons_system_label('-', $plugin['Name'] . ' ' . $plugin['Version'], 1);
 	
 		if (isset($plugin['PluginURI'])) {
-			echo '  ' . $plugin['PluginURI'] . "\n";
+			echo maxbuttons_system_label('', $plugin['PluginURI'], 2);
 		}
 		
 		echo "\n";
