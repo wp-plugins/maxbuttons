@@ -113,7 +113,7 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
 							</td>
 							<td>
 								<div class="shortcode-container">
-									<?php echo do_shortcode('[maxbutton id="' . $b->id . '"]') ?>
+									<?php echo do_shortcode('[maxbutton id="' . $b->id . '" externalcss="false"]') ?>
 								</div>
 							</td>
 							<td>
@@ -128,6 +128,8 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
 								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $b->id ?>"><?php _e('Edit', 'maxbuttons') ?></a>
 								<span class="separator">|</span>
 								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=copy&id=<?php echo $b->id ?>"><?php _e('Copy', 'maxbuttons') ?></a>
+								<span class="separator">|</span>
+								<a href="#" onclick="window.open('<?php echo MAXBUTTONS_PLUGIN_URL ?>/includes/maxbuttons-button-css.php?id=<?php echo $b->id ?>', 'ButtonCSS', 'width=800, height=600, scrollbars=1'); return false;"><?php _e('View CSS', 'maxbuttons') ?></a>
 								<span class="separator">|</span>
 								<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=trash&id=<?php echo $b->id ?>"><?php _e('Move to Trash', 'maxbuttons') ?></a>
 							</td>

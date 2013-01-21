@@ -132,7 +132,7 @@ $published_buttons_count = maxbuttons_get_published_buttons_count();
 							</td>
 							<td>
 								<div class="shortcode-container">
-									<?php echo do_shortcode('[maxbutton id="' . $b->id . '"]') ?>
+									<?php echo do_shortcode('[maxbutton id="' . $b->id . '" externalcss="false"]') ?>
 								</div>
 							</td>
 							<td>

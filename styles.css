@@ -35,7 +35,7 @@
 	width: 35px;
 }
 #maxbuttons input[type='checkbox'] {
-	margin-top: 7px;
+	margin-top: 4px;
 }
 #maxbuttons select {
 	width: 150px;
@@ -115,6 +115,12 @@
 #maxbuttons .option-design {
 	margin-bottom: 5px;
 }
+#maxbuttons .option-design p.note {
+	font-style: italic;
+	color: #808080;
+	padding-left: 3px;
+	margin-bottom: 10px;
+}
 #maxbuttons .option-design .label {
 	float: left;
 	font-weight: bold;
@@ -145,6 +151,9 @@
 }
 #maxbuttons .spacer {
 	margin-bottom: 20px;
+}
+#maxbuttons .spacer.big {
+	margin-bottom: 30px;
 }
 #maxbuttons .colorpicker-box {
 	background: url('js/colorpicker/images/select2.png') transparent repeat scroll 0 0;

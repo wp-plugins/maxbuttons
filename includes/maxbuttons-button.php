@@ -87,6 +87,8 @@ $maxbutton_container_margin_bottom_value = isset($button) ? $button->container_m
 $maxbutton_container_margin_left_value = isset($button) ? $button->container_margin_left : '';
 $maxbutton_container_alignment_value = isset($button) ? $button->container_alignment : '';
 $maxbutton_container_center_div_wrap_enabled_value = isset($button) ? $button->container_center_div_wrap_enabled : 'on';
+$maxbutton_external_css_value = isset($button) ? $button->external_css : '';
+$maxbutton_important_css_value = isset($button) ? $button->important_css : '';
 
 $redirect = false;
 $button_id = 0;
@@ -141,7 +143,9 @@ if ($_POST) {
 		'container_margin_bottom' => $_POST[$maxbutton_container_margin_bottom_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_margin_bottom_key]) . 'px' : '',
 		'container_margin_left' => $_POST[$maxbutton_container_margin_left_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_margin_left_key]) . 'px' : '',
 		'container_alignment' => $_POST[$maxbutton_container_alignment_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_alignment_key]) : '',
-		'container_center_div_wrap_enabled' => $wpdb->escape($_POST[$maxbutton_container_center_div_wrap_enabled_key])
+		'container_center_div_wrap_enabled' => $wpdb->escape($_POST[$maxbutton_container_center_div_wrap_enabled_key]),
+		'external_css' => $wpdb->escape($_POST[$maxbutton_external_css_key]),
+		'important_css' => $wpdb->escape($_POST[$maxbutton_important_css_key]),
 	);
 
 	if ($_GET['id'] == '') {
@@ -151,7 +155,7 @@ if ($_POST) {
 	} else {
 		// Updating an existing button
 		$where = array('id' => $_GET['id']);
-		$data_format = array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');
+		$data_format = array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');
 		$where_format = array('%d');
 		$wpdb->update(maxbuttons_get_buttons_table_name(), $data, $where, $data_format, $where_format);
 		$button_id = $_GET['id'];
@@ -1137,8 +1141,35 @@ function maxbuttons_strip_px($value) {
 					</div>
 				</div>
 			</div>
+			
+			<div class="option-container">
+				<div class="title"><?php _e('Advanced', 'maxbuttons') ?></div>
+				<div class="inside">					
+					<div class="option-design">
+						<p class="note"><?php _e('Adding !important to the button styles can help avoid potential conflicts with your theme styles.', 'maxbuttons') ?></p>
+						<div class="label"><?php _e('Use !important', 'maxbuttons') ?></div>
+						<div class="input"><input type="checkbox" id="<?php echo $maxbutton_important_css_key ?>" name="<?php echo $maxbutton_important_css_key ?>" <?php if ($maxbutton_important_css_value == 'on') { echo 'checked="checked"'; } else { echo ''; } ?>></div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="spacer big"></div>
+					
+					<div class="option-design">
+						<p class="note"><?php _e('By default, the CSS styles for the button are rendered within a &lt;style&gt; block in the HTML body. Enabling the "Use External CSS" option allows you to put the CSS code for the button into your theme stylesheet instead.', 'maxbuttons') ?></p>
+						<div class="label"><?php _e('Use External CSS', 'maxbuttons') ?></div>
+						<div class="input"><input type="checkbox" id="<?php echo $maxbutton_external_css_key ?>" name="<?php echo $maxbutton_external_css_key ?>" <?php if ($maxbutton_external_css_value == 'on') { echo 'checked="checked"'; } else { echo ''; } ?>></div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="option-design">
+						<div class="label">&nbsp;</div>
+						<div class="input"><a class="button" href="#" onclick="window.open('<?php echo MAXBUTTONS_PLUGIN_URL ?>/includes/maxbuttons-button-css.php?id=<?php echo $_GET['id'] ?>', 'ButtonCSS', 'width=800, height=600, scrollbars=1'); return false;"><?php _e('View CSS', 'maxbuttons') ?></a></div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
 		</form>
-	
+
 		<div class="output">
 			<div class="header"><?php _e('Button Output', 'maxbuttons') ?></div>
 			<div class="inner">

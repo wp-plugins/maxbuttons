@@ -2,8 +2,8 @@
 /*
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
-Description: CSS3 button generator for WordPress. This is the free version; the Pro version <a href="http://maxbuttons.com/?ref=mbfree">can be found here</a>.
-Version: 1.9.1
+Description: WordPress button generator. This is the free version; the Pro version <a href="http://maxbuttons.com/?ref=mbfree">can be found here</a>.
+Version: 1.10.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -11,7 +11,7 @@ Copyright 2011 Max Foundry, LLC (http://maxfoundry.com)
 */
 
 define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-define('MAXBUTTONS_VERSION_NUM', '1.9.1');
+define('MAXBUTTONS_VERSION_NUM', '1.10.0');
 
 $maxbuttons_installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
@@ -34,16 +34,13 @@ function maxbuttons_set_activation_hooks() {
 	register_deactivation_hook(__FILE__, 'maxbuttons_register_deactivation_hook');
 }
 
-function maxbuttons_register_activation_hook() {
-	if (function_exists('is_multisite') && is_multisite()) {
-		if (isset($_GET['networkwide']) && ($_GET['networkwide'] == 1)) {
-			maxbuttons_call_function_for_each_site('maxbuttons_activate');
-			return;
-		}
+function maxbuttons_register_activation_hook($network_wide) {
+	if ($network_wide) {
+		maxbuttons_call_function_for_each_site('maxbuttons_activate');
 	}
-	
-	// Otherwise do it for a single blog/site
-	maxbuttons_activate();
+	else {
+		maxbuttons_activate();
+	}
 }
 
 function maxbuttons_activate() {
@@ -51,16 +48,13 @@ function maxbuttons_activate() {
 	update_option(MAXBUTTONS_VERSION_KEY, MAXBUTTONS_VERSION_NUM);
 }
 
-function maxbuttons_register_deactivation_hook() {
-	if (function_exists('is_multisite') && is_multisite()) {
-		if (isset($_GET['networkwide']) && ($_GET['networkwide'] == 1)) {
-			maxbuttons_call_function_for_each_site('maxbuttons_deactivate');
-			return;
-		}
+function maxbuttons_register_deactivation_hook($network_wide) {
+	if ($network_wide) {
+		maxbuttons_call_function_for_each_site('maxbuttons_deactivate');
 	}
-	
-	// Otherwise do it for a single blog/site
-	maxbuttons_deactivate();
+	else {
+		maxbuttons_deactivate();
+	}
 }
 
 function maxbuttons_deactivate() {
@@ -74,7 +68,7 @@ function maxbuttons_call_function_for_each_site($function) {
 	$root_blog = $wpdb->blogid;
 	
 	// Get all the blogs/sites in the network and invoke the function for each one
-	$blog_ids = $wpdb->get_col($wpdb->prepare("SELECT blog_id FROM $wpdb->blogs"));
+	$blog_ids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
 	foreach ($blog_ids as $blog_id) {
 		switch_to_blog($blog_id);
 		call_user_func($function);
@@ -120,7 +114,7 @@ function maxbuttons_admin_menu() {
 	$admin_pages = array();
 
 	$page_title = __('MaxButtons : Buttons', 'maxbuttons');
-	$menu_title = __('MaxButtons', 'maxbuttons');
+	$menu_title = __('Buttons', 'maxbuttons');
 	$capability = 'manage_options';
 	$menu_slug = 'maxbuttons-controller';
 	$function = 'maxbuttons_controller';
@@ -241,6 +235,8 @@ function maxbuttons_create_database_table() {
 				container_center_div_wrap_enabled VARCHAR(5) NULL,
 				nofollow VARCHAR(5) NULL,
 				status VARCHAR(10) DEFAULT 'publish' NOT NULL,
+				external_css VARCHAR(5) NULL,
+				important_css VARCHAR(5) NULL,
 				PRIMARY KEY  (id)
 			);";
 
