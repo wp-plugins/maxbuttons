@@ -1163,7 +1163,7 @@ function maxbuttons_strip_px($value) {
 					
 					<div class="option-design">
 						<div class="label">&nbsp;</div>
-						<div class="input"><a class="button" href="#" onclick="window.open('<?php echo MAXBUTTONS_PLUGIN_URL ?>/includes/maxbuttons-button-css.php?id=<?php echo $_GET['id'] ?>', 'ButtonCSS', 'width=800, height=600, scrollbars=1'); return false;"><?php _e('View CSS', 'maxbuttons') ?></a></div>
+						<div class="input"><a class="button" href="#" onclick="window.open('<?php echo MAXBUTTONS_PLUGIN_URL ?>/includes/maxbuttons-button-css.php?id=<?php echo $_GET['id'] ?>', 'ButtonCSS', 'width=800, height=650, scrollbars=1'); return false;"><?php _e('View CSS', 'maxbuttons') ?></a></div>
 						<div class="clear"></div>
 					</div>
 				</div>

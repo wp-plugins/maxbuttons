@@ -348,3 +348,24 @@
 	height: 500px;
 	background-color: #f9f9f9;
 }
+#maxbuttons .tinymce {
+	width: 99%;
+}
+#maxbuttons .tinymce p {
+	font-family: Arial, Helvetica;
+	font-size: 13px;
+	line-height: 1.5em;
+	padding: 0px;
+	margin: 0px;
+}
+#maxbuttons .tinymce a {
+	font-family: Arial, Helvetica;
+	font-size: 13px;
+	color: #21759b;
+}
+#maxbuttons .tinymce a:hover {
+	color: #d54e21;
+}
+#maxbuttons .tinymce span.raquo {
+	font-size: 14px;
+}
