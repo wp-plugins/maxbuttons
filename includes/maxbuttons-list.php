@@ -113,7 +113,7 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
 							</td>
 							<td>
 								<div class="shortcode-container">
-									<?php echo do_shortcode('[maxbutton id="' . $b->id . '" externalcss="false"]') ?>
+									<?php echo do_shortcode('[maxbutton id="' . $b->id . '" externalcss="false" ignorecontainer="true"]') ?>
 								</div>
 							</td>
 							<td>

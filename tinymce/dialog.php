@@ -41,8 +41,8 @@ $published_buttons = maxbuttons_get_published_buttons();
 				<td>
 					<a href="#" onclick="insertShortcode(<?php echo $button->id ?>); return false;"><?php _e('Insert This Button', 'maxbuttons') ?></a> <span class="raquo">&raquo;</span>
 				</td>
-				<td style="padding: 10px 0px 10px 0px;">
-					<?php echo do_shortcode('[maxbutton id="' . $button->id . '" externalcss="false"]') ?>
+				<td style="padding: 15px 0px 15px 0px;">
+					<?php echo do_shortcode('[maxbutton id="' . $button->id . '" externalcss="false" ignorecontainer="true"]') ?>
 				</td>
 			</tr>
 		<?php } ?>

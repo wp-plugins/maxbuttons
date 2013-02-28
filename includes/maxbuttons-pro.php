@@ -26,7 +26,7 @@
 		</h2>
 		
 		<div class="pro-offer">
-			<h2><?php _e('Upgrade to MaxButtons Pro - It\'s Only $10!', 'maxbuttons') ?></h2>
+			<h2><?php _e('Upgrade to MaxButtons Pro - It\'s Only $15!', 'maxbuttons') ?></h2>
 			<p><?php _e('If you\'ve created at least one button with MaxButtons, then you know what it can do: Unlimited colors. Rounded corners. Gradients. Text shadowing. Box shadowing.', 'maxbuttons') ?></p>
 			<p><?php printf(__('Now you can take your buttons to the next level with %sMaxButtons Pro%s. The Pro version gives you all the CSS3 goodness and so much more:', 'maxbuttons'), '<a href="http://maxbuttons.com/?ref=mbfree" target="_blank">', '</a>') ?></p>
 			<ul>
@@ -36,7 +36,7 @@
 				<li><strong><?php _e('Button Packs', 'maxbuttons') ?></strong> - <?php _e('Import sets of pre-defined buttons, which you can then use as-is or customize as you need.', 'maxbuttons') ?></li>
 				<li><strong><?php _e('Shopp Integration', 'maxbuttons') ?></strong> - <?php _e('Use buttons created with MaxButtons Pro as the shopping cart buttons of the Shopp e-commerce plugin.', 'maxbuttons') ?></li>
 			</ul>
-			<p><?php printf(__('And did we mention you can %sget MaxButtons Pro for only $10%s', 'maxbuttons'), '<a href="http://maxbuttons.com/?ref=mbfree" target="_blank">', '</a>') ?></a>?</p>
+			<p><?php printf(__('And did we mention you can %sget MaxButtons Pro for only $15%s', 'maxbuttons'), '<a href="http://maxbuttons.com/?ref=mbfree" target="_blank">', '</a>') ?></a>?</p>
 			
 			<h2><?php _e('CSS3 Button Examples', 'maxbuttons') ?></h2>
 			<p><?php _e('Just take a look at the types of buttons you can make with MaxButtons Pro:', 'maxbuttons') ?></p>

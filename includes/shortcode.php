@@ -8,7 +8,8 @@ function maxbuttons_button_shortcode($atts) {
 		'window' => '',
 		'nofollow' => '',
 		'externalcss' => '',
-		'externalcsspreview' => '' // Only used in maxbuttons-button-css.php
+		'externalcsspreview' => '', // Only used in maxbuttons-button-css.php
+		'ignorecontainer' => '' // Internal use only on button list pages and the TinyMCE dialog
 	), $atts));
 	
 	$button_id = "{$id}";
@@ -44,6 +45,14 @@ function maxbuttons_button_shortcode($atts) {
 			if ("{$externalcsspreview}" != '') {
 				if ("{$externalcsspreview}" == 'true') {
 					$external_css_preview = true;
+				}
+			}
+			
+			// Check to ignore container
+			$ignore_container = false;
+			if ("{$ignorecontainer}" != '') {
+				if ("{$ignorecontainer}" == 'true') {
+					$ignore_container = true;
 				}
 			}
 			
@@ -91,7 +100,7 @@ function maxbuttons_button_shortcode($atts) {
 				
 				$css .= '} ';
 			}
-		
+			
 			// The button style
 			$css .= 'a.maxbutton-' . $button->id . ' { ';
 			$css .= 'text-decoration: none' . $important . '; ';
@@ -211,31 +220,35 @@ function maxbuttons_button_shortcode($atts) {
 				$output .= $css;
 			}
 			
-			// Check to add the center div wrapper
-			if ($button->container_center_div_wrap_enabled == 'on') {				
-				$output .= '<div align="center">';
-			}
-			
-			// Check to add the container
-			if ($button->container_enabled == 'on') {				
-				$output .= '<div class="maxbutton-' . $button->id . '-container">';
+			if (!$ignore_container) {
+				// Check to add the center div wrapper
+				if ($button->container_center_div_wrap_enabled == 'on') {				
+					$output .= '<div align="center">';
+				}
+				
+				// Check to add the container
+				if ($button->container_enabled == 'on') {				
+					$output .= '<div class="maxbutton-' . $button->id . '-container">';
+				}
 			}
 			
 			$output .= '<a class="maxbutton-' . $button->id . '" href="' . $button_url . '" ' . $button_window . ' ' . $button_nofollow . '>' . $button_text . '</a>';
 			
-			// Check to close the container
-			if ($button->container_enabled == 'on') {
-				$output .= '</div>';
-				
-				// Might need to clear the float
-				if ($button->container_alignment == 'float: right' || $button->container_alignment == 'float: left') {
-					$output .= '<div style="clear: both;"></div>';
+			if (!$ignore_container) {
+				// Check to close the container
+				if ($button->container_enabled == 'on') {
+					$output .= '</div>';
+					
+					// Might need to clear the float
+					if ($button->container_alignment == 'float: right' || $button->container_alignment == 'float: left') {
+						$output .= '<div style="clear: both;"></div>';
+					}
 				}
-			}
-			
-			// Check to close the center div wrapper
-			if ($button->container_center_div_wrap_enabled == 'on') {				
-				$output .= '</div>';
+				
+				// Check to close the center div wrapper
+				if ($button->container_center_div_wrap_enabled == 'on') {				
+					$output .= '</div>';
+				}
 			}
 			
 			return $output;
