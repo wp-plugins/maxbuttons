@@ -1,6 +1,6 @@
 <?php
 $plugin_version = get_option(MAXBUTTONS_VERSION_KEY);
-$theme = get_theme_data(get_stylesheet_directory() . '/style.css');
+$theme = wp_get_theme();
 $browser = maxbuttons_get_browser();
 
 function maxbuttons_system_label($label, $value, $spaces_between) {
@@ -149,8 +149,8 @@ function maxbuttons_get_browser() {
 <?php echo maxbuttons_system_label('User Agent:', $browser['user_agent'], 11) ?>
 
 Active Theme:
-<?php echo maxbuttons_system_label('-', $theme['Name'] . ' ' . $theme['Version'], 1) ?>
-<?php echo maxbuttons_system_label('', $theme['URI'], 2) ?>
+<?php echo maxbuttons_system_label('-', $theme->get('Name') . ' ' . $theme->get('Version'), 1) ?>
+<?php echo maxbuttons_system_label('', $theme->get('ThemeURI'), 2) ?>
 
 Active Plugins:
 <?php

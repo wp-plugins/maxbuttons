@@ -8,8 +8,9 @@ function maxbuttons_button_shortcode($atts) {
 		'window' => '',
 		'nofollow' => '',
 		'externalcss' => '',
-		'externalcsspreview' => '', // Only used in maxbuttons-button-css.php
-		'ignorecontainer' => '' // Internal use only on button list pages and the TinyMCE dialog
+		'externalcsspreview' => '',		// Only used in maxbuttons-button-css.php
+		'ignorecontainer' => '',		// Internal use only on button list pages and the TinyMCE dialog
+		'exclude' => ''
 	), $atts));
 	
 	$button_id = "{$id}";
@@ -21,6 +22,17 @@ function maxbuttons_button_shortcode($atts) {
 			// If we're not in the admin and the button is in the trash, just return nothing
 			if (!is_admin() && $button->status == 'trash') {
 				return '';
+			}
+			
+			// Check to handle excludes
+			if ("{$exclude}" != '') {
+				global $post;
+				
+				// Don't render the button if excluded from the current post/page
+				$exclude = explode(',', "{$exclude}");
+				if (in_array($post->ID, $exclude)) {
+					return '';
+				}
 			}
 			
 			if ($button->gradient_stop != '') {

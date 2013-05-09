@@ -1,9 +1,9 @@
 === MaxButtons: WordPress Button Generator ===
 Contributors: maxfoundry, arcware, johnbhartley
 Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
-Requires at least: 3.0
-Tested up to: 3.5
-Stable tag: 1.12.0
+Requires at least: 3.4
+Tested up to: 3.5.1
+Stable tag: 1.13.0
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -122,6 +122,10 @@ Enable the container option and set the alignment property to either "display: i
 </table>`
 
 == Changelog ==
+= 1.13.0 =
+* Added 'exclude' parameter to shortcode to exclude button from rendering on certain posts/pages.
+* Replace get_theme_data() with wp_get_theme() on the support page.
+
 = 1.12.0 =
 * Ignoring the container element on the button list pages so that the button alignment is consistent on those pages.
 
@@ -206,5 +210,5 @@ Enable the container option and set the alignment property to either "display: i
 
 == Upgrade Notice ==
 
-= 1.12.0 =
+= 1.13.0 =
 Please deactivate and then reactivate before using.
