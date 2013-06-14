@@ -1,0 +1,135 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: maxbuttons\n"
+"POT-Creation-Date: 2013-06-13 22:03-0500\n"
+"PO-Revision-Date: 2013-06-13 22:04-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: maxbuttons.php:95 maxbuttons.php:117 maxbuttons.php:125
+msgid "Buttons"
+msgstr ""
+
+#: maxbuttons.php:106
+#, php-format
+msgid "%sUpgrade to Pro Version%s"
+msgstr ""
+
+#: maxbuttons.php:116
+msgid "MaxButtons : Buttons"
+msgstr ""
+
+#: maxbuttons.php:129
+msgid "MaxButtons Pro : Add/Edit Button"
+msgstr ""
+
+#: maxbuttons.php:130
+msgid "Add New"
+msgstr ""
+
+#: maxbuttons.php:136
+msgid "MaxButtons : Go Pro"
+msgstr ""
+
+#: maxbuttons.php:137
+msgid "Go Pro"
+msgstr ""
+
+#: maxbuttons.php:143
+msgid "MaxButtons : Support"
+msgstr ""
+
+#: maxbuttons.php:144
+msgid "Support"
+msgstr ""
+
+#: includes/maxbuttons-button.php:100
+msgid "Unnamed Button"
+msgstr ""
+
+#: includes/maxbuttons-button.php:642 includes/maxbuttons-list-trash.php:85
+#: includes/maxbuttons-list.php:64 includes/maxbuttons-pro.php:16
+#: includes/maxbuttons-support.php:110
+#, php-format
+msgid "makers of %sMaxGalleria%s and %sMaxInbound%s"
+msgstr ""
+
+#: includes/maxbuttons-list-trash.php:15 includes/maxbuttons-list-trash.php:43
+msgid "Restored 1 button."
+msgstr ""
+
+#: includes/maxbuttons-list-trash.php:19
+msgid "Restored "
+msgstr ""
+
+#: includes/maxbuttons-list-trash.php:19 includes/maxbuttons-list-trash.php:36
+msgid " buttons."
+msgstr ""
+
+#: includes/maxbuttons-list-trash.php:32 includes/maxbuttons-list-trash.php:47
+msgid "Deleted 1 button."
+msgstr ""
+
+#: includes/maxbuttons-list-trash.php:36
+msgid "Deleted "
+msgstr ""
+
+#: includes/maxbuttons-list.php:15 includes/maxbuttons-list.php:26
+msgid "Moved 1 button to the trash."
+msgstr ""
+
+#: includes/maxbuttons-list.php:19
+msgid "Moved "
+msgstr ""
+
+#: includes/maxbuttons-list.php:19
+msgid " buttons to the trash."
+msgstr ""
+
+#: includes/maxbuttons-pro.php:31
+#, php-format
+msgid ""
+"Now you can take your buttons to the next level with %sMaxButtons Pro%s. The "
+"Pro version gives you all the CSS3 goodness and so much more:"
+msgstr ""
+
+#: includes/maxbuttons-pro.php:39
+#, php-format
+msgid "And did we mention you can %sget MaxButtons Pro for only $19%s"
+msgstr ""
+
+#: includes/maxbuttons-pro.php:46
+#, php-format
+msgid ""
+"Button packs are sets of buttons with icons and settings already predefined "
+"for you, saving you loads of time. We have an %sever-growing collection of "
+"button packs%s that you can buy and import into your website (only $5 each). "
+"You can then use those buttons as they are, or customize them to fit your "
+"needs (below are a few to get you started)."
+msgstr ""
+
+#: includes/maxbuttons-pro.php:47
+#, php-format
+msgid ""
+"You can also get %s10 button packs for $25%s, giving you a %s50&#37; savings"
+"%s compared to buying them individually."
+msgstr ""
+
+#: includes/maxbuttons-pro.php:157
+#, php-format
+msgid ""
+"So what are you waiting for? %sGrab your copy of MaxButtons Pro today%s!"
+msgstr ""
+
+#: includes/maxbuttons-support.php:122
+#, php-format
+msgid "All support is handled through the %sSupport Forums%s."
+msgstr ""
