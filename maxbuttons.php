@@ -3,30 +3,23 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
 Description: WordPress button generator. This is the free version; the Pro version <a href="http://maxbuttons.com/?ref=mbfree">can be found here</a>.
-Version: 1.14.0
+Version: 1.15.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
 Copyright 2013 Max Foundry, LLC (http://maxfoundry.com)
 */
 
-define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-define('MAXBUTTONS_VERSION_NUM', '1.14.0');
-
-$maxbuttons_installed_version = get_option('MAXBUTTONS_VERSION_KEY');
-
 maxbuttons_set_global_paths();
 maxbuttons_set_activation_hooks();
 
-function maxbuttons_set_global_paths() {	
-	if (!defined('MAXBUTTONS_PLUGIN_NAME'))
-		define('MAXBUTTONS_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
+$maxbuttons_installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
-	if (!defined('MAXBUTTONS_PLUGIN_DIR'))
-		define('MAXBUTTONS_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . MAXBUTTONS_PLUGIN_NAME);
-
-	if (!defined('MAXBUTTONS_PLUGIN_URL'))
-		define('MAXBUTTONS_PLUGIN_URL', WP_PLUGIN_URL . '/' . MAXBUTTONS_PLUGIN_NAME);
+function maxbuttons_set_global_paths() {
+	define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
+	define('MAXBUTTONS_VERSION_NUM', '1.15.0');
+	define('MAXBUTTONS_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
+	define('MAXBUTTONS_PLUGIN_URL', plugins_url() . '/' . MAXBUTTONS_PLUGIN_NAME);
 }
 
 function maxbuttons_set_activation_hooks() {
