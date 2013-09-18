@@ -112,6 +112,10 @@ function maxbuttons_button_shortcode($atts) {
 				
 				$css .= '} ';
 			}
+
+			// Gradients
+			$gradient_start_color = maxbuttons_hex2rgba($button->gradient_start_color, $button->gradient_start_opacity);
+			$gradient_end_color = maxbuttons_hex2rgba($button->gradient_end_color, $button->gradient_end_opacity);
 			
 			// The button style
 			$css .= 'a.maxbutton-' . $button->id . ' { ';
@@ -126,10 +130,10 @@ function maxbuttons_button_shortcode($atts) {
 			$css .= 'padding-bottom: ' . $button->text_padding_bottom . $important . '; ';
 			$css .= 'padding-left: ' . $button->text_padding_left . $important . '; ';
 			$css .= 'background-color: ' . $button->gradient_start_color . $important . '; ';
-			$css .= 'background: linear-gradient(' . $button->gradient_start_color . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color . '); ';
-			$css .= 'background: -moz-linear-gradient(' . $button->gradient_start_color . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color . '); ';
-			$css .= 'background: -o-linear-gradient(' . $button->gradient_start_color . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color . '); ';
-			$css .= 'background: -webkit-gradient(linear, left top, left bottom, color-stop(.' . $gradient_stop . ', ' . $button->gradient_start_color . '), color-stop(1, ' . $button->gradient_end_color . ')); ';
+			$css .= 'background: linear-gradient(' . $gradient_start_color . ' ' . $gradient_stop . '%, ' . $gradient_end_color . '); ';
+			$css .= 'background: -moz-linear-gradient(' . $gradient_start_color . ' ' . $gradient_stop . '%, ' . $gradient_end_color . '); ';
+			$css .= 'background: -o-linear-gradient(' . $gradient_start_color . ' ' . $gradient_stop . '%, ' . $gradient_end_color . '); ';
+			$css .= 'background: -webkit-gradient(linear, left top, left bottom, color-stop(.' . $gradient_stop . ', ' . $gradient_start_color . '), color-stop(1, ' . $gradient_end_color . ')); ';
 			$css .= 'border-style: ' . $button->border_style . $important . '; ';
 			$css .= 'border-width: ' . $button->border_width . $important . '; ';
 			$css .= 'border-color: ' . $button->border_color . $important . '; ';
@@ -158,7 +162,7 @@ function maxbuttons_button_shortcode($atts) {
 			$css .= 'box-shadow: ' . $button->box_shadow_offset_left . ' ' . $button->box_shadow_offset_top . ' ' . $button->box_shadow_width . ' ' . $button->box_shadow_color . $important . '; ';
 			
 			// PIE
-			$css .= '-pie-background: linear-gradient(' . $button->gradient_start_color . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color . '); ';
+			$css .= '-pie-background: linear-gradient(' . $gradient_start_color . ' ' . $gradient_stop . '%, ' . $gradient_end_color . '); ';
 			$css .= 'position: relative' . $important . '; ' ;
 			$css .= 'behavior: url("' . MAXBUTTONS_PLUGIN_URL . '/pie/PIE.htc"); ';
 			$css .= '} ';
@@ -168,22 +172,26 @@ function maxbuttons_button_shortcode($atts) {
 			$css .= 'text-decoration: none' . $important . '; ';
 			$css .= 'color: ' . $button->text_color . $important . '; ';
 			$css .= '} ';
+
+			// Hover gradients
+			$gradient_start_color_hover = maxbuttons_hex2rgba($button->gradient_start_color_hover, $button->gradient_start_opacity_hover);
+			$gradient_end_color_hover = maxbuttons_hex2rgba($button->gradient_end_color_hover, $button->gradient_end_opacity_hover);
 		
 			// The button style - hover
 			$css .= 'a.maxbutton-' . $button->id . ':hover { ';
 			$css .= 'text-decoration: none' . $important . '; ';
 			$css .= 'color: ' . $button->text_color_hover . $important . '; ';
 			$css .= 'background-color: ' . $button->gradient_start_color_hover . $important . '; ';
-			$css .= 'background: linear-gradient(' . $button->gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color_hover . '); ';
-			$css .= 'background: -moz-linear-gradient(' . $button->gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color_hover . '); ';
-			$css .= 'background: -o-linear-gradient(' . $button->gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color_hover . '); ';
-			$css .= 'background: -webkit-gradient(linear, left top, left bottom, color-stop(.' . $gradient_stop . ', ' . $button->gradient_start_color_hover . '), color-stop(1, ' . $button->gradient_end_color_hover . ')); ';
+			$css .= 'background: linear-gradient(' . $gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $gradient_end_color_hover . '); ';
+			$css .= 'background: -moz-linear-gradient(' . $gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $gradient_end_color_hover . '); ';
+			$css .= 'background: -o-linear-gradient(' . $gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $gradient_end_color_hover . '); ';
+			$css .= 'background: -webkit-gradient(linear, left top, left bottom, color-stop(.' . $gradient_stop . ', ' . $gradient_start_color_hover . '), color-stop(1, ' . $gradient_end_color_hover . ')); ';
 			$css .= 'border-color: ' . $button->border_color_hover . $important . '; ';
 			$css .= 'text-shadow: ' . $button->text_shadow_offset_left . ' ' . $button->text_shadow_offset_top . ' ' . $button->text_shadow_width . ' ' . $button->text_shadow_color_hover . $important . '; ';
 			$css .= 'box-shadow: ' . $button->box_shadow_offset_left . ' ' . $button->box_shadow_offset_top . ' ' . $button->box_shadow_width . ' ' . $button->box_shadow_color_hover . $important . '; ';
 			
 			// PIE
-			$css .= '-pie-background: linear-gradient(' . $button->gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $button->gradient_end_color_hover . '); ';
+			$css .= '-pie-background: linear-gradient(' . $gradient_start_color_hover . ' ' . $gradient_stop . '%, ' . $gradient_end_color_hover . '); ';
 			$css .= 'position: relative' . $important . '; ' ;
 			$css .= 'behavior: url("' . MAXBUTTONS_PLUGIN_URL . '/pie/PIE.htc"); ';
 			$css .= '}';

@@ -54,13 +54,13 @@ $maxbutton_border_style_value = isset($button) ? $button->border_style : '';
 $maxbutton_border_style_display = ($maxbutton_border_style_value != '') ? $maxbutton_border_style_value : $maxbutton_border_style_default;
 $maxbutton_border_width_value = isset($button) ? $button->border_width : '';
 $maxbutton_border_width_display = ($maxbutton_border_width_value != '') ? $maxbutton_border_width_value : $maxbutton_border_width_default;
-$maxbutton_gradient_start_color_value = isset($button) ? $button->gradient_start_color : '';
+$maxbutton_gradient_start_color_value = isset($button) ? $button->gradient_start_color : $maxbutton_gradient_start_color_default;
 $maxbutton_gradient_start_color_display = ($maxbutton_gradient_start_color_value != '') ? $maxbutton_gradient_start_color_value : $maxbutton_gradient_start_color_default;
-$maxbutton_gradient_start_color_hover_value = isset($button) ? $button->gradient_start_color_hover : '';
+$maxbutton_gradient_start_color_hover_value = isset($button) ? $button->gradient_start_color_hover : $maxbutton_gradient_start_color_hover_default;
 $maxbutton_gradient_start_color_hover_display = ($maxbutton_gradient_start_color_hover_value != '') ? $maxbutton_gradient_start_color_hover_value : $maxbutton_gradient_start_color_hover_default;
-$maxbutton_gradient_end_color_value = isset($button) ? $button->gradient_end_color : '';
+$maxbutton_gradient_end_color_value = isset($button) ? $button->gradient_end_color : $maxbutton_gradient_end_color_default;
 $maxbutton_gradient_end_color_display = ($maxbutton_gradient_end_color_value != '') ? $maxbutton_gradient_end_color_value : $maxbutton_gradient_end_color_default;
-$maxbutton_gradient_end_color_hover_value = isset($button) ? $button->gradient_end_color_hover : '';
+$maxbutton_gradient_end_color_hover_value = isset($button) ? $button->gradient_end_color_hover : $maxbutton_gradient_end_color_hover_default;
 $maxbutton_gradient_end_color_hover_display = ($maxbutton_gradient_end_color_hover_value != '') ? $maxbutton_gradient_end_color_hover_value : $maxbutton_gradient_end_color_hover_default;
 $maxbutton_border_color_value = isset($button) ? $button->border_color : '';
 $maxbutton_border_color_display = ($maxbutton_border_color_value != '') ? $maxbutton_border_color_value : $maxbutton_border_color_default;
@@ -79,6 +79,18 @@ $maxbutton_box_shadow_width_display = ($maxbutton_box_shadow_width_value != '') 
 $maxbutton_gradient_stop_value = isset($button) ? $button->gradient_stop : '';
 $maxbutton_gradient_stop_display = ($maxbutton_gradient_stop_value != '') ? $maxbutton_gradient_stop_value : $maxbutton_gradient_stop_default;
 $maxbutton_gradient_stop_display = strlen($maxbutton_gradient_stop_display) == 1 ? '0' . $maxbutton_gradient_stop_display : $maxbutton_gradient_stop_display;
+$maxbutton_gradient_start_opacity_value = isset($button) ? $button->gradient_start_opacity : '';
+$maxbutton_gradient_start_opacity_display = ($maxbutton_gradient_start_opacity_value != '') ? $maxbutton_gradient_start_opacity_value : $maxbutton_gradient_start_opacity_default;
+$maxbutton_gradient_start_opacity_display = strlen($maxbutton_gradient_start_opacity_display) == 1 ? '0' . $maxbutton_gradient_start_opacity_display : $maxbutton_gradient_start_opacity_display;
+$maxbutton_gradient_end_opacity_value = isset($button) ? $button->gradient_end_opacity : '';
+$maxbutton_gradient_end_opacity_display = ($maxbutton_gradient_end_opacity_value != '') ? $maxbutton_gradient_end_opacity_value : $maxbutton_gradient_end_opacity_default;
+$maxbutton_gradient_end_opacity_display = strlen($maxbutton_gradient_end_opacity_display) == 1 ? '0' . $maxbutton_gradient_end_opacity_display : $maxbutton_gradient_end_opacity_display;
+$maxbutton_gradient_start_opacity_hover_value = isset($button) ? $button->gradient_start_opacity_hover : '';
+$maxbutton_gradient_start_opacity_hover_display = ($maxbutton_gradient_start_opacity_hover_value != '') ? $maxbutton_gradient_start_opacity_hover_value : $maxbutton_gradient_start_opacity_hover_default;
+$maxbutton_gradient_start_opacity_hover_display = strlen($maxbutton_gradient_start_opacity_hover_display) == 1 ? '0' . $maxbutton_gradient_start_opacity_hover_display : $maxbutton_gradient_start_opacity_hover_display;
+$maxbutton_gradient_end_opacity_hover_value = isset($button) ? $button->gradient_end_opacity_hover : '';
+$maxbutton_gradient_end_opacity_hover_display = ($maxbutton_gradient_end_opacity_hover_value != '') ? $maxbutton_gradient_end_opacity_hover_value : $maxbutton_gradient_end_opacity_hover_default;
+$maxbutton_gradient_end_opacity_hover_display = strlen($maxbutton_gradient_end_opacity_hover_display) == 1 ? '0' . $maxbutton_gradient_end_opacity_hover_display : $maxbutton_gradient_end_opacity_hover_display;
 $maxbutton_container_enabled_value = isset($button) ? $button->container_enabled : 'on';
 $maxbutton_container_width_value = isset($button) ? $button->container_width : '';
 $maxbutton_container_margin_top_value = isset($button) ? $button->container_margin_top : '';
@@ -89,6 +101,12 @@ $maxbutton_container_alignment_value = isset($button) ? $button->container_align
 $maxbutton_container_center_div_wrap_enabled_value = isset($button) ? $button->container_center_div_wrap_enabled : 'on';
 $maxbutton_external_css_value = isset($button) ? $button->external_css : '';
 $maxbutton_important_css_value = isset($button) ? $button->important_css : '';
+
+// Convert hex to rgba
+$gradient_start_rgba = maxbuttons_hex2rgba($maxbutton_gradient_start_color_value, $maxbutton_gradient_start_opacity_value);
+$gradient_end_rgba = maxbuttons_hex2rgba($maxbutton_gradient_end_color_value, $maxbutton_gradient_end_opacity_value);
+$gradient_start_rgba_hover = maxbuttons_hex2rgba($maxbutton_gradient_start_color_hover_value, $maxbutton_gradient_start_opacity_hover_value);
+$gradient_end_rgba_hover = maxbuttons_hex2rgba($maxbutton_gradient_end_color_hover_value, $maxbutton_gradient_end_opacity_hover_value);
 
 $redirect = false;
 $button_id = 0;
@@ -136,6 +154,10 @@ if ($_POST) {
 		'gradient_end_color' => $_POST[$maxbutton_gradient_end_color_key] != '' ? $wpdb->escape($_POST[$maxbutton_gradient_end_color_key]) : $maxbutton_gradient_end_color_default,
 		'gradient_end_color_hover' => $_POST[$maxbutton_gradient_end_color_hover_key] != '' ? $wpdb->escape($_POST[$maxbutton_gradient_end_color_hover_key]) : $maxbutton_gradient_end_color_hover_default,
 		'gradient_stop' => $_POST[$maxbutton_gradient_stop_key] != '' ? $wpdb->escape($_POST[$maxbutton_gradient_stop_key]) : $maxbutton_gradient_stop_default,
+		'gradient_start_opacity' => $_POST[$maxbutton_gradient_start_opacity_key] != '' ? $wpdb->escape($_POST[$maxbutton_gradient_start_opacity_key]) : $maxbutton_gradient_start_opacity_default,
+		'gradient_end_opacity' => $_POST[$maxbutton_gradient_end_opacity_key] != '' ? $wpdb->escape($_POST[$maxbutton_gradient_end_opacity_key]) : $maxbutton_gradient_end_opacity_default,
+		'gradient_start_opacity_hover' => $_POST[$maxbutton_gradient_start_opacity_hover_key] != '' ? $wpdb->escape($_POST[$maxbutton_gradient_start_opacity_hover_key]) : $maxbutton_gradient_start_opacity_hover_default,
+		'gradient_end_opacity_hover' => $_POST[$maxbutton_gradient_end_opacity_hover_key] != '' ? $wpdb->escape($_POST[$maxbutton_gradient_end_opacity_hover_key]) : $maxbutton_gradient_end_opacity_hover_default,
 		'container_enabled' => $wpdb->escape($_POST[$maxbutton_container_enabled_key]),
 		'container_width' => $_POST[$maxbutton_container_width_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_width_key]) . 'px' : '',
 		'container_margin_top' => $_POST[$maxbutton_container_margin_top_key] != '' ? $wpdb->escape($_POST[$maxbutton_container_margin_top_key]) . 'px' : '',
@@ -155,7 +177,7 @@ if ($_POST) {
 	} else {
 		// Updating an existing button
 		$where = array('id' => $_GET['id']);
-		$data_format = array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');
+		$data_format = array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');
 		$where_format = array('%d');
 		$wpdb->update(maxbuttons_get_buttons_table_name(), $data, $where, $data_format, $where_format);
 		$button_id = $_GET['id'];
@@ -180,6 +202,9 @@ function maxbuttons_strip_px($value) {
 		<?php } ?>
 		
 		jQuery("#maxbuttons .output").draggable();
+
+		// Prevents the output button from being clickable
+		jQuery("div.result a").click(function(e) { e.preventDefault(); });
 		
 		showColorPickerForButtonTextColor();
 		showColorPickerForButtonTextHoverColor();
@@ -297,10 +322,10 @@ function maxbuttons_strip_px($value) {
 		jQuery("#maxbuttons .output .result a").css("padding-left", "<?php echo $maxbutton_text_padding_left_display ?>");
 		jQuery("#maxbuttons .output .result a").css("padding-right", "<?php echo $maxbutton_text_padding_right_display ?>");
 		jQuery("#maxbuttons .output .result a").css("background-color", "<?php echo $maxbutton_gradient_start_color_display ?>");
-		jQuery("#maxbuttons .output .result a").css("background", "linear-gradient(<?php echo $maxbutton_gradient_start_color_display ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $maxbutton_gradient_end_color_display ?>)");
-		jQuery("#maxbuttons .output .result a").css("background", "-moz-linear-gradient(<?php echo $maxbutton_gradient_start_color_display ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $maxbutton_gradient_end_color_display ?>)");
-		jQuery("#maxbuttons .output .result a").css("background", "-o-linear-gradient(<?php echo $maxbutton_gradient_start_color_display ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $maxbutton_gradient_end_color_display ?>)");
-		jQuery("#maxbuttons .output .result a").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, <?php echo $maxbutton_gradient_start_color_display ?>), color-stop(1, <?php echo $maxbutton_gradient_end_color_display ?>))");
+		jQuery("#maxbuttons .output .result a").css("background", "linear-gradient(<?php echo $gradient_start_rgba ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $gradient_end_rgba ?>)");
+		jQuery("#maxbuttons .output .result a").css("background", "-moz-linear-gradient(<?php echo $gradient_start_rgba ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $gradient_end_rgba ?>)");
+		jQuery("#maxbuttons .output .result a").css("background", "-o-linear-gradient(<?php echo $gradient_start_rgba ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $gradient_end_rgba ?>)");
+		jQuery("#maxbuttons .output .result a").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, <?php echo $gradient_start_rgba ?>), color-stop(1, <?php echo $gradient_end_rgba ?>))");
 		jQuery("#maxbuttons .output .result a").css("border-style", "<?php echo $maxbutton_border_style_display ?>");
 		jQuery("#maxbuttons .output .result a").css("border-width", "<?php echo $maxbutton_border_width_display ?>");
 		jQuery("#maxbuttons .output .result a").css("border-color", "<?php echo $maxbutton_border_color_display ?>");
@@ -321,14 +346,13 @@ function maxbuttons_strip_px($value) {
 		jQuery("#maxbuttons .output .result a").css("-pie-background", "linear-gradient(<?php echo $maxbutton_gradient_start_color_display ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $maxbutton_gradient_end_color_display ?>)");
 		jQuery("#maxbuttons .output .result a").css("position", "relative");
 		jQuery("#maxbuttons .output .result a").css("behavior", "url('<?php echo MAXBUTTONS_PLUGIN_URL ?>/pie/PIE.htc')");
-		
 		jQuery("#maxbuttons .output .result a.hover").css("text-decoration", "none");
 		jQuery("#maxbuttons .output .result a.hover").css("color", "<?php echo $maxbutton_text_color_hover_display ?>");
 		jQuery("#maxbuttons .output .result a.hover").css("background-color", "<?php echo $maxbutton_gradient_start_color_hover_display ?>");
-		jQuery("#maxbuttons .output .result a.hover").css("background", "linear-gradient(<?php echo $maxbutton_gradient_start_color_hover_display ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $maxbutton_gradient_end_color_hover_display ?>)");
-		jQuery("#maxbuttons .output .result a.hover").css("background", "-moz-linear-gradient(<?php echo $maxbutton_gradient_start_color_hover_display ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $maxbutton_gradient_end_color_hover_display ?>)");
-		jQuery("#maxbuttons .output .result a.hover").css("background", "-o-linear-gradient(<?php echo $maxbutton_gradient_start_color_hover_display ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $maxbutton_gradient_end_color_hover_display ?>)");
-		jQuery("#maxbuttons .output .result a.hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, <?php echo $maxbutton_gradient_start_color_hover_display ?>), color-stop(1, <?php echo $maxbutton_gradient_end_color_hover_display ?>))");
+		jQuery("#maxbuttons .output .result a.hover").css("background", "linear-gradient(<?php echo $gradient_start_rgba_hover ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $gradient_end_rgba_hover ?>)");
+		jQuery("#maxbuttons .output .result a.hover").css("background", "-moz-linear-gradient(<?php echo $gradient_start_rgba_hover ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $gradient_end_rgba_hover ?>)");
+		jQuery("#maxbuttons .output .result a.hover").css("background", "-o-linear-gradient(<?php echo $gradient_start_rgba_hover ?> <?php echo $maxbutton_gradient_stop_display ?>%, <?php echo $gradient_end_rgba_hover ?>)");
+		jQuery("#maxbuttons .output .result a.hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, <?php echo $gradient_start_rgba_hover ?>), color-stop(1, <?php echo $gradient_end_rgba_hover ?>))");
 		jQuery("#maxbuttons .output .result a.hover").css("border-color", "<?php echo $maxbutton_border_color_hover_display ?>");
 		jQuery("#maxbuttons .output .result a.hover").css("text-shadow", "<?php echo $maxbutton_text_shadow_offset_left_display ?> <?php echo $maxbutton_text_shadow_offset_top_display ?> <?php echo $maxbutton_text_shadow_width_display ?> <?php echo $maxbutton_text_shadow_color_hover_display ?>");
 		jQuery("#maxbuttons .output .result a.hover").css("box-shadow", "<?php echo $maxbutton_box_shadow_offset_left_display ?> <?php echo $maxbutton_box_shadow_offset_top_display ?> <?php echo $maxbutton_box_shadow_width_display ?> <?php echo $maxbutton_box_shadow_color_hover_display ?>");
@@ -939,14 +963,6 @@ function maxbuttons_strip_px($value) {
 			<div class="option-container">
 				<div class="title"><?php _e('Colors', 'maxbuttons') ?></div>
 				<div class="inside">
-					<div class="option-design">
-						<div class="label"><?php _e('Gradient Stop', 'maxbuttons') ?></div>
-						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_gradient_stop_key ?>" name="<?php echo $maxbutton_gradient_stop_key ?>" value="<?php echo $maxbutton_gradient_stop_value ?>" maxlength="2" /></div>
-						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_gradient_stop_default ?> (1 - 99 accepted)</div>
-						<div class="clear"></div>
-					</div>
-					
-					<div class="spacer"></div>
 					
 					<div class="option-design">
 						<div class="label"><label><?php _e('Colors', 'maxbuttons') ?></label></div>
@@ -1074,6 +1090,46 @@ function maxbuttons_strip_px($value) {
 								</tr>
 							</table>
 						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="option-container gradient-options">
+				<div class="title"><?php _e('Gradients and Opacity', 'maxbuttons') ?></div>
+				<div class="inside">
+					<div class="option-design">
+						<div class="label"><?php _e('Gradient Stop', 'maxbuttons') ?></div>
+						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_gradient_stop_key ?>" name="<?php echo $maxbutton_gradient_stop_key ?>" value="<?php echo $maxbutton_gradient_stop_value ?>" maxlength="2" /></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_gradient_stop_default ?> (1 - 99 accepted)</div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="option-design">
+						<div class="label"><?php _e('Gradient Start Opacity', 'maxbuttons') ?></div>
+						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_gradient_start_opacity_key ?>" name="<?php echo $maxbutton_gradient_start_opacity_key ?>" value="<?php echo $maxbutton_gradient_start_opacity_value ?>" maxlength="3" /></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_gradient_start_opacity_default ?> (0 - 100 accepted)</div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="option-design">
+						<div class="label"><?php _e('Gradient End Opacity', 'maxbuttons') ?></div>
+						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_gradient_end_opacity_key ?>" name="<?php echo $maxbutton_gradient_end_opacity_key ?>" value="<?php echo $maxbutton_gradient_end_opacity_value ?>" maxlength="3" /></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_gradient_end_opacity_default ?> (0 - 100 accepted)</div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="option-design">
+						<div class="label"><?php _e('Gradient Start Opacity Hover', 'maxbuttons') ?></div>
+						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_gradient_start_opacity_hover_key ?>" name="<?php echo $maxbutton_gradient_start_opacity_hover_key ?>" value="<?php echo $maxbutton_gradient_start_opacity_hover_value ?>" maxlength="3" /></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_gradient_start_opacity_hover_default ?> (0 - 100 accepted)</div>
+						<div class="clear"></div>
+					</div>
+					
+					<div class="option-design">
+						<div class="label"><?php _e('Gradient End Opacity Hover', 'maxbuttons') ?></div>
+						<div class="input"><input class="tiny-nopad" type="text" id="<?php echo $maxbutton_gradient_end_opacity_hover_key ?>" name="<?php echo $maxbutton_gradient_end_opacity_hover_key ?>" value="<?php echo $maxbutton_gradient_end_opacity_hover_value ?>" maxlength="3" /></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_gradient_end_opacity_hover_default ?> (0 - 100 accepted)</div>
 						<div class="clear"></div>
 					</div>
 				</div>

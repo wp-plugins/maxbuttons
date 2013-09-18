@@ -128,6 +128,9 @@
 	padding-top: 3px;
 	width: 160px;
 }
+#maxbuttons .gradient-options .option-design .label {
+	width: 190px;
+}
 #maxbuttons .option-design .input {
 	float: left;
 }

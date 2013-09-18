@@ -3,7 +3,7 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
 Description: WordPress button generator. This is the free version; the Pro version <a href="http://maxbuttons.com/?ref=mbfree">can be found here</a>.
-Version: 1.15.0
+Version: 1.16.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -17,7 +17,7 @@ $maxbuttons_installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
 function maxbuttons_set_global_paths() {
 	define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-	define('MAXBUTTONS_VERSION_NUM', '1.15.0');
+	define('MAXBUTTONS_VERSION_NUM', '1.16.0');
 	define('MAXBUTTONS_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 	define('MAXBUTTONS_PLUGIN_URL', plugins_url() . '/' . MAXBUTTONS_PLUGIN_NAME);
 }
@@ -217,6 +217,10 @@ function maxbuttons_create_database_table() {
 				gradient_end_color VARCHAR(10) NULL,
 				gradient_end_color_hover VARCHAR(10) NULL,
 				gradient_stop VARCHAR(2) NULL,
+				gradient_start_opacity VARCHAR(3) NULL,
+				gradient_end_opacity VARCHAR(3) NULL,
+				gradient_start_opacity_hover VARCHAR(3),
+				gradient_end_opacity_hover VARCHAR(3),
 				new_window VARCHAR(10) NULL,
 				container_enabled VARCHAR(5) NULL,
 				container_width VARCHAR(5) NULL,
@@ -302,6 +306,41 @@ function maxbuttons_log_me($message) {
             error_log($message);
         }
     }
+}
+
+function maxbuttons_hex2rgba($color, $opacity) {
+	// Grab the hex color and remove #
+	$hex = str_replace("#", "", $color);
+
+	// Convert hex to rgb
+	if(strlen($color) == 3) {
+		// If in the #fff variety
+		$r = hexdec(substr($hex, 0, 1).substr($hex, 0, 1));
+		$g = hexdec(substr($hex, 1, 1).substr($hex, 1, 1));
+		$b = hexdec(substr($hex, 2, 1).substr($hex, 2, 1));
+	} else {
+		// If in the #ffffff variety
+		$r = hexdec(substr($hex, 0, 2));
+		$g = hexdec(substr($hex, 2, 2));
+		$b = hexdec(substr($hex, 4, 2));
+	}
+	
+	// The array of rgb values
+	$rgb_array = array($r, $g, $b);
+	
+	// Catch for opacity when the button has not been saved
+	if($opacity == '') {
+		$alpha = 1;
+	} else {
+		// Alpha value in decimal when an opacity has been set
+		$alpha = $opacity / 100;
+	}
+
+	// The rgb values separated by commas
+	$rgb = implode(", ", $rgb_array);
+	
+	// Spits out rgba(0, 0, 0, 0.5) format
+	return 'rgba(' . $rgb . ', ' . $alpha . ')';
 }
 
 add_filter('widget_text', 'do_shortcode');
