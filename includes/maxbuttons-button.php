@@ -1119,140 +1119,116 @@ function maxbuttons_strip_px($value) {
 				<div class="title"><?php _e('Colors', 'maxbuttons') ?></div>
 				<div class="inside">
 					<div class="option-design">
-						<div class="label"><label><?php _e('Colors', 'maxbuttons') ?></label></div>
 						<div class="input">
-							<table>
+							<table class="color-line" border="0" cellpadding="0" cellspacing="0">
 								<tr>
+									<th>&nbsp;</th>
+									<th><?php _e('Text', 'maxbuttons') ?></th>
+									<th><?php printf(__('Text%sShadow', 'maxbuttons'), '<br />') ?></th>
+									<th><?php printf(__('Gradient%sStart', 'maxbuttons'), '<br />') ?></th>
+									<th><?php printf(__('Gradient%sEnd', 'maxbuttons'), '<br />') ?></th>
+									<th><?php _e('Border', 'maxbuttons') ?></th>
+									<th><?php printf(__('Border%sShadow', 'maxbuttons'), '<br />') ?></th>
+								</tr>
+								<tr>
+									<td class="label"><?php _e('Normal', 'maxbuttons') ?></td>
 									<td>
-										<div class="cell-label"><?php _e('Text', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_text_color_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_text_color_key ?>" name="<?php echo $maxbutton_text_color_key ?>" value="<?php echo $maxbutton_text_color_value ?>" />
-										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_color_default ?></div>
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label"><?php _e('Text Hover', 'maxbuttons') ?></div>
-										<span class="colorpicker-box" id="<?php echo $maxbutton_text_color_hover_key ?>_box">
-											<span></span>
-										</span>
-										<input style="display: none;" type="text" id="<?php echo $maxbutton_text_color_hover_key ?>" name="<?php echo $maxbutton_text_color_hover_key ?>" value="<?php echo $maxbutton_text_color_hover_value ?>" />
-										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_color_hover_default ?></div>
-										<div class="clear"></div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="cell-label"><?php _e('Text Shadow', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_text_shadow_color_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_text_shadow_color_key ?>" name="<?php echo $maxbutton_text_shadow_color_key ?>" value="<?php echo $maxbutton_text_shadow_color_value ?>" />
-										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_shadow_color_default ?></div>
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label"><?php _e('Text Shadow Hover', 'maxbuttons') ?></div>
-										<span class="colorpicker-box" id="<?php echo $maxbutton_text_shadow_color_hover_key ?>_box">
-											<span></span>
-										</span>
-										<input style="display: none;" type="text" id="<?php echo $maxbutton_text_shadow_color_hover_key ?>" name="<?php echo $maxbutton_text_shadow_color_hover_key ?>" value="<?php echo $maxbutton_text_shadow_color_hover_value ?>" />
-										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_text_shadow_color_hover_default ?></div>
-										<div class="clear"></div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="cell-label"><?php _e('Gradient Start', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_gradient_start_color_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_gradient_start_color_key ?>" name="<?php echo $maxbutton_gradient_start_color_key ?>" value="<?php echo $maxbutton_gradient_start_color_value ?>" />
-										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_gradient_start_color_default ?></div>
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label"><?php _e('Gradient Start Hover', 'maxbuttons') ?></div>
-										<span class="colorpicker-box" id="<?php echo $maxbutton_gradient_start_color_hover_key ?>_box">
-											<span></span>
-										</span>
-										<input style="display: none;" type="text" id="<?php echo $maxbutton_gradient_start_color_hover_key ?>" name="<?php echo $maxbutton_gradient_start_color_hover_key ?>" value="<?php echo $maxbutton_gradient_start_color_hover_value ?>" />
-										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_gradient_start_color_hover_default ?></div>
-										<div class="clear"></div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="cell-label"><?php _e('Gradient End', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_gradient_end_color_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_gradient_end_color_key ?>" name="<?php echo $maxbutton_gradient_end_color_key ?>" value="<?php echo $maxbutton_gradient_end_color_value ?>" />
-										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_gradient_end_color_default ?></div>
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label"><?php _e('Gradient End Hover', 'maxbuttons') ?></div>
-										<span class="colorpicker-box" id="<?php echo $maxbutton_gradient_end_color_hover_key ?>_box">
-											<span></span>
-										</span>
-										<input style="display: none;" type="text" id="<?php echo $maxbutton_gradient_end_color_hover_key ?>" name="<?php echo $maxbutton_gradient_end_color_hover_key ?>" value="<?php echo $maxbutton_gradient_end_color_hover_value ?>" />
-										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_gradient_end_color_hover_default ?></div>
-										<div class="clear"></div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="cell-label"><?php _e('Border', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_border_color_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_border_color_key ?>" name="<?php echo $maxbutton_border_color_key ?>" value="<?php echo $maxbutton_border_color_value ?>" />
-										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_border_color_default ?></div>
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label"><?php _e('Border Hover', 'maxbuttons') ?></div>
-										<span class="colorpicker-box" id="<?php echo $maxbutton_border_color_hover_key ?>_box">
-											<span></span>
-										</span>
-										<input style="display: none;" type="text" id="<?php echo $maxbutton_border_color_hover_key ?>" name="<?php echo $maxbutton_border_color_hover_key ?>" value="<?php echo $maxbutton_border_color_hover_value ?>" />
-										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_border_color_hover_default ?></div>
-										<div class="clear"></div>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<div class="cell-label"><?php _e('Box Shadow', 'maxbuttons') ?></div>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_box_shadow_color_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_box_shadow_color_key ?>" name="<?php echo $maxbutton_box_shadow_color_key ?>" value="<?php echo $maxbutton_box_shadow_color_value ?>" />
-										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_box_shadow_color_default ?></div>
+										<div class="clear"></div>
+									</td>
+								</tr>
+								<tr>
+									<td class="label"><?php _e('Hover', 'maxbuttons') ?></td>
+									<td>
+										<span class="colorpicker-box" id="<?php echo $maxbutton_text_color_hover_key ?>_box">
+											<span></span>
+										</span>
+										<input style="display: none;" type="text" id="<?php echo $maxbutton_text_color_hover_key ?>" name="<?php echo $maxbutton_text_color_hover_key ?>" value="<?php echo $maxbutton_text_color_hover_value ?>" />
 										<div class="clear"></div>
 									</td>
 									<td>
-										<div class="cell-label"><?php _e('Box Shadow Hover', 'maxbuttons') ?></div>
+										<span class="colorpicker-box" id="<?php echo $maxbutton_text_shadow_color_hover_key ?>_box">
+											<span></span>
+										</span>
+										<input style="display: none;" type="text" id="<?php echo $maxbutton_text_shadow_color_hover_key ?>" name="<?php echo $maxbutton_text_shadow_color_hover_key ?>" value="<?php echo $maxbutton_text_shadow_color_hover_value ?>" />
+										<div class="clear"></div>
+									</td>
+									<td>
+										<span class="colorpicker-box" id="<?php echo $maxbutton_gradient_start_color_hover_key ?>_box">
+											<span></span>
+										</span>
+										<input style="display: none;" type="text" id="<?php echo $maxbutton_gradient_start_color_hover_key ?>" name="<?php echo $maxbutton_gradient_start_color_hover_key ?>" value="<?php echo $maxbutton_gradient_start_color_hover_value ?>" />
+										<div class="clear"></div>
+									</td>
+									<td>
+										<span class="colorpicker-box" id="<?php echo $maxbutton_gradient_end_color_hover_key ?>_box">
+											<span></span>
+										</span>
+										<input style="display: none;" type="text" id="<?php echo $maxbutton_gradient_end_color_hover_key ?>" name="<?php echo $maxbutton_gradient_end_color_hover_key ?>" value="<?php echo $maxbutton_gradient_end_color_hover_value ?>" />
+										<div class="clear"></div>
+									</td>
+									<td>
+										<span class="colorpicker-box" id="<?php echo $maxbutton_border_color_hover_key ?>_box">
+											<span></span>
+										</span>
+										<input style="display: none;" type="text" id="<?php echo $maxbutton_border_color_hover_key ?>" name="<?php echo $maxbutton_border_color_hover_key ?>" value="<?php echo $maxbutton_border_color_hover_value ?>" />
+										<div class="clear"></div>
+									</td>
+									<td>
 										<span class="colorpicker-box" id="<?php echo $maxbutton_box_shadow_color_hover_key ?>_box">
 											<span></span>
 										</span>
 										<input style="display: none;" type="text" id="<?php echo $maxbutton_box_shadow_color_hover_key ?>" name="<?php echo $maxbutton_box_shadow_color_hover_key ?>" value="<?php echo $maxbutton_box_shadow_color_hover_value ?>" />
-										<div class="default-color"><?php _e('Default:', 'maxbuttons') ?> <?php echo $maxbutton_box_shadow_color_hover_default ?></div>
 										<div class="clear"></div>
 									</td>
 								</tr>
+								<tr>
+									<td valign="top" style="padding-top: 20px;" class="label"><?php _e('Shortcuts', 'maxbuttons') ?></td>
+									<td valign="top" style="padding-top: 20px;" colspan="6">
+										<p style="margin-top: 0;"><a href="#" id="copy-normal-colors-to-hover" style="text-decoration: none;"><?php _e('Copy normal colors to hover', 'maxbuttons') ?></a></p>
+										<p><a href="#" id="copy-hover-colors-to-normal" style="text-decoration: none;"><?php _e('Copy hover colors to normal', 'maxbuttons') ?></a></p>
+										<p><a href="#" id="swap-normal-hover-colors" style="text-decoration: none;"><?php _e('Swap normal and hover colors', 'maxbuttons') ?></a></p>
+									</td>
+								</tr>
 							</table>
-						</div>
-						<div class="clear"></div>
-					</div>
-					
-					<div class="option-design">
-						<div class="label"><?php _e('Shortcuts', 'maxbuttons-pro') ?></div>
-						<div class="input">
-							<p style="margin-top: 0;"><a href="#" id="copy-normal-colors-to-hover" style="text-decoration: none;"><?php _e('Copy normal colors to hover', 'maxbuttons-pro') ?></a></p>
-							<p><a href="#" id="copy-hover-colors-to-normal" style="text-decoration: none;"><?php _e('Copy hover colors to normal', 'maxbuttons-pro') ?></a></p>
-							<p><a href="#" id="swap-normal-hover-colors" style="text-decoration: none;"><?php _e('Swap normal and hover colors', 'maxbuttons-pro') ?></a></p>
 						</div>
 						<div class="clear"></div>
 					</div>

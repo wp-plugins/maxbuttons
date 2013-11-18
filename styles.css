@@ -143,6 +143,20 @@
 	border-bottom: solid 1px #d1d1d1;
 	width: 180px;
 }
+#maxbuttons .option-design .input table.color-line th {
+	vertical-align: bottom;
+	text-align: center;
+	width: 80px;
+}
+#maxbuttons .option-design .input table.color-line td {
+	padding: 0px 0px 0px 23px;
+}
+#maxbuttons .option-design .input table.color-line td.label {
+	text-align: left;
+	padding-left: 3px;
+	padding-top: 7px;
+	width: 115px;
+}
 #maxbuttons .form-actions {
 	margin-top: 15px;
 	margin-bottom: 15px;

@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, johnbhartley
 Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
 Requires at least: 3.4
 Tested up to: 3.6.1
-Stable tag: 1.17.0
+Stable tag: 1.18.0
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -122,6 +122,9 @@ Enable the container option and set the alignment property to either "display: i
 </table>`
 
 == Changelog ==
+= 1.18.0 =
+* Updated Colors section in button editor to match layout of Pro version.
+
 = 1.17.0 =
 * Added shortcut links in Colors section for enhanced usability.
 * Updated the shortcode so that it doesn't render the HREF or the hover colors when button URL is empty.
@@ -225,5 +228,5 @@ Enable the container option and set the alignment property to either "display: i
 
 == Upgrade Notice ==
 
-= 1.17.0 =
+= 1.18.0 =
 Please deactivate and then reactivate before using.

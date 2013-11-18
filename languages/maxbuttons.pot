@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: maxbuttons\n"
-"POT-Creation-Date: 2013-10-09 22:57-0500\n"
-"PO-Revision-Date: 2013-10-09 22:58-0500\n"
+"POT-Creation-Date: 2013-11-17 21:01-0500\n"
+"PO-Revision-Date: 2013-11-17 21:01-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 #: includes/maxbuttons-list-trash.php:92 includes/maxbuttons-list.php:71
 #: includes/maxbuttons-pro.php:23 includes/maxbuttons-support.php:117
 msgid "Buttons"
-msgstr ""
+msgstr "Buttons"
 
 #: maxbuttons.php:99
 #, php-format
@@ -147,7 +147,7 @@ msgid "The link when the button is clicked."
 msgstr ""
 
 #: includes/maxbuttons-button.php:877 includes/maxbuttons-button.php:904
-#: includes/maxbuttons-button.php:1127
+#: includes/maxbuttons-button.php:1126
 msgid "Text"
 msgstr ""
 
@@ -177,15 +177,9 @@ msgstr ""
 #: includes/maxbuttons-button.php:1063 includes/maxbuttons-button.php:1084
 #: includes/maxbuttons-button.php:1091 includes/maxbuttons-button.php:1098
 #: includes/maxbuttons-button.php:1105 includes/maxbuttons-button.php:1112
-#: includes/maxbuttons-button.php:1132 includes/maxbuttons-button.php:1141
-#: includes/maxbuttons-button.php:1152 includes/maxbuttons-button.php:1161
-#: includes/maxbuttons-button.php:1172 includes/maxbuttons-button.php:1181
-#: includes/maxbuttons-button.php:1192 includes/maxbuttons-button.php:1201
-#: includes/maxbuttons-button.php:1212 includes/maxbuttons-button.php:1221
-#: includes/maxbuttons-button.php:1232 includes/maxbuttons-button.php:1241
-#: includes/maxbuttons-button.php:1268 includes/maxbuttons-button.php:1275
-#: includes/maxbuttons-button.php:1282 includes/maxbuttons-button.php:1289
-#: includes/maxbuttons-button.php:1296
+#: includes/maxbuttons-button.php:1244 includes/maxbuttons-button.php:1251
+#: includes/maxbuttons-button.php:1258 includes/maxbuttons-button.php:1265
+#: includes/maxbuttons-button.php:1272
 msgid "Default:"
 msgstr ""
 
@@ -233,7 +227,7 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1033 includes/maxbuttons-button.php:1207
+#: includes/maxbuttons-button.php:1033 includes/maxbuttons-button.php:1130
 msgid "Border"
 msgstr ""
 
@@ -257,141 +251,129 @@ msgstr ""
 msgid "Bottom Right"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1089 includes/maxbuttons-button.php:1319
+#: includes/maxbuttons-button.php:1089 includes/maxbuttons-button.php:1295
 msgid "Width"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1119 includes/maxbuttons-button.php:1122
+#: includes/maxbuttons-button.php:1119
 msgid "Colors"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1136
-msgid "Text Hover"
+#: includes/maxbuttons-button.php:1127
+#, php-format
+msgid "Text%sShadow"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1147
-msgid "Text Shadow"
+#: includes/maxbuttons-button.php:1128
+#, php-format
+msgid "Gradient%sStart"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1156
-msgid "Text Shadow Hover"
+#: includes/maxbuttons-button.php:1129
+#, php-format
+msgid "Gradient%sEnd"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1167
-msgid "Gradient Start"
+#: includes/maxbuttons-button.php:1131
+#, php-format
+msgid "Border%sShadow"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1176
-msgid "Gradient Start Hover"
+#: includes/maxbuttons-button.php:1134
+msgid "Normal"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1187
-msgid "Gradient End"
+#: includes/maxbuttons-button.php:1179
+msgid "Hover"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1196
-msgid "Gradient End Hover"
-msgstr ""
-
-#: includes/maxbuttons-button.php:1216
-msgid "Border Hover"
-msgstr ""
-
-#: includes/maxbuttons-button.php:1227
-msgid "Box Shadow"
-msgstr ""
-
-#: includes/maxbuttons-button.php:1236
-msgid "Box Shadow Hover"
-msgstr ""
-
-#: includes/maxbuttons-button.php:1251
+#: includes/maxbuttons-button.php:1224
 msgid "Shortcuts"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1253
+#: includes/maxbuttons-button.php:1226
 msgid "Copy normal colors to hover"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1254
+#: includes/maxbuttons-button.php:1227
 msgid "Copy hover colors to normal"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1255
+#: includes/maxbuttons-button.php:1228
 msgid "Swap normal and hover colors"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1263
+#: includes/maxbuttons-button.php:1239
 msgid "Gradients and Opacity"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1266
+#: includes/maxbuttons-button.php:1242
 msgid "Gradient Stop"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1273
+#: includes/maxbuttons-button.php:1249
 msgid "Gradient Start Opacity"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1280
+#: includes/maxbuttons-button.php:1256
 msgid "Gradient End Opacity"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1287
+#: includes/maxbuttons-button.php:1263
 msgid "Gradient Start Opacity Hover"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1294
+#: includes/maxbuttons-button.php:1270
 msgid "Gradient End Opacity Hover"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1303
+#: includes/maxbuttons-button.php:1279
 msgid "Container"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1306
+#: includes/maxbuttons-button.php:1282
 msgid "Use Container"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1312
+#: includes/maxbuttons-button.php:1288
 msgid "Wrap with Center Div"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1325
+#: includes/maxbuttons-button.php:1301
 msgid "Margin Top"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1331
+#: includes/maxbuttons-button.php:1307
 msgid "Margin Right"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1337
+#: includes/maxbuttons-button.php:1313
 msgid "Margin Bottom"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1343
+#: includes/maxbuttons-button.php:1319
 msgid "Margin Left"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1349
+#: includes/maxbuttons-button.php:1325
 msgid "Alignment"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1366
+#: includes/maxbuttons-button.php:1342
 msgid "Advanced"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1369
+#: includes/maxbuttons-button.php:1345
 msgid ""
 "Adding !important to the button styles can help avoid potential conflicts "
 "with your theme styles."
 msgstr ""
 
-#: includes/maxbuttons-button.php:1370
+#: includes/maxbuttons-button.php:1346
 msgid "Use !important"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1378
+#: includes/maxbuttons-button.php:1354
 msgid ""
 "By default, the CSS styles for the button are rendered within a &lt;"
 "style&gt; block in the HTML body. Enabling the \"Use External CSS\" option "
@@ -399,23 +381,23 @@ msgid ""
 "instead."
 msgstr ""
 
-#: includes/maxbuttons-button.php:1379
+#: includes/maxbuttons-button.php:1355
 msgid "Use External CSS"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1386 includes/maxbuttons-list.php:132
+#: includes/maxbuttons-button.php:1362 includes/maxbuttons-list.php:132
 msgid "View CSS"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1394
+#: includes/maxbuttons-button.php:1370
 msgid "Button Output"
 msgstr ""
 
-#: includes/maxbuttons-button.php:1396
+#: includes/maxbuttons-button.php:1372
 msgid "The top is the normal button, the bottom one is the hover."
 msgstr ""
 
-#: includes/maxbuttons-button.php:1407
+#: includes/maxbuttons-button.php:1383
 msgid "Change this color to see your button on a different background."
 msgstr ""
 
