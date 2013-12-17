@@ -3,7 +3,7 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
 Description: The best WordPress button generator. This is the free version; the Pro version <a href="http://maxbuttons.com/?ref=mbfree">can be found here</a>.
-Version: 1.18.0
+Version: 1.19.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -17,7 +17,7 @@ $maxbuttons_installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
 function maxbuttons_set_global_paths() {
 	define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-	define('MAXBUTTONS_VERSION_NUM', '1.18.0');
+	define('MAXBUTTONS_VERSION_NUM', '1.19.0');
 	define('MAXBUTTONS_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 	define('MAXBUTTONS_PLUGIN_URL', plugins_url() . '/' . MAXBUTTONS_PLUGIN_NAME);
 }

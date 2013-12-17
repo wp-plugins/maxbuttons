@@ -1,5 +1,4 @@
 <?php
-$plugin_version = get_option(MAXBUTTONS_VERSION_KEY);
 $theme = wp_get_theme();
 $browser = maxbuttons_get_browser();
 
@@ -119,14 +118,13 @@ function maxbuttons_get_browser() {
 			<a class="nav-tab nav-tab-active" href=""><?php _e('Support', 'maxbuttons') ?></a>
 		</h2>
 		
-		<h3><?php printf(__('All support is handled through the %sSupport Forums%s.', 'maxbuttons'), '<a href="http://wordpress.org/support/plugin/maxbuttons" target="_blank">', '</a>') ?></h3>
+		<h4><?php printf(__('All support is handled through the %sSupport Forums%s.', 'maxbuttons'), '<a href="http://wordpress.org/support/plugin/maxbuttons" target="_blank">', '</a>') ?></h4>
 		
-		<h3><?php _e('You may be asked to provide the information below to help troubleshoot your issue.', 'maxbuttons') ?></h3>
+		<h4><?php _e('You may be asked to provide the information below to help troubleshoot your issue.', 'maxbuttons') ?></h4>
 	
 		<textarea class="system-info" readonly="readonly" wrap="off">
 ----- Begin System Info -----
 
-<?php echo maxbuttons_system_label('MaxButtons Version:', $plugin_version, 3) ?>
 <?php echo maxbuttons_system_label('WordPress Version:', get_bloginfo('version'), 4) ?>
 <?php echo maxbuttons_system_label('PHP Version:', PHP_VERSION, 10) ?>
 <?php echo maxbuttons_system_label('MySQL Version:', mysql_get_server_info(), 8) ?>
