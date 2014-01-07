@@ -1,5 +1,11 @@
 <?php
 require('../../../../wp-load.php');
+
+// Check to prevent unauthenticated access to this page
+if (!current_user_can('manage_options')) {
+	$message = __('You aren\'t allowed to do that.', 'maxbuttons');
+	wp_die($message);
+}
 ?>
 
 <html>
