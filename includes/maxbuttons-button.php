@@ -202,6 +202,7 @@ function maxbuttons_strip_px($value) {
 		<?php } ?>
 		
 		jQuery("#maxbuttons .output").draggable();
+		jQuery("#view_css_modal").leanModal();
 
 		// Prevents the output button from being clickable
 		jQuery("div.result a").click(function(e) { e.preventDefault(); });
@@ -1359,8 +1360,15 @@ function maxbuttons_strip_px($value) {
 					
 					<div class="option-design">
 						<div class="label">&nbsp;</div>
-						<div class="input"><a class="button" href="#" onclick="window.open('<?php echo MAXBUTTONS_PLUGIN_URL ?>/includes/maxbuttons-button-css.php?id=<?php echo $_GET['id'] ?>', 'ButtonCSS', 'width=800, height=650, scrollbars=1'); return false;"><?php _e('View CSS', 'maxbuttons') ?></a></div>
+						<div class="input"><a id="view_css_modal" name="view_css" href="#view_css" class="button" rel="leanModal"><?php _e('View CSS', 'maxbuttons') ?></a></div>
 						<div class="clear"></div>
+						
+						<div id="view_css">
+							<div class="note">
+								<p><?php _e('If the "Use External CSS" option is enabled for this button, copy and paste the CSS code below into your theme stylesheet.', 'maxbuttons') ?></p>
+							</div>
+							<textarea id="maxbutton-css"><?php echo do_shortcode('[maxbutton id="' . $_GET['id'] . '" externalcsspreview="true"]') ?></textarea>
+						</div>
 					</div>
 				</div>
 			</div>

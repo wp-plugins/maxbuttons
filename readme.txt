@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, johnbhartley
 Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
 Requires at least: 3.4
 Tested up to: 3.8
-Stable tag: 1.20.0
+Stable tag: 1.21.0
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -122,6 +122,9 @@ Enable the container option and set the alignment property to either "display: i
 </table>`
 
 == Changelog ==
+= 1.21.0 =
+* Replaced separate PHP page for viewing button CSS with lean modal box.
+
 = 1.20.0 =
 * Fixed vulnerability issue when viewing the button CSS page.
 
@@ -234,5 +237,5 @@ Enable the container option and set the alignment property to either "display: i
 
 == Upgrade Notice ==
 
-= 1.20.0 =
+= 1.21.0 =
 Please deactivate and then reactivate before using.
