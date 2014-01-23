@@ -24,7 +24,7 @@ Create great-looking CSS3 buttons that can be used on any post or page in your W
 
 = Upgrade to MaxButtons Pro =
 
-Take your buttons to the next level with [MaxButtons Pro](http://maxbuttons.com/), which gives you additional features such as:
+Take your buttons to the next level with [MaxButtons Pro](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=MBPro&utm_campaign=plugin), which gives you additional features such as:
 
 * **Icon Support** - Put icons to the left, right, top, or bottom of your text.
 * **Multi-line text** - To add a second line of text for communicating extra information.
@@ -34,7 +34,7 @@ Take your buttons to the next level with [MaxButtons Pro](http://maxbuttons.com/
 * **Height and Width** - Explicit options to set button height and width.
 * **Shopp Integration** - Use buttons created with MaxButtons Pro as the shopping cart buttons of the Shopp e-commerce plugin.
 
-And the best part is that you can get this awesome [CSS3 button generator](http://maxbuttons.com/) for **only 19!**
+And the best part is that you can get this awesome [CSS3 button generator](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=CSS3&utm_campaign=plugin) for **only 19!**
 
 = How To Use =
 
