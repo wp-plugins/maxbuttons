@@ -93,6 +93,31 @@ function maxbuttons_get_browser() {
         'pattern' => $pattern
     );
 }
+
+function check_charset() {
+    global $maxbuttons_installed_version;
+    global $wpdb;
+    $check = "SHOW FULL FROM wp_maxbuttons_buttons";
+    $charset = $wpdb->query($check);
+    return $charset;
+}
+    if(isset($_POST['alter_charset'])) {
+        $kludge = 'altering table to be utf-8';
+        global $maxbuttons_installed_version;
+        global $wpdb;
+        $table_name = maxbuttons_get_buttons_table_name();
+        $kludge = $table_name;
+        // IMPORTANT: There MUST be two spaces between the PRIMARY KEY keywords
+        // and the column name, and the column name MUST be in parenthesis.
+        $sql = "ALTER TABLE " . $table_name . " CONVERT TO CHARACTER SET utf8";
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        $wpdb->query($wpdb->prepare($sql));
+    } else {
+        $kludge = 'Not yet enabled';
+    }
+
+    $charr = check_charset(); 
+
 ?>
 
 <div id="maxbuttons">
@@ -115,6 +140,7 @@ function maxbuttons_get_browser() {
 			<span class="spacer"></span>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list"><?php _e('Buttons', 'maxbuttons') ?></a>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-pro"><?php _e('Go Pro', 'maxbuttons') ?></a>
+            <a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-settings"><?php _e('Settings', 'maxbuttons') ?></a>
 			<a class="nav-tab nav-tab-active" href=""><?php _e('Support', 'maxbuttons') ?></a>
 		</h2>
 		

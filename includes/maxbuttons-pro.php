@@ -22,6 +22,7 @@
 			<span class="spacer"></span>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list"><?php _e('Buttons', 'maxbuttons') ?></a>
 			<a class="nav-tab nav-tab-active" href=""><?php _e('Go Pro', 'maxbuttons') ?></a>
+			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-settings"><?php _e('Settings', 'maxbuttons') ?></a>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-support"><?php _e('Support', 'maxbuttons') ?></a>
 		</h2>
 		
@@ -43,8 +44,7 @@
 			<p><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/css3-button-examples.png" alt="CSS3 Button Examples" /></p>
 
 			<h2><?php _e('Button Packs: Pre-Made Sets of CSS3 and Icon Goodness', 'maxbuttons') ?></h2>
-			<p><?php printf(__('Button packs are sets of buttons with icons and settings already predefined for you, saving you loads of time. We have an %sever-growing collection of button packs%s that you can buy and import into your website (only $5 each). You can then use those buttons as they are, or customize them to fit your needs (below are a few to get you started).', 'maxbuttons'), '<a href="http://maxbuttons.com/shop/category/button-packs/?ref=mbfree" target="_blank">', '</a>') ?></p>
-			<p><?php printf(__('You can also get %s10 button packs for $25%s, giving you a %s50&#37; savings%s compared to buying them individually.', 'maxbuttons'), '<a href="http://maxbuttons.com/shop/category/button-packs/?ref=mbfree" target="_blank">', '</a>', '<strong>', '</strong>') ?></p>
+			<p><?php printf(__('Button packs are sets of buttons with icons and settings already predefined for you, saving you loads of time. We have an %sever-growing collection of button packs%s that you can buy and import into your website (only $5 each). You can then use those buttons as they are, or customize them to fit your needs (below are a few to get you started).', 'maxbuttons'), '<a href="http://maxbuttons.com/shop/category/button-packs/?utm_source=wordpressorg&utm_medium=plugin&utm_content=ever-growing&utm_campaign=mbfree" target="_blank">', '</a>') ?></p>
 			<div class="button-packs">
 				<div class="pack">
 					<a href="http://maxbuttons.com/shop/e-commerce-buttons/?ref=mbfree" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/button-pack-e-commerce-buttons.png" alt="E-Commerce Buttons" border="0" /></a>

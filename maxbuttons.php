@@ -3,7 +3,7 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
 Description: The best WordPress button generator. This is the free version; the Pro version <a href="http://maxbuttons.com/?ref=mbfree">can be found here</a>.
-Version: 1.21.0
+Version: 1.22.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -17,7 +17,7 @@ $maxbuttons_installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
 function maxbuttons_set_global_paths() {
 	define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-	define('MAXBUTTONS_VERSION_NUM', '1.21.0');
+	define('MAXBUTTONS_VERSION_NUM', '1.22.0');
 	define('MAXBUTTONS_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 	define('MAXBUTTONS_PLUGIN_URL', plugins_url() . '/' . MAXBUTTONS_PLUGIN_NAME);
 }
@@ -132,6 +132,13 @@ function maxbuttons_admin_menu() {
 	$submenu_function = 'maxbuttons_pro';
 	$admin_pages[] = add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
 
+	// Now add the submenu page for the Settings page
+	$submenu_page_title = __('MaxButtons : Settings', 'maxbuttons');
+	$submenu_title = __('Settings', 'maxbuttons');
+	$submenu_slug = 'maxbuttons-settings';
+	$submenu_function = 'maxbuttons_settings';
+	$admin_pages[] = add_submenu_page($menu_slug, $submenu_page_title, $submenu_title, $capability, $submenu_slug, $submenu_function);
+
 	// Now add the submenu page for the Support page
 	$submenu_page_title = __('MaxButtons : Support', 'maxbuttons');
 	$submenu_title = __('Support', 'maxbuttons');
@@ -159,6 +166,10 @@ function maxbuttons_pro() {
 
 function maxbuttons_support() {
 	include_once 'includes/maxbuttons-support.php';
+}
+
+function maxbuttons_settings() {
+	include_once 'includes/maxbuttons-settings.php';
 }
 
 function maxbuttons_add_admin_styles() {	
