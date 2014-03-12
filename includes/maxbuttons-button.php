@@ -221,7 +221,7 @@ function maxbuttons_strip_px($value) {
 		showColorPickerForButtonBoxShadowHoverColor();
 		showColorPickerForOutputBackgroundColor();
 		
-		jQuery("#button-save").click(function() {			
+		jQuery(".button-save").click(function() {			
 			jQuery("#new-button-form").submit();
 			return false;
 		});
@@ -833,7 +833,7 @@ function maxbuttons_strip_px($value) {
 	
 		<form id="new-button-form" method="post">
 			<div class="form-actions">				
-				<a id="button-save" class="button-primary"><?php _e('Save', 'maxbuttons') ?></a>
+				<a class="button-primary button-save"><?php _e('Save', 'maxbuttons') ?></a>
 				<a id="button-copy" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=copy&id=<?php echo $_GET['id'] ?>"><?php _e('Copy', 'maxbuttons') ?></a>
 				<a id="button-trash" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=trash&id=<?php echo $_GET['id'] ?>"><?php _e('Move to Trash', 'maxbuttons') ?></a>
 				<a id="button-delete" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $_GET['id'] ?>"><?php _e('Delete Permanently', 'maxbuttons') ?></a>
@@ -1371,6 +1371,9 @@ function maxbuttons_strip_px($value) {
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="form-actions">				
+				<a class="button-primary button-save"><?php _e('Save', 'maxbuttons') ?></a>
 			</div>
 		</form>
 

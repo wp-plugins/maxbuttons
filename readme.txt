@@ -1,6 +1,6 @@
 === MaxButtons: WordPress Button Generator ===
 Contributors: maxfoundry, arcware, johnbhartley
-Tags: buttons, CSS buttons, CSS3 buttons, button generator, CSS button generator, CSS3 button generator
+Tags: button, buttons, css, css3, css3 icon, call to action, free, icon, icons, link, permalink, plugin, seo, shortcode, shortcodes, shortlinks, wordpress button plugin, wordpress button generator, css3 button plugin, css3 button generator, css wordpress button, css3 wordpress button, social media button, wordpress buttons plugin, wp button creator, create wordpress buttons, button generator, create button icon
 Requires at least: 3.4
 Tested up to: 3.8.1
 Stable tag: 1.22.0
@@ -34,7 +34,7 @@ Take your buttons to the next level with [MaxButtons Pro](http://www.maxbuttons.
 * **Height and Width** - Explicit options to set button height and width.
 * **Shopp Integration** - Use buttons created with MaxButtons Pro as the shopping cart buttons of the Shopp e-commerce plugin.
 
-And the best part is that you can get this awesome [CSS3 button generator](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=CSS3&utm_campaign=plugin) for **only 19!**
+And the best part is that you can get this awesome [CSS3 button generator](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=CSS3&utm_campaign=plugin) for **only $19!**
 
 = How To Use =
 
@@ -122,6 +122,9 @@ Enable the container option and set the alignment property to either "display: i
 </table>`
 
 == Changelog ==
+= 1.23.0 =
+* Save button added to bottom of page
+
 = 1.22.0 =
 * Added Settings page
 * Added "Alter Table" button for foreign text issue
@@ -241,5 +244,5 @@ Enable the container option and set the alignment property to either "display: i
 
 == Upgrade Notice ==
 
-= 1.22.0 =
-Please deactivate and then reactivate before using.
+= 1.23.0 =
+Please deactivate and then reactivate before using. If the save button does not work, be sure to clear your browser cache.
