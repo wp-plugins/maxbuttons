@@ -404,3 +404,58 @@
 	word-wrap: break-word;
 	overflow: none;
 }
+
+.main {
+	width: 72%;
+	float: left;
+}
+
+.ad-wrap {
+	width: 27%;
+	float: left;
+	max-width: 300px;
+	margin-left: 1%;
+	min-width: 200px;
+	margin-top: 54px;
+}
+
+.ads {
+	background: #fff;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+	
+}
+
+.ads h3 {
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 14px;
+}
+
+.ads p, .ads ul {
+	padding: 0 20px;
+}
+
+.ads ul {
+	list-style: disc;
+	margin-left: 30px;
+}
+
+.ads .button-primary {
+	display: block;
+	margin: 0 auto 20px auto;
+	width: 190px;
+	text-align: center;
+}
+
+@media screen and (max-width: 780px) {
+	.ad-wrap {
+		width: 100%;
+		max-width: 100%;
+	}
+	.ads {
+		width: 300px;
+		margin-right: 20px;
+		float: left;
+	}
+}

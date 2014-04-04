@@ -13,7 +13,7 @@
 		<div class="logo">
 			<?php _e('Brought to you by', 'maxbuttons') ?>
 			<a href="http://maxfoundry.com/?ref=mbfree" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/max-foundry.png" alt="Max Foundry" /></a>
-			<?php printf(__('makers of %sMaxGalleria%s and %sMaxInbound%s', 'maxbuttons'), '<a href="http://maxgalleria.com/?ref=mbfree" target="_blank">', '</a>', '<a href="http://maxinbound.com/?ref=mbfree" target="_blank">', '</a>') ?>
+			<?php printf(__('Upgrade to MaxButtons Pro today! %sClick Here%s', 'maxbuttons'), '<a href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-go-pro-upgrade&utm_campaign=plugin">', '</a>' ) ?>
 		</div>
 		
 		<div class="clear"></div>

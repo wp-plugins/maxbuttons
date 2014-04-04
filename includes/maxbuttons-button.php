@@ -240,6 +240,11 @@ function maxbuttons_strip_px($value) {
 			e.preventDefault();
 			swap_normal_hover_colors();
 		});
+
+		jQuery("#copy-invert-normal-colors").click(function(e) {
+			e.preventDefault();
+			copy_invert_normal_colors();
+		});
 		
 		function copy_normal_colors_to_hover() {
 			var text = jQuery("#<?php echo $maxbutton_text_color_key ?>").val();
@@ -354,6 +359,41 @@ function maxbuttons_strip_px($value) {
 			jQuery("#maxbuttons .output .result a").css("box-shadow", "<?php echo $maxbutton_box_shadow_offset_left_display ?> <?php echo $maxbutton_box_shadow_offset_top_display ?> <?php echo $maxbutton_box_shadow_width_display ?> " + box_shadow_hover);
 
 			// Normal to hover has to be second or it gets overridden with the generic a selector in hover to normal
+			jQuery("#<?php echo $maxbutton_text_color_hover_key ?>").val(text);
+			jQuery("#<?php echo $maxbutton_text_color_hover_key ?>_box span").css("background-color", text);
+			jQuery("#maxbuttons .output .result a.hover").css("color", text);
+			
+			jQuery("#<?php echo $maxbutton_text_shadow_color_hover_key ?>").val(text_shadow);
+			jQuery("#<?php echo $maxbutton_text_shadow_color_hover_key ?>_box span").css("background-color", text_shadow);
+			jQuery("#maxbuttons .output .result a.hover").css("text-shadow", "<?php echo $maxbutton_text_shadow_offset_left_display ?> <?php echo $maxbutton_text_shadow_offset_top_display ?> <?php echo $maxbutton_text_shadow_width_display ?> " + text_shadow);
+
+			jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val(start_color);
+			jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>_box span").css("background-color", start_color);
+			jQuery("#maxbuttons .output .result a.hover").css("background-color", start_color);
+			jQuery("#maxbuttons .output .result a.hover").css("background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+			jQuery("#maxbuttons .output .result a.hover").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+			jQuery("#maxbuttons .output .result a.hover").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
+			jQuery("#maxbuttons .output .result a.hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
+			jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val(end_color);
+			jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>_box span").css("background-color", end_color);
+			
+			jQuery("#<?php echo $maxbutton_border_color_hover_key ?>").val(border_color);
+			jQuery("#<?php echo $maxbutton_border_color_hover_key ?>_box span").css("background-color", border_color);
+			jQuery("#maxbuttons .output .result a.hover").css("border-color", border_color);
+
+			jQuery("#<?php echo $maxbutton_box_shadow_color_hover_key ?>").val(box_shadow);
+			jQuery("#<?php echo $maxbutton_box_shadow_color_hover_key ?>_box span").css("background-color", box_shadow);
+			jQuery("#maxbuttons .output .result a.hover").css("box-shadow", "<?php echo $maxbutton_box_shadow_offset_left_display ?> <?php echo $maxbutton_box_shadow_offset_top_display ?> <?php echo $maxbutton_box_shadow_width_display ?> " + box_shadow);
+		}
+
+		function copy_invert_normal_colors() {
+			var text = jQuery("#<?php echo $maxbutton_text_color_key ?>").val();
+			var text_shadow = jQuery("#<?php echo $maxbutton_text_shadow_color_key ?>").val();
+			var end_color = jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val();
+			var start_color = jQuery("#<?php echo $maxbutton_gradient_end_color_key ?>").val();
+			var border_color = jQuery("#<?php echo $maxbutton_border_color_key ?>").val();
+			var box_shadow = jQuery("#<?php echo $maxbutton_box_shadow_color_key ?>").val();
+
 			jQuery("#<?php echo $maxbutton_text_color_hover_key ?>").val(text);
 			jQuery("#<?php echo $maxbutton_text_color_hover_key ?>_box span").css("background-color", text);
 			jQuery("#maxbuttons .output .result a.hover").css("color", text);
@@ -819,7 +859,7 @@ function maxbuttons_strip_px($value) {
 		<div class="logo">
 			<?php _e('Brought to you by', 'maxbuttons') ?>
 			<a href="http://maxfoundry.com/?ref=mbfree" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/max-foundry.png" alt="Max Foundry" /></a>
-			<?php printf(__('makers of %sMaxGalleria%s and %sMaxInbound%s', 'maxbuttons'), '<a href="http://maxgalleria.com/?ref=mbfree" target="_blank">', '</a>', '<a href="http://maxinbound.com/?ref=mbfree" target="_blank">', '</a>') ?>
+			<?php printf(__('Upgrade to MaxButtons Pro today! %sClick Here%s', 'maxbuttons'), '<a href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-edit-upgrade&utm_campaign=plugin">', '</a>' ) ?>
 		</div>
 		
 		<div class="clear"></div>
@@ -828,6 +868,7 @@ function maxbuttons_strip_px($value) {
 			<span class="spacer"></span>
 			<a class="nav-tab nav-tab-active" href=""><?php _e('Button', 'maxbuttons') ?></a>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-pro"><?php _e('Go Pro', 'maxbuttons') ?></a>
+			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-settings"><?php _e('Settings', 'maxbuttons') ?></a>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-support"><?php _e('Support', 'maxbuttons') ?></a>
 		</h2>
 	
@@ -1227,6 +1268,7 @@ function maxbuttons_strip_px($value) {
 										<p style="margin-top: 0;"><a href="#" id="copy-normal-colors-to-hover" style="text-decoration: none;"><?php _e('Copy normal colors to hover', 'maxbuttons') ?></a></p>
 										<p><a href="#" id="copy-hover-colors-to-normal" style="text-decoration: none;"><?php _e('Copy hover colors to normal', 'maxbuttons') ?></a></p>
 										<p><a href="#" id="swap-normal-hover-colors" style="text-decoration: none;"><?php _e('Swap normal and hover colors', 'maxbuttons') ?></a></p>
+										<p><a href="#" id="copy-invert-normal-colors" style="text-decoration: none;"><?php _e('Copy and invert normal colors', 'maxbuttons') ?></a></p>
 									</td>
 								</tr>
 							</table>

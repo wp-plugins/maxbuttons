@@ -3,12 +3,19 @@ Contributors: maxfoundry, arcware, johnbhartley
 Tags: button, buttons, css, css3, css3 icon, call to action, free, icon, icons, link, permalink, plugin, seo, shortcode, shortcodes, shortlinks, wordpress button plugin, wordpress button generator, css3 button plugin, css3 button generator, css wordpress button, css3 wordpress button, social media button, wordpress buttons plugin, wp button creator, create wordpress buttons, button generator, create button icon
 Requires at least: 3.4
 Tested up to: 3.8.1
-Stable tag: 1.23.0
+Stable tag: 1.24.0
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
 == Description ==
 Create great-looking CSS3 buttons that can be used on any post or page in your WordPress site. The easy to use button editor makes it a snap to generate awesome CSS3 buttons in very little time.
+
+= Helpful Links = 
+
+* [How to Create WordPress Buttons?](http://www.maxbuttons.com/#CSS3/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-create&utm_campaign=plugin) 
+* [How to make a WordPress Buttons?](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-make&utm_campaign=plugin) 
+* [What is a WordPress Button Generator?](http://maxbuttons.com/tour/button-editor/?utm_source=wordpress&utm_medium=mbrepo&utm_content=what-is-generator&utm_campaign=plugin)
+* [How do I see my WordPress Buttons?](http://maxbuttons.com/tour/button-list/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-see&utm_campaign=plugin)
 
 = Highlights =
 
@@ -24,7 +31,7 @@ Create great-looking CSS3 buttons that can be used on any post or page in your W
 
 = Upgrade to MaxButtons Pro =
 
-Take your buttons to the next level with [MaxButtons Pro](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=MBPro&utm_campaign=plugin), which gives you additional features such as:
+Take your buttons to the next level with [MaxButtons Pro](http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=MBPro&utm_campaign=plugin), which gives you additional features such as:
 
 * **Icon Support** - Put icons to the left, right, top, or bottom of your text.
 * **Multi-line text** - To add a second line of text for communicating extra information.
@@ -122,6 +129,11 @@ Enable the container option and set the alignment property to either "display: i
 </table>`
 
 == Changelog ==
+= 1.24.0 =
+* Copy and invert normal colors to hover added.
+* Settings tab added to Button edit page
+* Updated phrasing
+
 = 1.23.0 =
 * Save button added to bottom of page
 
@@ -244,5 +256,5 @@ Enable the container option and set the alignment property to either "display: i
 
 == Upgrade Notice ==
 
-= 1.23.0 =
-Please deactivate and then reactivate before using. If the save button does not work, be sure to clear your browser cache.
+= 1.24.0 =
+Please deactivate and then reactivate before using. If the save button does not work, be sure to clear your browser cache. Also, if the "copy and invert" button does not work, try a hard refresh of your browser or clear your cache.
