@@ -109,7 +109,7 @@ $gradient_start_rgba_hover = maxbuttons_hex2rgba($maxbutton_gradient_start_color
 $gradient_end_rgba_hover = maxbuttons_hex2rgba($maxbutton_gradient_end_color_hover_value, $maxbutton_gradient_end_opacity_hover_value);
 
 $redirect = false;
-$button_id = 0;
+$button_id = isset($_GET['id']) ? $_GET['id'] : 0;
 
 if ($_POST) {
 	global $wpdb;
@@ -875,14 +875,14 @@ function maxbuttons_strip_px($value) {
 		<form id="new-button-form" method="post">
 			<div class="form-actions">				
 				<a class="button-primary button-save"><?php _e('Save', 'maxbuttons') ?></a>
-				<a id="button-copy" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=copy&id=<?php echo $_GET['id'] ?>"><?php _e('Copy', 'maxbuttons') ?></a>
-				<a id="button-trash" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=trash&id=<?php echo $_GET['id'] ?>"><?php _e('Move to Trash', 'maxbuttons') ?></a>
-				<a id="button-delete" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $_GET['id'] ?>"><?php _e('Delete Permanently', 'maxbuttons') ?></a>
+				<a id="button-copy" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=copy&id=<?php echo $button_id ?>"><?php _e('Copy', 'maxbuttons') ?></a>
+				<a id="button-trash" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=trash&id=<?php echo $button_id ?>"><?php _e('Move to Trash', 'maxbuttons') ?></a>
+				<a id="button-delete" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $button_id ?>"><?php _e('Delete Permanently', 'maxbuttons') ?></a>
 			</div>
 			
 			<div class="message">
 				<?php _e('To use this button, place the following shortcode anywhere in your site content:', 'maxbuttons') ?>
-				<strong>[maxbutton id="<?php echo $_GET['id'] ?>"]</strong>
+				<strong>[maxbutton id="<?php echo $button_id ?>"]</strong>
 			</div>
 			
 			<div class="option-container">
@@ -1409,7 +1409,7 @@ function maxbuttons_strip_px($value) {
 							<div class="note">
 								<p><?php _e('If the "Use External CSS" option is enabled for this button, copy and paste the CSS code below into your theme stylesheet.', 'maxbuttons') ?></p>
 							</div>
-							<textarea id="maxbutton-css"><?php echo do_shortcode('[maxbutton id="' . $_GET['id'] . '" externalcsspreview="true"]') ?></textarea>
+							<textarea id="maxbutton-css"><?php echo do_shortcode('[maxbutton id="' . $button_id . '" externalcsspreview="true"]') ?></textarea>
 						</div>
 					</div>
 				</div>

@@ -3,7 +3,7 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
 Description: The best WordPress button generator. This is the free version; the Pro version <a href="http://maxbuttons.com/?ref=mbfree">can be found here</a>.
-Version: 1.24.0
+Version: 1.24.1
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -17,7 +17,7 @@ $maxbuttons_installed_version = get_option('MAXBUTTONS_VERSION_KEY');
 
 function maxbuttons_set_global_paths() {
 	define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-	define('MAXBUTTONS_VERSION_NUM', '1.24.0');
+	define('MAXBUTTONS_VERSION_NUM', '1.24.1');
 	define('MAXBUTTONS_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 	define('MAXBUTTONS_PLUGIN_URL', plugins_url() . '/' . MAXBUTTONS_PLUGIN_NAME);
 }
@@ -181,6 +181,27 @@ function maxbuttons_add_admin_scripts() {
 	wp_enqueue_script('jquery-ui-draggable');
 	wp_enqueue_script('maxbuttons-colorpicker-js', MAXBUTTONS_PLUGIN_URL . '/js/colorpicker/colorpicker.js', array('jquery'));
 	wp_enqueue_script('maxbuttons-modal', MAXBUTTONS_PLUGIN_URL . '/js/leanModal/jquery.leanModal.min.js', array('jquery'));
+}
+
+add_action('media_buttons_context', 'maxbuttons_media_button');
+function maxbuttons_media_button($context) {
+	global $pagenow, $wp_version;
+	$output = '';
+
+	// Only run in post/page creation and edit screens
+	if (in_array($pagenow, array('post.php', 'page.php', 'post-new.php', 'post-edit.php'))) {
+		$title = __('Add Button', 'maxbuttons');
+		$icon = MAXBUTTONS_PLUGIN_URL . '/images/mb-16.png';
+		$img = '<span class="wp-media-buttons-icon" style="background-image: url(' . $icon . '); width: 16px; height: 16px; margin-top: 1px;"></span>';
+		$output = '<a href="#TB_inline?width=640&inlineId=select-maxbutton-container" class="thickbox button" title="' . $title . '" style="padding-left: .4em;">' . $img . ' ' . $title . '</a>';
+	}
+
+	return $context . $output;
+}
+
+add_action('admin_footer', 'maxbuttons_media_button_admin_footer');
+function maxbuttons_media_button_admin_footer() {
+	require_once 'includes/maxbuttons-media-button.php';
 }
 
 function maxbuttons_create_database_table() {
@@ -357,5 +378,4 @@ function maxbuttons_hex2rgba($color, $opacity) {
 
 add_filter('widget_text', 'do_shortcode');
 include_once 'includes/shortcode.php';
-include_once 'includes/maxbuttons-tinymce.php';
 ?>

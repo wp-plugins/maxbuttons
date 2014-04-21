@@ -2,8 +2,8 @@
 Contributors: maxfoundry, arcware, johnbhartley
 Tags: button, buttons, css, css3, css3 icon, call to action, free, icon, icons, link, permalink, plugin, seo, shortcode, shortcodes, shortlinks, wordpress button plugin, wordpress button generator, css3 button plugin, css3 button generator, css wordpress button, css3 wordpress button, social media button, wordpress buttons plugin, wp button creator, create wordpress buttons, button generator, create button icon
 Requires at least: 3.4
-Tested up to: 3.8.1
-Stable tag: 1.24.0
+Tested up to: 3.9
+Stable tag: 1.24.1
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -129,6 +129,9 @@ Enable the container option and set the alignment property to either "display: i
 </table>`
 
 == Changelog ==
+= 1.24.1 =
+* Replaced TinyMCE button with "Add Button" media button.
+
 = 1.24.0 =
 * Copy and invert normal colors to hover added.
 * Settings tab added to Button edit page
@@ -256,5 +259,5 @@ Enable the container option and set the alignment property to either "display: i
 
 == Upgrade Notice ==
 
-= 1.24.0 =
+= 1.24.1 =
 Please deactivate and then reactivate before using. If the save button does not work, be sure to clear your browser cache. Also, if the "copy and invert" button does not work, try a hard refresh of your browser or clear your cache.
