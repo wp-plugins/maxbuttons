@@ -641,23 +641,29 @@ function maxbuttons_strip_px($value) {
 				
 				var start_color = '#' + hex;
 				var end_color = jQuery("#<?php echo $maxbutton_gradient_end_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_end_color_key ?>").val() : "<?php echo $maxbutton_gradient_end_color_default ?>";
-				jQuery("#button-normal").css("background-color", start_color);
-				jQuery("#button-normal").css("background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#button-normal").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#button-normal").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#button-normal").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
-				jQuery("#button-normal").css("-pie-background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#button-normal").css("position", "relative");
-				jQuery("#button-normal").css("behavior", "url('<?php echo MAXBUTTONS_PLUGIN_URL ?>/pie/PIE.htc')");
-		
+
+				var style = jQuery("#button-normal").attr("style");
+				style += " background-color: " + start_color + ";";
+				style += " background: linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ");";
+				style += " background: -moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ");";
+				style += " background: -o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ");";
+				style += " background: -webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "));";
+				style += " -pie-background: linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ");";
+				style += " position: relative;";
+				style += " behavior: url('<?php echo MAXBUTTONS_PLUGIN_URL ?>/pie/PIE.htc');";
+				jQuery("#button-normal").attr("style", style);
+				
 				// Need this so that the hover color doesn't change when the normal color changes
 				var start_color_hover = jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_hover_default ?>";
 				var end_color_hover = jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_end_color_hover_default ?>";
-				jQuery("#button-hover").css("background-color", start_color_hover);
-				jQuery("#button-hover").css("background", "linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
-				jQuery("#button-hover").css("background", "-moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
-				jQuery("#button-hover").css("background", "-o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
-				jQuery("#button-hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "))");
+
+				style = jQuery("#button-hover").attr("style");
+				style += " background-color: " + start_color_hover + ";";
+				style += " background: linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ");";
+				style += " background: -moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ");";
+				style += " background: -o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ");";
+				style += " background: -webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "));";
+				jQuery("#button-hover").attr("style", style);
 			}
 		});
 	}
@@ -674,23 +680,29 @@ function maxbuttons_strip_px($value) {
 				
 				var start_color_hover = '#' + hex;
 				var end_color_hover = jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_end_color_hover_default ?>";
-				jQuery("#button-hover").css("background-color", start_color_hover);
-				jQuery("#button-hover").css("background", "linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
-				jQuery("#button-hover").css("background", "-moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
-				jQuery("#button-hover").css("background", "-o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
-				jQuery("#button-hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "))");
-				jQuery("#button-hover").css("-pie-background", "linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
-				jQuery("#button-hover").css("position", "relative");
-				jQuery("#button-hover").css("behavior", "url('<?php echo MAXBUTTONS_PLUGIN_URL ?>/pie/PIE.htc')");
+
+				var style = jQuery("#button-hover").attr("style");
+				style += " background-color: " + start_color_hover + ";";
+				style += " background: linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ");";
+				style += " background: -moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ");";
+				style += " background: -o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ");";
+				style += " background: -webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "));";
+				style += " -pie-background: linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ");";
+				style += " position: relative;";
+				style += " behavior: url('<?php echo MAXBUTTONS_PLUGIN_URL ?>/pie/PIE.htc');";
+				jQuery("#button-hover").attr("style", style);
 				
 				// Need this so that the normal color doesn't change when the hover color changes
 				var start_color = jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_default ?>";
 				var end_color = jQuery("#<?php echo $maxbutton_gradient_end_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_end_color_key ?>").val() : "<?php echo $maxbutton_gradient_end_color_default ?>";
-				jQuery("#button-normal").css("background-color", start_color);
-				jQuery("#button-normal").css("background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#button-normal").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#button-normal").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#button-normal").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
+
+				style = jQuery("#button-normal").attr("style");
+				style += " background-color: " + start_color + ";";
+				style += " background: linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ");";
+				style += " background: -moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ");";
+				style += " background: -o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ");";
+				style += " background: -webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "));";
+				jQuery("#button-normal").attr("style", style);
 			}
 		});
 	}
@@ -707,23 +719,29 @@ function maxbuttons_strip_px($value) {
 				
 				var start_color = jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_default ?>";
 				var end_color = '#' + hex;
-				jQuery("#button-normal").css("background-color", start_color);
-				jQuery("#button-normal").css("background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#button-normal").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#button-normal").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#button-normal").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
-				jQuery("#button-normal").css("-pie-background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#button-normal").css("position", "relative");
-				jQuery("#button-normal").css("behavior", "url('<?php echo MAXBUTTONS_PLUGIN_URL ?>/pie/PIE.htc')");
+				
+				var style = jQuery("#button-normal").attr("style");
+				style += " background-color: " + start_color + ";";
+				style += " background: linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ");";
+				style += " background: -moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ");";
+				style += " background: -o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ");";
+				style += " background: -webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "));";
+				style += " -pie-background: linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ");";
+				style += " position: relative;";
+				style += " behavior: url('<?php echo MAXBUTTONS_PLUGIN_URL ?>/pie/PIE.htc');";
+				jQuery("#button-normal").attr("style", style);
 				
 				// Need this so that the hover color doesn't change when the normal color changes
 				var start_color_hover = jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_hover_default ?>";
 				var end_color_hover = jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_end_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_end_color_hover_default ?>";
-				jQuery("#button-hover").css("background-color", start_color_hover);
-				jQuery("#button-hover").css("background", "linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
-				jQuery("#button-hover").css("background", "-moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
-				jQuery("#button-hover").css("background", "-o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
-				jQuery("#button-hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "))");
+
+				style = jQuery("#button-hover").attr("style");
+				style += " background-color: " + start_color_hover + ";";
+				style += " background: linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ");";
+				style += " background: -moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ");";
+				style += " background: -o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ");";
+				style += " background: -webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "));";
+				jQuery("#button-hover").attr("style", style);
 			}
 		});
 	}
@@ -740,23 +758,29 @@ function maxbuttons_strip_px($value) {
 				
 				var start_color_hover = jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_hover_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_hover_default ?>";
 				var end_color_hover = '#' + hex;
-				jQuery("#button-hover").css("background-color", start_color_hover);
-				jQuery("#button-hover").css("background", "linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
-				jQuery("#button-hover").css("background", "-moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
-				jQuery("#button-hover").css("background", "-o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
-				jQuery("#button-hover").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "))");
-				jQuery("#button-hover").css("-pie-background", "linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ")");
-				jQuery("#button-hover").css("position", "relative");
-				jQuery("#button-hover").css("behavior", "url('<?php echo MAXBUTTONS_PLUGIN_URL ?>/pie/PIE.htc')");
+				
+				var style = jQuery("#button-hover").attr("style");
+				style += " background-color: " + start_color_hover + ";";
+				style += " background: linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ");";
+				style += " background: -moz-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ");";
+				style += " background: -o-linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ");";
+				style += " background: -webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color_hover + "), color-stop(1, " + end_color_hover + "));";
+				style += " -pie-background: linear-gradient(" + start_color_hover + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color_hover + ");";
+				style += " position: relative;";
+				style += " behavior: url('<?php echo MAXBUTTONS_PLUGIN_URL ?>/pie/PIE.htc');";
+				jQuery("#button-hover").attr("style", style);
 				
 				// Need this so that the normal color doesn't change when the hover color changes
 				var start_color = jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_start_color_key ?>").val() : "<?php echo $maxbutton_gradient_start_color_default ?>";
 				var end_color = jQuery("#<?php echo $maxbutton_gradient_end_color_key ?>").val() != "" ? jQuery("#<?php echo $maxbutton_gradient_end_color_key ?>").val() : "<?php echo $maxbutton_gradient_end_color_default ?>";
-				jQuery("#button-normal").css("background-color", start_color);
-				jQuery("#button-normal").css("background", "linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#button-normal").css("background", "-moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#button-normal").css("background", "-o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ")");
-				jQuery("#button-normal").css("background", "-webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "))");
+
+				style = jQuery("#button-normal").attr("style");
+				style += " background-color: " + start_color + ";";
+				style += " background: linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ");";
+				style += " background: -moz-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ");";
+				style += " background: -o-linear-gradient(" + start_color + " <?php echo $maxbutton_gradient_stop_display ?>%, " + end_color + ");";
+				style += " background: -webkit-gradient(linear, left top, left bottom, color-stop(.<?php echo $maxbutton_gradient_stop_display ?>, " + start_color + "), color-stop(1, " + end_color + "));";
+				jQuery("#button-normal").attr("style", style);
 			}
 		});
 	}
