@@ -4,7 +4,11 @@ $maxbuttons_border_styles = array(
 	'dashed' => 'dashed',
 	'dotted' => 'dotted',
 	'double' => 'double',
-	'solid' => 'solid'
+	'groove' => 'groove',
+	'inset'  => 'inset',
+	'outset' => 'outset',
+	'ridge'  => 'ridge',
+	'solid'  => 'solid'
 );
 
 $maxbuttons_container_alignments = array(

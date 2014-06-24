@@ -31,7 +31,8 @@
 			<p><?php _e('If you\'ve created at least one button with MaxButtons, then you know what it can do: Unlimited colors. Rounded corners. Gradients. Text shadowing. Box shadowing.', 'maxbuttons') ?></p>
 			<p><?php printf(__('Now you can take your buttons to the next level with %sMaxButtons Pro%s. The Pro version gives you all the CSS3 goodness and so much more:', 'maxbuttons'), '<a href="http://maxbuttons.com/pricing/?utm_source=wordpressorg&utm_medium=plugin&utm_content=maxbuttons-pro&utm_campaign=mbfree" target="_blank">', '</a>') ?></p>
 			<ul>
-				<li><strong><?php _e('Icon Support', 'maxbuttons') ?></strong> - <?php _e('Like buttons, everyone loves icons. Put them together for near-endless possibilities.', 'maxbuttons') ?></li>
+				<li><strong><?php _e('Font Awesome Integration', 'maxbuttons') ?></strong> - <?php _e('Use icons from the most popular icon font set on the web!', 'maxbuttons') ?></li>
+				<li><strong><?php _e('Icon Support', 'maxbuttons') ?></strong> - <?php _e('Like buttons, everyone loves icons. Use Font Awesome or upload yor own.', 'maxbuttons') ?></li>
 				<li><strong><?php _e('Multi-Line Text', 'maxbuttons') ?></strong> - <?php _e('Use a second a line of text to communicate extra information to your users and customers.', 'maxbuttons') ?></li>
 				<li><strong><?php _e('Google Web Fonts', 'maxbuttons') ?></strong> - <?php _e('Great typography can take your buttons up several notches.', 'maxbuttons') ?></li>
 				<li><strong><?php _e('Button Packs', 'maxbuttons') ?></strong> - <?php _e('Import sets of pre-defined buttons, which you can then use as-is or customize as you need.', 'maxbuttons') ?></li>

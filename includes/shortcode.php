@@ -139,6 +139,7 @@ function maxbuttons_button_shortcode($atts) {
 			$css .= 'border-style: ' . $button->border_style . $important . '; ';
 			$css .= 'border-width: ' . $button->border_width . $important . '; ';
 			$css .= 'border-color: ' . $button->border_color . $important . '; ';
+			$css .= 'box-sizing: border-box' . $important . '; ';
 		
 			if (maxbuttons_border_radius_values_are_equal($button->border_radius_top_left, $button->border_radius_top_right, $button->border_radius_bottom_left, $button->border_radius_bottom_right)) {
 				$css .= 'border-radius: ' . $button->border_radius_top_left . $important . '; ';

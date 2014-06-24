@@ -1,9 +1,9 @@
 === MaxButtons: WordPress Button Generator ===
 Contributors: maxfoundry, arcware, johnbhartley
-Tags: button, buttons, css, css3, css3 icon, call to action, free, icon, icons, link, permalink, plugin, seo, shortcode, shortcodes, shortlinks, wordpress button plugin, wordpress button generator, css3 button plugin, css3 button generator, css wordpress button, css3 wordpress button, social media button, wordpress buttons plugin, wp button creator, create wordpress buttons, button generator, create button icon
+Tags: button, buttons, css, css3, css3 icon, call to action, free, icon, icons, link, permalink, plugin, seo, shortcode, shortcodes, shortlinks, wordpress button plugin, wordpress button generator, css3 button plugin, css3 button generator, css wordpress button, css3 wordpress button, social media button, wordpress buttons plugin, wp button creator, create wordpress buttons, button generator, create button icon, font awesome, fontawesome
 Requires at least: 3.4
-Tested up to: 3.9
-Stable tag: 1.24.2
+Tested up to: 3.9.1
+Stable tag: 1.24.3
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -16,6 +16,7 @@ Create great-looking CSS3 buttons that can be used on any post or page in your W
 * [How to make a WordPress Buttons?](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-make&utm_campaign=plugin) 
 * [What is a WordPress Button Generator?](http://maxbuttons.com/tour/button-editor/?utm_source=wordpress&utm_medium=mbrepo&utm_content=what-is-generator&utm_campaign=plugin)
 * [How do I see my WordPress Buttons?](http://maxbuttons.com/tour/button-list/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-see&utm_campaign=plugin)
+* [What's the best way to use Font Awesome with Wordpress?](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=font-awesome&utm_campaign=plugin)
 
 = Highlights =
 
@@ -129,6 +130,10 @@ Enable the container option and set the alignment property to either "display: i
 </table>`
 
 == Changelog ==
+= 1.24.3 =
+* Small CSS tweaks including adding box-sizing and more border-style options. 
+* Updated some of the notifications.
+
 = 1.24.2 =
 * Fixed button editor editor issue where button background colors weren't being reflected in real-time in Firefox and Internet Explorer.
 

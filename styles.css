@@ -448,6 +448,15 @@
 	text-align: center;
 }
 
+.ads .fa {
+	margin-right: 5px;
+}
+
+.ads a .fa {
+	margin-left: 5px;
+	margin-right: 0;
+}
+
 @media screen and (max-width: 780px) {
 	.ad-wrap {
 		width: 100%;

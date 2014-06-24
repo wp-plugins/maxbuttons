@@ -1,6 +1,10 @@
 <?php
 $result = '';
 
+if(is_admin()) {
+	wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', '', '4.0.1', false);
+}
+
 if ($_POST) {
 	if (isset($_POST['button-id']) && isset($_POST['bulk-action-select'])) {
 		if ($_POST['bulk-action-select'] == 'trash') {
@@ -155,11 +159,10 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
             <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-19&utm_campaign=plugin"><?php _e('Get MaxButtons Pro Now!', 'maxbuttons'); ?></a>
         </div>
         <div class="ads">
-            <h3><?php _e('Everything for $99', 'maxbuttons'); ?></h3>
-            <p><?php _e('Our best deal is the All-In-One package, which gets you everything we have for only $99.', 'maxbuttons'); ?></p>
-            <p><?php _e('This includes MaxButtons Pro, all current button packs and all new button packs for one year.', 'maxbuttons'); ?></p>
-            <p><?php _e('You save more than 85% compared to buying everything individually, regularly valued at over $700.', 'maxbuttons'); ?></p>
-            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-99&utm_campaign=plugin"><?php _e('Get MaxButtons All-In-One', 'maxbuttons'); ?></a>
+            <h3><i class="fa fa-cogs"></i> <?php _e('Font Awesome Support', 'maxbuttons'); ?></h3>
+            <p><?php _e('With MaxButtons Pro you have access to all 439 Font Awesome icons, ready to add to your buttons.', 'maxbuttons'); ?></p>
+            <p><?php _e('Never upload another icon again, just choose an icon and go about your normal button-making business.', 'maxbuttons'); ?></p>
+            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-99&utm_campaign=plugin"><?php _e('Use Font Awesome!', 'maxbuttons'); ?> <i class="fa fa-arrow-circle-right"></i></a>
         </div>
 	</div>
 
