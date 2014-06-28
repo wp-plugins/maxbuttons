@@ -18,6 +18,10 @@ Create great-looking CSS3 buttons that can be used on any post or page in your W
 * [How do I see my WordPress Buttons?](http://maxbuttons.com/tour/button-list/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-see&utm_campaign=plugin)
 * [What's the best way to use Font Awesome with Wordpress?](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=font-awesome&utm_campaign=plugin)
 
+= WordPress Button Sets and Libraries = 
+* [How does a WordPress Button Pack Library help make you more productive?](http://maxbuttons.com/shop/category/button-packs/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-pack-library&utm_campaign=plugin)
+* [Need a large collection of professional vector buttons and icons?](http://www.maxvectors.com)
+
 = Highlights =
 
 * No coding, the plugin takes care of everything
