@@ -44,14 +44,51 @@ if(isset($_POST['alter_charset'])) {
                 <a class="nav-tab nav-tab-active" href=""><?php _e('Settings', 'maxbuttons') ?></a>
     			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-support"><?php _e('Support', 'maxbuttons') ?></a>
     		</h2>
-    		
-    		<h3><?php _e('WARNING: We strongly recommend backing up your database before altering the charset of the MaxButtons table in your WordPress database.', 'maxbuttons') ?></h3>
 
-            <h3><?php _e('The button below should help fix the "foreign character issue" some people experience when using MaxButtons. If you use foreign characters in your buttons and after saving see ????, use this button.', 'maxbuttons') ?></h3>
-    	
-            <form action="" method="POST">
-                <input type="submit" name="alter_charset" value="<?php _e('Change MaxButtons Table To UTF8', 'maxbuttons') ?>" /> <?php echo $response; ?>
-            </form>
+            <div class="option-container">
+                <div class="title"><?php _e('Permissions', 'maxbuttons') ?></div>
+                <div class="inside">
+                    <div class="option-design">
+                        <form method="post" action="options.php">
+                            <?php settings_fields( 'maxbuttons_settings' ); ?>
+                            <div class="label"><?php _e('MaxButtons User Level', 'maxbuttons') ?></div>
+                            <div class="input">
+                                <select name="maxbuttons_user_level">
+                                    <?php $maxbuttons_user_level = get_option('maxbuttons_user_level'); ?>
+                                    <option value="edit_posts" <?php if($maxbuttons_user_level === 'edit_posts') { echo 'selected="selected"'; } ?>>Contributor</option>
+                                    <option value="edit_published_posts" <?php if($maxbuttons_user_level === 'edit_published_posts') { echo 'selected="selected"'; } ?>>Author</option>
+                                    <option value="manage_categories" <?php if($maxbuttons_user_level === 'manage_categories') { echo 'selected="selected"'; } ?>>Editor</option>
+                                    <option value="manage_options" <?php if($maxbuttons_user_level === 'manage_options') { echo 'selected="selected"'; } ?>>Administrator</option>
+                                </select>
+                                <br />
+                                For more details on user roles and permissions, click <a target="_blank" href="http://codex.wordpress.org/Creating_Options_Pages">here</a>.
+                                <?php submit_button(); ?>
+                            </div>
+                        </form>
+                            
+                            
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="option-container">
+                <div class="title"><?php _e('UTF8 Table Fix', 'maxbuttons') ?></div>
+                <div class="inside">
+                    <div class="option-design">
+                        <h3 class="alert"><?php _e('WARNING: We strongly recommend backing up your database before altering the charset of the MaxButtons table in your WordPress database.', 'maxbuttons') ?></h3>
+
+                        <h3><?php _e('The button below should help fix the "foreign character issue" some people experience when using MaxButtons. If you use foreign characters in your buttons and after saving see ????, use this button.', 'maxbuttons') ?></h3>
+                        
+                        <form action="" method="POST">
+                            <input type="submit" name="alter_charset" class="button-primary" value="<?php _e('Change MaxButtons Table To UTF8', 'maxbuttons') ?>" /> <?php echo $response; ?>
+                        </form>
+                            
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+    		
         </div>
         <div class="ad-wrap">
         <div class="ads">

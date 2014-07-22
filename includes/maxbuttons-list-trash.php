@@ -91,7 +91,9 @@ $published_buttons_count = maxbuttons_get_published_buttons_count();
 			<span class="spacer"></span>
 			<a class="nav-tab nav-tab-active" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list"><?php _e('Buttons', 'maxbuttons') ?></a>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-pro"><?php _e('Go Pro', 'maxbuttons') ?></a>
+			<?php if(current_user_can('manage_options')) { ?>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-support"><?php _e('Support', 'maxbuttons') ?></a>
+			<?php } ?>
 		</h2>
 
 		<div class="form-actions">

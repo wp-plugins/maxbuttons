@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, johnbhartley
 Tags: button, buttons, css, css3, css3 icon, call to action, free, icon, icons, link, permalink, plugin, seo, shortcode, shortcodes, shortlinks, wordpress button plugin, wordpress button generator, css3 button plugin, css3 button generator, css wordpress button, css3 wordpress button, social media button, wordpress buttons plugin, wp button creator, create wordpress buttons, button generator, create button icon, font awesome, fontawesome
 Requires at least: 3.4
 Tested up to: 3.9.1
-Stable tag: 1.24.3
+Stable tag: 1.25.0
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -18,9 +18,11 @@ Create great-looking CSS3 buttons that can be used on any post or page in your W
 * [How do I see my WordPress Buttons?](http://maxbuttons.com/tour/button-list/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-see&utm_campaign=plugin)
 * [What's the best way to use Font Awesome with Wordpress?](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=font-awesome&utm_campaign=plugin)
 
-= WordPress Button Sets and Libraries = 
-* [How does a WordPress Button Pack Library help make you more productive?](http://maxbuttons.com/shop/category/button-packs/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-pack-library&utm_campaign=plugin)
-* [Need a large collection of professional vector buttons and icons?](http://www.maxvectors.com)
+
+= WordPress Button Pack Libraries =
+
+* [How do Button Pack libraries make me and my firm more effective?](http://www.maxbuttons.com/shop/category/button-packs/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-create&utm_campaign=plugin)
+* [What is a good Vector Icon Library to use with MaxButtons Pro?](http://maxvectors.com/)
 
 = Highlights =
 
@@ -134,6 +136,9 @@ Enable the container option and set the alignment property to either "display: i
 </table>`
 
 == Changelog ==
+= 1.25.0 =
+* Added Permissions so more than admin can use the buttons if desired.
+
 = 1.24.3 =
 * Small CSS tweaks including adding box-sizing and more border-style options. 
 * Updated some of the notifications.
