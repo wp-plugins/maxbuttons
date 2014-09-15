@@ -908,7 +908,7 @@ function maxbuttons_strip_px($value) {
 			
 			<div class="message">
 				<?php _e('To use this button, place the following shortcode anywhere in your site content:', 'maxbuttons') ?>
-				<strong>[maxbutton id="<?php echo $button_id ?>"]</strong>
+				<strong>[maxbutton id="<?php echo $button_id ?>"]</strong> or <strong>[maxbutton name="<?php echo $maxbutton_name_value ?>"]</strong> 
 			</div>
 			
 			<div class="option-container">

@@ -3,6 +3,7 @@ add_shortcode('maxbutton', 'maxbuttons_button_shortcode');
 function maxbuttons_button_shortcode($atts) {
 	extract(shortcode_atts(array(
 		'id' => '',
+		'name' => '',
 		'text' => '',
 		'url' => '',
 		'window' => '',
@@ -13,10 +14,15 @@ function maxbuttons_button_shortcode($atts) {
 		'exclude' => ''
 	), $atts));
 	
+	$button_name = "{$name}";
 	$button_id = "{$id}";
 	
-	if ($button_id != '') {
-		$button = maxbuttons_get_button($button_id);
+	if ($button_id != '' || $button_name != '') {
+		if($button_name != '') {
+			$button = maxbuttons_get_button($button_name);
+		} else {
+			$button = maxbuttons_get_button($button_id);
+		}
 		
 		if (isset($button)) {
 			// If we're not in the admin and the button is in the trash, just return nothing

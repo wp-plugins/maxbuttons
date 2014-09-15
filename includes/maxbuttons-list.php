@@ -129,7 +129,8 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
 									<p><?php echo $b->description ?></p>
 								</td>
 								<td>
-									[maxbutton id="<?php echo $b->id ?>"]
+									[maxbutton id="<?php echo $b->id ?>"]<br />
+									[maxbutton name="<?php echo $b->name ?>"]
 								</td>
 								<td>
 									<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $b->id ?>"><?php _e('Edit', 'maxbuttons') ?></a>

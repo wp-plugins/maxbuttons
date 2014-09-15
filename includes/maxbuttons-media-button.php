@@ -26,13 +26,16 @@ global $pagenow;
 
 			<p><?php _e('Select a button from the list below to place the button shortcode in the editor.', 'maxbuttons') ?></p>
 			
-			<table cellpadding="5" cellspacing="5" width="100%">
+			<table cellpadding="10" cellspacing="0" width="100%">
 			<?php foreach ($published_buttons as $button) { ?>
 				<tr>
-					<td>
+					<td style="border-bottom: 1px solid #ccc; padding: 20px 0;">
 						<a href="#" onclick="insertButtonShortcode(<?php echo $button->id ?>); return false;"><?php _e('Insert This Button', 'maxbuttons') ?></a> <span class="raquo">&raquo;</span>
+						<?php if($button->description != '') {
+							echo '<p style="margin: 0; font-size: 11px;"><strong>Description: </strong> ' . $button->description . '</p>';
+						} ?>
 					</td>
-					<td style="padding: 10px 0px 10px 0px;">
+					<td style="border-bottom: 1px solid #ccc; padding: 20px 0;">
 						<?php echo do_shortcode('[maxbutton id="' . $button->id . '" externalcss="false" ignorecontainer="true"]') ?>
 					</td>
 				</tr>

@@ -2,8 +2,8 @@
 Contributors: maxfoundry, arcware, johnbhartley
 Tags: button, buttons, css, css3, css3 icon, call to action, free, icon, icons, link, permalink, plugin, seo, shortcode, shortcodes, shortlinks, wordpress button plugin, wordpress button generator, css3 button plugin, css3 button generator, css wordpress button, css3 wordpress button, social media button, wordpress buttons plugin, wp button creator, create wordpress buttons, button generator, create button icon, font awesome, fontawesome
 Requires at least: 3.4
-Tested up to: 3.9.1
-Stable tag: 1.25.0
+Tested up to: 4.0
+Stable tag: 1.26.0
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -56,14 +56,14 @@ And the best part is that you can get this awesome [CSS3 button generator](http:
 1. Click the Add New button.
 1. Fill out and select the options needed to build your button.
 1. Once you're ready, click Save.
-1. A shortcode will be generated (ex: [maxbutton id="17"]).
+1. A shortcode will be generated (ex: [maxbutton id="17"] or [maxbutton name="My Button Name"]).
 1. Use the shortcode anywhere in your content.
 
 You can also pass the button text and URL as parameters in the shortcode, giving you even greater flexibility. For example, if you want to create a set of buttons that look exactly the same, except for the text and URL, you could do something like this:
 
 [maxbutton id="17" text="Search Google" url="http://google.com"]
 
-[maxbutton id="17" text="Search Yahoo" url="http://yahoo.com"]
+[maxbutton name="MaxButtons Button Name" text="Search Yahoo" url="http://yahoo.com"]
 
 Another parameter you can give the shortcode is window, which tells the button whether or not to open the URL in a new window (by default the button opens the URL in the current window). To do so you always give the window parameter the value "new", shown below. Anything else will open the button URL in the current window.
 
@@ -102,7 +102,7 @@ For manual installation:
 
 = How do I use the shortcode in a sidebar/widget? =
 
-Starting with version 1.4.0 widget support is built-in, so all you have to do is add the button shortcode to your widget (ex: [maxbutton id="17"]). Prior to version 1.4.0 you had to enable widget shortcode support yourself, as described in [this forum post](http://wordpress.org/support/topic/how-to-make-shortcodes-work-in-a-widget).
+Starting with version 1.4.0 widget support is built-in, so all you have to do is add the button shortcode to your widget (ex: [maxbutton id="17"] or [maxbutton name="MaxButtons Button Name"]). Prior to version 1.4.0 you had to enable widget shortcode support yourself, as described in [this forum post](http://wordpress.org/support/topic/how-to-make-shortcodes-work-in-a-widget).
 
 = How can I add the shortcode to my post/page template? =
 
@@ -115,6 +115,7 @@ Try enabling the container and setting its margin options. You could also fix th
 
 `<div style="margin: 10px 10px 10px 10px;">
     <?php echo do_shortcode('[maxbutton id="17"]'); ?>
+    <?php echo do_shortcode('[maxbutton name="MaxButtons Button Name"]'); ?>
 </div>`
 
 Then adjust the margin values as needed (the order is: top, right, bottom, left).
@@ -136,6 +137,10 @@ Enable the container option and set the alignment property to either "display: i
 </table>`
 
 == Changelog ==
+= 1.26.0 =
+* Placed button description in ThickBox when opened in Content Editor
+* Added ability to get shortcode by button name along with button id
+
 = 1.25.0 =
 * Added Permissions so more than admin can use the buttons if desired.
 
