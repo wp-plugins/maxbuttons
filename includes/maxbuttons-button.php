@@ -2,9 +2,11 @@
 include_once 'arrays.php';
 include_once 'constants.php';
 
-if (isset($_GET['id']) && $_GET['id'] != '') {
+if (isset($_GET['id']) && $_GET['id'] != '' && intval($_GET['id']) != 0) {
 	$button = maxbuttons_get_button($_GET['id']);
-}
+} elseif(isset($_GET['id'])) {
+	die();
+} else {}
 
 $maxbutton_name_value = isset($button) ? $button->name : '';
 $maxbutton_description_value = isset($button) ? $button->description : '';
@@ -193,8 +195,11 @@ function maxbuttons_strip_px($value) {
 
 <script type="text/javascript">
 	<?php if ($redirect == true) { ?>
+		<?php if(intval($button_id != 0)) { ?>
 		window.location = "<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $button_id ?>";
-	<?php } ?>
+	<?php } else {
+		die();
+	} } ?>
 	
 	jQuery(document).ready(function() {		
 		<?php if (isset($_GET['id']) && $_GET['id'] > 0) { ?>
