@@ -3,7 +3,7 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
 Description: The best WordPress button generator. This is the free version; the Pro version <a href="http://maxbuttons.com/?ref=mbfree">can be found here</a>.
-Version: 1.26.1
+Version: 1.27.0
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -14,10 +14,12 @@ maxbuttons_set_global_paths();
 maxbuttons_set_activation_hooks();
 
 $maxbuttons_installed_version = get_option('MAXBUTTONS_VERSION_KEY');
-
+global $maxbuttons_css;  // defer output of css to footer
+$maxbuttons_css = array(); 
+	
 function maxbuttons_set_global_paths() {
 	define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-	define('MAXBUTTONS_VERSION_NUM', '1.26.1');
+	define('MAXBUTTONS_VERSION_NUM', '1.27.0');
 	define('MAXBUTTONS_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 	define('MAXBUTTONS_PLUGIN_URL', plugins_url() . '/' . MAXBUTTONS_PLUGIN_NAME);
 }
@@ -216,6 +218,23 @@ function maxbuttons_media_button_admin_footer() {
 	require_once 'includes/maxbuttons-media-button.php';
 }
 
+add_action('wp_footer', 'maxbuttons_css'); 
+add_action('admin_footer','maxbuttons_css'); 
+function maxbuttons_css()
+{
+	global $maxbuttons_css; 
+	if (is_array($maxbuttons_css) && count($maxbuttons_css) > 0) 
+	{
+		echo "<style type='text/css'>"; 
+		foreach($maxbuttons_css as $css)
+		{
+			echo $css; 
+		}
+		echo "</style>"; 
+	}
+
+}
+
 function maxbuttons_create_database_table() {
 	global $maxbuttons_installed_version;
 	
@@ -268,11 +287,11 @@ function maxbuttons_create_database_table() {
 				gradient_end_opacity_hover VARCHAR(3),
 				new_window VARCHAR(10) NULL,
 				container_enabled VARCHAR(5) NULL,
-				container_width VARCHAR(5) NULL,
-				container_margin_top VARCHAR(5) NULL,
-				container_margin_right VARCHAR(5) NULL,
-				container_margin_bottom VARCHAR(5) NULL,
-				container_margin_left VARCHAR(5) NULL,
+				container_width VARCHAR(7) NULL,
+				container_margin_top VARCHAR(7) NULL,
+				container_margin_right VARCHAR(7) NULL,
+				container_margin_bottom VARCHAR(7) NULL,
+				container_margin_left VARCHAR(7) NULL,
 				container_alignment VARCHAR(25) NULL,
 				container_center_div_wrap_enabled VARCHAR(5) NULL,
 				nofollow VARCHAR(5) NULL,

@@ -1,9 +1,9 @@
 === MaxButtons: WordPress Button Generator ===
 Contributors: maxfoundry, arcware, johnbhartley
-Tags: button, buttons, css, css3, css3 icon, call to action, free, icon, icons, link, permalink, plugin, seo, shortcode, shortcodes, shortlinks, wordpress button plugin, wordpress button generator, css3 button plugin, css3 button generator, css wordpress button, css3 wordpress button, social media button, wordpress buttons plugin, wp button creator, create wordpress buttons, button generator, create button icon, font awesome, fontawesome
+Tags: button, buttons, css, css3, css3 icon, css button, rounded, call to action, free, icon, icons, link, permalink, plugin, seo, shortcode, shortcodes, shortlinks, wordpress button plugin, wordpress button generator, css3 button plugin, gradient, css3 button generator, css wordpress button, css3 wordpress button, social media button, wordpress buttons plugin, wp button creator, create wordpress buttons, button generator, create button icon, font awesome, fontawesome
 Requires at least: 3.4
 Tested up to: 4.0
-Stable tag: 1.26.1
+Stable tag: 1.27.0
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -137,8 +137,10 @@ Enable the container option and set the alignment property to either "display: i
 </table>`
 
 == Changelog ==
-= 1.26.1 =
-* Fixed an XSS vulnerability on the button creation page
+
+= 1.27.0 =
+* Removed style blocks from being inline, now placed in footer of the page.
+* Updated database to allow for negative margins on container.
 
 = 1.26.0 =
 * Placed button description in ThickBox when opened in Content Editor

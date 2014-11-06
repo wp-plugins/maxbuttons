@@ -83,10 +83,7 @@ function maxbuttons_button_shortcode($atts) {
 			// Initialize the css
 			$css = '';
 			
-			if (!$external_css && !$external_css_preview) {
-				// Add the opening <style> tag
-				$css .= '<style type="text/css">';
-			}
+
 			
 			// The container style
 			if ($button->container_enabled == 'on') {
@@ -207,10 +204,7 @@ function maxbuttons_button_shortcode($atts) {
 				$css .= '}';
 			}
 			
-			if (!$external_css && !$external_css_preview) {
-				// Close the style element
-				$css .= '</style>';
-			}
+
 			
 			if ($external_css_preview) {
 				return $css;
@@ -247,7 +241,10 @@ function maxbuttons_button_shortcode($atts) {
 			
 			// Check to add the css
 			if (!$external_css) {
-				$output .= $css;
+				//$output .= $css;
+				global $maxbuttons_css; 
+				$maxbuttons_css[$button->id] = $css;
+				
 			}
 			
 			if (!$ignore_container) {
