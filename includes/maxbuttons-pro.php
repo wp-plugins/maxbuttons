@@ -21,7 +21,7 @@
 		<h2 class="tabs">
 			<span class="spacer"></span>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list"><?php _e('Buttons', 'maxbuttons') ?></a>
-			<a class="nav-tab nav-tab-active" href=""><?php _e('Go Pro', 'maxbuttons') ?></a>
+			<a class="nav-tab nav-tab-active" href=""><?php _e('Upgrade To Pro', 'maxbuttons') ?></a>
 			<?php if(current_user_can('manage_options')) { ?>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-settings"><?php _e('Settings', 'maxbuttons') ?></a>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-support"><?php _e('Support', 'maxbuttons') ?></a>

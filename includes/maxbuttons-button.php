@@ -896,7 +896,7 @@ function maxbuttons_strip_px($value) {
 		<h2 class="tabs">
 			<span class="spacer"></span>
 			<a class="nav-tab nav-tab-active" href=""><?php _e('Button', 'maxbuttons') ?></a>
-			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-pro"><?php _e('Go Pro', 'maxbuttons') ?></a>
+			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-pro"><?php _e('Upgrade To Pro', 'maxbuttons') ?></a>
 			<?php if(current_user_can('manage_options')) { ?>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-settings"><?php _e('Settings', 'maxbuttons') ?></a>
 			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-support"><?php _e('Support', 'maxbuttons') ?></a>
@@ -956,7 +956,7 @@ function maxbuttons_strip_px($value) {
 					</div>
 					
 					<div class="option-design">
-						<div class="label"><?php _e('Open in New Window', 'maxbuttons') ?></div>
+						<div class="label"><?php _e('Use target="_blank"', 'maxbuttons') ?></div>
 						<div class="input">
 							<input type="checkbox" id="<?php echo $maxbutton_new_window_key ?>" name="<?php echo $maxbutton_new_window_key ?>" <?php if ($maxbutton_new_window_value == 'on') { echo 'checked="checked"'; } else { echo ''; } ?>>
 						</div>
