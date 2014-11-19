@@ -457,6 +457,51 @@
 	margin-right: 0;
 }
 
+#maxbuttons .rss-feed {
+	overflow: hidden;
+	clear: both;
+	margin-bottom: 20px;
+}
+
+#maxbuttons .rss-feed li {
+	width: 32%;
+	margin-right: 2%;
+	float: left;
+	margin-bottom: 2%;
+}
+
+#maxbuttons .rss-feed li:nth-child(3n) {
+	margin-right: 0;
+}
+
+#maxbuttons .rss-feed li a {
+	background: #fff;
+	width: 100%;
+	display: block;
+	padding: 10px;
+	box-sizing: border-box;
+	border: 1px solid #bbb;
+	min-height: 100px;
+	text-decoration: none;
+	transition: all 200ms;
+	border-radius: 2px;
+}
+
+#maxbuttons .rss-feed li a span {
+	color: #2ea2cc;
+	font-weight: bold;
+	font-size: 1.2em;
+	line-height: 1.5em;
+}
+
+#maxbuttons .rss-feed li a:hover {
+	background: #f9f9f9;
+}
+
+#maxbuttons .rss-feed li a:hover span {
+	color: #0074a2;
+}
+
 @media screen and (max-width: 780px) {
 	.ad-wrap {
 		width: 100%;

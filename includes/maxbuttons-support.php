@@ -151,6 +151,41 @@ function check_charset() {
     		
     		<h4><?php printf(__('All support is handled through the %sSupport Forums%s.', 'maxbuttons'), '<a href="http://wordpress.org/support/plugin/maxbuttons" target="_blank">', '</a>') ?></h4>
     		
+            <div class="rss-feed">
+              <h3><?php _e('Latest Support Questions', 'maxbuttons'); ?></h3>
+                  <?php
+                   
+                      $content = file_get_contents('https://wordpress.org/support/rss/plugin/maxbuttons');
+                      $x = new SimpleXmlElement($content);
+                      // echo '<pre>';
+                      // var_dump($x);
+                      // echo '</pre>';
+                       
+                      echo '<ul >';
+                      $i = 0;
+                      foreach($x->channel->item as $entry) {
+                          if(strpos($entry->title, 'johnbhartley') === false && strpos($entry->title, 'Bas Schuiling') === false) {
+                              $title = $entry->title;
+                              $title = explode(" ", $title);
+                              $title = array_slice($title, 7);
+                              $time = $entry->pubDate;
+                              $time = substr($time, 0, -9);
+                              $support_title = '';
+                              foreach($title as $word) {
+                                  $word = str_replace("\"", "", $word);
+                                  $support_title .= $word . ' ';
+                              }
+                              $support_title = trim($support_title);
+                              echo '<li><a href="' . $entry->link . '" target="_blank" title="' . $support_title . '"><span>' . $support_title . '</span><br />' . $time . '</a></li>';
+                              $i++;
+                              if($i == 9) break;
+                          }
+                      }
+                      echo '</ul>';
+                  
+                  ?>
+            </div>
+
     		<h4><?php _e('You may be asked to provide the information below to help troubleshoot your issue.', 'maxbuttons') ?></h4>
     	
     		<textarea class="system-info" readonly="readonly" wrap="off">
@@ -201,6 +236,7 @@ foreach ($plugins as $plugin_path => $plugin) {
 ?>
 ----- End System Info -----
 		  </textarea>
+          
         </div>
         <div class="ad-wrap">
         <div class="ads">
