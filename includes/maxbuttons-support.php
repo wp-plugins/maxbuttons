@@ -255,7 +255,7 @@ foreach ($plugins as $plugin_path => $plugin) {
         </div>
         <div class="ads">
             <h3><i class="fa fa-cogs"></i> <?php _e('Font Awesome Support', 'maxbuttons'); ?></h3>
-            <p><?php _e('With MaxButtons Pro you have access to all 439 Font Awesome icons, ready to add to your buttons.', 'maxbuttons'); ?></p>
+            <p><?php _e('With MaxButtons Pro you have access to all 479 Font Awesome icons, ready to add to your buttons.', 'maxbuttons'); ?></p>
             <p><?php _e('Never upload another icon again, just choose an icon and go about your normal button-making business.', 'maxbuttons'); ?></p>
             <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-99&utm_campaign=plugin"><?php _e('Use Font Awesome!', 'maxbuttons'); ?> <i class="fa fa-arrow-circle-right"></i></a>
         </div>

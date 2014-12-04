@@ -8,7 +8,7 @@
 			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/mb-32.png" alt="MaxButtons" /></a>
 		</div>
 		
-		<h2 class="title"><?php _e('MaxButtons: Go Pro', 'maxbuttons') ?></h2>
+		<h2 class="title"><?php _e('MaxButtons: Upgrade To Pro', 'maxbuttons') ?></h2>
 		
 		<div class="logo">
 			<?php _e('Brought to you by', 'maxbuttons') ?>
