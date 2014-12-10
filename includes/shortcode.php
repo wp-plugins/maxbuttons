@@ -262,9 +262,9 @@ function maxbuttons_button_shortcode($atts) {
 			
 			// If no button url then don't output the href
 			if ($button_url == '') {
-				$output .= '<a class="maxbutton-' . $button->id . '">' . $button_text . '</a>';
+				$output .= '<a class="maxbutton-' . $button->id . '">' . do_shortcode($button_text) . '</a>';
 			} else {
-				$output .= '<a class="maxbutton-' . $button->id . '" href="' . $button_url . '" ' . $button_window . ' ' . $button_nofollow . '>' . $button_text . '</a>';
+				$output .= '<a class="maxbutton-' . $button->id . '" href="' . do_shortcode($button_url) . '" ' . $button_window . ' ' . $button_nofollow . '>' . do_shortcode($button_text) . '</a>';
 			}
 			
 			if (!$ignore_container) {
