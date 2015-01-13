@@ -253,6 +253,13 @@ foreach ($plugins as $plugin_path => $plugin) {
             </ul>
             <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-support-sidebar-19&utm_campaign=plugin"><?php _e('Get MaxButtons Pro Now!', 'maxbuttons'); ?></a>
         </div>
+        
+        <div class="ads">
+            <h3><?php _e('Easy WordPress Galleries', 'maxbuttons'); ?></h3>
+            <p><?php _e('Download our free WordPress Gallery plugin MaxGalleria!  Add-ons for Albums, Videos, and Image Sliders.', 'maxbuttons'); ?></p>
+            <a class="button-primary" href="https://wordpress.org/plugins/maxgalleria/"><?php _e('Get MaxGalleria Now!', 'maxbuttons'); ?></a>
+        </div>
+        
         <div class="ads">
             <h3><i class="fa fa-cogs"></i> <?php _e('Font Awesome Support', 'maxbuttons'); ?></h3>
             <p><?php _e('With MaxButtons Pro you have access to all 479 Font Awesome icons, ready to add to your buttons.', 'maxbuttons'); ?></p>
