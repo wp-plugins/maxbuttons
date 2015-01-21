@@ -21,6 +21,7 @@ $maxbuttons_container_alignments = array(
 $maxbuttons_font_families = array(
 	'' => '',
 	'Arial' => 'Arial',
+	'Courier New' => 'Courier New',
 	'Georgia' => 'Georgia',
 	'Tahoma' => 'Tahoma',
 	'Times New Roman' => 'Times New Roman',
