@@ -30,9 +30,35 @@ if (isset($_GET['message']) && $_GET['message'] == '1') {
 	$result = __('Moved 1 button to the trash.', 'maxbuttons');
 }
 
+
+$orderby = (isset($_GET["orderby"])) ? $_GET["orderby"] : '';
+$order = (isset($_GET["order"])) ? $_GET["order"] : ''; 
+
+
+if ($order == '' || $order == 'DESC') 
+{
+	$order = "ASC"; 
+	$link_order = "ASC";
+}
+else
+{
+ 	
+	$link_order = "DESC"; 
+}	
+ 
+
+$sort_url = add_query_arg(array(
+					"orderby" => "title",
+					"order" => $link_order
+				)
+			);
+
+
 $published_buttons = maxbuttons_get_published_buttons();
 $published_buttons_count = maxbuttons_get_published_buttons_count();
 $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
+
+
 ?>
 
 <script type="text/javascript">
@@ -109,7 +135,11 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
 						<tr>
 							<th><input type="checkbox" name="bulk-action-all" id="bulk-action-all" /></th>
 							<th><?php _e('Button', 'maxbuttons') ?></th>
-							<th><?php _e('Name and Description', 'maxbuttons') ?></th>
+				<th style="width: 200px" class='manage-column column-name sortable <?php echo strtolower($link_order) ?>'>
+				<a style="padding-left: 0px" href="<?php echo $sort_url ?>">
+							<span><?php _e('Name and Description', 'maxbuttons') ?></span>							
+							<span class="sorting-indicator"></span>
+								</a></th>
 							<th><?php _e('Shortcode', 'maxbuttons') ?></th>
 							<th><?php _e('Actions', 'maxbuttons') ?></th>
 						</tr>

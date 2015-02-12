@@ -68,9 +68,6 @@ if(isset($_POST['alter_charset'])) {
 
                             </div>
  
-      
-                            
-                            
                         <div class="clear"></div>
                     </div><!-- option-design --> 
                                  	<?php 
