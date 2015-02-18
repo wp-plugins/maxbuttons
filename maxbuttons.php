@@ -3,11 +3,11 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
 Description: The best WordPress button generator. This is the free version; the Pro version <a href="http://maxbuttons.com/?ref=mbfree">can be found here</a>.
-Version: 1.31
+Version: 1.34
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
-Copyright 2014 Max Foundry, LLC (http://maxfoundry.com)
+Copyright 2014-2015 Max Foundry, LLC (http://maxfoundry.com)
 */
 
 maxbuttons_set_global_paths();
@@ -19,7 +19,7 @@ $maxbuttons_css = array();
 	
 function maxbuttons_set_global_paths() {
 	define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-	define('MAXBUTTONS_VERSION_NUM', '1.31');
+	define('MAXBUTTONS_VERSION_NUM', '1.34');
 	define('MAXBUTTONS_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 	define('MAXBUTTONS_PLUGIN_URL', plugins_url() . '/' . MAXBUTTONS_PLUGIN_NAME);
 }
@@ -107,6 +107,7 @@ function maxbuttons_plugin_row_meta($links, $file) {
 add_action( 'admin_init', 'maxbuttons_register_settings' );
 function maxbuttons_register_settings() {
 	register_setting( 'maxbuttons_settings', 'maxbuttons_user_level' );
+	register_setting( 'maxbuttons_settings', 'maxbuttons_noshowtinymce' );
 }
 
 add_action('admin_menu', 'maxbuttons_admin_menu');
@@ -201,17 +202,47 @@ add_action('media_buttons_context', 'maxbuttons_media_button');
 function maxbuttons_media_button($context) {
 	global $pagenow, $wp_version;
 	$output = '';
+	// options 
+	if (get_option('maxbuttons_noshowtinymce') == 1) return;
 
 	// Only run in post/page creation and edit screens
 	if (in_array($pagenow, array('post.php', 'page.php', 'post-new.php', 'post-edit.php'))) {
 		$title = __('Add Button', 'maxbuttons');
 		$icon = MAXBUTTONS_PLUGIN_URL . '/images/mb-16.png';
 		$img = '<span class="wp-media-buttons-icon" style="background-image: url(' . $icon . '); width: 16px; height: 16px; margin-top: 1px;"></span>';
-		$output = '<a href="#TB_inline?width=640&inlineId=select-maxbutton-container" class="thickbox button" title="' . $title . '" style="padding-left: .4em;">' . $img . ' ' . $title . '</a>';
+		$output = '<a href="#TB_inline?width=&inlineId=select-maxbutton-container" class="maxbutton_thickbox button" title="' . $title . '" style="padding-left: .4em;">' . $img . ' ' . $title . '</a>';
 	}
+	
+	$output .= " <script type='text/javascript'> 
+				   jQuery(document).ready(function($){
+				   	console.log('jquery ready');
+				    $('.maxbutton_thickbox').on('click', fixThickSize);
+				    console.log($('.maxbutton_thickbox'));
+					function fixThickSize(e)
+					{	
+					e.preventDefault();
+					e.stopPropagation(); 
+	
+					var title = e.target.title; 
+					var href = '#TB_inline?width=200&height=460&inlineId=select-maxbutton-container';
+
+					tb_show(title, href);
+	
+					var nw = $('#TB_window').width() - 30 + 'px';
+					console.log(nw);
+					$('#TB_ajaxContent').css('width',nw);
+	
+					return false;
+
+					}			   
+				   
+				   
+				   }); 
+				  </script>";
 
 	return $context . $output;
 }
+
 
 add_action('admin_footer', 'maxbuttons_media_button_admin_footer');
 function maxbuttons_media_button_admin_footer() {
@@ -334,7 +365,17 @@ function maxbuttons_get_button($id) {
 
 function maxbuttons_get_published_buttons() {
 	global $wpdb;
-	return $wpdb->get_results("SELECT * FROM " . maxbuttons_get_buttons_table_name() . " WHERE status <> 'trash'");
+
+	$orderby = (isset($_GET["orderby"])) ? $_GET["orderby"] : '';
+	$order = (isset($_GET["order"])) ? $_GET["order"] : 'ASC'; 
+
+	if ($orderby == 'title')
+	{
+		$order = "ORDER BY name $order"; 
+	}
+	else $order = ''; 
+	
+	return $wpdb->get_results("SELECT * FROM " . maxbuttons_get_buttons_table_name() . " WHERE status <> 'trash' $order ");
 }
 
 function maxbuttons_get_published_buttons_count() {
