@@ -178,7 +178,7 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
 	</div>
 	<div class="ad-wrap">
         <div class="ads">
-            <h3><?php _e('Get MaxButtons Pro for $19', 'maxbuttons'); ?></h3>
+            <h3><?php _e('MaxButtons Pro only $19', 'maxbuttons'); ?></h3>
             <p><?php _e('Do so much more with MB Pro.  Get 2 free buttons packs when you buy.  Just use MBFREE at checkout.', 'maxbuttons'); ?></p>
             <p><strong><?php _e('Some extra features for going Pro:', 'maxbuttons'); ?></strong></p>
             <ul>
@@ -193,7 +193,7 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
         </div>
 
 		<div class="ads">
-            <h3><?php _e('Easy WordPress Galleries', 'maxbuttons'); ?></h3>
+            <h3><?php _e('Get MaxGalleria', 'maxbuttons'); ?></h3>
             <p><?php _e('Download our free WordPress Gallery plugin MaxGalleria!  Add-ons for Albums, Videos, and Image Sliders.', 'maxbuttons'); ?></p>
             <a class="button-primary" href="https://wordpress.org/plugins/maxgalleria/"><?php _e('Get MaxGalleria Now!', 'maxbuttons'); ?></a>
         </div>

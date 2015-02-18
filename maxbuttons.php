@@ -3,7 +3,7 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
 Description: The best WordPress button generator. This is the free version; the Pro version <a href="http://maxbuttons.com/?ref=mbfree">can be found here</a>.
-Version: 1.33
+Version: 1.34
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
@@ -19,7 +19,7 @@ $maxbuttons_css = array();
 	
 function maxbuttons_set_global_paths() {
 	define('MAXBUTTONS_VERSION_KEY', 'maxbuttons_version');
-	define('MAXBUTTONS_VERSION_NUM', '1.33');
+	define('MAXBUTTONS_VERSION_NUM', '1.34');
 	define('MAXBUTTONS_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
 	define('MAXBUTTONS_PLUGIN_URL', plugins_url() . '/' . MAXBUTTONS_PLUGIN_NAME);
 }
@@ -210,8 +210,35 @@ function maxbuttons_media_button($context) {
 		$title = __('Add Button', 'maxbuttons');
 		$icon = MAXBUTTONS_PLUGIN_URL . '/images/mb-16.png';
 		$img = '<span class="wp-media-buttons-icon" style="background-image: url(' . $icon . '); width: 16px; height: 16px; margin-top: 1px;"></span>';
-		$output = '<a href="#TB_inline?width=640&inlineId=select-maxbutton-container" class="thickbox button" title="' . $title . '" style="padding-left: .4em;">' . $img . ' ' . $title . '</a>';
+		$output = '<a href="#TB_inline?width=&inlineId=select-maxbutton-container" class="maxbutton_thickbox button" title="' . $title . '" style="padding-left: .4em;">' . $img . ' ' . $title . '</a>';
 	}
+	
+	$output .= " <script type='text/javascript'> 
+				   jQuery(document).ready(function($){
+				   	console.log('jquery ready');
+				    $('.maxbutton_thickbox').on('click', fixThickSize);
+				    console.log($('.maxbutton_thickbox'));
+					function fixThickSize(e)
+					{	
+					e.preventDefault();
+					e.stopPropagation(); 
+	
+					var title = e.target.title; 
+					var href = '#TB_inline?width=200&height=460&inlineId=select-maxbutton-container';
+
+					tb_show(title, href);
+	
+					var nw = $('#TB_window').width() - 30 + 'px';
+					console.log(nw);
+					$('#TB_ajaxContent').css('width',nw);
+	
+					return false;
+
+					}			   
+				   
+				   
+				   }); 
+				  </script>";
 
 	return $context . $output;
 }
