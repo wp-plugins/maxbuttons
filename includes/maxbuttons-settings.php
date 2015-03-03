@@ -27,7 +27,7 @@ if(isset($_POST['alter_charset'])) {
 			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/mb-32.png" alt="MaxButtons" /></a>
 		</div>
 		
-		<h2 class="title"><?php _e('MaxButtons: Support', 'maxbuttons') ?></h2>
+		<h2 class="title"><?php _e('MaxButtons: Settings', 'maxbuttons') ?></h2>
 		
 		<div class="logo">
 			<?php _e('Brought to you by', 'maxbuttons') ?>
@@ -45,11 +45,14 @@ if(isset($_POST['alter_charset'])) {
     			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-support"><?php _e('Support', 'maxbuttons') ?></a>
     		</h2>
 
+
+
+<form method="post" action="options.php">
             <div class="option-container">
-                <div class="title"><?php _e('Permissions', 'maxbuttons') ?></div>
+                <div class="title"><?php _e('Settings', 'maxbuttons') ?></div>
                 <div class="inside">
                     <div class="option-design">
-                        <form method="post" action="options.php">
+
                             <?php settings_fields( 'maxbuttons_settings' ); ?>
                             <div class="label"><?php _e('MaxButtons User Level', 'maxbuttons') ?></div>
                             <div class="input">
@@ -62,15 +65,25 @@ if(isset($_POST['alter_charset'])) {
                                 </select>
                                 <br />
                                 For more details on user roles and permissions, click <a target="_blank" href="http://codex.wordpress.org/Creating_Options_Pages">here</a>.
-                                <?php submit_button(); ?>
+
                             </div>
-                        </form>
-                            
-                            
+ 
                         <div class="clear"></div>
-                    </div>
-                </div>
+                    </div><!-- option-design --> 
+                                 	<?php 
+                                 	$noshow = get_option('maxbuttons_noshowtinymce'); 
+                                 	//$noshow = $max["noshow_tinymce"]; 
+                                 	?>               
+                     <div class="option-design">
+                        <div class="label"><?php _e("Don't show add button in editor", 'maxbuttons'); ?></div>         
+                       	<div class="input"><input type="checkbox" name="maxbuttons_noshowtinymce" value="1" <?php checked($noshow,1); ?> /></div>
+                                      <div class="clear"></div>
+                     </div>
+             		
+                      <?php submit_button(); ?>
+                </div> <!-- inside --> 
             </div>
+</form>
 
             <div class="option-container">
                 <div class="title"><?php _e('UTF8 Table Fix', 'maxbuttons') ?></div>
