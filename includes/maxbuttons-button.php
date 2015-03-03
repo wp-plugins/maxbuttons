@@ -956,7 +956,7 @@ function maxbuttons_strip_px($value) {
 					</div>
 					
 					<div class="option-design">
-						<div class="label"><?php _e('Use target="_blank"', 'maxbuttons') ?></div>
+						<div class="label"><?php _e('Open in new window', 'maxbuttons') ?></div>
 						<div class="input">
 							<input type="checkbox" id="<?php echo $maxbutton_new_window_key ?>" name="<?php echo $maxbutton_new_window_key ?>" <?php if ($maxbutton_new_window_value == 'on') { echo 'checked="checked"'; } else { echo ''; } ?>>
 						</div>
