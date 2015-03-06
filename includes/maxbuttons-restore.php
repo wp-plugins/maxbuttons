@@ -1,6 +1,8 @@
 <?php
 if (isset($_GET['id']) && $_GET['id'] != '') {
-	maxbuttons_button_restore($_GET['id']);
+	$button = new maxButton();
+	$button->set($_GET['id']);
+	$button->setStatus("publish"); 
 }
 ?>
 <script type="text/javascript">

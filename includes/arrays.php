@@ -1,14 +1,14 @@
 <?php
 $maxbuttons_border_styles = array(
 	'' => '',
-	'dashed' => 'dashed',
-	'dotted' => 'dotted',
-	'double' => 'double',
-	'groove' => 'groove',
-	'inset'  => 'inset',
-	'outset' => 'outset',
-	'ridge'  => 'ridge',
-	'solid'  => 'solid'
+	'dashed' => __('dashed','maxbuttons'),
+	'dotted' => __('dotted','maxbuttons'),
+	'double' => __('double','maxbuttons'),
+	'groove' => __('groove','maxbuttons'),
+	'inset'  => __('inset','maxbuttons'),
+	'outset' => __('outset','maxbuttons'),
+	'ridge'  => __('ridge','maxbuttons'),
+	'solid'  => __('solid','maxbuttons')
 );
 
 $maxbuttons_container_alignments = array(
@@ -21,7 +21,7 @@ $maxbuttons_container_alignments = array(
 $maxbuttons_font_families = array(
 	'' => '',
 	'Arial' => 'Arial',
-	'Courier New' => 'Courier New',
+	'Courier New' => 'Courier New', 
 	'Georgia' => 'Georgia',
 	'Tahoma' => 'Tahoma',
 	'Times New Roman' => 'Times New Roman',
@@ -76,13 +76,13 @@ $maxbuttons_font_sizes = array(
 
 $maxbuttons_font_styles = array(
 	'' => '',
-	'normal' => 'normal',
-	'italic' => 'italic'
+	'normal' => __('normal','maxbuttons'),
+	'italic' => __('italic', 'maxbuttons')
 );
 
 $maxbuttons_font_weights = array(
 	'' => '',
-	'normal' => 'normal',
-	'bold' => 'bold'
+	'normal' => __('normal','maxbuttons'),
+	'bold' =>  __('bold','maxbuttons'), 
 );
 ?>
