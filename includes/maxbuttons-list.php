@@ -1,9 +1,9 @@
 <?php
 $result = '';
 
-if(is_admin()) {
-	wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', '', '4.0.1', false);
-}
+
+$button = new maxButton(); 
+
 
 if ($_POST) {
 	if (isset($_POST['button-id']) && isset($_POST['bulk-action-select'])) {
@@ -11,7 +11,8 @@ if ($_POST) {
 			$count = 0;
 			
 			foreach ($_POST['button-id'] as $id) {
-				maxbuttons_button_move_to_trash($id);
+				$button->set($id);
+				$button->setStatus('trash'); 
 				$count++;
 			}
 			
@@ -30,9 +31,19 @@ if (isset($_GET['message']) && $_GET['message'] == '1') {
 	$result = __('Moved 1 button to the trash.', 'maxbuttons');
 }
 
-$published_buttons = maxbuttons_get_published_buttons();
-$published_buttons_count = maxbuttons_get_published_buttons_count();
-$trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
+$args = array();
+if (isset($_GET["orderby"])) 
+	$args["orderby"] = $_GET["orderby"]; 
+if (isset($_GET["order"])) 
+	$args["order"] = $_GET["order"]; 
+
+
+$published_buttons = $button->getButtons($args);
+$published_buttons_count = count($published_buttons);
+
+$trashed_buttons = $button->getButtons(array("status" => "trash"));
+$trashed_buttons_count = count($trashed_buttons);
+
 ?>
 
 <script type="text/javascript">
@@ -57,28 +68,19 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
 <div id="maxbuttons">
 	<div class="wrap">
 		<div class="icon32">
-			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/mb-32.png" alt="MaxButtons" /></a>
+			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/mb-32.png" alt="MaxButtons" /></a>
 		</div>
 		
 		<h2 class="title"><?php _e('MaxButtons: Button List', 'maxbuttons') ?></h2>
 		
 		<div class="logo">
-			<?php _e('Brought to you by', 'maxbuttons') ?>
-			<a href="http://maxfoundry.com/products/?ref=mbfree" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/max-foundry.png" alt="Max Foundry" /></a>
-			<?php printf(__('Upgrade to MaxButtons Pro today! %sClick Here%s', 'maxbuttons'), '<a href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-upgrade&utm_campaign=plugin">', '</a>' ) ?>
+			<?php do_action("mb-display-logo"); ?> 
+
 		</div>
 		
 		<div class="clear"></div>
 		<div class="main">
-			<h2 class="tabs">
-				<span class="spacer"></span>
-				<a class="nav-tab nav-tab-active" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list"><?php _e('Buttons', 'maxbuttons') ?></a>
-				<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-pro"><?php _e('Upgrade To Pro', 'maxbuttons') ?></a>
-				<?php if(current_user_can('manage_options')) { ?>
-				<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-settings"><?php _e('Settings', 'maxbuttons') ?></a>
-				<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-support"><?php _e('Support', 'maxbuttons') ?></a>
-				<?php } ?>
-			</h2>
+			<?php do_action('mb-display-tabs'); ?> 
 
 			<div class="form-actions">
 				<a class="button-primary" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=button"><?php _e('Add New', 'maxbuttons') ?></a>
@@ -104,40 +106,63 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
 				</select>
 				<input type="submit" class="button" value="<?php _e('Apply', 'maxbuttons') ?>" />
 			
-				<div class="button-list">		
+				<div class="button-list preview-buttons">		
 					<table cellpadding="0" cellspacing="0" width="100%">
 						<tr>
 							<th><input type="checkbox" name="bulk-action-all" id="bulk-action-all" /></th>
 							<th><?php _e('Button', 'maxbuttons') ?></th>
-							<th><?php _e('Name and Description', 'maxbuttons') ?></th>
+							<?php 
+							$link_order = (! isset($_GET["order"]) || $_GET["order"] == "DESC") ? "ASC" : 'DESC';
+							
+							
+							$sort_url = add_query_arg(array(
+								"orderby" => "name",
+								"order" => $link_order
+								));
+							?>
+							<th class='manage-column column-name sortable <?php echo strtolower($link_order) ?>'>
+							<a href="<?php echo $sort_url ?>">
+							<span><?php _e('Name and Description', 'maxbuttons') ?></span>							
+							<span class="sorting-indicator"></span>
+								</a></th>							
+			
+						
 							<th><?php _e('Shortcode', 'maxbuttons') ?></th>
 							<th><?php _e('Actions', 'maxbuttons') ?></th>
 						</tr>
-						<?php foreach ($published_buttons as $b) { ?>
+						<?php foreach ($published_buttons as $b) { 
+								$id = $b["id"]; 
+ 							
+								$button->set($id); 
+						?>
 							<tr>
 								<td valign="center">
-									<input type="checkbox" name="button-id[]" id="button-id-<?php echo $b->id ?>" value="<?php echo $b->id ?>" />
+									<input type="checkbox" name="button-id[]" id="button-id-<?php echo $id ?>" value="<?php echo $id ?>" />
 								</td>
 								<td>
 									<div class="shortcode-container">
-										<?php echo do_shortcode('[maxbutton id="' . $b->id . '" externalcss="false" ignorecontainer="true"]') ?>
+										<?php 
+											//echo do_shortcode('[maxbutton id="' . $id . '" externalcss="false" ignorecontainer="true"]'); 
+										
+										$button->display( array("preview" => true, "preview_part" => "full") ); 
+										?>
 									</div>
 								</td>
 								<td>
-									<a class="button-name" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $b->id ?>"><?php echo $b->name ?></a>
+									<a class="button-name" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $b->id ?>"><?php echo $button->getName() ?></a>
 									<br />
-									<p><?php echo $b->description ?></p>
+									<p><?php echo $button->getDescription() ?></p>
 								</td>
 								<td>
-									[maxbutton id="<?php echo $b->id ?>"]<br />
-									[maxbutton name="<?php echo $b->name ?>"]
+									[maxbutton id="<?php echo $id ?>"]<br />
+									[maxbutton name="<?php echo $button->getName() ?>"]
 								</td>
 								<td>
-									<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $b->id ?>"><?php _e('Edit', 'maxbuttons') ?></a>
+									<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $id ?>"><?php _e('Edit', 'maxbuttons') ?></a>
 									<span class="separator">|</span>
-									<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=copy&id=<?php echo $b->id ?>"><?php _e('Copy', 'maxbuttons') ?></a>
+									<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=copy&id=<?php echo $id ?>"><?php _e('Copy', 'maxbuttons') ?></a>
 									<span class="separator">|</span>
-									<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=trash&id=<?php echo $b->id ?>"><?php _e('Move to Trash', 'maxbuttons') ?></a>
+									<a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=trash&id=<?php echo $id ?>"><?php _e('Move to Trash', 'maxbuttons') ?></a>
 								</td>
 							</tr>
 						<?php } ?>
@@ -147,33 +172,7 @@ $trashed_buttons_count = maxbuttons_get_trashed_buttons_count();
 		</div>
 	</div>
 	<div class="ad-wrap">
-        <div class="ads">
-            <h3><?php _e('Get MaxButtons Pro for $19', 'maxbuttons'); ?></h3>
-            <p><?php _e('Do so much more with MB Pro.  Get 2 free buttons packs when you buy.  Just use MBFREE at checkout.', 'maxbuttons'); ?></p>
-            <p><strong><?php _e('Some extra features for going Pro:', 'maxbuttons'); ?></strong></p>
-            <ul>
-                <li><?php _e('Great Support', 'maxbuttons'); ?></li>
-                <li><?php _e('Pre-Made Button Packs', 'maxbuttons'); ?></li>
-                <li><?php _e('Two Lines of Editable Text', 'maxbuttons'); ?></li>
-                <li><?php _e('Add An Icon To Your Buttons', 'maxbuttons'); ?></li>
-                <li><?php _e('Google Web Fonts', 'maxbuttons'); ?></li>
-                <li><?php _e('Many more benefits!', 'maxbuttons'); ?></li>
-            </ul>
-            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-19&utm_campaign=plugin"><?php _e('Get MaxButtons Pro Now!', 'maxbuttons'); ?></a>
-        </div>
-
-		<div class="ads">
-            <h3><?php _e('Easy WordPress Galleries', 'maxbuttons'); ?></h3>
-            <p><?php _e('Download our free WordPress Gallery plugin MaxGalleria!  Add-ons for Albums, Videos, and Image Sliders.', 'maxbuttons'); ?></p>
-            <a class="button-primary" href="https://wordpress.org/plugins/maxgalleria/"><?php _e('Get MaxGalleria Now!', 'maxbuttons'); ?></a>
-        </div>
-
-        <div class="ads">
-            <h3><i class="fa fa-cogs"></i> <?php _e('Font Awesome Support', 'maxbuttons'); ?></h3>
-            <p><?php _e('With MaxButtons Pro you have access to all 479 Font Awesome icons, ready to add to your buttons.', 'maxbuttons'); ?></p>
-            <p><?php _e('Never upload another icon again, just choose an icon and go about your normal button-making business.', 'maxbuttons'); ?></p>
-            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-99&utm_campaign=plugin"><?php _e('Use Font Awesome!', 'maxbuttons'); ?> <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
+		<?php do_action("mb-display-ads"); ?> 
 	</div>
 
 </div>
