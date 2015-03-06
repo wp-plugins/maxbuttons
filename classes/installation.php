@@ -42,6 +42,11 @@ class maxInstall
 		$old_table = maxButtonsUtils::get_buttons_table_name(true); 
 		$table = maxButtonsUtils::get_buttons_table_name(); 
  	
+ 		if (! self::maxbuttons_database_table_exists($old_table))
+ 		{
+ 			return; 
+ 		}
+ 	
 		$sql = "SELECT id from $table"; 
 		$result = $wpdb->get_results($sql, ARRAY_A); 
 		if(count($result) > 0) 	return; // don't do this if table already has data. 
