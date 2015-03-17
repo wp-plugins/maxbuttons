@@ -45,8 +45,11 @@ abstract class maxBlock
 	*/
 	public function save_fields($data, $post)
 	{
+		if (! isset($this->data[$this->blockname])) 
+			return $data; // this block, not here. 
+			
 		$block = $this->data[$this->blockname]; 
-		 
+		
 		foreach($this->fields as $field => $options) 
 		{
 			$default = (isset($options["default"])) ? $options["default"] : ''; 

@@ -260,7 +260,7 @@
 .colorpicker { 
 	z-index: 500;
 }
-#maxbuttons .message {
+#maxbuttons .mb-message {
 	background-color: #ffffe0;
 	border: solid 1px #e6db55;
 	border-radius: 3px;

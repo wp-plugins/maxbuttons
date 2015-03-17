@@ -124,10 +124,10 @@ class maxButton
 		$this->clear();
 		// check to see if the value passed is NOT numeric. If it is, use title, else assume numeric
 		if($id == 0 && $name != '') {
-			$row = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxButtonsUtils::get_buttons_table_name() . " WHERE name = '%s'", trim($name) ), ARRAY_A);
+			$row = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxButtonsUtils::get_buttons_table_name() . " WHERE name = '%s' and status ='publish'", trim($name) ), ARRAY_A);
 			 
 		} else {
-			$row = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxButtonsUtils::get_buttons_table_name() . " WHERE id = %d", $id), ARRAY_A);
+			$row = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxButtonsUtils::get_buttons_table_name() . " WHERE id = %d and status ='publish'", $id), ARRAY_A);
 		}
 		
  

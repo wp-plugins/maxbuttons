@@ -27,9 +27,6 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 
  
 ?>
-
-
-
 <div id="maxbuttons">
 	<div class="wrap">
 		<div class="icon32">
@@ -57,7 +54,7 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 				<a id="button-delete" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $button_id ?>"><?php _e('Delete Permanently', 'maxbuttons') ?></a>
 			</div>
 			
-			<div class="message">
+			<div class="mb-message">
 				<?php _e('To use this button, place the following shortcode anywhere in your site content:', 'maxbuttons') ?>
 				<strong>[maxbutton id="<?php echo $button_id ?>"]</strong> or <strong>[maxbutton name="<?php echo $button->getName(); ?>"]</strong> 
 			</div>
