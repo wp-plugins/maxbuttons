@@ -11,11 +11,11 @@ function maxbuttons_system_label($label, $value, $spaces_between) {
 	
 	if ($spaces_between > 0) {
 		for ($i = 0; $i < $spaces_between; $i++) {
-			$output .= "&nbsp;";
+			$output .= '&nbsp;';
 		}
 	}
 	
-	return $output . $value . "\r\n ";
+	return $output . $value . "\n";
 }
 
 // http://www.php.net/manual/en/function.get-browser.php#101125.
@@ -101,7 +101,7 @@ function maxbuttons_get_browser() {
 function check_charset() {
     global $maxbuttons_installed_version;
     global $wpdb;
-    $check = "SHOW FULL COLUMNS FROM " . maxButtonsUtils::get_buttons_table_name();
+    $check = "SHOW FULL FROM wp_maxbuttons_buttons";
     $charset = $wpdb->query($check);
     return $charset;
 }
@@ -127,57 +127,64 @@ function check_charset() {
 <div id="maxbuttons">
 	<div class="wrap">
 		<div class="icon32">
-			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>/images/mb-32.png" alt="MaxButtons" /></a>
+			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/mb-32.png" alt="MaxButtons" /></a>
 		</div>
 		
 		<h2 class="title"><?php _e('MaxButtons: Support', 'maxbuttons') ?></h2>
 		
 		<div class="logo">
-			<?php do_action("mb-display-logo"); ?> 
+			<?php _e('Brought to you by', 'maxbuttons') ?>
+			<a href="http://maxfoundry.com/?ref=mbfree" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/max-foundry.png" alt="Max Foundry" /></a>
+			<?php printf(__('Upgrade to MaxButtons Pro today! %sClick Here%s', 'maxbuttons'), '<a href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-support-upgrade&utm_campaign=plugin">', '</a>' ) ?>
 		</div>
 
 		<div class="clear"></div>
         <div class="main">
 		
-			<?php do_action('mb-display-tabs'); ?> 
+    		<h2 class="tabs">
+    			<span class="spacer"></span>
+    			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-controller&action=list"><?php _e('Buttons', 'maxbuttons') ?></a>
+    			<a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-pro"><?php _e('Upgrade To Pro', 'maxbuttons') ?></a>
+                <a class="nav-tab" href="<?php echo admin_url() ?>admin.php?page=maxbuttons-settings"><?php _e('Settings', 'maxbuttons') ?></a>
+    			<a class="nav-tab nav-tab-active" href=""><?php _e('Support', 'maxbuttons') ?></a>
+    		</h2>
     		
-    		<h4><?php printf(__('All support is handled through the %sSupport Forums%s.', 'maxbuttons'), apply_filters("mb-support-link", '<a href="http://wordpress.org/support/plugin/maxbuttons" target="_blank">'), '</a>') ?></h4>
-
-    <div class="rss-feed">
-          <h3><?php _e('Latest Support Questions', 'maxbuttons'); ?></h3>
-              <?php
-               
-                  $content = file_get_contents('https://wordpress.org/support/rss/plugin/maxbuttons');
-                  $x = new SimpleXmlElement($content);
-
+    		<h4><?php printf(__('All support is handled through the %sSupport Forums%s.', 'maxbuttons'), '<a href="http://wordpress.org/support/plugin/maxbuttons" target="_blank">', '</a>') ?></h4>
+    		
+            <div class="rss-feed">
+              <h3><?php _e('Latest Support Questions', 'maxbuttons'); ?></h3>
+                  <?php
                    
-                  echo '<ul >';
-                  $i = 0;
-                  foreach($x->channel->item as $entry) {
-                      if(strpos($entry->title, 'johnbhartley') === false && strpos($entry->title, 'Bas Schuiling') === false) {
-                          $title = $entry->title;
-                          $title = explode(" ", $title);
-                          $title = array_slice($title, 7);
-                          $time = $entry->pubDate;
-                          $time = substr($time, 0, -9);
-                          $support_title = '';
-                          foreach($title as $word) {
-                              $word = str_replace("\"", "", $word);
-                              $support_title .= $word . ' ';
+                      $content = file_get_contents('https://wordpress.org/support/rss/plugin/maxbuttons');
+                      $x = new SimpleXmlElement($content);
+                      // echo '<pre>';
+                      // var_dump($x);
+                      // echo '</pre>';
+                       
+                      echo '<ul >';
+                      $i = 0;
+                      foreach($x->channel->item as $entry) {
+                          if(strpos($entry->title, 'johnbhartley') === false && strpos($entry->title, 'Bas Schuiling') === false) {
+                              $title = $entry->title;
+                              $title = explode(" ", $title);
+                              $title = array_slice($title, 7);
+                              $time = $entry->pubDate;
+                              $time = substr($time, 0, -9);
+                              $support_title = '';
+                              foreach($title as $word) {
+                                  $word = str_replace("\"", "", $word);
+                                  $support_title .= $word . ' ';
+                              }
+                              $support_title = trim($support_title);
+                              echo '<li><a href="' . $entry->link . '" target="_blank" title="' . $support_title . '"><span>' . $support_title . '</span><br />' . $time . '</a></li>';
+                              $i++;
+                              if($i == 9) break;
                           }
-                          $support_title = trim($support_title);
-                          echo '<li><a href="' . $entry->link . '" target="_blank" title="' . $support_title . '"><span>' . $support_title . '</span><br />' . $time . '</a></li>';
-                          $i++;
-                          if($i == 9) break;
                       }
-                  }
-                  echo '</ul>';
-              
-              ?>
+                      echo '</ul>';
+                  
+                  ?>
             </div>
-
-
-
 
     		<h4><?php _e('You may be asked to provide the information below to help troubleshoot your issue.', 'maxbuttons') ?></h4>
     	
@@ -186,7 +193,7 @@ function check_charset() {
 
 <?php echo maxbuttons_system_label('WordPress Version:', get_bloginfo('version'), 4) ?>
 <?php echo maxbuttons_system_label('PHP Version:', PHP_VERSION, 10) ?>
-<?php  echo maxbuttons_system_label('MySQL Version:', mysql_get_server_info(), 8) ?>
+<?php echo maxbuttons_system_label('MySQL Version:', mysql_get_server_info(), 8) ?>
 <?php echo maxbuttons_system_label('Web Server:', $_SERVER['SERVER_SOFTWARE'], 11) ?>
 
 <?php echo maxbuttons_system_label('WordPress URL:', get_bloginfo('wpurl'), 8) ?>
@@ -229,9 +236,36 @@ foreach ($plugins as $plugin_path => $plugin) {
 ?>
 ----- End System Info -----
 		  </textarea>
+          
         </div>
         <div class="ad-wrap">
-     		<?php do_action("mb-display-ads"); ?> 
+        <div class="ads">
+            <h3><?php _e('Get MaxButtons Pro for $19', 'maxbuttons'); ?></h3>
+            <p><?php _e('Do so much more with MB Pro.  Get 2 free buttons packs when you buy.  Just use MBFREE at checkout.', 'maxbuttons'); ?></p>
+            <p><strong><?php _e('Some extra features for going Pro:', 'maxbuttons'); ?></strong></p>
+            <ul>
+                <li><?php _e('Great Support', 'maxbuttons'); ?></li>
+                <li><?php _e('Pre-Made Button Packs', 'maxbuttons'); ?></li>
+                <li><?php _e('Two Lines of Editable Text', 'maxbuttons'); ?></li>
+                <li><?php _e('Add An Icon To Your Buttons', 'maxbuttons'); ?></li>
+                <li><?php _e('Google Web Fonts', 'maxbuttons'); ?></li>
+                <li><?php _e('Many more benefits!', 'maxbuttons'); ?></li>
+            </ul>
+            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-support-sidebar-19&utm_campaign=plugin"><?php _e('Get MaxButtons Pro Now!', 'maxbuttons'); ?></a>
+        </div>
+        
+        <div class="ads">
+            <h3><?php _e('Easy WordPress Galleries', 'maxbuttons'); ?></h3>
+            <p><?php _e('Download our free WordPress Gallery plugin MaxGalleria!  Add-ons for Albums, Videos, and Image Sliders.', 'maxbuttons'); ?></p>
+            <a class="button-primary" href="https://wordpress.org/plugins/maxgalleria/"><?php _e('Get MaxGalleria Now!', 'maxbuttons'); ?></a>
+        </div>
+        
+        <div class="ads">
+            <h3><i class="fa fa-cogs"></i> <?php _e('Font Awesome Support', 'maxbuttons'); ?></h3>
+            <p><?php _e('With MaxButtons Pro you have access to all 479 Font Awesome icons, ready to add to your buttons.', 'maxbuttons'); ?></p>
+            <p><?php _e('Never upload another icon again, just choose an icon and go about your normal button-making business.', 'maxbuttons'); ?></p>
+            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-99&utm_campaign=plugin"><?php _e('Use Font Awesome!', 'maxbuttons'); ?> <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
     </div>
 	</div>
 </div>

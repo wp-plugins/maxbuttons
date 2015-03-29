@@ -129,76 +129,6 @@
 #maxbuttons .gradient-options .option-design .label {
 	width: 190px;
 }
-
-#maxbuttons .media_query { 
-	width: 50%; 
-	margin: 15px 0 15px 165px;
-	border: 1px solid #ccc;
-	padding: 10px 15px;
-	display: inline-block;
-	position: relative;
-	
-}
-
-#maxbuttons .media_query .removebutton { 
-	position: absolute;
-	 right: 10px; 
-	 top: 10px; 
-	cursor: pointer;
-
-}
-#maxbuttons .option-container .media_query label { 
-	display: block;
-	font-size:16px;
-	text-align: center;
-		cursor: default;
-}
-#maxbuttons .media_query input:after {
-	clear: both;
-}
-#maxbuttons .media_query .label {
-	clear: both; 
-	margin-bottom: 15px;
-}
-
-#maxbuttons .media_query .custom .label, #maxbuttons .media_query .custom .input {
-	float: left;
-	clear: none;
-}
- #maxbuttons .media_query .custom .input.max {
- 	float: right;
- 	margin-right: 135px;
- }
- #maxbuttons .media_query .custom .label.max
- { width: 70px; 
-   float: right;
-   margin-right: 15px;
- }
-  #maxbuttons .media_query .custom.hidden { display: none; } 
-  
- #maxbuttons .media_query .description {
- 	padding: 15px 0px;
- 	text-align: center;
- }
- 
-/*
-#maxbuttons .media_query .custom .label { width: 100px; } 
-*/
-
-#maxbuttons .media_query select { width: 60px; }
-#maxbuttons .media_query .input input { 
-	min-height: 22px; 
-	min-width:40px; 
-	margin-top: 0px;
-	height: 28px;
-	padding-top: 2px;
-} 	
-	
-	
-#maxbuttons .media_option_prot, #maxbuttons #media_desc {
-	display: none;
-}
-
 #maxbuttons .option-design .input {
 	float: left;
 }
@@ -210,7 +140,7 @@
 	font-weight: bold;
 	border-bottom: solid 1px #d1d1d1;
 	width: 180px;
-}-
+}
 #maxbuttons .option-design .input table.color-line th {
 	vertical-align: bottom;
 	text-align: center;
@@ -257,10 +187,7 @@
 	top: 4px;
 	left: 4px;
 }
-.colorpicker { 
-	z-index: 500;
-}
-#maxbuttons .mb-message {
+#maxbuttons .message {
 	background-color: #ffffe0;
 	border: solid 1px #e6db55;
 	border-radius: 3px;
@@ -327,7 +254,7 @@
 }
 #maxbuttons .button-list .shortcode-container {
 	margin: 10px 0px 10px 2px;
-	/*padding: 10px 0px 10px 2px; */
+	padding: 10px 0px 10px 2px;
 }
 #maxbuttons .button-list table {
 	background-color: #f9f9f9;
@@ -348,13 +275,6 @@
 	border-bottom: solid 1px #dfdfdf;
 	background-color: #ffffff;
 }
-#maxbuttons .button-list th.sortable {
-	width: 200px;
-} 
-#maxbuttons .button-list th.sortable a {
-	padding-left: 0px;
-}
-
 #maxbuttons .button-list tr:nth-child(odd) {
 	background-color: #fcfcfc;
 }
@@ -581,8 +501,6 @@
 #maxbuttons .rss-feed li a:hover span {
 	color: #0074a2;
 }
-
-
 
 @media screen and (max-width: 780px) {
 	.ad-wrap {

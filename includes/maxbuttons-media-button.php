@@ -4,11 +4,8 @@ global $pagenow;
 
 <?php // Only run in post/page creation and edit screens ?>
 <?php if (in_array($pagenow, array('post.php', 'page.php', 'post-new.php', 'post-edit.php'))) { ?>
-	<?php// $published_buttons = maxbuttons_get_published_buttons(); ?>
-	<?php
-	 $button = new maxButton();
-	 $published_buttons = $button->getButtons(); 
-	?>
+	<?php $published_buttons = maxbuttons_get_published_buttons(); ?>
+	
 	<script type="text/javascript">
 		function insertButtonShortcode(button_id) {
 			if (button_id == "") {
@@ -21,28 +18,25 @@ global $pagenow;
 		}
 	</script>
 	
-	<div id="select-maxbutton-container" style="display:none" >
+	<div id="select-maxbutton-container" style="display: none;">
 		<div class="wrap">
-			<h2 style="padding-top: 3px; padding-left: 40px; background: url(<?php echo maxButtons::get_plugin_url() . 'images/mb-32.png' ?>) no-repeat;">
+			<h2 style="padding-top: 3px; padding-left: 40px; background: url(<?php echo MAXBUTTONS_PLUGIN_URL . '/images/mb-32.png' ?>) no-repeat;">
 				<?php _e('Insert Button into Editor', 'maxbuttons') ?>
 			</h2>
 
 			<p><?php _e('Select a button from the list below to place the button shortcode in the editor.', 'maxbuttons') ?></p>
 			
 			<table cellpadding="10" cellspacing="0" width="100%">
-			<?php foreach ($published_buttons as $b) { ?>
-				<?php $id = $b["id"]; 
- 			  		  $button->set($id);  ?>
-				
+			<?php foreach ($published_buttons as $button) { ?>
 				<tr>
 					<td style="border-bottom: 1px solid #ccc; padding: 20px 0;">
-						<a href="#" onclick="insertButtonShortcode(<?php echo $id ?>); return false;"><?php _e('Insert This Button', 'maxbuttons') ?></a> <span class="raquo">&raquo;</span>
-						<?php if($button->getDescription() != '') {
-							echo '<p style="margin: 0; font-size: 11px;"><strong>Description: </strong> ' . $button->getDescription() . '</p>';
+						<a href="#" onclick="insertButtonShortcode(<?php echo $button->id ?>); return false;"><?php _e('Insert This Button', 'maxbuttons') ?></a> <span class="raquo">&raquo;</span>
+						<?php if($button->description != '') {
+							echo '<p style="margin: 0; font-size: 11px;"><strong>Description: </strong> ' . $button->description . '</p>';
 						} ?>
 					</td>
 					<td style="border-bottom: 1px solid #ccc; padding: 20px 0;">
-						<?php $button->display( array("preview" => true, "preview_part" => "full") );  ?>
+						<?php echo do_shortcode('[maxbutton id="' . $button->id . '" externalcss="false" ignorecontainer="true"]') ?>
 					</td>
 				</tr>
 			<?php } ?>

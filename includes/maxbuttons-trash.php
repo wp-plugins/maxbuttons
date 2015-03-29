@@ -1,8 +1,6 @@
 <?php
 if (isset($_GET['id']) && $_GET['id'] != '') {
-	$button = new maxButton();
-	$button->set($_GET['id']);
-	$button->setStatus('trash'); 
+	maxbuttons_button_move_to_trash($_GET['id']);
 }
 ?>
 <script type="text/javascript">

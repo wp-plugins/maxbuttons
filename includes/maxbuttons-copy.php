@@ -1,17 +1,8 @@
 <?php
 if (isset($_GET['id']) && $_GET['id'] != '') {
-	//$button = maxbuttons_get_button($_GET['id']);
+	$button = maxbuttons_get_button($_GET['id']);
 	
-	$button = new maxButton(); 
-	$button->set($_GET["id"]); 
-	$new_id = $button->copy();
-	
-	
-	//exit("BOETON: $new_id");
-	//wp_redirect( admin_url() . "admin.php?page=maxbuttons-controller&action=button&id=$new_id"); 
-
-
-	/*$data = array(
+	$data = array(
 		'name' => $button->name,
 		'description' => $button->description,
 		'url' => $button->url,
@@ -68,13 +59,12 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 
 	global $wpdb;
 	$wpdb->insert(maxbuttons_get_buttons_table_name(), $data);
-	$button_id = $wpdb->insert_id; */
-	
+	$button_id = $wpdb->insert_id;
 }
 ?>
 <script type="text/javascript">
-	<?php if (isset($new_id)) { ?>
-		window.location = "<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $new_id ?>";
+	<?php if (isset($_GET['id']) && $_GET['id'] != '') { ?>
+		window.location = "<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $button_id ?>";
 	<?php } else { ?>
 		window.location = "<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=list";
 	<?php } ?>
