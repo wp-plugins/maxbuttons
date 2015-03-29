@@ -1,9 +1,9 @@
 === MaxButtons: WordPress Button Generator ===
-Contributors: maxfoundry, arcware, johnbhartley
+Contributors: maxfoundry, arcware, johnbhartley, basszje
 Tags: button, buttons, css, css3, css3 icon, css button, rounded, call to action, free, icon, icons, link, permalink, plugin, seo, shortcode, shortcodes, shortlinks, wordpress button plugin, wordpress button generator, css3 button plugin, gradient, css3 button generator, css wordpress button, css3 wordpress button, social media button, wordpress buttons plugin, wp button creator, create wordpress buttons, button generator, create button icon, font awesome, fontawesome
 Requires at least: 3.4
-Tested up to: 4.0
-Stable tag: 1.36
+Tested up to: 4.1
+Stable tag: 1.37
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -12,16 +12,16 @@ Create great-looking CSS3 buttons that can be used on any post or page in your W
 
 = Helpful Links = 
 
-* [How to Create WordPress Buttons?](http://www.maxbuttons.com/#CSS3/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-create&utm_campaign=plugin) 
-* [How to make a WordPress Buttons?](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-make&utm_campaign=plugin) 
-* [What is a WordPress Button Generator?](http://maxbuttons.com/tour/button-editor/?utm_source=wordpress&utm_medium=mbrepo&utm_content=what-is-generator&utm_campaign=plugin)
-* [How do I see my WordPress Buttons?](http://maxbuttons.com/tour/button-list/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-see&utm_campaign=plugin)
-* [What's the best way to use Font Awesome with Wordpress?](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=font-awesome&utm_campaign=plugin)
+* [How to Create WordPress Buttons?](http://www.maxbuttons.com/#CSS3/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-create&utm_campaign=repo) 
+* [How to make a WordPress Buttons?](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-make&utm_campaign=repo) 
+* [What is a WordPress Button Generator?](http://maxbuttons.com/tour/button-editor/?utm_source=wordpress&utm_medium=mbrepo&utm_content=what-is-generator&utm_campaign=repo)
+* [How do I see my WordPress Buttons?](http://maxbuttons.com/tour/button-list/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-see&utm_campaign=repo)
+* [What's the best way to use Font Awesome with Wordpress?](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=font-awesome&utm_campaign=repo)
 
 
 = WordPress Button Pack Libraries =
 
-* [How do Button Pack libraries make me and my firm more effective?](http://www.maxbuttons.com/shop/category/button-packs/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-create&utm_campaign=plugin)
+* [How do Button Pack libraries make me and my firm more effective?](http://www.maxbuttons.com/shop/category/button-packs/?utm_source=wordpress&utm_medium=mbrepo&utm_content=how-to-create&utm_campaign=repo)
 * [What is a good Vector Icon Library to use with MaxButtons Pro?](http://maxvectors.com/)
 
 = Highlights =
@@ -38,7 +38,7 @@ Create great-looking CSS3 buttons that can be used on any post or page in your W
 
 = Upgrade to MaxButtons Pro =
 
-Take your buttons to the next level with [MaxButtons Pro](http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=MBPro&utm_campaign=plugin), which gives you additional features such as:
+Take your buttons to the next level with [MaxButtons Pro](http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=MBPro&utm_campaign=repo), which gives you additional features such as:
 
 * **Icon Support** - Put icons to the left, right, top, or bottom of your text.
 * **Multi-line text** - To add a second line of text for communicating extra information.
@@ -48,7 +48,7 @@ Take your buttons to the next level with [MaxButtons Pro](http://www.maxbuttons.
 * **Height and Width** - Explicit options to set button height and width.
 * **Shopp Integration** - Use buttons created with MaxButtons Pro as the shopping cart buttons of the Shopp e-commerce plugin.
 
-And the best part is that you can get this awesome [CSS3 button generator](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=CSS3&utm_campaign=plugin) for **only $19!**
+And the best part is that you can get this awesome [CSS3 button generator](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=CSS3&utm_campaign=repo) for **only $19!**
 
 = How To Use =
 
@@ -142,6 +142,51 @@ Enable the container option and set the alignment property to either "display: i
 </table>`
 
 == Changelog ==
+
+= 1.37 = 
+
+* Fixed two XSS vulnerabilities
+
+= 1.36 = 
+
+* Minor tweaks and updates
+
+= 1.35 = 
+
+* Better description for certain options 
+* New icon for WP-repository 
+
+= 1.34 = 
+
+* Fixed UI issue in edit posts screen.
+
+= 1.33 = 
+* Buttons list is now sortable by Button name. 
+
+= 1.32 = 
+* Setting to remove 'add button' interface from editor
+
+= 1.31 =
+* Courier New added to fonts
+
+= 1.30 =
+* Added placement for MaxGalleria
+
+= 1.29 =
+* Can now use shortcodes as URL and text
+
+= 1.28.2 =
+* Updated wording to reflect Font Awesome 4.2.0 update
+
+= 1.28.1 =
+* Updated CSS to have white-space: nowrap, should fix weird wrapping issue
+
+= 1.28 =
+* Added 9 latest Forum posts to Support Page via RSS feed
+
+= 1.27.1 =
+* Made wording more clear for target="_blank" and some other wording
+
 = 1.27.0 =
 * Removed style blocks from being inline, now placed in footer of the page.
 * Updated database to allow for negative margins on container.
