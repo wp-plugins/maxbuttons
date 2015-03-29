@@ -43,7 +43,7 @@ function maxbuttons_activate() {
 	update_option(MAXBUTTONS_VERSION_KEY, MAXBUTTONS_VERSION_NUM);
 	
 	$created = get_option("MBFREE_CREATED"); 
-	if ($created == '' && $gocreate) 
+	if ($created == '') 
 	{  update_option("MBFREE_CREATED", time()); 
 	}
 		
