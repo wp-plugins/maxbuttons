@@ -3,7 +3,8 @@ include_once 'arrays.php';
 include_once 'constants.php';
 
 if (isset($_GET['id']) && $_GET['id'] != '' && intval($_GET['id']) != 0) {
-	$button = maxbuttons_get_button($_GET['id']);
+	$button = maxbuttons_get_button(intval($_GET['id']) );
+	$button_id = intval($_GET["id"]); 
 } elseif(isset($_GET['id'])) {
 	die();
 } else {}
@@ -111,7 +112,7 @@ $gradient_start_rgba_hover = maxbuttons_hex2rgba($maxbutton_gradient_start_color
 $gradient_end_rgba_hover = maxbuttons_hex2rgba($maxbutton_gradient_end_color_hover_value, $maxbutton_gradient_end_opacity_hover_value);
 
 $redirect = false;
-$button_id = isset($_GET['id']) ? $_GET['id'] : 0;
+//$button_id = isset($_GET['id']) ? $_GET['id'] : 0;
 
 if ($_POST) {
 	global $wpdb;
@@ -172,7 +173,7 @@ if ($_POST) {
 		'important_css' => $wpdb->escape($_POST[$maxbutton_important_css_key]),
 	);
 
-	if ($_GET['id'] == '') {
+	if ($button_id == '') {
 		// This is a new button
 		$wpdb->insert(maxbuttons_get_buttons_table_name(), $data);
 		$button_id = $wpdb->insert_id;
@@ -182,7 +183,7 @@ if ($_POST) {
 		$data_format = array('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');
 		$where_format = array('%d');
 		$wpdb->update(maxbuttons_get_buttons_table_name(), $data, $where, $data_format, $where_format);
-		$button_id = $_GET['id'];
+		//$button_id = $_GET['id'];
 	}
 	
 	$redirect = true;
@@ -202,7 +203,7 @@ function maxbuttons_strip_px($value) {
 	} } ?>
 	
 	jQuery(document).ready(function() {		
-		<?php if (isset($_GET['id']) && $_GET['id'] > 0) { ?>
+		<?php if (isset($button_id) && $button_id > 0) { ?>
 			jQuery("#maxbuttons .message").show();
 		<?php } ?>
 		
@@ -956,7 +957,7 @@ function maxbuttons_strip_px($value) {
 					</div>
 					
 					<div class="option-design">
-						<div class="label"><?php _e('Use target="_blank"', 'maxbuttons') ?></div>
+						<div class="label"><?php _e('Open in new window', 'maxbuttons') ?></div>
 						<div class="input">
 							<input type="checkbox" id="<?php echo $maxbutton_new_window_key ?>" name="<?php echo $maxbutton_new_window_key ?>" <?php if ($maxbutton_new_window_value == 'on') { echo 'checked="checked"'; } else { echo ''; } ?>>
 						</div>
