@@ -54,24 +54,26 @@ class responsiveBlock extends maxBlock
 		
 		if (isset($data["auto_responsive"]) && $data["auto_responsive"] == 1)
 		{	// generate auto_rules for responsive.
-			$css["maxbutton"]["responsive"]["phone"]["width"] = "90%"; 
-			$css["mb-container"]["responsive"]["phone"]["width"] = "90%"; 
- 			$css["mb-container"]["responsive"]["phone"]["float"] = "none"; 
+			$css["maxbutton"]["responsive"]["phone"][0]["width"] = "90%"; 
+			$css["mb-container"]["responsive"]["phone"][0]["width"] = "90%"; 
+ 			$css["mb-container"]["responsive"]["phone"][0]["float"] = "none"; 
  
 		}
 		
 		if (! isset($data["media_query"]))
  			return $css;
  			
-		foreach($data["media_query"] as $query => $fields )
-		{
+		foreach($data["media_query"] as $query => $data ):
+			$i = 0;
+			
+			foreach($data as $index => $fields):
+			
+		
 			foreach($fields as $field => $value)
 			{
 				$csspart = (isset($this->multi_fields[$field]["csspart"])) ? $this->multi_fields[$field]["csspart"] : 'maxbutton' ; 
 				$css_stat = $this->multi_fields[$field]["css"]; 
 
-				//$value = (isset($data[$field])) ? $data[$field] : null; 
-				//if (is_null($value)) continue; 
 				
 				if ($value == '' || $value == '0') 
 				{  }
@@ -79,45 +81,51 @@ class responsiveBlock extends maxBlock
 				{ } // skip custom fields on noncustom query
 				else
 				{
-					$css[$csspart]["responsive"][$query][$css_stat] = $value; 
+					$css[$csspart]["responsive"][$query][$i][$css_stat] = $value; 
 				}
 				
 			}
-		}
+			$i++;
+			endforeach;
+		endforeach;
 
+ 
 		return $css;
 	}
 	
 
 	public function save_fields($data, $post)
 	{
-		//echo "<PRE>"; print_R($post); echo "</PRE>"; 
-		//$data = parent::save_fields($data, $post);
-		
+ 
 		$queries = (isset($post["media_query"])) ? $post["media_query"] : null; 
 		$media_queries = array(); 
 		
 		if (is_null($queries))
 			return $data; 
+
 	
 		foreach($queries as $i => $query)
 		{
+ 
 			if ($query != '')
 			{
-				$media_queries[$query] = array(); 
+				//$media_queries[$query] = array(); 
 			
 				// collect the other fields. 
+				$c = isset($media_queries[$query]) ? count($media_queries[$query]) : 0; 
+				
 				foreach($this->multi_fields as $field => $values)
 				{
-					echo "$field :: $i <br />"; 
 					if (isset($post[$field][$i])) 
 					{
-						$media_queries[$query][$field] = $post[$field][$i]; 
+
+						$media_queries[$query][$c][$field] = $post[$field][$i]; 
 					}
 				}
 			}
 		}
 		
+	 
 		$data[$this->blockname]["media_query"] = $media_queries;
 		
 		$data[$this->blockname]["auto_responsive"] = (isset($post["auto_responsive"])) ? $post["auto_responsive"] : 0; 
@@ -150,12 +158,16 @@ class responsiveBlock extends maxBlock
 			${$field  . "_default"} = $default; 
 		}
 		
+		// sorting routine via array merge. 
+		$fk = array_flip(array_keys($media_query)); 
+		$names_used = array_intersect_key($media_names,$fk);		 
+ 		$media_query = array_merge($names_used,$media_query);
 
 ?>
 			<div class="option-container">
 				<div class="title"><?php _e('Responsive Settings', 'maxbuttons') ?></div>
 				<div class="inside">
-				
+					<p><?php _e("Responsive settings let you decide the behavior of the button on different devices and screen sizes. For instance large buttons on small screens","maxbuttons") ?></p>
 					<div class="option-design"> 
 						<div class="label"><?php _e("Auto Responsive", 'maxbuttons') ?> <?php _e("(Experimental)","maxbuttons") ?></div>
 						<div class="input"> 
@@ -168,9 +180,9 @@ class responsiveBlock extends maxBlock
 				<div class='option-design media_queries_options'>
 					<?php
 					
-					foreach($media_query as $item => $fields) 
-					{
-						
+					foreach($media_query as $item => $data):
+						foreach ($data as $index => $fields):
+
 						?>
 						<div class='media_query'> 
 							<span class='removebutton'><img src="<?php echo maxButtons::get_plugin_url() ?>/assets/icons/remove.png"></span>
@@ -180,15 +192,15 @@ class responsiveBlock extends maxBlock
 							<p class='description'><?php echo $media_desc[$item] ?></p>							
 							<?php 
 								if ($item == "custom") { $custom_class = ''; } else { $custom_class = 'hidden'; }
-								
+								 
 							?>
 							<div class="custom" <?php echo $custom_class ?> > 
 								<div class="label"><?php _e("Min width","maxbuttons") ?></div>								
 								<div class="input"><input type="text" class="tiny" name="mq_custom_minwidth[]" value="<?php echo $fields["mq_custom_minwidth"] ?>" />px</div> 
 								
-
-								<div class="input max"><input type="text" class="tiny" name="mq_custom_maxwidth[]" value="<?php echo $fields["mq_custom_maxwidth"] ?>" />px</div> 
 								<div class="label max"> <?php _e("Max width","maxbuttons"); ?></div>
+								<div class="input max"><input type="text" class="tiny" name="mq_custom_maxwidth[]" value="<?php echo $fields["mq_custom_maxwidth"] ?>" />px</div> 
+
 								
 							</div>	
 						
@@ -205,14 +217,18 @@ class responsiveBlock extends maxBlock
 							<div class="input"><?php echo maxButtonsUtils::selectify("mq_container_float[]",$container_floats, $fields["mq_container_float"]) ?></div>
 								
 						</div>
-					<div class="clear"></div>
+					 
 						<?php
-					}	
+						if ($item != 'custom')
+							unset($media_names[$item]); // remove existing queries from new query selection
+					endforeach;
+						endforeach;	
 					
 					
 					?>
+
 					<div class="new_query_space"></div>
-				
+					<div class="clear"></div>					
 					<div class="option-design new-query">
 						<div class="label"><?php _e('New Query', 'maxbuttons') ?></div>
 						
@@ -239,9 +255,9 @@ class responsiveBlock extends maxBlock
 								<div class="label"><?php _e("Min width","maxbuttons") ?></div>								
 								<div class="input"><input type="text" class="tiny" name="mq_custom_minwidth[]" value="0" />px</div> 
 								
-
-								<div class="input max"><input type="text" class="tiny" name="mq_custom_maxwidth[]" value="0" />px</div> 
 								<div class="label max"> <?php _e("Max width","maxbuttons"); ?></div>
+								<div class="input max"><input type="text" class="tiny" name="mq_custom_maxwidth[]" value="0" />px</div> 
+
 								
 							</div>	
 														
@@ -256,7 +272,7 @@ class responsiveBlock extends maxBlock
 							<div class="input"><?php echo maxButtonsUtils::selectify("mq_container_float[]",$container_floats, "") ?></div>
 														
 				`</div>
-				<div class="clear"></div>
+
 			</div>
 			<div id="media_desc">
 			<?php foreach($media_desc as $key => $desc)

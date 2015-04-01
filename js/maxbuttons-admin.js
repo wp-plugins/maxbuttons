@@ -24,7 +24,7 @@ maxAdmin.prototype.init = function () {
 			return; 
 			
 		if (this.button_id > 0) {
-			$("#maxbuttons .message").show();
+			$("#maxbuttons .mb-message").show();
 		} 
 		
 		this.initResponsive(); // responsive edit interface 
@@ -259,8 +259,10 @@ maxAdmin.prototype.update_preview = function(e)
 			}
 		};
 		
-maxAdmin.prototype.putCSS = function(data,value, state = 'both') 
+maxAdmin.prototype.putCSS = function(data,value,state) 
 {
+	state = state || 'both';
+	 
 	var element = '.maxbutton';  
 	if (state == 'hover') 
 		element = 'a.hover '; 
@@ -297,7 +299,7 @@ maxAdmin.prototype.update_color = function(event, target, color)
 		{
 			if (! this.colorUpdateTime) return; // preventing event flood
 			this.colorUpdateTime = false;
-			setTimeout($.proxy(function() { this.colorUpdateTime = true; },this),500); 
+			setTimeout($.proxy(function() { this.colorUpdateTime = true; },this),250); 
 			event.preventDefault();
 			
 			if (color.indexOf('#') === -1)
@@ -350,8 +352,10 @@ maxAdmin.prototype.update_color = function(event, target, color)
 
 		};
 		
-maxAdmin.prototype.updateGradient = function(hover = false)
+maxAdmin.prototype.updateGradient = function(hover)
 		{
+			hover = hover || false;
+			
 			var hovtarget = ''; 	
 			if (hover)
 				hovtarget = "_hover"; 
@@ -398,8 +402,9 @@ maxAdmin.prototype.hexToRgb = function(hex) {
 			return r + "," + g + "," + b;
 		}
 		
-maxAdmin.prototype.updateBoxShadow = function (target = null)
+maxAdmin.prototype.updateBoxShadow = function (target)
 		{
+			target = target || null;
 
 			var left = $("#box_shadow_offset_left").val();
 			var top = $("#box_shadow_offset_top").val();
@@ -412,8 +417,9 @@ maxAdmin.prototype.updateBoxShadow = function (target = null)
 			$('.output .result').find('a.hover').css("boxShadow",left + 'px ' + top + 'px ' + width + 'px ' + hovcolor);		
 		}
 		
-maxAdmin.prototype.updateTextShadow = function(target, hover = false)
+maxAdmin.prototype.updateTextShadow = function(target,hover)
 		{
+			hover = hover || false; 
 
 			var left = $("#text_shadow_offset_left").val();
 			var top = $("#text_shadow_offset_top").val();

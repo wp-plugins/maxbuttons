@@ -8,7 +8,8 @@ $button_id = 0;
 
  
 if ($_POST) {
-	$button_id = $_POST["button_id"]; 
+	$button_id = intval($_POST["button_id"]); 
+
 	if ($button_id > 0) 
 		$button->set($button_id);
 	$return = $button->save($_POST); 
@@ -21,15 +22,12 @@ if ($_POST) {
 	
 if (isset($_GET['id']) && $_GET['id'] != '') { 
 	//$button = maxbuttons_get_button($_GET['id']);
-	$button_id = $_GET["id"]; 
+	$button_id = intval($_GET["id"]); 
 	$button->set($button_id);
 }
 
  
 ?>
-
-
-
 <div id="maxbuttons">
 	<div class="wrap">
 		<div class="icon32">
@@ -57,7 +55,7 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 				<a id="button-delete" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $button_id ?>"><?php _e('Delete Permanently', 'maxbuttons') ?></a>
 			</div>
 			
-			<div class="message">
+			<div class="mb-message">
 				<?php _e('To use this button, place the following shortcode anywhere in your site content:', 'maxbuttons') ?>
 				<strong>[maxbutton id="<?php echo $button_id ?>"]</strong> or <strong>[maxbutton name="<?php echo $button->getName(); ?>"]</strong> 
 			</div>

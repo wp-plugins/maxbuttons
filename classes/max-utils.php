@@ -65,11 +65,11 @@ class maxButtonsUtils
 static function get_media_query($get_option = 1)
 	{
 		
-		$queries = array("phone" =>  "only screen and (min-device-width : 320px) and (max-device-width : 480px)",
-					"phone_land" => "only screen and (min-width : 321px) and (max-device-width : 480px)", 
+		$queries = array("phone" =>  "only screen and (min-width : 320px) and (max-width : 480px)",
+					"phone_land" => "only screen and (min-width : 321px) and (max-width : 480px)", 
 				  	"phone_portrait" => " only screen and (max-width : 320px)", 
-				  	"ipad" => "only screen and (min-device-width : 768px) and (max-device-width : 1024px)",
-				  	"medium_phone" => "only screen and (min-device-width: 480px) and (max-device-width: 768px)",
+				  	"ipad" => "only screen and (min-width : 768px) and (max-width : 1024px)",
+				  	"medium_phone" => "only screen and (min-width: 480px) and (max-width: 768px)",
 				  	"ipad_land" => "only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape)", 
 				  	"ipad_portrait" => "only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait)",
 				  	"desktop" => "only screen and (min-width : 1224px)",

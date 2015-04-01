@@ -60,7 +60,7 @@ $trashed_buttons_count = count($trashed_buttons);
 		});
 		
 		<?php if ($result != '') { ?>
-			jQuery("#maxbuttons .message").show();
+			jQuery("#mb-maxbuttons .message").show();
 		<?php } ?>
 	});
 </script>
@@ -87,7 +87,7 @@ $trashed_buttons_count = count($trashed_buttons);
 			</div>
 
 			<?php if ($result != '') { ?>
-				<div class="message"><?php echo $result ?></div>
+				<div class="mb-message"><?php echo $result ?></div>
 			<?php } ?>
 			
 			<p class="status">
@@ -149,7 +149,7 @@ $trashed_buttons_count = count($trashed_buttons);
 									</div>
 								</td>
 								<td>
-									<a class="button-name" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $b->id ?>"><?php echo $button->getName() ?></a>
+									<a class="button-name" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=button&id=<?php echo $id ?>"><?php echo $button->getName() ?></a>
 									<br />
 									<p><?php echo $button->getDescription() ?></p>
 								</td>

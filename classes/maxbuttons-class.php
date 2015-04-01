@@ -99,12 +99,12 @@ class maxButtons
 		$admin_pages = array();
 
 		$page_title = __('MaxButtons : Buttons', 'maxbuttons');
-		$menu_title = __('Buttons', 'maxbuttons');
+		$menu_title = __('MaxButtons', 'maxbuttons');
 		$capability = $maxbuttons_capabilities;
 		$admin_capability = 'manage_options';
 		$menu_slug = 'maxbuttons-controller';
 		$function =  array($this, 'load_admin_page'); 
-		$icon_url = $this->plugin_url . '/images/mb-16.png';
+		$icon_url = $this->plugin_url . '/images/mb-peach-icon.png';
 		$submenu_function = array($this, 'load_admin_page'); 
 		
 		add_menu_page($page_title, $menu_title, $capability, $menu_slug, $function, $icon_url);
@@ -173,10 +173,11 @@ class maxButtons
 
 	function add_admin_styles($hook) {	
 
-		// only hook in maxbuttons realm. 
-		if ( strpos($hook,'maxbuttons') == false && $hook != 'post.php' && $hook != 'post-new.php' )
-			return;
  
+		// only hook in maxbuttons realm. 
+		if ( strpos($hook,'maxbuttons') === false && $hook != 'post.php' && $hook != 'post-new.php' )
+			return;
+  
 				
 		wp_enqueue_style('maxbuttons-css', $this->plugin_url . '/styles.css');
 		wp_enqueue_style('maxbuttons-colorpicker-css', $this->plugin_url . 'js/colorpicker/css/colorpicker.css');
@@ -185,7 +186,7 @@ class maxButtons
 	function add_admin_scripts($hook) {	
  
 		// only hook in maxbuttons realm.
-		if ( strpos($hook,'maxbuttons') == false && $hook != 'post.php' && $hook != 'post-new.php' )
+		if ( strpos($hook,'maxbuttons') === false && $hook != 'post.php' && $hook != 'post-new.php' )
 			return;
 			
 		wp_enqueue_script('jquery-ui-draggable');

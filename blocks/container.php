@@ -47,7 +47,7 @@ class containerBlock extends maxBlock
 			
 			if ($data["container_center_div_wrap"] == 1) // I heard you like wrapping... 
 			{
-				$anchor->outertext = "<span class='mb-center'>" . $anchor->outertext . "</span>"; 
+				$anchor->outertext = "<span class='mb-center maxbutton-" . $id . "-center'>" . $anchor->outertext . "</span>"; 
 	
 			}
 			// reload the dom model with new divs 

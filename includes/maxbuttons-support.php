@@ -15,7 +15,7 @@ function maxbuttons_system_label($label, $value, $spaces_between) {
 		}
 	}
 	
-	return $output . $value . "\r\n ";
+	return $output . $value . " \r\n ";
 }
 
 // http://www.php.net/manual/en/function.get-browser.php#101125.
@@ -180,22 +180,30 @@ function check_charset() {
 
 
     		<h4><?php _e('You may be asked to provide the information below to help troubleshoot your issue.', 'maxbuttons') ?></h4>
-    	
-    		<textarea class="system-info" readonly="readonly" wrap="off">
------ Begin System Info -----
+    <form>	
+    		<textarea class="system-info" readonly="readonly" wrap="off" >
+----- Begin System Info ----- &#013;&#010;
+
 
 <?php echo maxbuttons_system_label('WordPress Version:', get_bloginfo('version'), 4) ?>
+
 <?php echo maxbuttons_system_label('PHP Version:', PHP_VERSION, 10) ?>
+
 <?php  echo maxbuttons_system_label('MySQL Version:', mysql_get_server_info(), 8) ?>
+
 <?php echo maxbuttons_system_label('Web Server:', $_SERVER['SERVER_SOFTWARE'], 11) ?>
 
 <?php echo maxbuttons_system_label('WordPress URL:', get_bloginfo('wpurl'), 8) ?>
+
 <?php echo maxbuttons_system_label('Home URL:', get_bloginfo('url'), 13) ?>
 
 <?php echo maxbuttons_system_label('PHP cURL Support:', function_exists('curl_init') ? 'Yes' : 'No', 5) ?>
+
 <?php echo maxbuttons_system_label('PHP GD Support:', function_exists('gd_info') ? 'Yes' : 'No', 7) ?>
 <?php echo maxbuttons_system_label('PHP Memory Limit:', ini_get('memory_limit'), 5) ?>
+
 <?php echo maxbuttons_system_label('PHP Post Max Size:', ini_get('post_max_size'), 4) ?>
+
 <?php echo maxbuttons_system_label('PHP Upload Max Size:', ini_get('upload_max_filesize'), 2) ?>
 
 <?php echo maxbuttons_system_label('WP_DEBUG:', defined('WP_DEBUG') ? WP_DEBUG ? 'Enabled' : 'Disabled' : 'Not set', 13) ?>
@@ -229,6 +237,7 @@ foreach ($plugins as $plugin_path => $plugin) {
 ?>
 ----- End System Info -----
 		  </textarea>
+</form>
         </div>
         <div class="ad-wrap">
      		<?php do_action("mb-display-ads"); ?> 

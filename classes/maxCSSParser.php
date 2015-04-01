@@ -43,7 +43,7 @@ class maxCSSParser
 			$struct[$root->tag] = $this->loadRecursive(array(), $children);
 		
 		$this->struct = $struct;
-		//echo "<PRE>"; print_R($struct); echo "</PRE>"; 
+
 
 	}
 	
@@ -78,7 +78,7 @@ class maxCSSParser
 		$struct = $this->struct; 
 		$this->data = $data; 
 		
- 		//echo "<PRE>"; print_R($data); echo "</PRE>"; 
+
  		 	
  		if (isset($data["settings"]))  // room for settings in parser
  		{
@@ -115,16 +115,7 @@ class maxCSSParser
 
 
 		$css = $scss->compile($compile);
-	/*				
-		try {
-
-		}
-		catch (Exception $e) { 
-			//print_R($e);
-			echo "Warning: Parse failed";
-			//throw new compileException("Compile failed");
-		}
-	*/	
+	
 		return $css;
 	}
 	
@@ -228,24 +219,26 @@ class maxCSSParser
 		$output = ''; 
 		
 		$query_array = array(); 
-		
+	
 		
 		foreach($responsive as $element => $queries)
 		{
-			foreach($queries as $query => $data)
-			{
-				$query_array[$query][$element] = $data; 
+			foreach($queries as $query => $qdata)
+			 foreach($qdata as $index => $data)
+			{{
+				$query_array[$query][$index][$element] = $data; 
 			
-			}
+			}}
 		}
-
 		
-		foreach($query_array as $query => $data)
-		{
+		foreach($query_array as $query => $vdata):
+			foreach($vdata as $index => $data):
+		 
 			if ($query == 'custom') 
 			{
-				foreach($data as $element => $values)
-				{
+				foreach($data as $element => $values):
+				//	foreach($vdat as $index => $values):
+				
 					if (isset($values["custom_maxwidth"])) 
 					{
 						$minwidth = $values["custom_minwidth"];
@@ -255,7 +248,8 @@ class maxCSSParser
 						$qdef = "only screen and (min-device-width: $minwidth" . "px) and (max-device-width: $maxwidth" . "px)";  
 						break;
 					}	
-				}		
+				//   endforeach;
+				endforeach;		
 			}
 			else
 				$qdef = $media_queries[$query]; 
@@ -263,8 +257,8 @@ class maxCSSParser
 			
 			$output .= "@media ". $qdef . " { "; 
 			
-			foreach($data as $element => $values) 
-			{
+			foreach($data as $element => $values):
+			 //foreach($vdat as $index => $values):
 				$output .= $element . " { "; 
 				$css_end = ';';
 				
@@ -279,10 +273,13 @@ class maxCSSParser
 				}
 
 				$output .= " } "; 
-			}
+			// endforeach;
+			endforeach;
 			$output .= " } ";  
 		
-		}
+		  endforeach;
+		endforeach;
+
 		
 
 		$this->output_css .= $output;

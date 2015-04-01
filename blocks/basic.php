@@ -6,6 +6,7 @@ class basicBlock extends maxBlock
 {
 	protected $blockname = "basic"; 
 	protected $fields = array("name" => array("default" => ''),
+							  "status" => array("default" => "publish"), 
 							  "description" => array("default" => ''),
 							  "url" => array("default" => ''),
 							//  "text" => array("default" => ''), 
@@ -52,6 +53,8 @@ class basicBlock extends maxBlock
 		$data = parent::save_fields($data, $post);
 		if (isset($post["name"])) 
 			$data["name"] = $post["name"]; 
+		if (isset($post["status"])) 
+			$data["status"] = $post["status"]; // for conversion old - new. 
  		return $data;
 	}
 
