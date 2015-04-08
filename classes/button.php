@@ -517,7 +517,7 @@ class maxButton
  			$return = $id; 
 		
 		}
- 
+
  		return $return;
 	}
 	

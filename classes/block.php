@@ -206,8 +206,7 @@ abstract class maxBlock
  
 			if ( strpos($part,':hover') !== false ) 
 			{
- //			print_R($part);
- //			echo "<PRE>"; print_R($raw_css); echo "</PRE>"; 
+
 				if (! isset($styles["gradient-start-opacity"])) 
 					$styles["gradient-start-opacity"] = $raw_css["normal"]["gradient-start-opacity"];
 				if (! isset($styles["gradient-end-opacity"])) 
