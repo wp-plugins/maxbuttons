@@ -195,7 +195,7 @@ abstract class maxBlock
 	   @param $mode [normal|preview]
 	   @return $css Array 
 	*/
-	function post_process_css($css, $mode)
+	function post_process_css($css, $mode)  //DEPRECATED in favor of scss
 	{		
  		$raw_css = $css;
  		return $css; 

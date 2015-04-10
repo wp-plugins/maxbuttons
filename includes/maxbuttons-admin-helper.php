@@ -68,18 +68,25 @@ class maxAdmin
 	static function display_ads()
 	{ ?>
         <div class="ads">
-            <h3><?php _e('MaxButtons Pro only $19', 'maxbuttons'); ?></h3>
-            <p><?php _e('Do so much more with MB Pro.  Get 2 free buttons packs when you buy.  Just use MBFREE at checkout.', 'maxbuttons'); ?></p>
+            <h3><?php _e('MaxButtons Pro Version 3 Sale', 'maxbuttons'); ?></h3>
+            <p><?php _e('We are having a sale on MaxButtons Pro to celebrate the launch of our latest version!  You’ll see the sales price of $19 in the cart!.', 'maxbuttons'); ?></p>
             <p><strong><?php _e('Some extra features for going Pro:', 'maxbuttons'); ?></strong></p>
             <ul>
                 <li><?php _e('Great Support', 'maxbuttons'); ?></li>
+                <li><?php _e('Responsive Button', 'maxbuttons'); ?></li> 
                 <li><?php _e('Pre-Made Button Packs', 'maxbuttons'); ?></li>
                 <li><?php _e('Two Lines of Editable Text', 'maxbuttons'); ?></li>
                 <li><?php _e('Add An Icon To Your Buttons', 'maxbuttons'); ?></li>
                 <li><?php _e('Google Web Fonts', 'maxbuttons'); ?></li>
                 <li><?php _e('Many more benefits!', 'maxbuttons'); ?></li>
             </ul>
-            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-19&utm_campaign=plugin"><?php _e('Get MaxButtons Pro Now!', 'maxbuttons'); ?></a>
+            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-19&utm_campaign=plugin" target="_blank" ><?php _e('Get MaxButtons Pro Now!', 'maxbuttons'); ?></a>
+        </div>
+        
+        <div class="ads"> 
+        	<h3><?php _e("Every Button We’ve Got Sale","maxbuttons"); ?></h3>
+        	<p>As part of our launch sale we’ve lowered the price for our Every Button We’ve Got to $60.  You’ll see this great sales price in the cart, too!</p>
+            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-19&utm_campaign=plugin" target="_blank"><?php _e('Get MaxButtons Pro Now!', 'maxbuttons'); ?></a>        	
         </div>
         
         <div class="ads">

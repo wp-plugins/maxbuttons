@@ -454,6 +454,18 @@ maxAdmin.prototype.updateGradientOpacity = function(target)
 			this.updateGradient(true);
 			this.updateGradient(false);
 		}
+
+maxAdmin.prototype.updateDimension = function (target)
+{
+	var dimension = $(target).val(); 
+	var id = $(target).attr('id'); 
+	var data = this.fields[id]; 
+	if (dimension > 0) 	
+		this.putCSS(data, dimension);
+	else
+		this.putCSS(data, 'auto'); 
+}
+
 		
 maxAdmin.prototype.fixThickSize = function(e)
 {	

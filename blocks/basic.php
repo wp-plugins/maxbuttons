@@ -52,9 +52,9 @@ class basicBlock extends maxBlock
 	{	
 		$data = parent::save_fields($data, $post);
 		if (isset($post["name"])) 
-			$data["name"] = $post["name"]; 
+			$data["name"] = sanitize_text_field($post["name"]); 
 		if (isset($post["status"])) 
-			$data["status"] = $post["status"]; // for conversion old - new. 
+			$data["status"] = sanitize_text_field($post["status"]); // for conversion old - new. 
  		return $data;
 	}
 
@@ -71,17 +71,15 @@ class basicBlock extends maxBlock
 		//	$buttonAttrs[] = "rel=nofollow"; 
 		if ($data["new_window"] == 1) 
 			$anchor->target = "_blank"; 
-		
-//		if ($data["text"] != '' || $mode == 'preview') 
-//			$anchor->innertext = "<div class='maxbutton-" . $this->data["id"] . "-mb-text mb-text'>" . $data["text"] . "</div>"; 
-					
+							
 		if ($data["url"] != '') 
 			$anchor->href = do_shortcode($data["url"]); 
 		else  // fixing an iOS problem which renders anchors without URL wrongly. 
 		{
 			$anchor->href = 'javascript:void(0);';
 		}	
-			
+ 
+		 
 		return $domObj; 
 			
 	} 
@@ -136,7 +134,7 @@ class basicBlock extends maxBlock
 						<div class="note"><?php _e('The link when the button is clicked.', 'maxbuttons') ?></div>
 						<div class="clear"></div>
 						<div class="input">
-							<input type="text" id="url" name="url" value="<?php echo $url ?>" maxlength="500"/>
+							<input type="text" id="url" name="url" value="<?php echo htmlentities($url) ?>" maxlength="500"/>
 						</div>
 					</div>
  

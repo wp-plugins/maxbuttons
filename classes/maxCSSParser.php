@@ -22,6 +22,9 @@ class maxCSSParser
 	// settings
 	protected $important = false;
 	
+	// log possible problems and incidents for debugging;
+	protected $parse_log = array();
+	
 	function __construct()
 	{
 		//$root[] = array("a" => array("hover","active","responsive")); 	
@@ -77,8 +80,7 @@ class maxCSSParser
 	{	
 		$struct = $this->struct; 
 		$this->data = $data; 
-		
-
+	
  		 	
  		if (isset($data["settings"]))  // room for settings in parser
  		{
@@ -102,7 +104,7 @@ class maxCSSParser
 
 		$css = $this->compile($this->output_css);
 		return $css;
-		//echo "</pRE>"; 
+ 
 	}
 	
 	private function compile($css)
@@ -113,9 +115,12 @@ class maxCSSParser
 		
 		$compile = " @import 'mixins.scss';  " . $css;
 
-
-		$css = $scss->compile($compile);
-	
+		try
+		{
+			$css = $scss->compile($compile);
+		} catch (Exception $e) { $css = $this->output_css;  } 
+		
+		
 		return $css;
 	}
 	
@@ -245,7 +250,7 @@ class maxCSSParser
 						$maxwidth = $values["custom_maxwidth"]; 
 						unset($data[$element]["custom_minwidth"]); 
 						unset($data[$element]["custom_maxwidth"]);
-						$qdef = "only screen and (min-device-width: $minwidth" . "px) and (max-device-width: $maxwidth" . "px)";  
+						$qdef = "only screen and (min-width: $minwidth" . "px) and (max-width: $maxwidth" . "px)";  
 						break;
 					}	
 				//   endforeach;
@@ -384,9 +389,9 @@ class maxCSSParser
 	function mixin_textshadow($results, $values)
 	{
 		
-		$width = $results["text-shadow-width"]; 
-		$left = $results["text-shadow-left"]; 
-		$top = $results["text-shadow-top"]; 
+		$width = isset($results["text-shadow-width"]) ? $results["text-shadow-width"] : 0; 
+		$left = isset($results["text-shadow-left"]) ? $results["text-shadow-left"] : 0; 
+		$top = isset($results["text-shadow-top"]) ? $results["text-shadow-left"] : 0; 
 		$color = isset($results["text-shadow-color"]) ? $results["text-shadow-color"] : ''; 
 		$important = ($this->is_important()) ? "!important" : ""; 
 				

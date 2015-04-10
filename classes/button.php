@@ -24,7 +24,7 @@ class maxButton
 	protected $load_css = 'footer';  // [ footer, inline, external, element ] 
 	protected $load_js  = 'footer'; 
 	
-	protected $cssParser = ''; 
+	protected $cssParser = false; 
 	protected $parsed_css = ''; 
 	/* Class constructor 
 	   
@@ -37,7 +37,7 @@ class maxButton
 		$this->wpdb = $wpdb; 
 		
 		// the parser
-		 $this->cssParser =  new maxCSSParser();
+
 
 		
 		// get all files from blocks map 
@@ -117,26 +117,28 @@ class maxButton
 	
 		@return Boolean Returns false when no data was found using either ID or name
 	*/
-	function set($id = 0, $name = '')
+	function set($id = 0, $name = '', $status = 'publish')
 	{
-		
+ 		$id = intval($id);
+ 		$name = sanitize_text_field($name);
+ 		$status = sanitize_text_field($status);
+ 		
 		global $wpdb;
 		$this->clear();
 		// check to see if the value passed is NOT numeric. If it is, use title, else assume numeric
 		if($id == 0 && $name != '') {
-			$row = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxButtonsUtils::get_buttons_table_name() . " WHERE name = '%s' and status ='publish'", trim($name) ), ARRAY_A);
-			 
-		} else {
-			$row = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxButtonsUtils::get_buttons_table_name() . " WHERE id = %d and status ='publish'", $id), ARRAY_A);
-		}
-		
+			$row = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxButtonsUtils::get_buttons_table_name() . " WHERE name = '%s' and status ='%s'", trim($name), $status ), ARRAY_A);
  
+		} else {
+			$row = $wpdb->get_row($wpdb->prepare("SELECT * FROM " . maxButtonsUtils::get_buttons_table_name() . " WHERE id = %d and status ='%s'", $id, $status), ARRAY_A);
+		}
+	
 		
 		if (count($row) == 0) 
 		{
 			return false; 		
 		} 
-	
+ 
 		return $this->setupData($row);
 		
 	}
@@ -167,14 +169,15 @@ class maxButton
 				//exit("Fatal: Something wrong with provider on $block ");
 			} 
 		}
- 
+
 		$this->id = $data["id"];
 		$this->data["id"] = $this->id; // needed for certain blocks, to be button aware. 
 		$this->name = $data["name"]; 
 		$this->status = $data["status"];
 		$this->description = $this->data["basic"]["description"]; 
-		
+
 		do_action('mb-data-load', $this->data);
+
 		return true;
 		 
 	}
@@ -212,6 +215,14 @@ class maxButton
 	{
 
 		return $this->button_css;
+	}
+	
+	function getCSSParser()
+	{
+		if (! $this->cssParser)
+			$this->cssParser = new maxCSSParser(); 
+			
+		return $this->cssParser;
 	}
 	
 	/* Get multiple buttons 
@@ -264,12 +275,15 @@ class maxButton
 	{
 		$domObj = new simple_html_dom();
 		$domObj->load("<a  class=\"maxbutton-" . $this->id . " maxbutton\"></a>"); 
- 
+   
 		$domObj = apply_filters('mb-parse-button', $domObj, $mode); 
  
 		$domObj->load($domObj->save());
-	
-		$this->cssParser->loadDom($domObj);
+ 
+
+ 
+ 		$cssParser = $this->getCSSParser();
+		$cssParser->loadDom($domObj);
 		return $domObj; 
 	}
 
@@ -292,6 +306,8 @@ class maxButton
 		
 		$args = wp_parse_args($args, $defaults); 
 
+		$cssParser = $this->getCSSParser(); // init parser
+ 
 	 	$this->load_css = $args["load_css"]; 
  
 		if ($this->id == 0) // if button doesn't exists don't display unless in preview
@@ -321,6 +337,7 @@ class maxButton
 
 		if ($args["preview"] == true)  // mark it preview
 		{
+
 			$domObj->find('a',0)->class .= ' maxbutton-preview';
 		}
 		
@@ -330,13 +347,13 @@ class maxButton
  	 		if ($args["preview_part"] != 'normal')
  	 		{
 				$domObj->find('a',0)->class .= ' hover'; 	
-				$domObj = $this->cssParser->outputInline($domObj,'hover');
+				$domObj = $cssParser->outputInline($domObj,'hover');
 
 			}
 			else
 			{
 				$domObj->find('a',0)->class .= ' normal'; 
-				$domObj = $this->cssParser->outputInline($domObj);
+				$domObj = $cssParser->outputInline($domObj);
 			}
 
 		}
@@ -459,7 +476,8 @@ class maxButton
 	function setStatus($status = "publish") 
 	{
 		$data = $this->data; 
-		$data["status"] = $status; 
+		$data["status"] = sanitize_text_field($status); 
+
 		return $this->update($data); 
 			
 	}	
@@ -478,7 +496,7 @@ class maxButton
 	*/
 	public function save($post, $savedb = true)
 	{
-
+ 		$post = stripslashes_deep($post); // don't multiply slashes please.
 		$data = apply_filters('mb-save-fields',$this->data, $post); 
 		if (! $savedb ) return $data; 
 		return $this->update($data); // save to db. 
@@ -492,8 +510,11 @@ class maxButton
 		$fields = array(); 
 		foreach($this->blocks as $block)
 		{
-			$blockData = $data[$block]; 
-			$fields[$block] = serialize($blockData);
+			if (isset($data[$block])) 
+			{
+				$blockData = $data[$block]; 
+				$fields[$block] = serialize($blockData);
+			}
 		}	
  		if (isset($data["name"])) {  // other fields. 
  			$fields["name"] = $data["name"]; 
@@ -547,10 +568,11 @@ class maxButton
 			$result = $this->set(0, $button_name); 
 		else return; // no button
 
+
+ 
 		if (! $result) 
 			return; // shortcode doesn't exist
 			
-		//if (isset($button)) {
 			// If we're not in the admin and the button is in the trash, just return nothing
 			if (!is_admin() && $this->status == 'trash') {
 				return '';

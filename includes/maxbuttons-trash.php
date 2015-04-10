@@ -1,7 +1,8 @@
 <?php
 if (isset($_GET['id']) && $_GET['id'] != '') {
+	$button_id = intval($_GET["id"]); // validation
 	$button = new maxButton();
-	$button->set($_GET['id']);
+	$button->set($button_id);
 	$button->setStatus('trash'); 
 }
 ?>

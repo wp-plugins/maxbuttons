@@ -2,9 +2,10 @@
 global $pagenow;
 ?>
 
-<?php // Only run in post/page creation and edit screens ?>
+<?php // Only run in post/page creation and edit screens - also don't load when button is disabled ?>
+<?php if (get_option('maxbuttons_noshowtinymce') == 1) return; ?> 
 <?php if (in_array($pagenow, array('post.php', 'page.php', 'post-new.php', 'post-edit.php'))) { ?>
-	<?php// $published_buttons = maxbuttons_get_published_buttons(); ?>
+ 
 	<?php
 	 $button = new maxButton();
 	 $published_buttons = $button->getButtons(); 

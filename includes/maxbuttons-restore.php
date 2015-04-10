@@ -1,7 +1,9 @@
 <?php
 if (isset($_GET['id']) && $_GET['id'] != '') {
+	$button_id = intval($_GET["id"]); // validation
 	$button = new maxButton();
-	$button->set($_GET['id']);
+	$set = $button->set($button_id,'','trash');
+	if (! $set) exit("Restore failed"); 
 	$button->setStatus("publish"); 
 }
 ?>
