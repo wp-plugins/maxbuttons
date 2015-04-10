@@ -11,7 +11,7 @@ Copyright 2015 Max Foundry, LLC (http://maxfoundry.com)
 */
 define("MAXBUTTONS_ROOT_FILE", __FILE__);
 define('MAXBUTTONS_VERSION_NUM', '3.0');
-define('MAXBUTTONS_RELEASE',"08 April 2015"); 
+define('MAXBUTTONS_RELEASE',"10 April 2015"); 
 
 require_once("classes/maxbuttons-class.php"); 
 

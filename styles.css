@@ -165,7 +165,7 @@
 
 #maxbuttons .media_query .custom .label, #maxbuttons .media_query .custom .input {
 	float: left;
-	clear: none;
+
 }
  #maxbuttons .media_query .custom .input.max {
  	/*float: right; */

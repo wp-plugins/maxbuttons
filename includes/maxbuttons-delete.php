@@ -1,8 +1,9 @@
 <?php
 if (isset($_GET['id']) && $_GET['id'] != '') {
 	$button = new maxButton();
-	//$button->set();
-	$button->delete($_GET['id']); 
+	$button_id = intval($_GET["id"]); // validation
+	
+	$button->delete(intval($_GET['id'])); 
 	
 	//maxbuttons_button_delete_permanently($_GET['id']);
 }

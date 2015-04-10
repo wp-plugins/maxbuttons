@@ -37,6 +37,8 @@ class maxButtons
 		add_filter('plugin_action_links', array($this, "plugin_action_links"), 10, 2);
 		add_filter('plugin_row_meta', array($this, 'plugin_row_meta'), 10, 2);
 		
+		add_filter("admin_footer_text",array($this, "admin_footer_text"));
+		
 		if( is_admin())
 		{
 			add_action('admin_enqueue_scripts', array($this,'add_admin_styles'));
@@ -196,9 +198,19 @@ class maxButtons
 		wp_enqueue_script('maxbutton-admin', $this->plugin_url . 'js/maxbuttons-admin.js', array('jquery'), true); 
 		wp_enqueue_script('maxbutton-js-init', $this->plugin_url . 'js/init.js', array('maxbutton-admin'), true);
 	}	
+	
+	function admin_footer_text($text)
+	{
+		if ( strpos($_GET["page"],'maxbuttons') === false)
+			return $text; 
+		
+		$text .=  "  <i>" . sprintf("MaxButtons release: %s", MAXBUTTONS_RELEASE) . "</i>"; 
+		return $text; 
+	
+	}
 
 
-	function media_button_admin_footer() {
+	function media_button_admin_footer() { 
 		require_once (self::get_plugin_path() . 'includes/maxbuttons-media-button.php');
 	}	
 	
