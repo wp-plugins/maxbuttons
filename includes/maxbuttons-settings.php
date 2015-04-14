@@ -1,8 +1,8 @@
 <?php
 
-if(is_admin()) {
+/*if(is_admin()) {
     wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', '', '4.0.1', false);
-}
+} */
 
 if(isset($_POST['alter_charset'])) {
     
@@ -17,6 +17,13 @@ if(isset($_POST['alter_charset'])) {
 
 } else {
     $response = '';
+}
+
+if (isset($_POST["reset_cache"])) 
+{
+	$button = new maxButton();
+	$button->reset_cache();
+
 }
 
 ?>
@@ -71,11 +78,24 @@ if(isset($_POST['alter_charset'])) {
                        	<div class="input"><input type="checkbox" name="maxbuttons_noshowtinymce" value="1" <?php checked($noshow,1); ?> /></div>
                                       <div class="clear"></div>
                      </div>
+                     
              		
                       <?php submit_button(); ?>
                 </div>
             </div>
         </form>
+        
+        <form method="POST"> 
+        	<input type="hidden" name="reset_cache" value="true" />
+        	<div class="option-container"> 
+        		<div class="title"><?php _e("Clear button cache","maxbuttons"); ?></div>
+        		<div class="inside">
+        			<p><?php _e("Maxbuttons caches the style output allowing for lightning fast display of your buttons. In the event 
+        			this cache needs to be flushed and rebuilt you can reset the cache here.","maxbuttons"); ?></p>
+        			 <?php submit_button(__("Reset Cache") ); ?>
+        		</div>
+        	</div>
+      </form>
       
             <div class="option-container">
                 <div class="title"><?php _e('UTF8 Table Fix', 'maxbuttons') ?></div>

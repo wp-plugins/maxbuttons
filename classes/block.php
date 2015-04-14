@@ -92,6 +92,7 @@ abstract class maxBlock
 		@return $css Array 
 	*/
 	public function parse_css($css, $mode = 'normal') { 
+
 		$data = $this->data[$this->blockname]; 
 
  		// get all fields from this block

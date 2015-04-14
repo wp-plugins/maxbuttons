@@ -68,25 +68,27 @@ class maxAdmin
 	static function display_ads()
 	{ ?>
         <div class="ads">
-            <h3><?php _e('MaxButtons Pro Version 3 Sale', 'maxbuttons'); ?></h3>
-            <p><?php _e('We are having a sale on MaxButtons Pro to celebrate the launch of our latest version!  You’ll see the sales price of $19 in the cart!.', 'maxbuttons'); ?></p>
-            <p><strong><?php _e('Some extra features for going Pro:', 'maxbuttons'); ?></strong></p>
+            <h3><?php _e('MaxButtons Pro Version 3 Sale!', 'maxbuttons'); ?></h3>
+            <p><?php _e('Celebrate the launch of our newest version of MaxButtons Pro!  You’ll see the sales price of $19 in the cart! ', 'maxbuttons'); ?></p>
+            <p><strong><?php _e('MaxButton Pro bonus features include:', 'maxbuttons'); ?></strong></p>
             <ul>
-                <li><?php _e('Great Support', 'maxbuttons'); ?></li>
-                <li><?php _e('Responsive Button', 'maxbuttons'); ?></li> 
-                <li><?php _e('Pre-Made Button Packs', 'maxbuttons'); ?></li>
                 <li><?php _e('Two Lines of Editable Text', 'maxbuttons'); ?></li>
+                <li><?php _e('Pre-Made Button Packs', 'maxbuttons'); ?></li>
                 <li><?php _e('Add An Icon To Your Buttons', 'maxbuttons'); ?></li>
                 <li><?php _e('Google Web Fonts', 'maxbuttons'); ?></li>
-                <li><?php _e('Many more benefits!', 'maxbuttons'); ?></li>
+                <li><?php _e("Font Awesome Icon Support","maxbuttons"); ?></li>
+                <li><?php _e('Responsive Buttons', 'maxbuttons'); ?></li> 
+                <li><?php _e('Our terrific Support', 'maxbuttons'); ?></li>
+                <li><?php _e("Plus More!","maxbuttons"); ?></li>
+
             </ul>
             <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-19&utm_campaign=plugin" target="_blank" ><?php _e('Get MaxButtons Pro Now!', 'maxbuttons'); ?></a>
         </div>
         
         <div class="ads"> 
-        	<h3><?php _e("Every Button We’ve Got Sale","maxbuttons"); ?></h3>
-        	<p>As part of our launch sale we’ve lowered the price for our Every Button We’ve Got to $60.  You’ll see this great sales price in the cart, too!</p>
-            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-19&utm_campaign=plugin" target="_blank"><?php _e('Get MaxButtons Pro Now!', 'maxbuttons'); ?></a>        	
+        	<h3><?php _e("Every Button We’ve Got Sale!","maxbuttons"); ?></h3>
+        	<p>We’ve lowered the price for our Every Button We’ve Got package to $60 as part of our Launch Sale! You’ll see this great sale price in the cart, too! </p>
+            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-19&utm_campaign=plugin" target="_blank"><?php _e('Get All our Buttons Now!', 'maxbuttons'); ?></a>        	
         </div>
         
         <div class="ads">
@@ -95,12 +97,12 @@ class maxAdmin
             <a class="button-primary" href="https://wordpress.org/plugins/maxgalleria/"><?php _e('Get MaxGalleria Now!', 'maxbuttons'); ?></a>
         </div>
         
-        <div class="ads">
+   <!--     <div class="ads">
             <h3><i class="fa fa-cogs"></i> <?php _e('Font Awesome Support', 'maxbuttons'); ?></h3>
             <p><?php _e('With MaxButtons Pro you have access to all 439 Font Awesome icons, ready to add to your buttons.', 'maxbuttons'); ?></p>
             <p><?php _e('Never upload another icon again, just choose an icon and go about your normal button-making business.', 'maxbuttons'); ?></p>
             <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-99&utm_campaign=plugin"><?php _e('Use Font Awesome!', 'maxbuttons'); ?> <i class="fa fa-arrow-circle-right"></i></a>
-        </div>
+        </div> -->
         <?php
 	}
 
