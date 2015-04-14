@@ -59,6 +59,7 @@ $published_buttons_count = count($published_buttons);
 $trashed_buttons = $button->getButtons(array("status" => "trash"));
 $trashed_buttons_count = count($trashed_buttons);
 
+
  
 ?>
 
@@ -130,7 +131,7 @@ $trashed_buttons_count = count($trashed_buttons);
 					<?php foreach ($trashed_buttons as $b) { 
 					
 								$id = $b["id"]; 		
-								$button->set($id); 
+								$button->set($id,'','trash'); 
 					?>
 						<tr>
 							<td valign="center">

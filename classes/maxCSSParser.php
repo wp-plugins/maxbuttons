@@ -35,10 +35,8 @@ class maxCSSParser
 	{	
 		$this->domObj = $domObj;
 
-
 		$root = $domObj->find(0,0);
-		$struct[$root->tag] = array(); 
-		//echo $root->tag;
+		$struct[$root->tag] = array(); 	 
 		
 		$children = $root->children();
  
@@ -59,12 +57,9 @@ class maxCSSParser
 			$class = str_replace(" ",".", $class); // combine seperate classes 
 					
   			$struct[$class]["tag"] = $domChild->tag; 
-  			//echo $domChild->tag . " class " . $domChild->class . "<BR/>"; 
-			//$struct[$domChild->tag]["children"] = array(); 
+ 
 			$child_children = $domChild->children(); 
- 		
- 			
- 			//echo count($children) . " < Children of " . $domChild->tag;
+
 			if (count($child_children) > 0) 
 			{
 				 
@@ -78,10 +73,12 @@ class maxCSSParser
 		
 	function parse($data)
 	{	
+		$this->clear(); 
+		
 		$struct = $this->struct; 
 		$this->data = $data; 
 	
- 		 	
+ 
  		if (isset($data["settings"]))  // room for settings in parser
  		{
  			$settings = $data["settings"];
@@ -95,32 +92,53 @@ class maxCSSParser
 
 		foreach($elements as $el => $el_data)
 		{
+			maxButtonsUtils::addTime("CSSParser: Parse $el ");
 			$this->parse_part($el,$el_data); 		
 		}
+
 		
 		$this->parse_responsive();
+		maxButtonsUtils::addTime("CSSParser: Parsed responsive ");
 
-		
-
+ 
+ 
+ 
 		$css = $this->compile($this->output_css);
+		maxButtonsUtils::addTime("CSSParser: Compile done ");
+
 		return $css;
  
 	}
 	
-	private function compile($css)
+	// reset output values. 
+	protected function clear() 
 	{
-
+		$this->data = ''; 
+		$this->output_css = ''; 
+		$this->inline = array();
+		$this->responsive = array();
+	
+	}
+	
+	protected function compile($css)
+	{
 		$scss = new scssc();
 		$scss->setImportPaths(maxButtons::get_plugin_path() . "assets/");
+		//$scss->setFormatter('scss_formatter_compressed');
 		
 		$compile = " @import 'mixins.scss';  " . $css;
-
+		maxButtonsUtils::addTime("CSSParser: Compile start ");
+ 
+		
 		try
 		{
 			$css = $scss->compile($compile);
-		} catch (Exception $e) { $css = $this->output_css;  } 
+		} catch (Exception $e) { 
+			$css = $this->output_css; 
+		 } 
 		
-		
+		maxButtonsUtils::addTime("CSSParser: Compile end ");
+
 		return $css;
 	}
 	
@@ -176,7 +194,7 @@ class maxCSSParser
 			{
 				foreach($el_data["children"] as $child_id => $child_data)
 				{
-					//$this->parse_part($el_data["children"],
+ 
 					$this->parse_part($child_id, $child_data, $el_add);
 				}
 			}
@@ -284,9 +302,7 @@ class maxCSSParser
 		
 		  endforeach;
 		endforeach;
-
-		
-
+ 
 		$this->output_css .= $output;
 	}
 	
@@ -424,6 +440,8 @@ class maxCSSParser
 			$normstyle = ''; 
 			if ($pseudo != 'normal') // parse all possible missing styles from pseudo el.
 				$normstyle = $this->compile($inline['normal'][$element]); 
+			
+			maxButtonsUtils::addTime("CSSParser: Parse inline done");
 			
 			$styles = $normstyle . $this->compile($styles);
 			

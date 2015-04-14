@@ -3,6 +3,10 @@
 // new class for the future. 
 class maxButtonsUtils
 {
+	protected static $timings = array();
+	protected static $timer = 0;
+	
+
 	static function selectify($name, $array, $selected, $target = '')
 	{
 		// optional target for js updating
@@ -62,10 +66,10 @@ class maxButtonsUtils
 
 
 
-static function get_media_query($get_option = 1)
+	static function get_media_query($get_option = 1)
 	{
 		
-		$queries = array("phone" =>  "only screen and (min-width : 320px) and (max-width : 480px)",
+		$queries = array("phone" =>  "only screen and (max-width : 480px)",
 					"phone_land" => "only screen and (min-width : 321px) and (max-width : 480px)", 
 				  	"phone_portrait" => " only screen and (max-width : 320px)", 
 				  	"ipad" => "only screen and (min-width : 768px) and (max-width : 1024px)",
@@ -90,7 +94,7 @@ static function get_media_query($get_option = 1)
 						  	);	
 						  	
 		$query_descriptions = array(
-							"phone" => __("Optimized for small smartphones ( screen sizes 320px - 480px )","maxbuttons"),
+							"phone" => __("Optimized for small smartphones ( screen sizes under 480px )","maxbuttons"),
 							"phone_land" => __("Optimzed for small smartphones in landscape and higher ( screen sizes 321px - 480px)","maxbuttons"), 
 							"phone_portrait" => __("Optimized for small phones ( screen size max 320px )","maxbuttons"), 
 							"ipad" => __("Optimized for devices between 768px and 1024px","maxbuttons"), 
@@ -125,6 +129,72 @@ static function get_media_query($get_option = 1)
 			return $wpdb->prefix . 'maxbuttonsv3'; 
 	}
 
+	static function timeInit()
+	{
+		self::$timer = microtime(true);
+
+		if (is_admin()) 
+			add_filter("admin_footer",array('maxButtonsUtils', "showTime"), 100); 
+		else
+			add_action("wp_footer",array('maxButtonsUtils', "showTime")); 
+	
+	}
+
+	static function addTime($msg)
+	{
+		if ( ! defined('MAXBUTTONS_BENCHMARK') || MAXBUTTONS_BENCHMARK !== true)
+			return;
+		
+		if (count(self::$timings) == 0)
+		{
+			self::timeInit(); 
+		} 
+		
+		self::$timings[] = array("msg" => $msg,"time" => microtime(true)); 
+		
+		/*
+		global $timer; global $timings;
+		$timer = microtime(true);
+		$timings = array(); 
+		function addTime($msg)
+		{
+			global $timings;
+			$timings[] = array("msg" => $msg, "time" => microtime(true)); 
+		}
+
+		function show_time()
+		{
+			global $timings; global $timer; 
+			//echo "TIME";  print_R($timings);
+			foreach($timings as $timing)
+			{
+				echo ($timing["time"] - $timer) . " :: " . $timing["msg"] . " <br /> "; 
+			}
+		}
+
+		add_action('wp_footer','show_time');  */
+
+
+	}
+	
+	static function showTime()
+	{
+			$timer = self::$timer;
+			$text = ''; 
+			$text .=  "<div id='mb-timer'>"; 
+			$text .= "<p>" . __("MaxButtons Loading Time:","maxbuttons") . "</p>"; 
+			
+			foreach(self::$timings as $timing)
+			{
+				$text .= ($timing["time"] - $timer) . " :: " . $timing["msg"] . " <br /> "; 
+			}
+			$text .= "</div>";
+			$text .= "<style>#mb-timer { margin-left: 180px; } 
+			
+					</style>"; 
+			echo $text;
+			//return $filter . $text; 
+	}
 }
 
 /*

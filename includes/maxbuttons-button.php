@@ -21,7 +21,6 @@ if ($_POST) {
 }
 	
 if (isset($_GET['id']) && $_GET['id'] != '') { 
-	//$button = maxbuttons_get_button($_GET['id']);
 	$button_id = intval($_GET["id"]); 
 	$button->set($button_id);
 }
@@ -31,7 +30,7 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 <div id="maxbuttons">
 	<div class="wrap">
 		<div class="icon32">
-			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>/images/mb-32.png" alt="MaxButtons" /></a>
+			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>/images/mb-peach-icon.png" alt="MaxButtons" /></a>
 		</div>
 		
 		<h2 class="title"><?php _e('MaxButtons: Add/Edit Button', 'maxbuttons') ?></h2>
@@ -78,14 +77,12 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
  
 				<?php _e('The top is the normal button, the bottom one is the hover.', 'maxbuttons') ?>
 				<div class="result">
-					<?php // $button = new maxButton(); 
-						// $button->set($button_id);
-						?>
-					<?php $button->display(array("preview" => true));  ?> 
+
+					<?php $button->display(array("preview" => true, "load_css" => "element"));  ?> 
  
 					<p>&nbsp;</p>
  
-					<?php $button->display(array("preview" => true, "preview_part" => ":hover")); ?> 
+					<?php $button->display(array("preview" => true, "preview_part" => ":hover", "load_css" => "element")); ?> 
 					
 					<?php $button->display_field_map(); ?> 
 				</div>

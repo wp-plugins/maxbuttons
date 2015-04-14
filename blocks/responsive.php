@@ -38,6 +38,14 @@ class responsiveBlock extends maxBlock
 																	"css" => "width_unit",
 																	"csspart" => "mb-container", 
 															), 
+									"mq_font_size" => array("default" => 90, 
+															"css" => "font-size", 
+															"csspart" => "mb-text",
+														),						
+									"mq_font_size_unit" => array("default" => "%", 
+															    "css" => "font-size_unit", 
+															    "csspart" => "mb-text"), 
+															 					
 									"mq_custom_minwidth" => array("default" => 0, 
 															  "css" => "custom_minwidth"), 
 									"mq_custom_maxwidth" => array("default" => 0, 
@@ -51,13 +59,21 @@ class responsiveBlock extends maxBlock
 			return $css;
 			
 		$data = $this->data[$this->blockname];
-		
+
+ 		
 		if (isset($data["auto_responsive"]) && $data["auto_responsive"] == 1)
 		{	// generate auto_rules for responsive.
 			$css["maxbutton"]["responsive"]["phone"][0]["width"] = "90%"; 
 			$css["mb-container"]["responsive"]["phone"][0]["width"] = "90%"; 
  			$css["mb-container"]["responsive"]["phone"][0]["float"] = "none"; 
- 
+ 			$css["mb-text"]["responsive"]["phone"][0]["font-size"] = "90%"; 
+ 			
+ 			 
+ 			if ( isset($this->data["text"]["font_size"]) )
+ 			{
+	 			$css["mb-text"]["responsive"]["phone"][0]["font-size"] = floor(intval($this->data["text"]["font_size"]) * 0.8) . 'px';  				
+ 			}
+ 			
 		}
 		
 		if (! isset($data["media_query"]))
@@ -89,7 +105,7 @@ class responsiveBlock extends maxBlock
 			endforeach;
 		endforeach;
 
- 
+
 		return $css;
 	}
 	
@@ -204,6 +220,10 @@ class responsiveBlock extends maxBlock
 								
 							</div>	
 						
+							<div class='label'><?php _e("Font size","maxbuttons") ?></div>
+							<div class='input'><input type='text' name='mq_font_size[]' class='tiny' value="<?php echo $fields["mq_font_size"] ?>"> <?php echo maxButtonsUtils::selectify("mq_font_size_unit[]",$units,$fields["mq_font_size_unit"]) ?>
+							</div>	
+						
 							<div class='label'><?php _e("Button width", 'maxbuttons') ?></div>
 							
 							<div class='input'><input type='text' name="mq_button_width[]" value="<?php echo $fields["mq_button_width"] ?>" class='tiny'> <?php echo maxButtonsUtils::selectify("mq_button_width_unit[]",$units,$fields["mq_button_width_unit"]) ?></div>
@@ -215,6 +235,8 @@ class responsiveBlock extends maxBlock
 							
 							<div class='label'><?php _e("Container float", "maxbuttons"); ?></div>
 							<div class="input"><?php echo maxButtonsUtils::selectify("mq_container_float[]",$container_floats, $fields["mq_container_float"]) ?></div>
+							
+							
 								
 						</div>
 					 
@@ -260,7 +282,10 @@ class responsiveBlock extends maxBlock
 
 								
 							</div>	
-														
+							<div class='label'><?php _e("Font size","maxbuttons") ?></div>
+							<div class='input'><input type='text' name='mq_font_size[]' class='tiny' value="90"> <?php echo maxButtonsUtils::selectify("mq_font_size_unit[]",$units,"%") ?>
+							</div>	
+												
 							<div class='label'><?php _e("Button width", "maxbuttons") ?></div>
 							<div class='input'><input type='text' name="mq_button_width[]" value="0" class='tiny'> <?php echo maxButtonsUtils::selectify("mq_button_width_unit[]",$units,""); ?></div>
 							<div class='label'><?php _e("Container width", "maxbuttons"); ?></div>

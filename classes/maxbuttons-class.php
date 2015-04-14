@@ -251,7 +251,7 @@ class maxButtons
 		// Only run in post/page creation and edit screens
 		if (in_array($pagenow, array('post.php', 'page.php', 'post-new.php', 'post-edit.php'))) {
 			$title = __('Add Button', 'maxbuttons');
-			$icon = $this->plugin_url . '/images/mb-16.png';
+			$icon = $this->plugin_url . '/images/mb-peach-icon.png';
 			$img = '<span class="wp-media-buttons-icon" style="background-image: url(' . $icon . '); width: 16px; height: 16px; margin-top: 1px;"></span>';
 			$output = '<a href="" class="maxbutton_thickbox button" title="' . $title . '" style="padding-left: .4em;">' . $img . ' ' . $title . '</a>'; 
 		}
