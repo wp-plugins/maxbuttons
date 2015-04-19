@@ -201,6 +201,9 @@ class maxButtons
 	
 	function admin_footer_text($text)
 	{
+		if (! isset($_GET["page"]))
+			return $text;
+			
 		if ( strpos($_GET["page"],'maxbuttons') === false)
 			return $text; 
 		

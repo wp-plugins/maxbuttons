@@ -87,7 +87,7 @@ class maxAdmin
         
         <div class="ads"> 
         	<h3><?php _e("Every Button We’ve Got Sale!","maxbuttons"); ?></h3>
-        	<p>We’ve lowered the price for our Every Button We’ve Got package to $60 as part of our Launch Sale! You’ll see this great sale price in the cart, too! </p>
+        	<p>We’ve lowered the price for our Every Button We’ve Got package to $60 as part of our Launch Sale! Combined with a copy of MaxButtons Pro you’ll get the combo sale price of $79 in the cart! </p>
             <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=wordpress&utm_medium=mbrepo&utm_content=button-list-sidebar-19&utm_campaign=plugin" target="_blank"><?php _e('Get All our Buttons Now!', 'maxbuttons'); ?></a>        	
         </div>
         

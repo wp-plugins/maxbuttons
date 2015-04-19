@@ -163,7 +163,7 @@ class maxButton
 		
 	function setupData($data)
 	{
-		maxButtonsUtils::addTime("Button: Setup data" . $this->button_css );
+		maxButtonsUtils::addTime("Button: Setup data"  );
 		foreach($this->blocks as $block)
 		{
 			if (array_key_exists($block, $data))  // strangely isset doesn't work
@@ -178,7 +178,7 @@ class maxButton
 		}
 
 		$this->id = $data["id"];
-		$this->cache = trim($data["cache"]);
+		$this->cache = isset($data["cache"]) ? trim($data["cache"]) : ''; // not set at button packs / non-dbase buttons!
 		$this->data["id"] = $this->id; // needed for certain blocks, to be button aware. 
 		$this->name = $data["name"]; 
 		$this->status = $data["status"];
