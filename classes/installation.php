@@ -162,6 +162,7 @@ class maxInstall
 					id int NOT NULL AUTO_INCREMENT, 
 					 name varchar(100) NULL, 
 					 status varchar(10) default 'publish' NOT NULL, 
+					 cache text, 
 				";
 				/*	name VARCHAR(100) NULL,
 					description VARCHAR(500) NULL,
@@ -237,6 +238,10 @@ class maxInstall
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 			dbDelta($sql);
 		}
+		
+		// Reset the cache if there were any left from before
+		$button->reset_cache(); 
+		
 		//else exit( __("Something went wrong when creating database table", "maxbuttons") );
 	}
  

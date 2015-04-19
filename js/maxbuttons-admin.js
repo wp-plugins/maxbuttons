@@ -524,7 +524,7 @@ maxAdmin.prototype.addMediaQuery = function()
 	if (new_query !== 'custom') 
 		$(new_option).children('.custom').remove(); 
 	
-	
+	$('#new_query :selected').remove();
 	$('.media_queries_options .new_query_space').append(new_option);
  
 }
