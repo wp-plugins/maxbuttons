@@ -2,13 +2,18 @@
 Contributors: maxfoundry, arcware, johnbhartley
 Tags: button, buttons, css, css3, css3 icon, css button, rounded, call to action, free, icon, icons, link, permalink, plugin, seo, shortcode, shortcodes, shortlinks, wordpress button plugin, wordpress button generator, css3 button plugin, gradient, css3 button generator, css wordpress button, css3 wordpress button, social media button, wordpress buttons plugin, wp button creator, create wordpress buttons, button generator, create button icon, font awesome, fontawesome
 Requires at least: 3.4
-Tested up to: 4.1
-Stable tag: 3.01
+Tested up to: 4.2
+Stable tag: 3.02
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
 == Description ==
 Create great-looking CSS3 buttons that can be used on any post or page in your WordPress site. The easy to use button editor makes it a snap to generate awesome CSS3 buttons in very little time.
+
+= Requirements = 
+
+* Wordpress installed
+* PHP 5.3 
 
 = Helpful Links = 
 
@@ -45,8 +50,8 @@ Take your buttons to the next level with [MaxButtons Pro](http://www.maxbuttons.
 * **Google Web Fonts** - To make your buttons stand out with beautiful typography.
 * **Button Packs** - Be more productive through the use of our value priced, ready-made button sets.
 * **Import/Export** - Useful for backing up and/or moving your buttons. Also, use any of the great [free icons](http://maxbuttons.com/free-icons/) listed on our site.
-* **Height and Width** - Explicit options to set button height and width.
-* **Shopp Integration** - Use buttons created with MaxButtons Pro as the shopping cart buttons of the Shopp e-commerce plugin.
+
+
 
 And the best part is that you can get this awesome [CSS3 button generator](http://www.maxbuttons.com/?utm_source=wordpress&utm_medium=mbrepo&utm_content=CSS3&utm_campaign=plugin) for **only $19!**
 
@@ -143,6 +148,18 @@ Enable the container option and set the alignment property to either "display: i
 
 == Changelog ==
 
+= 3.02 = 
+
+* Fixed: IK Facebook plugin jamming the colorpicker 
+* Fixed: Bug where hover cursor wouldn't show up when url was added via shortcode
+* Fixed: Moving table to UTF-8 in settings works again
+
+* Option for remigration of settings from old to new table in case upgrade didn't complete
+* Added PHP 5.3 requirement in readme
+* Added checks for both PHP version, and if activation did run. 
+* Removed default 'white-space: nowrap'.
+* Tested with WP 4.2
+
 = 3.01 = 
 
 * Code rebuilt
@@ -150,6 +167,9 @@ Enable the container option and set the alignment property to either "display: i
 * Responsive module 
 * Dimensions, set width and height 
 
+= 3.0 = 
+
+* Beta release of new codebase
 
 = 1.37 = 
 

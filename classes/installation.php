@@ -19,6 +19,23 @@ class maxInstall
 		}
 	}	
 
+	// This should be done - once! Removed in time as well.
+	static function check_database()
+	{
+		$checked = get_option("MB_DBASECHECK", true); 
+		if ($checked == '')
+		{
+ 
+			$table = maxButtonsUtils::get_buttons_table_name(); 
+ 
+			if (! self::maxbuttons_database_table_exists($table))
+			{
+				self::activate_plugin();
+			}
+		}
+		update_option("MB_DBASECHECK","1");
+	}
+
 	static function activate_plugin($gocreate = true)
 	{
 		

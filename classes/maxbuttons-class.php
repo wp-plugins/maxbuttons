@@ -23,7 +23,13 @@ class maxButtons
 		$this->plugin_name = trim(basename($this->plugin_path), '/');
 		
 		$this->installed_version = get_option('MAXBUTTONS_VERSION_KEY'); 
-	 
+
+	 	if ( version_compare(PHP_VERSION, '5.3.0', '<' ) ) {
+	 		exit("This MaxButtons version requires at least PHP 5.3 . You are running : " . PHP_VERSION); 	 
+	 	}
+	 	
+	 	maxInstall::check_database(); // sigh
+	 	
 		add_action('init', array($this, 'load_textdomain'));
 		add_action('admin_init', array($this, 'addthick')); 
 		add_filter('widget_text', 'do_shortcode');

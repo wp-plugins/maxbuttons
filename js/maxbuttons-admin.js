@@ -195,7 +195,7 @@ maxAdmin.prototype.copy_colors = function(action, e)
 maxAdmin.prototype.showColorPicker = function()
 		{
 			$('.colorpicker-box span').ColorPicker({
-	
+
 				'onBeforeShow': function () { 
 					var target = $(this).parent().attr('id'); 
 					target = target.replace('_box',''); 
@@ -222,7 +222,7 @@ maxAdmin.prototype.showColorPicker = function()
 				'onHide': function(colpkr) { $(colpkr).fadeOut(500); return false; },
 										
 			});
- 
+
 		};
 		
 maxAdmin.prototype.update_preview = function(e) 

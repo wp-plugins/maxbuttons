@@ -186,10 +186,13 @@ class responsiveBlock extends maxBlock
 					<p><?php _e("Responsive settings let you decide the behavior of the button on different devices and screen sizes. For instance large buttons on small screens","maxbuttons") ?></p>
 					<div class="option-design"> 
 						<div class="label"><?php _e("Auto Responsive", 'maxbuttons') ?> <?php _e("(Experimental)","maxbuttons") ?></div>
+
 						<div class="input"> 
 							<input type='checkbox' name='auto_responsive' value='1' <?php checked(1, $auto_responsive); ?> >
 						</div>
+
 											<div class="clear"></div>
+						<p><strong>Note: </strong> Auto responsive setting will take a guess only on small screens. To control your responsive settins uncheck this button. This will show more options</p>	
 					</div>
  
 					

@@ -15,7 +15,7 @@ if ($_POST) {
 	$return = $button->save($_POST); 
 	if (is_int($return) && $button_id <= 0) 
 		$button_id = $return;
-	
+ 
 	$button->set($button_id);	
 	wp_redirect(admin_url('admin.php?page=maxbuttons-controller&action=button&id=' . $button_id));
 }

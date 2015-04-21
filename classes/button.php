@@ -166,6 +166,7 @@ class maxButton
 		maxButtonsUtils::addTime("Button: Setup data"  );
 		foreach($this->blocks as $block)
 		{
+
 			if (array_key_exists($block, $data))  // strangely isset doesn't work
 			{
 				$this->data[$block] = unserialize($data[$block]);
@@ -264,18 +265,16 @@ class maxButton
 	{
 		maxButtonsUtils::addTime("Button: Parse css :: $mode");
 		$css = $this->button_css; 
-		$css = apply_filters('mb-css-blocks', $css, $mode); 
-
-		$this->button_css = $css;
 
 		if (isset($this->cache) && $this->cache != '' && ! $forceCompile)
-		{
- 
+		{		 
 			$css = $this->cache;
 			maxButtonsUtils::addTime("Button: Cache loaded");
 		}
 		else
 		{ 
+			$css = apply_filters('mb-css-blocks', $css, $mode);
+			$this->button_css = $css;
 			$css = $this->getCSSParser()->parse($this->button_css);
 			if ($mode == 'normal') // only in general mode, otherwise things go amiss.
 				$this->update_cache($css);
@@ -324,6 +323,7 @@ class maxButton
 			"preview_part" => "normal",
 			"echo" => true, 
 			"load_css" => "footer", // control how css is loaded. 
+			"compile" => false, // possibility to force recompile if needed. 
 		);
 		
 		$args = wp_parse_args($args, $defaults); 
@@ -349,12 +349,15 @@ class maxButton
 		// create button
 		$domObj = $this->parse_button($mode); 
  		
- 		$compile = false; 
+ 		
  
  
- 		if ($this->load_css == 'element' || $mode !== 'normal' ) { // if css output is on element, for to compile - otherwise inline styles will not be loaded.
+ 		if ($this->load_css == 'element' || $mode !== 'normal' || $args["compile"] == true) { // if css output is on element, for to compile - otherwise inline styles will not be loaded.
  			$compile = true;
  		}
+ 		else 
+ 			$compile = false;
+ 			
 		$this->parse_css($mode, $compile); 
 		$this->parse_js($mode); 
 		
@@ -597,7 +600,8 @@ class maxButton
 			$result = $this->set(0, $button_name); 
 		else return; // no button
 
-
+		$compile = false; 
+		
  
 		if (! $result) 
 			return; // shortcode doesn't exist
@@ -627,6 +631,7 @@ class maxButton
 		if ($url != '') 
 		{
 			$this->data["basic"]["url"]  = $url; 
+			$compile = true; // css change forces recompile
 			$overrides = true;
 		}
 		if ($window != '' && $window =='new') 
@@ -645,7 +650,10 @@ class maxButton
 			do_action('mb-data-load', $this->data);
 		}
 		// if there are no reasons not to display; display
-		$output = $this->display(array("echo" => false));
+		$args = array("echo" => false, 
+					  "compile" => $compile, 
+				);
+		$output = $this->display($args);
 	 
 		return $output;
 		
