@@ -1,23 +1,38 @@
 <?php
 
-if(is_admin()) {
+/*if(is_admin()) {
     wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', '', '4.0.1', false);
-}
+} */
 
 if(isset($_POST['alter_charset'])) {
     
     global $maxbuttons_installed_version;
     global $wpdb;
-    $table_name = maxbuttons_get_buttons_table_name();
+    $table_name = maxButtonsUtils::get_buttons_table_name();
 
     $sql = "ALTER TABLE " . $table_name . " CONVERT TO CHARACTER SET utf8";
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-    $wpdb->query($wpdb->prepare($sql));
+    $wpdb->query($sql);
     $response = 'CHARSET now utf_8 COLLATE utf8_general_ci';
 
 } else {
     $response = '';
 }
+
+if (isset($_POST["reset_cache"])) 
+{
+	$button = new maxButton();
+	$button->reset_cache();
+
+}
+
+if (isset($_POST["remigrate"]))
+{
+ 
+	maxInstall::create_database_table();
+	maxInstall::migrate();
+}
+
 
 ?>
 
@@ -71,12 +86,37 @@ if(isset($_POST['alter_charset'])) {
                        	<div class="input"><input type="checkbox" name="maxbuttons_noshowtinymce" value="1" <?php checked($noshow,1); ?> /></div>
                                       <div class="clear"></div>
                      </div>
+                     
              		
                       <?php submit_button(); ?>
                 </div>
             </div>
         </form>
+        
+        <form method="POST"> 
+        	<input type="hidden" name="reset_cache" value="true" />
+        	<div class="option-container"> 
+        		<div class="title"><?php _e("Clear button cache","maxbuttons"); ?></div>
+        		<div class="inside">
+        			<p><?php _e("Maxbuttons caches the style output allowing for lightning fast display of your buttons. In the event 
+        			this cache needs to be flushed and rebuilt you can reset the cache here.","maxbuttons"); ?></p>
+        			 <?php submit_button(__("Reset Cache") ); ?>
+        		</div>
+        	</div>
+      </form>
       
+        <form method="POST">       
+      <div class="option-container">
+              	<input type="hidden" name="remigrate" value="true" />
+      	<div class="title"><?php _e("Retry Database migration","maxbuttons"); ?></div>
+      	<div class="inside"><p><?php _e("In case the upgrade functionality failed to move your old buttons from MaxButtons before version 3, you can do so here manually. <strong>Attention</strong>  The new database table (maxbuttonsv3) *must* be empty, and the old database table *must* contain buttons otherwise this will not run. Run this <strong>at your own risk</strong> - it is strongly advised to make a backup before doing so."); ?></p>	
+      	 <?php submit_button(__("Remigrate") ); ?>
+      	</div>
+      	        			
+      
+        </div>
+  		</form>
+  		
             <div class="option-container">
                 <div class="title"><?php _e('UTF8 Table Fix', 'maxbuttons') ?></div>
                 <div class="inside">
