@@ -13,6 +13,20 @@ define("MAXBUTTONS_ROOT_FILE", __FILE__);
 define('MAXBUTTONS_VERSION_NUM', '3.02');
 define('MAXBUTTONS_RELEASE',"21 April 2015"); 
 
+if ( version_compare(PHP_VERSION, '5.3.0', '<' ) ) {
+ 
+	add_action( 'admin_notices', 'maxbuttons_php52_nono' ); 
+	return;
+}
+	 	
+function maxbuttons_php52_nono()
+{
+	$message = "From version 3 MaxButtons requires at least PHP 5.3 . You are running : " . PHP_VERSION;
+	echo"<div class='error'> <h4>$message</h4></div>"; 
+	return; 
+}
+
+
 // Copy this to wp-config.php
 // define("MAXBUTTONS_BENCHMARK",false); 
 
