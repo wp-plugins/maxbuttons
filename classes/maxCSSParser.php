@@ -394,7 +394,7 @@ class maxCSSParser
 		
 		$important = ($this->is_important()) ? "!important" : ""; 
 		
-		if ($color != '')		
+		if ($color != '' && $width > 0)		
 			$values = $this->add_include($values, "box-shadow($left, $top, $width, $color $important) ");			
 	
 		$values = array_diff_key($values, $results);
@@ -411,7 +411,7 @@ class maxCSSParser
 		$color = isset($results["text-shadow-color"]) ? $results["text-shadow-color"] : ''; 
 		$important = ($this->is_important()) ? "!important" : ""; 
 				
-		if ($color != '')
+		if ($color != '' && $width > 0)
 			$values = $this->add_include($values, "text-shadow ($left,$top,$width,$color $important)"); 
 		
 		$values = array_diff_key($values, $results);

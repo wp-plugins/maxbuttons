@@ -23,10 +23,6 @@ class maxButtons
 		$this->plugin_name = trim(basename($this->plugin_path), '/');
 		
 		$this->installed_version = get_option('MAXBUTTONS_VERSION_KEY'); 
-
-	 	if ( version_compare(PHP_VERSION, '5.3.0', '<' ) ) {
-	 		exit("This MaxButtons version requires at least PHP 5.3 . You are running : " . PHP_VERSION); 	 
-	 	}
 	 	
 	 	maxInstall::check_database(); // sigh
 	 	
@@ -232,7 +228,7 @@ class maxButtons
 
 	function plugin_action_links($links, $file) {
  
-		if ($file == plugin_basename(dirname(__FILE__) . '/maxbuttons.php')) {
+		if ($file == plugin_basename(dirname(MAXBUTTONS_ROOT_FILE) . '/maxbuttons.php')) {
 			$label = __('Buttons', 'maxbuttons');
 			$dashboard_link = '<a href="' . admin_url() . 'admin.php?page=maxbuttons-controller&action=list">' . $label . '</a>';
 			array_unshift($links, $dashboard_link);
