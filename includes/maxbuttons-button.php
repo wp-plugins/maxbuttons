@@ -54,10 +54,12 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 				<a id="button-delete" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $button_id ?>"><?php _e('Delete Permanently', 'maxbuttons') ?></a>
 			</div>
 			
+			<?php if ($button_id > 0): ?>
 			<div class="mb-message">
 				<?php _e('To use this button, place the following shortcode anywhere in your site content:', 'maxbuttons') ?>
 				<strong>[maxbutton id="<?php echo $button_id ?>"]</strong> or <strong>[maxbutton name="<?php echo $button->getName(); ?>"]</strong> 
 			</div>
+			<?php endif; ?>
 			
 			<?php #### STARTING FIELDS; 
 			
@@ -78,11 +80,11 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 				<?php _e('The top is the normal button, the bottom one is the hover.', 'maxbuttons') ?>
 				<div class="result">
 
-					<?php $button->display(array("preview" => true, "load_css" => "element"));  ?> 
+					<?php $button->display(array("mode" => 'editor', "load_css" => "element"));  ?> 
  
 					<p>&nbsp;</p>
  
-					<?php $button->display(array("preview" => true, "preview_part" => ":hover", "load_css" => "element")); ?> 
+					<?php $button->display(array("mode" => 'editor', "preview_part" => ":hover", "load_css" => "element")); ?> 
 					
 					<?php $button->display_field_map(); ?> 
 				</div>

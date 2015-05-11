@@ -1,9 +1,9 @@
 <?php
 if (isset($_GET['action']) && $_GET['action'] != '') {
-	if (isset($_GET['status']) && $_GET['status'] == 'trash') {
-		include_once 'maxbuttons-list-trash.php';
-	}
-	else {
+	/*if (isset($_GET['status']) && $_GET['status'] == 'trash') {
+		include_once 'maxbuttons-list.php';
+	} */
+	//else {
 		switch ($_GET['action']) {
 			case 'button':
 				include_once 'maxbuttons-button.php';
@@ -24,7 +24,7 @@ if (isset($_GET['action']) && $_GET['action'] != '') {
 				include_once 'maxbuttons-list.php';
 				break;
 		}
-	}
+	//}
 } else {
 	include_once 'maxbuttons-list.php';
 }

@@ -50,6 +50,9 @@ class basicBlock extends maxBlock
 	
 	public function save_fields($data, $post)
 	{	
+		// Possible solution: 
+		$post["url"] = isset($post["url"]) ? urldecode(urldecode($post["url"])) : '';
+ 
 		$data = parent::save_fields($data, $post);
 		if (isset($post["name"])) 
 			$data["name"] = sanitize_text_field($post["name"]); 
@@ -116,7 +119,7 @@ class basicBlock extends maxBlock
 						<div class="note"><?php _e('Something that you can quickly identify the button with.', 'maxbuttons') ?></div>
 						<div class="clear"></div>
 						<div class="input">
-							<input type="text" id="name" name="name" value="<?php echo $name ?>" maxlength="100" />
+							<input type="text" id="name" name="name" value="<?php echo esc_html($name) ?>" maxlength="100" class="input_name" />
 						</div>
 					</div>
 					
@@ -125,7 +128,7 @@ class basicBlock extends maxBlock
 						<div class="note"><?php _e('Brief explanation about how and where the button is used.', 'maxbuttons') ?></div>
 						<div class="clear"></div>
 						<div class="input">
-							<textarea id="description" name="description"><?php echo $description ?></textarea>
+							<textarea id="description" name="description" class="nput_description"><?php echo esc_html($description) ?></textarea>
 						</div>
 					</div>
 					
@@ -134,7 +137,7 @@ class basicBlock extends maxBlock
 						<div class="note"><?php _e('The link when the button is clicked.', 'maxbuttons') ?></div>
 						<div class="clear"></div>
 						<div class="input">
-							<input type="text" id="url" name="url" value="<?php echo htmlentities($url) ?>" maxlength="500"/>
+							<input type="text" id="url" name="url" value="<?php echo esc_url($url) ?>" maxlength="500" class="input_url"/>
 						</div>
 					</div>
  

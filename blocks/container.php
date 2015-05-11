@@ -35,9 +35,10 @@ class containerBlock extends maxBlock
 	{
 		$data = $this->data[$this->blockname]; 
 		$id = $this->data["id"]; 
- 		if ($mode == 'preview')
- 			return $domObj; // in previews no container object
 
+ 		if ($mode == 'editor')
+ 			return $domObj; // in previews no container object
+	
  
 		if ($data["container_enabled"] == 1) 
 		{
