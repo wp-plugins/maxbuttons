@@ -87,7 +87,7 @@ class maxAdmin
         
         <div class="ads"> 
         	<h3><?php _e("Everything for $99!","maxbuttons"); ?></h3>
-        	<p>Get a copy of MaxButtons Pro and all of our WordPress Button Packs including over 4.000 Professionally Designed, Production Ready WordPress Buttons in 190 sets.  </p>
+        	<p>Get a copy of MaxButtons Pro and all of our WordPress Button Packs including over 4,000 Professionally Designed, Production Ready WordPress Buttons in 190 sets.  </p>
             <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=EBWG-sidebar-22&utm_campaign=inthecart60" target="_blank"><?php _e('Get Everything Now!', 'maxbuttons'); ?></a>        	
         </div>
         
