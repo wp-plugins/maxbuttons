@@ -182,8 +182,8 @@ class maxButtons
 		if ( strpos($hook,'maxbuttons') === false && $hook != 'post.php' && $hook != 'post-new.php' )
 			return;
   
-				
-		wp_enqueue_style('maxbuttons-css', $this->plugin_url . '/styles.css');
+		wp_enqueue_style('maxbuttons-newcss', $this->plugin_url . 'assets/css/style.css');		
+		wp_enqueue_style('maxbuttons-css', $this->plugin_url . 'styles.css');
 		wp_enqueue_style('maxbuttons-colorpicker-css', $this->plugin_url . 'js/colorpicker/css/colorpicker.css');
 	}
 

@@ -95,7 +95,8 @@ class maxInstall
 	{
 			$data = array(); 
 
-			$data["id"] = $row["id"]; 
+			
+			$data["id"] = (isset($row["id"])) ? $row["id"] : -1; 
 			$data["name"] = $row["name"];
 			$data["status"] = isset($row["status"]) ? $row["status"] : 'publish';   // happens with downloadable packs.
 			$data["description"] = $row["description"]; 

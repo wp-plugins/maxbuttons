@@ -433,7 +433,11 @@ class maxCSSParser
 		$domObj = $domObj->load($domObj->save());
 		
 		$inline = $this->inline;
-
+		
+		// ISSUE #43 Sometimes this breaks 
+		if (! isset($inline[$pseudo])) 
+			return $domObj;
+		
 		foreach($inline[$pseudo] as $element => $styles)
 		{
 			//$element = $element[$pseudo];

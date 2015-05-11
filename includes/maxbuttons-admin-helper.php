@@ -68,8 +68,8 @@ class maxAdmin
 	static function display_ads()
 	{ ?>
         <div class="ads">
-            <h3><?php _e('MaxButtons Pro Version 3 Sale!', 'maxbuttons'); ?></h3>
-            <p><?php _e('Celebrate the launch of our newest version of MaxButtons Pro!  You’ll see the sales price of $19 in the cart! ', 'maxbuttons'); ?></p>
+            <h3><?php _e('Get MaxButtons Pro!', 'maxbuttons'); ?></h3>
+         <?php /*   <p><?php _e('Celebrate the launch of our newest version of MaxButtons Pro!  You’ll see the sales price of $19 in the cart! ', 'maxbuttons'); ?></p> */ ?> 
             <p><strong><?php _e('MaxButton Pro bonus features include:', 'maxbuttons'); ?></strong></p>
             <ul>
                 <li><?php _e('Two Lines of Editable Text', 'maxbuttons'); ?></li>
@@ -86,9 +86,9 @@ class maxAdmin
         </div>
         
         <div class="ads"> 
-        	<h3><?php _e("Every Button We’ve Got Sale!","maxbuttons"); ?></h3>
-        	<p>We’ve lowered the price for our Every Button We’ve Got package to $60 as part of our Launch Sale! Combined with a copy of MaxButtons Pro you’ll get the combo sale price of $79 in the cart! </p>
-            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=EBWG-sidebar-22&utm_campaign=inthecart60" target="_blank"><?php _e('Get All our Buttons Now!', 'maxbuttons'); ?></a>        	
+        	<h3><?php _e("Everything for $99!","maxbuttons"); ?></h3>
+        	<p>Get a copy of MaxButtons Pro and all of our WordPress Button Packs including over 4.000 Professionally Designed, Production Ready WordPress Buttons in 190 sets.  </p>
+            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=EBWG-sidebar-22&utm_campaign=inthecart60" target="_blank"><?php _e('Get Everything Now!', 'maxbuttons'); ?></a>        	
         </div>
         
         <div class="ads">

@@ -196,12 +196,5 @@ class maxButtonsUtils
 			//return $filter . $text; 
 	}
 }
-
-/*
-function maxbuttons_
-
-
-function maxbuttons_strip_px($value) {
-	return rtrim($value, 'px');
-} */
+ 
 ?>

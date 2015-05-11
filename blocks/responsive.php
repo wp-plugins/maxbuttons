@@ -57,7 +57,10 @@ class responsiveBlock extends maxBlock
 	{
 		if ($mode != 'normal') 
 			return $css;
-			
+		
+		if (! isset($data[$this->blockname])) 
+			return $css; 
+				
 		$data = $this->data[$this->blockname];
 
  		

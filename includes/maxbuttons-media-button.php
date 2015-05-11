@@ -8,7 +8,9 @@ global $pagenow;
  
 	<?php
 	 $button = new maxButton();
-	 $published_buttons = $button->getButtons(); 
+	 $mbadmin = MaxButtonsAdmin::getInstance(); 
+	 
+	 $published_buttons = $mbadmin->getButtons(); 
 	?>
 	<script type="text/javascript">
 		function insertButtonShortcode(button_id) {
@@ -30,20 +32,23 @@ global $pagenow;
 
 			<p><?php _e('Select a button from the list below to place the button shortcode in the editor.', 'maxbuttons') ?></p>
 			
-			<table cellpadding="10" cellspacing="0" width="100%">
+			<table cellpadding="10" cellspacing="0" width="100%" class='media_button_table'>
 			<?php foreach ($published_buttons as $b) { ?>
-				<?php $id = $b["id"]; 
+				<?php $id = intval($b["id"]); 
  			  		  $button->set($id);  ?>
 				
 				<tr>
 					<td style="border-bottom: 1px solid #ccc; padding: 20px 0;">
 						<a href="#" onclick="insertButtonShortcode(<?php echo $id ?>); return false;"><?php _e('Insert This Button', 'maxbuttons') ?></a> <span class="raquo">&raquo;</span>
-						<?php if($button->getDescription() != '') {
-							echo '<p style="margin: 0; font-size: 11px;"><strong>Description: </strong> ' . $button->getDescription() . '</p>';
+						
+						<?php 
+							echo '<p style="margin: 0; font-size: 11px;">(' . $id . ') ';
+							if($button->getDescription() != '') {
+							echo '<strong>Description: </strong> ' . $button->getDescription() . '</p>';
 						} ?>
 					</td>
-					<td style="border-bottom: 1px solid #ccc; padding: 20px 0;">
-						<?php $button->display( array("preview" => true, "preview_part" => "full") );  ?>
+					<td style="border-bottom: 1px solid #ccc; padding: 20px 0;" class='media_row'>
+						<?php $button->display( array("mode" => "preview", "preview_part" => "full") );  ?>
 					</td>
 				</tr>
 			<?php } ?>
