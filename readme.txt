@@ -2,8 +2,8 @@
 Contributors: maxfoundry, arcware, johnbhartley, basszje
 Tags: button, buttons, css, css3, css3 icon, css button, rounded, call to action, free, icon, icons, link, permalink, plugin, seo, shortcode, shortcodes, shortlinks, wordpress button plugin, wordpress button generator, css3 button plugin, gradient, css3 button generator, css wordpress button, css3 wordpress button, social media button, wordpress buttons plugin, wp button creator, create wordpress buttons, button generator, create button icon, font awesome, fontawesome, responsive, responsive buttons
 Requires at least: 3.4
-Tested up to: 4.2
-Stable tag: 3.04
+Tested up to: 4.2.2
+Stable tag: 3.04.1
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -147,6 +147,15 @@ Enable the container option and set the alignment property to either "display: i
 </table>`
 
 == Changelog ==
+
+= 3.04.1 = 
+
+* Version numbering change to allow better version management in WP 
+* Improved: Wordpress style pagination
+* Improved: The button editor interface now warns before permanently deleting a button
+* Fixed: Layout issue in button overview disrupting interface
+* Fixed: Support area not showing correctly and deprecated error on mysql info.
+* Fixed: Close button didn't show in the external css dialog  
 
 = 3.04 = 
 

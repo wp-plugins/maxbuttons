@@ -1,8 +1,60 @@
+/* Modal */
+#lean_overlay {
+  position: fixed;
+  z-index: 100;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: #000000;
+  display: none; }
+
 #maxbuttons {
   /*.shortcode-container { 
   	max-width: 60%;
   	overflow: hidden;
   } */ }
+  #maxbuttons .message, #maxbuttons .mb-error, #maxbuttons .mb-message {
+    border: solid 1px #e6db55;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    padding: 10px;
+    margin: 10px 0px 20px 0px; }
+  #maxbuttons .mb-message {
+    background-color: #ffffe0; }
+  #maxbuttons .max-modal {
+    display: none;
+    width: 600px;
+    padding: 10px 20px 20px 20px;
+    display: none;
+    background: #ffffff;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.7); }
+    #maxbuttons .max-modal .modal_header {
+      font-size: 18px;
+      font-weight: 700; }
+    #maxbuttons .max-modal .modal_close {
+      content: X;
+      position: absolute;
+      right: 5px;
+      top: 5px; }
+  #maxbuttons .max-modal textarea#maxbutton-css {
+    width: 600px;
+    height: 400px;
+    font-family: Consolas, 'Courier New', 'Courier';
+    font-size: 13px;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: none; }
+  #maxbuttons .tablenav .input-paging {
+    width: 55px; }
+  #maxbuttons .ads ul li {
+    margin-bottom: 4px; }
   #maxbuttons .preview-buttons {
     background-color: #fff;
     border: 1px solid #dfdfdf;
@@ -30,7 +82,8 @@
         margin: 10px 15px;
         display: inline-block; }
     #maxbuttons .preview-buttons .mb-container {
-      margin: 0; }
+      margin: 0;
+      float: none !important; }
     #maxbuttons .preview-buttons .mb-center {
       text-align: left !important; }
     #maxbuttons .preview-buttons .mb-center .mb-text {
@@ -70,6 +123,17 @@
         font-weight: bold; }
   #maxbuttons .input .input_url {
     width: 600px; }
+  #maxbuttons .system_info {
+    width: 90%;
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 15px; }
+    #maxbuttons .system_info .info {
+      margin: 5px 0; }
+      #maxbuttons .system_info .info label {
+        width: 250px;
+        display: inline-block;
+        clear: both; }
 
 .media_button_table .media_row .mb-container {
   margin: 0 !important; }

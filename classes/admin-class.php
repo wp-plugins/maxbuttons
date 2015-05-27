@@ -44,14 +44,41 @@ class maxButtonsAdmin
 		
 		$limit = intval($args["limit"]); 
 		$page = intval($args["paged"]);
+		$escape = array(); 
+		$escape[] = $args["status"];
+		
+		// 'white-list' escaping
+		switch ($args["orderby"])
+		{
+			case "name": 
+			default: 
+				$orderby = "name"; 	
+			break;
+
+		}
+		
+		switch($args["order"])
+		{
+			case "DESC": 
+				$order = "DESC"; 
+			break;
+			case "ASC": 
+			default:
+				$order = "ASC"; 
+			break;
+		}
+
 		
 		$sql = "SELECT id FROM " . maxButtonsUtils::get_buttons_table_name() . " WHERE status = '%s'"; 
 		if ($args["orderby"] != '')
-			$sql .=  " ORDER BY "  . $args["orderby"] . " " . $args["order"]; 
+		{
+			$sql .=  " ORDER BY $orderby $order"; 
+ 
+		}	 
 	 
 	 	if ($limit > 0) 
 	 	{
-	 		//$total = $this->getButtonCount(array("status" => $args["status"])); 
+
 	 		if ($page == 1 ) 
 	 			$offset = 0; 
 	 		else 
@@ -60,14 +87,14 @@ class maxButtonsAdmin
 	 		$sql .= " LIMIT $offset, $limit "; 
 		}
 		
-		$sql = $this->wpdb->prepare($sql, $args["status"], ARRAY_A); 
-	//echo $sql;
+		$sql = $this->wpdb->prepare($sql,$escape , ARRAY_A); 
+ 
 		$buttons = $this->wpdb->get_results($sql, ARRAY_A);
 		return $buttons;
 		
 	}
 	
-	function getButtonCount($args)
+	function getButtonCount($args = array())
 	{
 		$defaults = array(
 			"status" => "publish", 
@@ -82,7 +109,7 @@ class maxButtonsAdmin
 		
 	}
 	
-	function getButtonPages($args)
+	function getButtonPages($args = array())
 	{
 		$defaults = array(
 			"limit" => 20, 
@@ -94,8 +121,7 @@ class maxButtonsAdmin
 		);
 
 		$args = wp_parse_args($args, $defaults); 
- 		
- 
+
 		$limit = intval($args["limit"]); 
 		$page = intval($args["paged"]); 
 		$view = $args["view"];
@@ -103,28 +129,35 @@ class maxButtonsAdmin
 		$total = $this->getButtonCount(array("status" => $args["status"])); 
 		
 		$num_pages = ceil($total / $limit); 
-		if ($num_pages == 1) 
-			return ''; 
 		
 		$output = ''; 
 		$url = $_SERVER['REQUEST_URI'];
-		$url = remove_query_arg("view", $url); 
-		$url = add_query_arg("view",$view, $url);
 
-		for ($i = 1; $i <= $num_pages; $i++)
-		{
-			//$active =? "class='active'" : ''; 
-			if  ($i == $page) 
-			{
-				$output .= "<li class='active'><span>" . $i . "</span></li>"; 
-			}
-			else
-			{
-				$link = add_query_arg('paged',$i, $url);
-				$output .= "<li><a href='$link'>" . $i . "</a></li>"; 
-			}
-		}
-		return $output;
+		$url = remove_query_arg("view", $url); 
+		$url = add_query_arg("view", $view, $url);
+
+		$first_url = ($page != 1 ) ? add_query_arg("paged", 1, $url) : false;
+		$last_url = ($page != $num_pages) ? add_query_arg("paged", $num_pages, $url) : false;
+		$next_url = ($page != $num_pages) ? add_query_arg("paged", ($page + 1), $url) : false;
+		$prev_url = ($page != 1 ) ? add_query_arg("paged", ($page -1), $url) : false;
+		
+
+		$return = array(
+			"first" => 1, 
+			"base" => remove_query_arg("paged",$url), 
+			"first_url" => esc_url($first_url),
+			"last"  => $num_pages,
+			"last_url" =>  esc_url($last_url),
+			"next_url" => esc_url($next_url), 
+			"prev_url" => esc_url($prev_url),
+			"total" => $total, 
+			"current" => $page, 
+			
+			
+			
+		);
+		
+		return $return;
 	}
 	
 

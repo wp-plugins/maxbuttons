@@ -1,10 +1,11 @@
 <?php
 $result = '';
-$button = new maxButton(); 
+$button =  MB()->getClass("button"); //new maxButton(); 
+$mbadmin = MB()->getClass("admin"); //maxButtonsAdmin::getInstance(); 
 
 $view = (isset($_GET["view"])) ? sanitize_text_field($_GET["view"]) : "all"; 
 
-
+// submit
 if (isset($_POST) && isset($_POST["mb-list-nonce"])  ) {
 	$verify = wp_verify_nonce( $_POST['mb-list-nonce'], 'mb-list' );
 	if (! $verify ) echo " Nonce not verifed"; 
@@ -84,11 +85,9 @@ if (isset($_GET['message']) && $_GET['message'] == '1delete') {
 
 $args = array();
 if (isset($_GET["orderby"])) 
-	$args["orderby"] = $_GET["orderby"]; 
+	$args["orderby"] = sanitize_text_field($_GET["orderby"]); 
 if (isset($_GET["order"])) 
-	$args["order"] = $_GET["order"]; 
-
-$mbadmin = MaxButtonsAdmin::getInstance(); 
+	$args["order"] = sanitize_text_field($_GET["order"]); 
 
 if (isset($_GET["paged"]) && $_GET["paged"] != '') 
 {
@@ -98,6 +97,7 @@ if (isset($_GET["paged"]) && $_GET["paged"] != '')
 
 if ($view == 'trash') 
 	$args["status"] = "trash"; 
+	
 $published_buttons = $mbadmin->getButtons($args);
 
 //$trashed_buttons = $mbadmin->getButtons(array("status" => "trash"));
@@ -106,7 +106,7 @@ $trashed_buttons_count = $mbadmin->getButtonCount(array("status" => "trash"));
 
 $args["view"] = $view; 
 
-$pagination = $mbadmin->getButtonPages($args); 
+$page_args = $args; 
 
 ?>
 
@@ -150,7 +150,8 @@ $pagination = $mbadmin->getButtonPages($args);
 			<?php if ($result != '') { ?>
 				<div class="mb-message"><?php echo $result ?></div>
 			<?php } ?>
-			
+
+
 			<p class="status">
 			<?php
 				$url = admin_url() . "admin.php?page=maxbuttons-controller&action=list";
@@ -167,18 +168,18 @@ $pagination = $mbadmin->getButtonPages($args);
 					$trash_line = "<a href='$trash_url'>" . __("Trash","maxbuttons") . "</strong></a>"; 
 				}
 			?>
-				 <?php echo $all_line ?><span class="count">(<?php echo $published_buttons_count ?>)</span>
+				 <?php echo $all_line ?><span class="count"> (<?php echo $published_buttons_count ?>)</span>
 
 				<?php if ($trashed_buttons_count > 0) { ?>
 					<span class="separator">|</span>
 					<?php echo $trash_line ?> <span class="count">(<?php echo $trashed_buttons_count ?>)</span>
 				<?php } ?>
 			</p>
+			<?php
+			do_action("mb-display-meta"); 
+			?>
+	
 
-			<ul class="pagination"> 
-				<?php echo $pagination ?> 
-			</ul>			
-			
 			<form method="post">
 				<input type="hidden" name="view" value="<?php echo $view ?>" /> 
 				<?php wp_nonce_field("mb-list","mb-list-nonce");  ?>
@@ -195,8 +196,14 @@ $pagination = $mbadmin->getButtonPages($args);
 				<?php endif; ?> 
 				</select>
 				<input type="submit" class="button" value="<?php _e('Apply', 'maxbuttons') ?>" />
+	
+		<div class='tablenav top'> 		
+	 			<?php do_action("mb-display-pagination", $page_args); ?> 
+		</div>
 			
-<?php 
+						
+<?php  // Sorting
+
 
 			$link_order = (! isset($_GET["order"]) || $_GET["order"] == "DESC") ? "ASC" : 'DESC';
 								
@@ -268,9 +275,9 @@ $pagination = $mbadmin->getButtonPages($args);
 				</div>
 			</form>
 			
-		<ul class="pagination"> 
-				<?php echo $pagination ?> 
-		</ul>
+	<div class="tablenav bottom"> 		
+ 			<?php do_action("mb-display-pagination", $page_args); ?> 
+	</div>
 					
 		</div>
 	</div>
@@ -278,4 +285,4 @@ $pagination = $mbadmin->getButtonPages($args);
 		<?php do_action("mb-display-ads"); ?> 
 	</div>
 
-</div>
+</div> 

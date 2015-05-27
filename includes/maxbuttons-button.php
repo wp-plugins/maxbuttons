@@ -3,11 +3,12 @@ include_once 'arrays.php';
 //include_once 'constants.php';
 
 
-$button = new maxButton();
+$button = MB()->getClass("button"); //new maxButton();
 $button_id = 0; 
 
- 
+
 if ($_POST) {
+	 
 	$button_id = intval($_POST["button_id"]); 
 
 	if ($button_id > 0) 
@@ -21,6 +22,7 @@ if ($_POST) {
 }
 	
 if (isset($_GET['id']) && $_GET['id'] != '') { 
+	$button = MB()->getClass('button'); // reset
 	$button_id = intval($_GET["id"]); 
 	$button->set($button_id);
 }
@@ -51,8 +53,23 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 				<a class="button-primary button-save"><?php _e('Save', 'maxbuttons') ?></a>
 				<a id="button-copy" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=copy&id=<?php echo $button_id ?>"><?php _e('Copy', 'maxbuttons') ?></a>
 				<a id="button-trash" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=trash&id=<?php echo $button_id ?>"><?php _e('Move to Trash', 'maxbuttons') ?></a>
-				<a id="button-delete" class="button" href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $button_id ?>"><?php _e('Delete Permanently', 'maxbuttons') ?></a>
+				<a  class="button" href="#delete-button" rel="leanModal"><?php _e("Delete","maxbuttons"); ?> </a>
 			</div>
+			
+			<div class="max-modal" id="delete-button">
+				<div class="modal_header">
+					<?php _e("Removing button","maxbuttons"); ?>
+					<div class="modal_close tb-close-icon"></div>
+				</div>
+					<p><?php _e("You are about to permanently remove this button. Are you sure?"); ?></p>
+					<p><a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $button_id ?>" type="button" name="" class="button-primary big"><?php _e("Yes","maxbuttons"); ?></a>
+					&nbsp;&nbsp;
+					<input type="button" name="#" onClick="javascript:$('.modal_close').click();" class="button-primary" value="<?Php _e("No", "maxbuttons"); ?>">
+					</p>
+
+			</div>
+			
+			<?php do_action("mb_display_notices"); ?> 
 			
 			<?php if ($button_id > 0): ?>
 			<div class="mb-message">

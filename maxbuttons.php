@@ -3,29 +3,49 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
 Description: The best WordPress button generator. This is the free version; the Pro version <a href="http://maxbuttons.com/?ref=mbfree">can be found here</a>.
-Version: 3.04
+Version: 3.04.1
 Author: Max Foundry
 Author URI: http://maxfoundry.com
 
 Copyright 2015 Max Foundry, LLC (http://maxfoundry.com)
 */
-define("MAXBUTTONS_ROOT_FILE", __FILE__);
-define('MAXBUTTONS_VERSION_NUM', '3.04');
-define('MAXBUTTONS_RELEASE',"11 May 2015"); 
+if (class_exists("maxButtons")) 
+{
+	add_action('admin_notices', 'maxbutton_double_load');
+	return;
+} 
 
-if ( version_compare(PHP_VERSION, '5.3.0', '<' ) ) {
+if ( version_compare(PHP_VERSION, '5.3', '<' ) ) {
  
 	add_action( 'admin_notices', 'maxbuttons_php52_nono' ); 
 	return;
 }
-	 	
-function maxbuttons_php52_nono()
+if (! function_exists('maxbuttons_php52_nono'))
 {
-	$message = "From version 3 MaxButtons requires at least PHP 5.3 . You are running : " . PHP_VERSION;
-	echo"<div class='error'> <h4>$message</h4></div>"; 
-	return; 
+	function maxbuttons_php52_nono()
+	{
+		$message = sprintf( __("From version 3 MaxButtons requires at least PHP 5.3 . You are running version: %s ","maxbuttons"), PHP_VERSION);
+		echo"<div class='error'> <h4>$message</h4></div>"; 
+		return; 
+	}
 }
 
+if (! function_exists('maxbutton_double_load')) 
+{
+	function maxbutton_doube_load()
+	{
+		$message =  __("Already found an instance of MaxButtons. Please check if you are trying to active two MaxButtons plugins and deactive one. ","maxbuttons" );
+		echo "<div class='error'><h4>$message</h4></div>"; 
+		return;
+	}
+}
+
+
+
+define("MAXBUTTONS_ROOT_FILE", __FILE__);
+define('MAXBUTTONS_VERSION_NUM', '3.04.1');
+define('MAXBUTTONS_RELEASE',"27 May 2015"); 
+ 
 
 // Copy this to wp-config.php
 // define("MAXBUTTONS_BENCHMARK",false); 
@@ -47,6 +67,11 @@ require_once("includes/arrays.php");
 
 // runtime.
 $m = new maxButtons();	
+
+function MB()
+{
+	return maxButtons::getInstance();
+}
 
 // Activation / deactivation
 register_activation_hook(__FILE__, array("maxInstall",'activation_hook') );

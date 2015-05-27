@@ -1,9 +1,13 @@
 
-// TODO split styles in nice files
+	// outside namespace 
+	@import "global"; 
+	
 #maxbuttons 
 {
+	@import "general"; 
 	@import "overview"; 
 	@import "editor"; 
+	@import "support";
 
 }
 	@import "media_button";

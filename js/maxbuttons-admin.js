@@ -18,8 +18,12 @@ maxAdmin.prototype.init = function () {
 
 		// Fix thickbox behavior
  		$('.maxbutton_thickbox').on('click', this.fixThickSize);
- 				
-		// ### After this only init for button main edit screen
+
+ 		// overview input paging
+ 		//console.log($('#maxbuttons .input-paging'));
+ 		$('#maxbuttons .input-paging').on('change', $.proxy(this.do_paging, this));
+	
+		// ### After this only init for button main edit screen ######
 		if ($('#new-button-form').length == 0) 
 			return; 
 			
@@ -30,7 +34,7 @@ maxAdmin.prototype.init = function () {
 		this.initResponsive(); // responsive edit interface 
 		
 		$("#maxbuttons .output").draggable();
-		$("#view_css_modal").leanModal();
+		$("a[rel*=leanModal]").leanModal( { closeButton: ".modal_close" });
 
 		$('.colorpicker-box').each(function () { 
 			var input = $(this).attr('id').replace('_box',''); 
@@ -59,7 +63,7 @@ maxAdmin.prototype.init = function () {
 		$('#swap-normal-hover-colors').click($.proxy(this.copy_colors,this,'swap_normal_hover')); 
 		$('#copy-invert-normal-colors').click($.proxy(this.copy_colors,this,'invert')); 		
 		
- 
+
 		
 }; // INIT
 
@@ -534,5 +538,19 @@ maxAdmin.prototype.removeMediaQuery = function(e)
 	var target = e.target;
 
 	$(target).parents('.media_query').fadeOut(function() { $(this).remove() } ); 
+}
+
+maxAdmin.prototype.do_paging = function(e)
+{
+	var page = parseInt($(e.target).val()); 
+
+	if (page <= parseInt($(e.target).attr('max')) )
+	{
+		var url = $(e.target).data("url"); 
+		window.location = url + "&paged=" + page;
+
+	}
+	 
+
 }
 

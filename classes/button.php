@@ -517,16 +517,23 @@ class maxButton
 		{
 			$where = array('id' => $this->id);
 			$where_format = array('%d');
-			$this->wpdb->update(maxButtonsUtils::get_buttons_table_name(), $fields, $where, null, $where_format);
+			$result = $this->wpdb->update(maxButtonsUtils::get_buttons_table_name(), $fields, $where, null, $where_format);
 			$return = true;
 		}
 		else
 		{
-			$this->wpdb->insert(maxButtonsUtils::get_buttons_table_name(), $fields);
+			$result = $this->wpdb->insert(maxButtonsUtils::get_buttons_table_name(), $fields);
 			$id = $this->wpdb->insert_id;
  			$this->id = $id;
  			$return = $id; 
 		
+		}
+		
+
+		if (! $result)
+		{
+			$error = "Database error " . $this->wpdb->last_error;
+			maxButtons::add_notice('error', $error); 
 		}
 		
 
@@ -555,7 +562,7 @@ class maxButton
 			$return = true;
 		
 		}
-	
+		return $return; 
 	}
 	
 	// Resets all of the button caches.

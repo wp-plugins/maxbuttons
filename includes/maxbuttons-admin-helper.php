@@ -3,8 +3,10 @@
 /* Helper class for uniform elements in admin pages */ 
 
 add_action('mb-display-logo', array('maxAdmin','logo')); 
+add_action('mb-display-title', array("maxAdmin",'rate_us'), 20); 
 add_action('mb-display-tabs', array('maxAdmin','tab_menu')); 
 add_action('mb-display-ads', array('maxAdmin', 'display_ads')); 
+add_action('mb-display-pagination', array('maxAdmin', 'display_pagination'));
 
 class maxAdmin 
 {
@@ -72,6 +74,9 @@ class maxAdmin
          <?php /*   <p><?php _e('Celebrate the launch of our newest version of MaxButtons Pro!  You’ll see the sales price of $19 in the cart! ', 'maxbuttons'); ?></p> */ ?> 
             <p><strong><?php _e('MaxButton Pro bonus features include:', 'maxbuttons'); ?></strong></p>
             <ul>
+            <?php // Thought. Is below needed for translation? Since it changes quite often ?>
+            
+            	<li><strong><?php _e("Button Search!","maxbuttons"); ?></strong></li>
                 <li><?php _e('Two Lines of Editable Text', 'maxbuttons'); ?></li>
                 <li><?php _e('Pre-Made Button Packs', 'maxbuttons'); ?></li>
                 <li><?php _e('Add An Icon To Your Buttons', 'maxbuttons'); ?></li>
@@ -105,7 +110,46 @@ class maxAdmin
         </div> -->
         <?php
 	}
+	
+	static function rate_us()
+	{
+		$output = ''; 
+		
+		$output .= "<div>"; 
+		$output .= sprintf("Enjoying MaxButtons? Please %s rate us ! %s", 
+			"<a href='https://wordpress.org/support/view/plugin-reviews/maxbuttons#postform'>", 
+			"</a>"
+			);
+		$output .= "</div>"; 
+		echo $output;
+	}
 
+
+	static function display_pagination($page_args)
+	{
+		$mbadmin =  MB()->getClass("admin");  
+		$pag = $mbadmin->getButtonPages($page_args); 
+		if ($pag["first"] == $pag["last"])
+		{	return; }
+		
+		extract($pag);
+ 
+	?>
+
+	<div class="tablenav-pages"><span class="displaying-num"><?php echo $pag["total"] ?> items</span>
+	<span class="pagination-links">
+	<a href="<?php echo $first_url ?>" title="<?php _e("Go to the first page","maxbuttons") ?>" class="first-page <?php if (!$first_url) echo "disabled"; ?>">«</a>
+
+	<a href="<?php echo $prev_url ?>" title="<?php _e("Go to the previous page","maxbuttons"); ?>" class="prev-page <?php if (!$prev_url) echo "disabled"; ?>">‹</a>
+
+	<span class="paging-input"><input data-url="<?php echo $base ?>" class='input-paging' min="1" max="<?php echo $last ?>" type="number" name='paging-number' size="1" value="<?php echo $current ?>"> <?php _e("of","maxbuttons") ?> <span class="total-pages"><?php echo $last ?>
+	</span></span>
+	<a href="<?php echo $next_url ?>" title="<?php _e("Go to the next page","maxbuttons") ?>" class="next-page <?php if (!$next_url) echo "disabled"; ?>">›</a>
+
+	<a href="<?php echo $last_url ?>" title="<?php _e("Go to the last page","maxbuttons") ?>" class="last-page <?php if (!$last_url) echo "disabled"; ?>">»</a></span></div>
+ 
+	<?php
+	}
 
 
 
