@@ -1,4 +1,4 @@
-<?php
+<?php 
 class maxInstall
 {
 	 static function activation_hook($network_wide) {
@@ -45,7 +45,9 @@ class maxInstall
 		$created = get_option("MBFREE_CREATED"); 
 		if ($created == '' && $gocreate) 
 		{  update_option("MBFREE_CREATED", time()); 
+
 		}
+        update_option("MBFREE_HOMEURL", home_url()); 
 	}
 	
 	/* Move data from old version database to new version 
@@ -78,8 +80,13 @@ class maxInstall
 		foreach($rows as $row) 
 		{	
 			$data = static::convertOldFields($row);
+			$id = $data["id"]; 
+			global $wpdb; 
+			$wpdb->insert($table, array("id" => $id)); 
+			
 			//$data = apply_filters("mb-migration-data",$data, $row); 
 			$button = new maxButton();
+			$button->set($id);
 			$button->save($data);
 		}
 	}
@@ -88,6 +95,8 @@ class maxInstall
 	{
 			$data = array(); 
 
+			
+			$data["id"] = (isset($row["id"])) ? $row["id"] : -1; 
 			$data["name"] = $row["name"];
 			$data["status"] = isset($row["status"]) ? $row["status"] : 'publish';   // happens with downloadable packs.
 			$data["description"] = $row["description"]; 
