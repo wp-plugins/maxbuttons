@@ -28,7 +28,9 @@ class maxAdmin
 						"list" => array("name" =>  __('Buttons', 'maxbuttons'), 
 										 "link" => "page=maxbuttons-controller&action=list",
 										 "active" => "maxbuttons-controller", ), 
-										 
+					/*	"group" => array("name" => __("Groups", "maxbuttons"), 
+										 "link" => "page=maxbuttons-controller&action=groups", 
+										 "active" => "maxbuttons-groups", ),  */
 						"pro" => array( "name" => __('Upgrade to Pro', 'maxbuttons'),
 										 "link" => "page=maxbuttons-pro",
 										 "active" => "maxbuttons-pro",

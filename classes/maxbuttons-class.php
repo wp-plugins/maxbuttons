@@ -60,6 +60,7 @@ class maxButtons
 			// errors in user space. No internal error but user output friendly issues
 			add_action("mb_display_notices", array($this,"display_notices"));
 			
+			add_action("wp_ajax_getAjaxButtons", array('maxButtonsAdmin', 'getAjaxButtons'));
 		}
 		
 		$this->setMainClasses(); // struct for override functionality
@@ -78,6 +79,8 @@ class maxButtons
 			"button" => "maxButton",
 			"block" => "maxBlock", 
 			"admin" => "maxButtonsAdmin", 
+			"install" => "maxInstall", 
+			"groups" => "maxGroups"
 		); 
 		
 		$this->mainClasses = $classes; 		
@@ -235,6 +238,13 @@ class maxButtons
 		wp_enqueue_script('maxbuttons-modal', $this->plugin_url . 'js/leanModal/jquery.leanModal.min.js', array('jquery'));
 		wp_enqueue_script('maxbutton-admin', $this->plugin_url . 'js/maxbuttons-admin.js', array('jquery'), true); 
 		wp_enqueue_script('maxbutton-js-init', $this->plugin_url . 'js/init.js', array('maxbutton-admin'), true);
+		
+		$local = array();
+		$local["ajaxurl"] = admin_url( 'admin-ajax.php' );
+		$local["maxurl"] = $this->plugin_url; 
+		$local["windowtitle"] = __("Select a MaxButton","maxbuttons"); 
+		
+		wp_localize_script('maxbutton-admin', 'wp_obj', $local);  
 	}	
 	
 	function admin_footer_text($text)

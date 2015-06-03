@@ -1,4 +1,4 @@
-.media_button_table .media_row
+/* .media_button_table .media_row
 {
 
 	.mb-container { margin: 0 !important;  } 
@@ -6,5 +6,32 @@
 	.mb-center .mb-text { text-align: center !important; } 
 
 
+
+} */
+
+#mb_media_buttons 
+{
+	width: 100%;
+	#maxbuttons { margin: 0; 
+			.preview-buttons { 
+			border: 0; 
+			width: 100%; 
+			clear: both;
+		 } 
+		.col_insert { width: 20%; }
+	} 
+	.pagination  {
+		width: 100%; 
+		margin: 10px 0;
+		min-height: 20px; 
+		span {
+			font-size: 15px; 
+			font-weight: 700;
+			float: left; 
+			cursor: pointer;
+		}
+		.next { float: right; }
+	
+	}
 
 }

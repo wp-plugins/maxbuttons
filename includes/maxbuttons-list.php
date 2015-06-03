@@ -100,13 +100,14 @@ if ($view == 'trash')
 	
 $published_buttons = $mbadmin->getButtons($args);
 
-//$trashed_buttons = $mbadmin->getButtons(array("status" => "trash"));
 $published_buttons_count = $mbadmin->getButtonCount(array());
 $trashed_buttons_count = $mbadmin->getButtonCount(array("status" => "trash")); 
 
 $args["view"] = $view; 
 
 $page_args = $args; 
+
+//include_once("admin_header.php"); 
 
 ?>
 

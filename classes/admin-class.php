@@ -139,6 +139,8 @@ class maxButtonsAdmin
 		$first_url = ($page != 1 ) ? add_query_arg("paged", 1, $url) : false;
 		$last_url = ($page != $num_pages) ? add_query_arg("paged", $num_pages, $url) : false;
 		$next_url = ($page != $num_pages) ? add_query_arg("paged", ($page + 1), $url) : false;
+		$next_page = ($page != $num_pages) ? ($page + 1) : false;
+		$prev_page = ($page != 1)  ? ($page -1 ) : false; 
 		$prev_url = ($page != 1 ) ? add_query_arg("paged", ($page -1), $url) : false;
 		
 
@@ -150,6 +152,8 @@ class maxButtonsAdmin
 			"last_url" =>  esc_url($last_url),
 			"next_url" => esc_url($next_url), 
 			"prev_url" => esc_url($prev_url),
+			"prev_page" => $prev_page, 
+			"next_page" => $next_page, 
 			"total" => $total, 
 			"current" => $page, 
 			
@@ -160,6 +164,59 @@ class maxButtonsAdmin
 		return $return;
 	}
 	
+	static function getAjaxButtons()
+	{
+		
+		$admin = self::getInstance();
+		$args = array(); 
+
+		$paged = (isset($_REQUEST["paged"])) ? intval($_REQUEST["paged"]) : 1; 
+		if ($paged > 0) 
+			$args["paged" ] = $paged;
+
+		
+		$button = new MaxButton(); 
+		$buttons = $admin->getButtons($args);
+	
+	
+		$nav = $admin->getButtonPages($args); 
+		$prev = ''; $next = ''; 
+		
+		if ($nav["prev_page"])
+		{
+			$prev = " <span class='prev' data-page='" . $nav["prev_page"] . "'> << </span>  "; 
+		}		
+		if ($nav["next_page"])		
+		{
+			$next = "<span class='next' data-page='" . $nav["next_page"] . "'> >> </span> ";
+		}
+ 
+
+		echo "<div class='pagination'>$prev $next
+				</div>";
+		echo "<div id='maxbuttons'><div class='preview-buttons'>";
+		foreach($buttons as $b)
+		{
+			
+			$button_id = $b["id"]; 
+			$button->set($button_id);
+			echo "<div class='button-row'>"; 
+			echo "<span class='col col_insert'> "; 
+			echo "	<a href='#' onclick='insertButtonShortcode($button_id); return false;'>";
+			 _e('Insert This Button', 'maxbuttons'); 
+			 echo "</a> &raquo;</span>  ";
+			echo "<span class='col col_button'><div class='shortcode-container'>";
+			 $button->display(array("mode" => "preview", "load_css" => "inline" ));
+			echo "</div></span>"; 
+			echo "<span class='col col_name'>" . $button->getName() . "</span>";
+			echo "</div>";  
+		}
+		echo "</div></div>"; 
+		echo "<div class='pagination'>$prev $next
+				</div>";		
+		exit(); 
+		
+	}
 
 
 

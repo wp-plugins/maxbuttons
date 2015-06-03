@@ -14,11 +14,12 @@ maxAdmin.prototype.init = function () {
 		this.button_id = $('input[name="button_id"]').val(); 
 		
  		// Prevents the output button from being clickable (also in admin list view )	
-		$(".maxbutton-preview").on('click',function(e) { e.preventDefault(); });		
+		$(document).on('click', ".maxbutton-preview", function(e) { e.preventDefault(); });		
 
 		// Fix thickbox behavior
- 		$('.maxbutton_thickbox').on('click', this.fixThickSize);
-
+ 	//	$('.maxbutton_thickbox').on('click', this.fixThickSize);
+		$('.maxbutton_thickbox').on('click', $.proxy(this.clickAddButton, this));
+		
  		// overview input paging
  		//console.log($('#maxbuttons .input-paging'));
  		$('#maxbuttons .input-paging').on('change', $.proxy(this.do_paging, this));
@@ -471,13 +472,14 @@ maxAdmin.prototype.updateDimension = function (target)
 }
 
 		
-maxAdmin.prototype.fixThickSize = function(e)
+maxAdmin.prototype.fixThickSize = function()
 {	
-	e.preventDefault();
-	e.stopPropagation(); 
+	//e.preventDefault();
+	//e.stopPropagation(); 
 	
-	var title = e.target.title; 
+	var title = wp_obj.windowtitle; 
 	var href = '#TB_inline?width=200&height=460&inlineId=select-maxbutton-container';
+
 
 	tb_show(title, href);
 	
@@ -488,6 +490,60 @@ maxAdmin.prototype.fixThickSize = function(e)
 	return false;
 
 }
+
+maxAdmin.prototype.clickAddButton = function (e) 
+{
+	e.preventDefault();
+	e.stopPropagation(); 
+	$(document).off('click','.pagination span'); // prevent multiple events 
+	
+	var self = this; 
+	
+	//$.proxy(this.loadPostEditScreen,this);
+	$(document).on('click','.pagination span', function (e)  // eventception
+	{
+		e.preventDefault();
+		var page = $(e.target).data('page');
+		if (page <= 1) page = 1; 
+		
+		self.loadPostEditScreen(page); 
+	}) ; 
+	
+	this.loadPostEditScreen();
+}
+maxAdmin.prototype.loadPostEditScreen = function(page)
+{
+	if (typeof page == 'undefined') page = 0; 
+	
+	var data = { action: 'getAjaxButtons', 
+				paged : page
+			 }; 
+	var url = wp_obj.ajaxurl;
+ 	var self = this; 
+ 
+ 
+ 	
+	$.ajax({
+	  url: url,
+	  data: data,
+	  success: function (res) 
+	  {
+	  	// self.res = res;
+	  //	console.log(self);
+	  	self.showPostEditScreen(res)
+ 	  }, 
+ 	  
+	});
+
+	return false;
+}
+maxAdmin.prototype.showPostEditScreen = function (res)
+{
+	$('#mb_media_buttons').html(res);
+	this.fixThickSize();
+
+}
+
 maxAdmin.prototype.initResponsive = function()
 {
 	this.checkAutoQuery();	

@@ -3,23 +3,16 @@
 Plugin Name: MaxButtons
 Plugin URI: http://maxbuttons.com
 Description: The best WordPress button generator. This is the free version; the Pro version <a href="http://maxbuttons.com/?ref=mbfree">can be found here</a>.
-Version: 3.04.1
+Version: 3.04.2
 Author: Max Foundry
 Author URI: http://maxfoundry.com
+Text Domain: maxbuttons 
+Domain Path: /languages
 
 Copyright 2015 Max Foundry, LLC (http://maxfoundry.com)
 */
-if (class_exists("maxButtons")) 
-{
-	add_action('admin_notices', 'maxbutton_double_load');
-	return;
-} 
 
-if ( version_compare(PHP_VERSION, '5.3', '<' ) ) {
- 
-	add_action( 'admin_notices', 'maxbuttons_php52_nono' ); 
-	return;
-}
+
 if (! function_exists('maxbuttons_php52_nono'))
 {
 	function maxbuttons_php52_nono()
@@ -29,22 +22,33 @@ if (! function_exists('maxbuttons_php52_nono'))
 		return; 
 	}
 }
+if ( version_compare(PHP_VERSION, '5.3', '<' ) ) {
+ 
+	add_action( 'admin_notices', 'maxbuttons_php52_nono' ); 
+	return;
+}
 
 if (! function_exists('maxbutton_double_load')) 
 {
-	function maxbutton_doube_load()
+	function maxbutton_double_load()
 	{
-		$message =  __("Already found an instance of MaxButtons. Please check if you are trying to active two MaxButtons plugins and deactive one. ","maxbuttons" );
+		$message =  __("Already found an instance of MaxButtons running. Please check if you are trying to active two MaxButtons plugins and deactivate one. ","maxbuttons" );
 		echo "<div class='error'><h4>$message</h4></div>"; 
 		return;
 	}
 }
 
+if (function_exists("MB")) 
+{
+	add_action('admin_notices', 'maxbutton_double_load');
+	return;
+} 
+
 
 
 define("MAXBUTTONS_ROOT_FILE", __FILE__);
-define('MAXBUTTONS_VERSION_NUM', '3.04.1');
-define('MAXBUTTONS_RELEASE',"27 May 2015"); 
+define('MAXBUTTONS_VERSION_NUM', '3.04.2');
+define('MAXBUTTONS_RELEASE',"03 Jun 2015"); 
  
 
 // Copy this to wp-config.php
@@ -58,6 +62,7 @@ require_once("classes/max-utils.php");
 require_once("classes/scssphp/scss.inc.php");
 require_once("classes/maxCSSParser.php");
 require_once("classes/admin-class.php");
+require_once("classes/groups.php"); 
 
 require_once("includes/maxbuttons-admin-helper.php"); 
 require_once("includes/arrays.php"); 
@@ -68,9 +73,11 @@ require_once("includes/arrays.php");
 // runtime.
 $m = new maxButtons();	
 
-function MB()
-{
-	return maxButtons::getInstance();
+if (! function_exists("MB"))	{
+	function MB()
+	{
+		return maxButtons::getInstance();
+	}
 }
 
 // Activation / deactivation

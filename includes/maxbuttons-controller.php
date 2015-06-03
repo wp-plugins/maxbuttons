@@ -20,6 +20,9 @@ if (isset($_GET['action']) && $_GET['action'] != '') {
 			case 'restore':
 				include_once 'maxbuttons-restore.php';
 				break;
+			case 'groups': 
+				include_once 'maxbuttons-groups.php'; 
+			break;
 			default:
 				include_once 'maxbuttons-list.php';
 				break;
