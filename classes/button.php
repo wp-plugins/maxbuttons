@@ -177,7 +177,7 @@ class maxButton
 				//exit("Fatal: Something wrong with provider on $block ");
 			} 
 		}
-
+ 
 		$this->id = $data["id"];
 		$this->cache = isset($data["cache"]) ? trim($data["cache"]) : ''; // not set at button packs / non-dbase buttons!
 		$this->data["id"] = $this->id; // needed for certain blocks, to be button aware. 
@@ -234,40 +234,20 @@ class maxButton
 		return $this->cssParser;
 	}
 	
-	/* Get multiple buttons 
-	
-		Used for overview pages, retrieve buttons on basis of passed arguments. 
-		
-		@return array Array of found buttons with argument
-	*/
-	function getButtons($args = array())
-	{
-		$defaults = array(
-			"status" => "publish", 
-			"orderby" => "", 
-			"order" => "asc"
-		);
-		$args = wp_parse_args($args, $defaults); 
-		
-		$sql = "SELECT id FROM " . maxButtonsUtils::get_buttons_table_name() . " WHERE status = '%s'"; 
-		if ($args["orderby"] != '')
-			$sql .=  " ORDER BY "  . $args["orderby"] . " " . $args["order"]; 
-	 
-		$sql = $this->wpdb->prepare($sql, $args["status"], ARRAY_A); 
-		$buttons = $this->wpdb->get_results($sql, ARRAY_A);
-		return $buttons;
-	}
+
+ 
 
 	/* Parse CSS from all the elements
 	
 	*/
-	function parse_css($mode = "normal",$forceCompile = false)
+	function parse_css($mode = "normal", $forceCompile = false )
 	{
 		maxButtonsUtils::addTime("Button: Parse css :: $mode");
 		$css = $this->button_css; 
-
+ 
 		if (isset($this->cache) && $this->cache != '' && ! $forceCompile)
 		{		 
+		
 			$css = $this->cache;
 			maxButtonsUtils::addTime("Button: Cache loaded");
 		}
@@ -319,8 +299,8 @@ class maxButton
 	public function display($args = array() )
 	{	
 		$defaults = array(
-			"preview" => false,
-			"preview_part" => "normal",
+			"mode" => 'normal',
+			"preview_part" => "full",
 			"echo" => true, 
 			"load_css" => "footer", // control how css is loaded. 
 			"compile" => false, // possibility to force recompile if needed. 
@@ -332,9 +312,9 @@ class maxButton
  
 	 	$this->load_css = $args["load_css"]; 
  
-		if ($this->id == 0) // if button doesn't exists don't display unless in preview
+		if ($this->id == 0) // if button doesn't exists don't display unless in editor
 		{
-			if (! $args["preview"]) 
+			if (! $args["mode"] == 'editor' ) 
 				return;
  
 			$data = apply_filters("mb-save-fields", array(), array() ); // load defaults
@@ -342,34 +322,47 @@ class maxButton
 			do_action('mb-data-load', $data);
 		}
 		
-		$mode = (isset($args["preview"]) && $args["preview"] == true) ? "preview" : "normal"; 		
- 
-		$buttonAttrs = array(); // the actual buttons and it's components. 
+		$mode = (isset($args["mode"])) ? $args["mode"] : "normal"; 		
+ 		switch($mode)
+ 		{
+			case "preview": 	
+		 		$preview = true;
+		 		$compile = false;
+		 	break;	
+ 			case "editor": 	 	
+		 		$preview = true; 			
+  				$compile = true;					
+  				 // editor is both compile and preview. 
+  			break;
+ 			break;
+ 			case "normal": 
+ 				$preview = false; 
+ 				$compile = false;
+ 			break;
+ 		}
 		
-		// create button
-		$domObj = $this->parse_button($mode); 
- 		
- 		
- 
- 
- 		if ($this->load_css == 'element' || $mode !== 'normal' || $args["compile"] == true) { // if css output is on element, for to compile - otherwise inline styles will not be loaded.
+ 		if ( $this->load_css == "element" || $args["preview_part"] != "full" || $args["compile"] == true) { // if css output is on element, for to compile - otherwise inline styles will not be loaded.
  			$compile = true;
+
  		}
  		else 
  			$compile = false;
- 			
+ 
+// 	var_dump($compile);
+ 	
+		// create button
+		$domObj = $this->parse_button($mode); 
+		
 		$this->parse_css($mode, $compile); 
 		$this->parse_js($mode); 
 		
-		
-
-		if ($args["preview"] == true)  // mark it preview
+		if ($preview)  // mark it preview
 		{
 
 			$domObj->find('a',0)->class .= ' maxbutton-preview';
 		}
 		
-		if ($args["preview"] == true && $args["preview_part"] != 'full')
+		if ($preview && $args["preview_part"] != 'full')
 		{
  
  	 		if ($args["preview_part"] != 'normal')
@@ -491,6 +484,7 @@ class maxButton
 	{
  		$post = stripslashes_deep($post); // don't multiply slashes please.
 		$data = apply_filters('mb-save-fields',$this->data, $post); 
+ 
 		if (! $savedb ) return $data; 
 		return $this->update($data); // save to db. 
 	
@@ -523,16 +517,23 @@ class maxButton
 		{
 			$where = array('id' => $this->id);
 			$where_format = array('%d');
-			$this->wpdb->update(maxButtonsUtils::get_buttons_table_name(), $fields, $where, null, $where_format);
+			$result = $this->wpdb->update(maxButtonsUtils::get_buttons_table_name(), $fields, $where, null, $where_format);
 			$return = true;
 		}
 		else
 		{
-			$this->wpdb->insert(maxButtonsUtils::get_buttons_table_name(), $fields);
+			$result = $this->wpdb->insert(maxButtonsUtils::get_buttons_table_name(), $fields);
 			$id = $this->wpdb->insert_id;
  			$this->id = $id;
  			$return = $id; 
 		
+		}
+		
+
+		if (! $result)
+		{
+			$error = "Database error " . $this->wpdb->last_error;
+			maxButtons::add_notice('error', $error); 
 		}
 		
 
@@ -561,7 +562,7 @@ class maxButton
 			$return = true;
 		
 		}
-	
+		return $return; 
 	}
 	
 	// Resets all of the button caches.

@@ -7,15 +7,15 @@ if(is_admin()) {
 }
 
 function maxbuttons_system_label($label, $value, $spaces_between) {
-	$output = $label;
+	$output = "<label>$label</label>";
 	
-	if ($spaces_between > 0) {
+	/*if ($spaces_between > 0) {
 		for ($i = 0; $i < $spaces_between; $i++) {
 			$output .= "&nbsp;";
 		}
-	}
+	} */
 	
-	return $output . $value . " \r\n ";
+	return "<div class='info'>" . $output . trim($value) . "</div>" ;
 }
 
 // http://www.php.net/manual/en/function.get-browser.php#101125.
@@ -180,16 +180,23 @@ function check_charset() {
 
 
     		<h4><?php _e('You may be asked to provide the information below to help troubleshoot your issue.', 'maxbuttons') ?></h4>
+    	 
     <form>	
-    		<textarea class="system-info" readonly="readonly" wrap="off" >
------ Begin System Info ----- &#013;&#010;
+  
+    <div class='system_info'> 
+----- Begin System Info ----- <br />
 
 
 <?php echo maxbuttons_system_label('WordPress Version:', get_bloginfo('version'), 4) ?>
 
 <?php echo maxbuttons_system_label('PHP Version:', PHP_VERSION, 10) ?>
 
-<?php  echo maxbuttons_system_label('MySQL Version:', mysql_get_server_info(), 8) ?>
+<?php
+	global $wpdb;
+	$mysql_version = $wpdb->db_version();
+				
+
+  echo maxbuttons_system_label('MySQL Version:', $mysql_version, 8) ?>
 
 <?php echo maxbuttons_system_label('Web Server:', $_SERVER['SERVER_SOFTWARE'], 11) ?>
 
@@ -236,7 +243,7 @@ foreach ($plugins as $plugin_path => $plugin) {
 }
 ?>
 ----- End System Info -----
-		  </textarea>
+ </div>
 </form>
         </div>
         <div class="ad-wrap">

@@ -49,11 +49,12 @@ abstract class maxBlock
 			return $data; // this block, not here. 
 			
 		$block = $this->data[$this->blockname]; 
-		
+
 		foreach($this->fields as $field => $options) 
 		{
 			$default = (isset($options["default"])) ? $options["default"] : ''; 
-		
+			
+			//$block[$field] = (isset($post[$field])) ? $post[$field] : $default; 
 			$block[$field] = (isset($post[$field])) ? sanitize_text_field($post[$field]) : $default; 
 		}
  

@@ -28,12 +28,11 @@ if (isset($_POST["reset_cache"]))
 
 if (isset($_POST["remigrate"]))
 {
- 
-	maxInstall::create_database_table();
-	maxInstall::migrate();
+ 	$install = MB()->getClass("install"); 
+	$install::create_database_table();
+	$install::migrate();
 }
-
-
+ 
 ?>
 
 <div id="maxbuttons">
