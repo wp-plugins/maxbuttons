@@ -5,7 +5,7 @@
 <div id="maxbuttons">
 	<div class="wrap">
 		<div class="icon32">
-			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/mb-32.png" alt="MaxButtons" /></a>
+			<a href="https://maxbuttons.com" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/mb-32.png" alt="MaxButtons" /></a>
 		</div>
 		
 		<h2 class="title"><?php _e('MaxButtons: Upgrade to Pro', 'maxbuttons') ?></h2>
@@ -21,7 +21,7 @@
 		<div class="pro-offer">
 			<h2><?php _e('Upgrade to MaxButtons Pro - It\'s Only $19!', 'maxbuttons') ?></h2>
 			<p><?php _e('If you\'ve created at least one button with MaxButtons, then you know what it can do: Unlimited colors. Rounded corners. Gradients. Text shadowing. Box shadowing.', 'maxbuttons') ?></p>
-			<p><?php printf(__('Now you can take your buttons to the next level with %sMaxButtons Pro%s. The Pro version gives you all the CSS3 goodness and so much more:', 'maxbuttons'), '<a href="http://maxbuttons.com/pricing/?utm_source=wordpressorg&utm_medium=plugin&utm_content=maxbuttons-pro&utm_campaign=mbfree" target="_blank">', '</a>') ?></p>
+			<p><?php printf(__('Now you can take your buttons to the next level with %sMaxButtons Pro%s. The Pro version gives you all the CSS3 goodness and so much more:', 'maxbuttons'), '<a href="https://maxbuttons.com/pricing/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=mpb-list-sidebar-21&utm_campaign=inthecart19" target="_blank">', '</a>') ?></p>
 			<ul>
 				<li><strong><?php _e('Font Awesome Integration', 'maxbuttons') ?></strong> - <?php _e('Use icons from the most popular icon font set on the web!', 'maxbuttons') ?></li>
 				<li><strong><?php _e('Icon Support', 'maxbuttons') ?></strong> - <?php _e('Like buttons, everyone loves icons. Use Font Awesome or upload yor own.', 'maxbuttons') ?></li>
@@ -30,44 +30,44 @@
 				<li><strong><?php _e('Button Packs', 'maxbuttons') ?></strong> - <?php _e('Import sets of pre-defined buttons, which you can then use as-is or customize as you need.', 'maxbuttons') ?></li>
 				<li><strong><?php _e('Shopp Integration', 'maxbuttons') ?></strong> - <?php _e('Use buttons created with MaxButtons Pro as the shopping cart buttons of the Shopp e-commerce plugin.', 'maxbuttons') ?></li>
 			</ul>
-			<p><?php printf(__('And did we mention you can %sget MaxButtons Pro for only $19%s', 'maxbuttons'), '<a href="http://maxbuttons.com/pricing/?utm_source=wordpressorg&utm_medium=plugin&utm_content=only-19&utm_campaign=mbfree" target="_blank">', '</a>') ?></a>?</p>
+			<p><?php printf(__('And did we mention you can %sget MaxButtons Pro for only $19%s', 'maxbuttons'), '<a href="https://maxbuttons.com/pricing/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=mpb-list-sidebar-21&utm_campaign=inthecart19" target="_blank">', '</a>') ?></a>?</p>
 			
 			<h2><?php _e('CSS3 Button Examples', 'maxbuttons') ?></h2>
 			<p><?php _e('Just take a look at the types of buttons you can make with MaxButtons Pro:', 'maxbuttons') ?></p>
 			<p><img src="<?php echo maxButtons::get_plugin_url() ?>images/css3-button-examples.png" alt="CSS3 Button Examples" /></p>
 
 			<h2><?php _e('Button Packs: Pre-Made Sets of CSS3 and Icon Goodness', 'maxbuttons') ?></h2>
-			<p><?php printf(__('Button packs are sets of buttons with icons and settings already predefined for you, saving you loads of time. We have an %sever-growing collection of button packs%s that you can buy and import into your website (only $5 each). You can then use those buttons as they are, or customize them to fit your needs (below are a few to get you started).', 'maxbuttons'), '<a href="http://maxbuttons.com/shop/category/button-packs/?utm_source=wordpressorg&utm_medium=plugin&utm_content=ever-growing&utm_campaign=mbfree" target="_blank">', '</a>') ?></p>
+			<p><?php printf(__('Button packs are sets of buttons with icons and settings already predefined for you, saving you loads of time. We have an %sever-growing collection of button packs%s that you can buy and import into your website (only $5 each). You can then use those buttons as they are, or customize them to fit your needs (below are a few to get you started).', 'maxbuttons'), '<a href="https://maxbuttons.com/product-category/button-packs/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=mpb-list-sidebar-21" target="_blank">', '</a>') ?></p>
 			<div class="button-packs">
 				<div class="pack">
-					<a href="http://maxbuttons.com/shop/e-commerce-buttons/?ref=mbfree" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/button-pack-e-commerce-buttons.png" alt="E-Commerce Buttons" border="0" /></a>
+					<a href="https://maxbuttons.com/shop/e-commerce-buttons/?ref=mbfree" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/button-pack-e-commerce-buttons.png" alt="E-Commerce Buttons" border="0" /></a>
 					<br />
 					<a href="http://maxbuttons.com/shop/e-commerce-buttons/?ref=mbfree" target="_blank"><?php _e('E-Commerce Buttons', 'maxbuttons') ?></a>
 				</div>
 				<div class="pack">
-					<a href="http://maxbuttons.com/shop/colored-round-social-icons-1/?ref=mbfree" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/button-pack-colored-round-social-icons-1.png" alt="Colored Round Social Icons 1" border="0" /></a>
+					<a href="https://maxbuttons.com/shop/colored-round-social-icons-1/?ref=mbfree" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/button-pack-colored-round-social-icons-1.png" alt="Colored Round Social Icons 1" border="0" /></a>
 					<br />
-					<a href="http://maxbuttons.com/shop/colored-round-social-icons-1/?ref=mbfree" target="_blank"><?php _e('Colored Round Social Icons Set #1', 'maxbuttons') ?></a>
+					<a href="https://maxbuttons.com/shop/colored-round-social-icons-1/?ref=mbfree" target="_blank"><?php _e('Colored Round Social Icons Set #1', 'maxbuttons') ?></a>
 				</div>
 				<div class="pack">
-					<a href="http://maxbuttons.com/shop/chrome-icons/?ref=mbfree" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/button-pack-chrome-icons.png" alt="Chrome Icons" border="0" /></a>
+					<a href="https://maxbuttons.com/shop/chrome-icons/?ref=mbfree" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/button-pack-chrome-icons.png" alt="Chrome Icons" border="0" /></a>
 					<br />
 					<a href="http://maxbuttons.com/shop/chrome-icons/?ref=mbfree" target="_blank"><?php _e('Chrome Icons', 'maxbuttons') ?></a>
 				</div>
 				<div class="pack">
 					<a href="http://maxbuttons.com/shop/shopping-cart-blue/?ref=mbfree" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/button-pack-shopping-cart-blue.png" alt="Shopping Cart Blue" border="0" /></a>
 					<br />
-					<a href="http://maxbuttons.com/shop/shopping-cart-blue/?ref=mbfree" target="_blank"><?php _e('Shopping Cart Blue', 'maxbuttons') ?></a>
+					<a href="https://maxbuttons.com/shop/shopping-cart-blue/?ref=mbfree" target="_blank"><?php _e('Shopping Cart Blue', 'maxbuttons') ?></a>
 				</div>
 				<div class="pack">
-					<a href="http://maxbuttons.com/shop/pace/?ref=mbfree" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/button-pack-pace.png" alt="Pace" border="0" /></a>
+					<a href="https://maxbuttons.com/shop/pace/?ref=mbfree" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/button-pack-pace.png" alt="Pace" border="0" /></a>
 					<br />
-					<a href="http://maxbuttons.com/shop/pace/?ref=mbfree" target="_blank"><?php _e('Pace', 'maxbuttons') ?></a>
+					<a href="https://maxbuttons.com/shop/pace/?ref=mbfree" target="_blank"><?php _e('Pace', 'maxbuttons') ?></a>
 				</div>
 				<div class="pack">
-					<a href="http://maxbuttons.com/shop/social-sign-in/?ref=mbfree" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/button-pack-social-sign-in.png" alt="Social Sign-In" border="0" /></a>
+					<a href="https://maxbuttons.com/shop/social-sign-in/?ref=mbfree" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/button-pack-social-sign-in.png" alt="Social Sign-In" border="0" /></a>
 					<br />
-					<a href="http://maxbuttons.com/shop/social-sign-in/?ref=mbfree" target="_blank"><?php _e('Social Sign-In', 'maxbuttons') ?></a>
+					<a href="https://maxbuttons.com/shop/social-sign-in/?ref=mbfree" target="_blank"><?php _e('Social Sign-In', 'maxbuttons') ?></a>
 				</div>
 			</div>
 			
@@ -147,7 +147,7 @@
 			</table>
 			
 			<h2><?php _e('Get Your Copy Today', 'maxbuttons') ?></h2>
-			<p><?php printf(__('So what are you waiting for? %sGrab your copy of MaxButtons Pro today%s!', 'maxbuttons'), '<a href="http://maxbuttons.com/pricing/?utm_source=wordpressorg&utm_medium=plugin&utm_content=grab&utm_campaign=mbfree" target="_blank">', '</a>') ?></p>
+			<p><?php printf(__('So what are you waiting for? %sGrab your copy of MaxButtons Pro today%s!', 'maxbuttons'), '<a href="https://maxbuttons.com/pricing/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=mpb-list-sidebar-21&utm_campaign=inthecart19" target="_blank">', '</a>') ?></p>
 		</div>
 	</div>
 </div>

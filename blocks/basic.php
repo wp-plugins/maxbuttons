@@ -39,7 +39,7 @@ class basicBlock extends maxBlock
 //		$css["maxbutton"]["normal"]["white-space"] = "nowrap";  // hinders correct rendering of oneline-multilines
 		$css["maxbutton"]["normal"]["display"] = "inline-block"; 
 
-		if ($data["url"] == '') // don't show clickable anchor if there is no URL. 
+		if (isset($data["url"]) && $data["url"] == '') // don't show clickable anchor if there is no URL. 
 		{
 			$css["maxbutton"]["normal"]["cursor"] = 'default'; 
 		//	$css[":hover"]["cursor"] = 'default'; 
@@ -48,8 +48,13 @@ class basicBlock extends maxBlock
 	
 	}
 	
+
+	
 	public function save_fields($data, $post)
 	{	
+		// Possible solution: 
+		$post["url"] = isset($post["url"]) ? urldecode(urldecode($post["url"])) : '';
+ 
 		$data = parent::save_fields($data, $post);
 		if (isset($post["name"])) 
 			$data["name"] = sanitize_text_field($post["name"]); 
@@ -66,13 +71,13 @@ class basicBlock extends maxBlock
 		$anchor = $domObj->find("a",0); 		
 		
  
-		if ($data["nofollow"] == 1) 
+		if (isset($data["nofollow"]) && $data["nofollow"] == 1) 
 			$anchor->rel = "nofollow";
 		//	$buttonAttrs[] = "rel=nofollow"; 
-		if ($data["new_window"] == 1) 
+		if (isset($data["new_window"]) && $data["new_window"] == 1) 
 			$anchor->target = "_blank"; 
 							
-		if ($data["url"] != '') 
+		if (isset($data["url"]) && $data["url"] != '') 
 			$anchor->href = do_shortcode($data["url"]); 
 		else  // fixing an iOS problem which renders anchors without URL wrongly. 
 		{
@@ -116,7 +121,7 @@ class basicBlock extends maxBlock
 						<div class="note"><?php _e('Something that you can quickly identify the button with.', 'maxbuttons') ?></div>
 						<div class="clear"></div>
 						<div class="input">
-							<input type="text" id="name" name="name" value="<?php echo $name ?>" maxlength="100" />
+							<input type="text" id="name" name="name" value="<?php echo esc_html($name) ?>" maxlength="100" class="input_name" />
 						</div>
 					</div>
 					
@@ -125,7 +130,7 @@ class basicBlock extends maxBlock
 						<div class="note"><?php _e('Brief explanation about how and where the button is used.', 'maxbuttons') ?></div>
 						<div class="clear"></div>
 						<div class="input">
-							<textarea id="description" name="description"><?php echo $description ?></textarea>
+							<textarea id="description" name="description" class="nput_description"><?php echo esc_html($description) ?></textarea>
 						</div>
 					</div>
 					
@@ -134,7 +139,7 @@ class basicBlock extends maxBlock
 						<div class="note"><?php _e('The link when the button is clicked.', 'maxbuttons') ?></div>
 						<div class="clear"></div>
 						<div class="input">
-							<input type="text" id="url" name="url" value="<?php echo htmlentities($url) ?>" maxlength="500"/>
+							<input type="text" id="url" name="url" value="<?php echo esc_url($url) ?>" maxlength="500" class="input_url"/>
 						</div>
 					</div>
  

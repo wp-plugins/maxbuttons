@@ -89,7 +89,12 @@ class advancedBlock extends maxBlock
 						
 						
 					
-						<div id="view_css">
+						<div id="view_css" class="max-modal">
+							<div class="modal_header">
+								<?php _e("External CSS","maxbuttons"); ?>
+								<div class="modal_close tb-close-icon"></div>
+							</div>
+
 							<div class="note">
 								<p><?php _e('If the "Use External CSS" option is enabled for this button, copy and paste the CSS code below into your theme stylesheet.', 'maxbuttons') ?></p>
 							</div>
