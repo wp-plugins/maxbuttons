@@ -37,7 +37,7 @@ class maxButtons
 		add_filter('widget_text', 'do_shortcode');
 		add_shortcode('maxbutton', array($this, 'shortcode')); 
 
-		add_action("mb-footer-css", array($this, 'footer_css'),10,2); 
+		add_action("mb-footer", array($this, 'do_footer'),10,3); 
 		add_action("wp_footer", array($this, "footer")); 
 		
 		add_action('media_buttons_context', array($this,'maxbuttons_media_button'));
@@ -64,6 +64,9 @@ class maxButtons
 		}
 		
 		$this->setMainClasses(); // struct for override functionality
+ 		
+ 		// The second the blocks are being loaded, check dbase integrity 
+ 		add_action("mb_blockclassesloaded", array($this, "check_database")); 
  
  		self::$instance = $this;
 	}
@@ -87,6 +90,38 @@ class maxButtons
 	
 	}
 	
+	// from block loader action. Checks if all parts of the table are there, or panic if not.
+	public function check_database($blocks)
+	{
+		maxButtonsUtils::addTime("Check database");
+			
+		$sql = "SELECT id,name,status,cache"; 
+		foreach ($blocks as $block => $class) 
+		{
+			$sql .= ", $block"; 
+		} 
+		$sql .= " from " . maxButtonsUtils::get_buttons_table_name() . " limit 1"; 
+		
+		
+ 
+		global $wpdb; 
+		$wpdb->hide_errors();
+		$result = $wpdb->get_results($sql); 
+		 
+	
+		// check this query for errors. If there is an error, one or more database fields are missing. Fix that. 
+		if (isset($wpdb->last_error) && $wpdb->last_error != '') 
+		{
+			//echo $wpdb->last_error;  echo "ERREUR!";
+		 	$install = $this->getClass("install"); 
+			$install::create_database_table();
+			$install::migrate();
+		}
+	 
+		
+		maxButtonsUtils::addTime("End check database");
+	}
+	
 	public function getClass($class)
 	{
 		if (isset($this->mainClasses[$class])) 
@@ -105,8 +140,8 @@ class maxButtons
 		$locale = apply_filters('plugin_locale', get_locale(), $domain);
 
 		load_textdomain($domain, WP_LANG_DIR.'/maxbuttons/'.$domain.'-'.$locale.'.mo');	
-		load_plugin_textdomain('maxbuttons', false, $this->plugin_name . '/languages/');
-
+		$res = load_plugin_textdomain('maxbuttons', false, $this->plugin_name . '/languages/');
+ 
  	}
  	
  	function addthick()
@@ -313,13 +348,14 @@ class maxButtons
 		return $context . $output;
 }
 
-		function footer_css($id, $code)
+		function do_footer($id, $code, $type = "css")
 		{
-			$this->footer[$id]["css"] = $code; 
+			$this->footer[$id][$type] = $code; 
 			
 		}
 		function footer()
 		{
+
  			if(count($this->footer) == 0) return; // nothing
  				
 			foreach ($this->footer as $id => $part) 
@@ -363,7 +399,7 @@ class maxButtons
 			{
 				$type = $notice["type"]; 
 				$message = $notice["message"]; 
-				$output .= "<div class='message $type'> "; 
+				$output .= "<div class='mb-message $type'> "; 
 				$output .= $message ; 
 				$output .= "</div>"; 
 			

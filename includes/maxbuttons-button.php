@@ -17,14 +17,32 @@ if ($_POST) {
 	if (is_int($return) && $button_id <= 0) 
 		$button_id = $return;
  
+ 	if ($button_id === 0) 
+ 	{
+ 		error_log(__("Maxbuttons Error: Button id should never be zero","maxbuttons")); 
+ 
+ 	}
+ 	
 	$button->set($button_id);	
-	wp_redirect(admin_url('admin.php?page=maxbuttons-controller&action=button&id=' . $button_id));
+	 wp_redirect(admin_url('admin.php?page=maxbuttons-controller&action=button&id=' . $button_id));
+	 exit();
 }
 	
 if (isset($_GET['id']) && $_GET['id'] != '') { 
 	$button = MB()->getClass('button'); // reset
 	$button_id = intval($_GET["id"]); 
-	$button->set($button_id);
+	if ($button_id == 0) 
+	{
+		$error = __("Maxbuttons button id is zero. Your data is not saved correctly! Please check your database.","maxbuttons");
+		maxButtons::add_notice('error', $error); 
+	}
+		// returns bool
+		$return = $button->set($button_id);
+	if ($return === false)
+	{
+		$error = __("MaxButtons could not find this button in the database. It might not be possible to save this button! Please check your database or contact support! ", "maxbuttons");
+		maxButtons::add_notice('error', $error); 
+	}
 }
 
  
@@ -72,9 +90,36 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 			<?php do_action("mb_display_notices"); ?> 
 			
 			<?php if ($button_id > 0): ?>
-			<div class="mb-message">
+			<div class="mb-message shortcode">
+				<?php $button_name = $button->getName(); ?>
 				<?php _e('To use this button, place the following shortcode anywhere in your site content:', 'maxbuttons') ?>
-				<strong>[maxbutton id="<?php echo $button_id ?>"]</strong> or <strong>[maxbutton name="<?php echo $button->getName(); ?>"]</strong> 
+				<strong>[maxbutton id="<?php echo $button_id ?>"]</strong> or <strong>  [maxbutton name="<?php echo $button_name; ?>"]  </strong> 
+				<span class='shortcode-expand closed'><?php _e("See more examples","maxbuttons"); ?>
+					<span class="dashicons-before dashicons-arrow-down"></span>
+				</span> 
+				
+				<div class="expanded"> 
+					<p class="example">
+					<strong><?php _e("Add the same button with different link","maxbuttons");  ?></strong>
+						&nbsp; [maxbutton id="<?php echo $button_id ?>" url="http://yoururl"]
+					</p>
+					 
+					<p class="example"><strong><?php _e("Use the same button but change the text","maxbuttons"); ?> </strong>
+						&nbsp; [maxbutton id="<?php echo $button_id ?>" text="yourtext"]
+					</p>
+					<p class="example"><strong><?php _e("All possible shortcode options","maxbuttons"); ?></strong>
+						&nbsp; [maxbutton id="<?php echo $button_id ?>" text="yourtext" url="http://yoururl" window="new" nofollow="true"] 
+					</p>
+					
+					<h4><?php _e("Some tips","maxbuttons"); ?></h4>
+					<p><?php _e("If you use the button on a static page, on multiple pages, or upload your theme to another WordPress installation choose an unique name and use ", 
+						"maxbuttons"); ?>  <strong>[maxbutton name='my-buy-button' url='http://yoururl']</strong>.
+
+		 
+					 <?php _e("Using this syntax if you change your button it will change throughout the entire site.  If you delete the button and create a new one with the same name the site will use the new button. ","maxbuttons"); ?>
+				 	</p>
+					
+				</div>
 			</div>
 			<?php endif; ?>
 			

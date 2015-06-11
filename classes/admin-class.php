@@ -218,6 +218,16 @@ class maxButtonsAdmin
 		
 	}
 
-
+	function get_header()
+	{
+		
+	
+	}
+	
+	function get_footer()
+	{
+	
+	
+	}
 
 }

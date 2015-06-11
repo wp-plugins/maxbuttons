@@ -146,10 +146,16 @@ function check_charset() {
     <div class="rss-feed">
           <h3><?php _e('Latest Support Questions', 'maxbuttons'); ?></h3>
               <?php
-               
+              if( ini_get('allow_url_fopen') ): 
+              
+               	try{
                   $content = file_get_contents('https://wordpress.org/support/rss/plugin/maxbuttons');
                   $x = new SimpleXmlElement($content);
-
+				}
+				catch (Exception $e)
+				{
+					echo "EX"; 
+				}
                    
                   echo '<ul >';
                   $i = 0;
@@ -172,7 +178,10 @@ function check_charset() {
                       }
                   }
                   echo '</ul>';
-              
+              	else: 
+              		echo _e("Your server doesn't allow us to catch the latest support questions", "maxbuttons");  
+              	
+              	endif; // ini_get
               ?>
             </div>
 

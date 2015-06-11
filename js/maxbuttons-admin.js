@@ -24,7 +24,13 @@ maxAdmin.prototype.init = function () {
  		//console.log($('#maxbuttons .input-paging'));
  		$('#maxbuttons .input-paging').on('change', $.proxy(this.do_paging, this));
 	
-		// ### After this only init for button main edit screen ######
+	
+		/*
+		****
+		 ### After this only init for button main edit screen 
+		****
+		
+		*/
 		if ($('#new-button-form').length == 0) 
 			return; 
 			
@@ -34,7 +40,8 @@ maxAdmin.prototype.init = function () {
 		
 		this.initResponsive(); // responsive edit interface 
 		
-		$("#maxbuttons .output").draggable();
+		$("#maxbuttons .output").draggable({	
+		});
 		$("a[rel*=leanModal]").leanModal( { closeButton: ".modal_close" });
 
 		$('.colorpicker-box').each(function () { 
@@ -42,6 +49,8 @@ maxAdmin.prototype.init = function () {
  
 			$(this).children('span').css('backgroundColor',$('#' + input).val()); 
 		});
+		
+		// init colorpicker
 		this.showColorPicker(); 
 		
 		if ( typeof buttonFieldMap != 'undefined')
@@ -64,7 +73,8 @@ maxAdmin.prototype.init = function () {
 		$('#swap-normal-hover-colors').click($.proxy(this.copy_colors,this,'swap_normal_hover')); 
 		$('#copy-invert-normal-colors').click($.proxy(this.copy_colors,this,'invert')); 		
 		
-
+		// Expand shortcode tabs for more examples. 
+		$('.shortcode-expand').on('click', this.toggleShortcode); 
 		
 }; // INIT
 
@@ -606,7 +616,25 @@ maxAdmin.prototype.do_paging = function(e)
 		window.location = url + "&paged=" + page;
 
 	}
-	 
+}
+
+
+maxAdmin.prototype.toggleShortcode = function (e)
+{
+	if ($('.shortcode-expand').hasClass('closed'))
+	{
+		$(' .mb-message.shortcode .expanded').css('display','inline-block');
+		$('.shortcode-expand span').removeClass('dashicons-arrow-down').addClass('dashicons-arrow-up'); 
+		$('.shortcode-expand').removeClass('closed').addClass('open');
+	}
+	else
+	{
+		$(' .mb-message.shortcode .expanded').css('display','none');
+		$('.shortcode-expand span').addClass('dashicons-arrow-down').removeClass('dashicons-arrow-up'); 
+		$('.shortcode-expand').addClass('closed').removeClass('open');	
+	}
+	
 
 }
+
 

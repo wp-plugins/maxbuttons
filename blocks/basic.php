@@ -39,7 +39,7 @@ class basicBlock extends maxBlock
 //		$css["maxbutton"]["normal"]["white-space"] = "nowrap";  // hinders correct rendering of oneline-multilines
 		$css["maxbutton"]["normal"]["display"] = "inline-block"; 
 
-		if ($data["url"] == '') // don't show clickable anchor if there is no URL. 
+		if (isset($data["url"]) && $data["url"] == '') // don't show clickable anchor if there is no URL. 
 		{
 			$css["maxbutton"]["normal"]["cursor"] = 'default'; 
 		//	$css[":hover"]["cursor"] = 'default'; 
@@ -47,6 +47,8 @@ class basicBlock extends maxBlock
 		return $css; 
 	
 	}
+	
+
 	
 	public function save_fields($data, $post)
 	{	
@@ -69,13 +71,13 @@ class basicBlock extends maxBlock
 		$anchor = $domObj->find("a",0); 		
 		
  
-		if ($data["nofollow"] == 1) 
+		if (isset($data["nofollow"]) && $data["nofollow"] == 1) 
 			$anchor->rel = "nofollow";
 		//	$buttonAttrs[] = "rel=nofollow"; 
-		if ($data["new_window"] == 1) 
+		if (isset($data["new_window"]) && $data["new_window"] == 1) 
 			$anchor->target = "_blank"; 
 							
-		if ($data["url"] != '') 
+		if (isset($data["url"]) && $data["url"] != '') 
 			$anchor->href = do_shortcode($data["url"]); 
 		else  // fixing an iOS problem which renders anchors without URL wrongly. 
 		{

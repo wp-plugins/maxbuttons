@@ -1,25 +1,33 @@
 
+/* Base element - do not use this in layout since this conflict with other plugins. 
+
+*/
 .message {
-	border: solid 1px #e6db55;
+	//border: solid 1px #e6db55;
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	padding: 10px;
 	margin: 10px 0px 20px 0px;
+	clear: both;
 
 
 }
 
-.mb-error {
-	@extend .message;
- 
 
-}
 
 .mb-message {
 	@extend .message;
-	background-color: #ffffe0;
-	
+ 
+	&.error {
+ 
+		font-weight: 700;
+	}
+	&.shortcode {
+		border: solid 1px #e6db55;
+		background-color: #ffffe0; 
+		
+	}
 }
 
 .max-modal {

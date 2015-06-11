@@ -22,6 +22,7 @@ abstract class maxBlock
 		add_action('mb-data-load', array($this,'set') );
 		
 		add_filter('mb-parse-button', array($this, 'parse_button'),10,2 ); 
+		add_filter('mb-js-blocks', array($this, 'parse_js'), 10, 2); 
 		//add_filter('mb-parse-element-preview', array($this,'parse_element'), 10,2); 
 		
 		add_filter('mb-css-blocks', array($this, 'parse_css'),10,2 ); 
@@ -135,7 +136,13 @@ abstract class maxBlock
 		return $css; 		
 	}
 	
-
+	/* Ability to output custom JS for each button */ 
+	public function parse_js($js, $mode = 'normal')
+	{
+		return $js; 
+	}
+	
+	
 	/* Map the Block fields  
 	
 		This function will take the field name and link it to the defined CSS definition to use in providing the live preview in the 

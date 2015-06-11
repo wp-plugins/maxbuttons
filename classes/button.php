@@ -27,6 +27,7 @@ class maxButton
 	
 	protected $cssParser = false; 
 	protected $parsed_css = ''; 
+ 
 	/* Class constructor 
 	   
 	   Get als loads the various blocks of which a button is built up. Blocks can be added and removed using the mb-init-blocks filter
@@ -97,12 +98,15 @@ class maxButton
 		// set blocks to the 'block name' that survived. 
 		maxButtonsUtils::addTime("Load Block classes"); 
 		
+		$classes = apply_filters("mb_blockclassesload", $classes);
+		
 		foreach($classes as $block => $class)
 		{
 			$block = new $class(); 
  
 		}
- 
+ 		do_action("mb_blockclassesloaded", $classes); 
+ 		
 	}
 	
 	/* Simple function to retrieve loaded blocks */ 
@@ -255,6 +259,7 @@ class maxButton
 		{ 
 			$css = apply_filters('mb-css-blocks', $css, $mode);
 			$this->button_css = $css;
+		 
 			$css = $this->getCSSParser()->parse($this->button_css);
 			if ($mode == 'normal') // only in general mode, otherwise things go amiss.
 				$this->update_cache($css);
@@ -267,6 +272,7 @@ class maxButton
 	
 	function parse_js($mode = "normal") 
 	{
+		maxButtonsUtils::addTime("Button :: parse JS");
 		$js = $this->button_js; 
 		$js = 	apply_filters('mb-js-blocks', $js, $mode);
 		$this->button_js = $js; 
@@ -327,7 +333,7 @@ class maxButton
  		{
 			case "preview": 	
 		 		$preview = true;
-		 		$compile = false;
+	 			$compile = false;
 		 	break;	
  			case "editor": 	 	
 		 		$preview = true; 			
@@ -381,11 +387,14 @@ class maxButton
 		elseif ($this->load_css == 'footer') 
 		{
 			$css = $this->display_css(false, true); 
-			do_action('mb-footer-css',$this->id, $css); 
+			$js =  $this->display_js(false, true);
+			do_action('mb-footer',$this->id, $css); 
+			do_action('mb-footer', $this->id, $js, 'js');
 			
 		} elseif ($this->load_css == 'inline') 
 		{
 			$this->display_css();
+		
 		}
 		elseif ($this->load_css == 'element') // not possible to load both normal and hover to an element. 
 		{
@@ -441,6 +450,42 @@ class maxButton
 		if ($echo) echo $output; 
 		else return $output; 
 		
+	}
+	
+	/* Output Parsed Javascripting */
+	public function display_js($echo = true, $tag = true)
+	{
+		$output = '';
+
+		if (count($this->button_js) == 0) 
+			return; // no output, holiday
+		
+		if ($tag) 
+		{
+			$output .= "<script type='text/javascript'> "; 
+			$output .= " if (typeof maxButton" . $this->id . " == 'undefined') { ";
+			$output .= " function maxButton" . $this->id . "() { ";
+			
+			
+		}
+		
+		foreach($this->button_js as $index => $code) 
+		{
+			$output .= $code; 
+		
+		}
+		
+		if ($tag) 
+		{
+			$output .= " } 
+						} 
+				window.onload = maxButton" . $this->id . "();	
+				</script>		"; 
+		}
+
+		
+		if ($echo) echo $output; 
+		else return $output; 
 	}
 
 
@@ -522,16 +567,19 @@ class maxButton
 		}
 		else
 		{
+ 
 			$result = $this->wpdb->insert(maxButtonsUtils::get_buttons_table_name(), $fields);
 			$id = $this->wpdb->insert_id;
+	 
  			$this->id = $id;
  			$return = $id; 
 		
 		}
 		
-
-		if (! $result)
+ 
+		if ($result === 0)
 		{
+
 			$error = "Database error " . $this->wpdb->last_error;
 			maxButtons::add_notice('error', $error); 
 		}
@@ -541,7 +589,10 @@ class maxButton
  		
  		//$css = $this->parse_css('normal', true); // force compile
  		$this->cache = ''; // empty cache 
- 		$this->set($this->id); // set the newest values
+ 		$result = $this->set($this->id); // set the newest values
+ 		
+ 		if (! $result ) return false;  
+ 		
  		$this->display(array("echo" => false, "load_css" => "element")); // do display routing to compile.
  		$css = $this->parsed_css; 		
  		$this->update_cache($css);		
@@ -586,6 +637,7 @@ class maxButton
 				'url' => '',
 				'window' => '',
 				'nofollow' => '',
+				'nocache' => false, 
 			//	'externalcss' => '',
 			//	'externalcsspreview' => '',		// Only used in maxbuttons-button-css.php
 			//	'ignorecontainer' => '',		// Internal use only on button list pages and the TinyMCE dialog
@@ -601,7 +653,8 @@ class maxButton
 			$result = $this->set(0, $button_name); 
 		else return; // no button
 
-		$compile = false; 
+		 
+		$compile = apply_filters("mb-compile-shortcode", $nocache); 
 		
  
 		if (! $result) 
@@ -654,6 +707,9 @@ class maxButton
 		$args = array("echo" => false, 
 					  "compile" => $compile, 
 				);
+		
+				
+				
 		$output = $this->display($args);
 	 
 		return $output;

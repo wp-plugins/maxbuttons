@@ -77,7 +77,7 @@ class maxCSSParser
 		
 		$struct = $this->struct; 
 		$this->data = $data; 
-	
+
  
  		if (isset($data["settings"]))  // room for settings in parser
  		{
@@ -87,7 +87,7 @@ class maxCSSParser
  			unset($this->data["settings"]); 
  		}
 
- 		
+
 		$elements = array_shift($struct); // first element is a 'stub' root.  
 
 		foreach($elements as $el => $el_data)
@@ -123,10 +123,10 @@ class maxCSSParser
 	protected function compile($css)
 	{
 		$scss = new scssc();
-		$scss->setImportPaths(maxButtons::get_plugin_path() . "assets/");
+		$scss->setImportPaths(maxButtons::get_plugin_path() . "assets/scss");
 		//$scss->setFormatter('scss_formatter_compressed');
 		
-		$compile = " @import 'mixins.scss';  " . $css;
+		$compile = " @import '_mixins.scss';  " . $css;
 		maxButtonsUtils::addTime("CSSParser: Compile start ");
  
 		
@@ -152,6 +152,8 @@ class maxCSSParser
 		{	$el_add .= " ." . $element;
  	
  		}
+
+ 		
 	 	if (isset($element_data["responsive"])) 
 	 	{
 	 		$responsive = $element_data["responsive"]; // doing that at the end
@@ -243,7 +245,7 @@ class maxCSSParser
 		
 		$query_array = array(); 
 	
-		
+
 		foreach($responsive as $element => $queries)
 		{
 			foreach($queries as $query => $qdata)

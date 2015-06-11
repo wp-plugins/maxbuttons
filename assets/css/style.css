@@ -9,19 +9,28 @@
   background: #000000;
   display: none; }
 
+.mb_colorpicker {
+  z-index: 200; }
+
 #maxbuttons {
+  /* Base element - do not use this in layout since this conflict with other plugins. 
+  
+  */
   /*.shortcode-container { 
   	max-width: 60%;
   	overflow: hidden;
   } */ }
-  #maxbuttons .message, #maxbuttons .mb-error, #maxbuttons .mb-message {
-    border: solid 1px #e6db55;
+  #maxbuttons .message, #maxbuttons .mb-message {
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     padding: 10px;
-    margin: 10px 0px 20px 0px; }
-  #maxbuttons .mb-message {
+    margin: 10px 0px 20px 0px;
+    clear: both; }
+  #maxbuttons .mb-message.error {
+    font-weight: 700; }
+  #maxbuttons .mb-message.shortcode {
+    border: solid 1px #e6db55;
     background-color: #ffffe0; }
   #maxbuttons .max-modal {
     display: none;
@@ -124,6 +133,88 @@
         font-weight: bold; }
   #maxbuttons .input .input_url {
     width: 600px; }
+  #maxbuttons .option-container {
+    margin-bottom: 20px;
+    border: solid 1px #cccccc;
+    border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    background-color: #fff; }
+    #maxbuttons .option-container .title {
+      font-size: 18px;
+      padding: 9px 8px 9px 10px;
+      text-align: left;
+      text-shadow: 0px 1px 0px #ffffff; }
+    #maxbuttons .option-container .section-title {
+      padding: 15px;
+      margin-top: 10px;
+      font-weight: 700;
+      font-size: 16px; }
+    #maxbuttons .option-container .section-title {
+      background-color: #fff; }
+    #maxbuttons .option-container .option label {
+      display: inline-block;
+      width: 150px;
+      font-weight: 700; }
+    #maxbuttons .option-container .help {
+      position: relative;
+      width: 15px;
+      height: 15px;
+      font-size: 18px;
+      margin-left: 10px; }
+      #maxbuttons .option-container .help span {
+        font-family: "Open Sans";
+        font-size: 13px;
+        background-color: #808080;
+        color: #fff;
+        position: absolute;
+        display: none;
+        padding: 10px 5px;
+        top: -7px;
+        left: 25px;
+        min-width: 150px;
+        border-radius: 5px;
+        text-align: center; }
+      #maxbuttons .option-container .help:hover span {
+        display: block; }
+  #maxbuttons .option-container .inside {
+    padding: 10px 15px 10px 15px;
+    border-top: solid 1px #cccccc;
+    background-color: #ffffff; }
+    #maxbuttons .option-container .inside .option {
+      margin-bottom: 20px; }
+      #maxbuttons .option-container .inside .option label, #maxbuttons .option-container .inside .option .label {
+        float: left;
+        font-weight: bold;
+        padding-left: 3px;
+        width: 15%; }
+      #maxbuttons .option-container .inside .option .note {
+        float: left;
+        font-weight: normal;
+        font-style: italic;
+        color: #808080; }
+      #maxbuttons .option-container .inside .option .input {
+        margin-top: 3px; }
+  #maxbuttons .option-design {
+    margin-bottom: 5px; }
+  #maxbuttons .option-design p.note {
+    font-style: italic;
+    color: #808080;
+    padding-left: 3px;
+    margin-bottom: 10px; }
+  #maxbuttons .option-design .label {
+    float: left;
+    font-weight: bold;
+    padding-left: 3px;
+    padding-top: 3px;
+    width: 160px; }
+  #maxbuttons .shortcode-expand {
+    float: right;
+    cursor: pointer; }
+  #maxbuttons .mb-message.shortcode .expanded {
+    display: none; }
+    #maxbuttons .mb-message.shortcode .expanded .example strong {
+      width: 300px;
+      display: inline-block; }
   #maxbuttons .system_info {
     width: 90%;
     background-color: #fff;
