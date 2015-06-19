@@ -21,10 +21,13 @@ maxAdmin.prototype.init = function () {
 		$('.maxbutton_thickbox').on('click', $.proxy(this.clickAddButton, this));
 		
  		// overview input paging
- 		//console.log($('#maxbuttons .input-paging'));
  		$('#maxbuttons .input-paging').on('change', $.proxy(this.do_paging, this));
 	
-	
+		$('.manual-toggle').on('click', $.proxy(this.toggleManual, this)); 
+		$('.manual-entry').draggable({ 
+			cancel: 'p, li',
+		}); 
+		
 		/*
 		****
 		 ### After this only init for button main edit screen 
@@ -56,9 +59,7 @@ maxAdmin.prototype.init = function () {
 		if ( typeof buttonFieldMap != 'undefined')
 			this.fields = $.parseJSON(buttonFieldMap);
 		
-
-
-		
+ 
  		$('input[type="text"]').on('keyup', $.proxy(this.update_preview,this)); 
  		$('select').on('change', $.proxy(this.update_preview, this)); 
  		$(document).on('colorUpdate', $.proxy(this.update_color, this)); 
@@ -633,8 +634,30 @@ maxAdmin.prototype.toggleShortcode = function (e)
 		$('.shortcode-expand span').addClass('dashicons-arrow-down').removeClass('dashicons-arrow-up'); 
 		$('.shortcode-expand').addClass('closed').removeClass('open');	
 	}
-	
-
+ 
 }
 
+maxAdmin.prototype.toggleManual = function (e)
+{
+	e.preventDefault();
+	var $target = $(e.target); 
+	 
+	var subject = $target.data("target"); 
+	//console.log('.manual-entry[data-manual="' + subject + '"]');
+	var $newWindow = $('.manual-entry[data-manual="' + subject + '"]'); 
+
+	if ($newWindow.is(':visible')) 
+	{
+		$newWindow.hide(); 
+		return true;
+	}
+
+	var offset = $('[data-options="' + subject + '"]').offset(); 
+	console.log(offset);
+	$newWindow.css('top', offset.top); 
+	$newWindow.css('right',15);
+	$newWindow.css('left', 'auto');
+//	$newWindow.offset({top: (offset.top), right: 15}); 
+	$newWindow.show();
+}
 

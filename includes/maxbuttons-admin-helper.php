@@ -73,7 +73,7 @@ class maxAdmin
 	{ ?>
         <div class="ads">
             <h3><?php _e('Get MaxButtons Pro!', 'maxbuttons'); ?></h3>
-         <?php /*   <p><?php _e('Celebrate the launch of our newest version of MaxButtons Pro!  You’ll see the sales price of $19 in the cart! ', 'maxbuttons'); ?></p> */ ?> 
+ 
             <p><strong><?php _e('MaxButton Pro bonus features include:', 'maxbuttons'); ?></strong></p>
             <ul>
             <?php // Thought. Is below needed for translation? Since it changes quite often ?>

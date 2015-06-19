@@ -360,7 +360,8 @@ class maxButton
 		$domObj = $this->parse_button($mode); 
 		
 		$this->parse_css($mode, $compile); 
-		$this->parse_js($mode); 
+		if (! $preview)  // no js on previews 
+			$this->parse_js($mode);  
 		
 		if ($preview)  // mark it preview
 		{
@@ -387,10 +388,13 @@ class maxButton
 		elseif ($this->load_css == 'footer') 
 		{
 			$css = $this->display_css(false, true); 
-			$js =  $this->display_js(false, true);
 			do_action('mb-footer',$this->id, $css); 
-			do_action('mb-footer', $this->id, $js, 'js');
 			
+			if (! $preview)
+			{
+				$js =  $this->display_js(false, true);
+				do_action('mb-footer', $this->id, $js, 'js');
+			}
 		} elseif ($this->load_css == 'inline') 
 		{
 			$this->display_css();
@@ -643,7 +647,7 @@ class maxButton
 			//	'ignorecontainer' => '',		// Internal use only on button list pages and the TinyMCE dialog
 				'exclude' => ''
 			), $atts));	
-			
+
 		$button_id = $id; 
 		$button_name = $name;
  
@@ -684,6 +688,7 @@ class maxButton
 		}  
 		if ($url != '') 
 		{
+
 			$this->data["basic"]["url"]  = $url; 
 			$compile = true; // css change forces recompile
 			$overrides = true;

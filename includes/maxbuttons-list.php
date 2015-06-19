@@ -108,6 +108,7 @@ $args["view"] = $view;
 $page_args = $args; 
 
 //include_once("admin_header.php"); 
+//$mbadmin->get_footer(); 
 
 ?>
 

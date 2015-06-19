@@ -79,7 +79,7 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 					<?php _e("Removing button","maxbuttons"); ?>
 					<div class="modal_close tb-close-icon"></div>
 				</div>
-					<p><?php _e("You are about to permanently remove this button. Are you sure?"); ?></p>
+					<p><?php _e("You are about to permanently remove this button. Are you sure?", "maxbuttons"); ?></p>
 					<p><a href="<?php admin_url() ?>admin.php?page=maxbuttons-controller&action=delete&id=<?php echo $button_id ?>" type="button" name="" class="button-primary big"><?php _e("Yes","maxbuttons"); ?></a>
 					&nbsp;&nbsp;
 					<input type="button" name="#" onClick="javascript:$('.modal_close').click();" class="button-primary" value="<?Php _e("No", "maxbuttons"); ?>">
@@ -93,7 +93,7 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 			<div class="mb-message shortcode">
 				<?php $button_name = $button->getName(); ?>
 				<?php _e('To use this button, place the following shortcode anywhere in your site content:', 'maxbuttons') ?>
-				<strong>[maxbutton id="<?php echo $button_id ?>"]</strong> or <strong>  [maxbutton name="<?php echo $button_name; ?>"]  </strong> 
+				<strong>[maxbutton id="<?php echo $button_id ?>"]</strong> <?php _e("or","maxbuttons"); ?> <strong>  [maxbutton name="<?php echo $button_name; ?>"]  </strong> 
 				<span class='shortcode-expand closed'><?php _e("See more examples","maxbuttons"); ?>
 					<span class="dashicons-before dashicons-arrow-down"></span>
 				</span> 

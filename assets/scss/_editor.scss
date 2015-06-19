@@ -23,6 +23,7 @@
 		padding: 9px 8px 9px 10px;
 		text-align: left;
 		text-shadow: 0px 1px 0px #ffffff;
+		position: relative;
 		//background-color: #bbb;
 	}
 	.section-title { 
@@ -90,6 +91,7 @@
 			font-weight: bold;
 			padding-left: 3px;
 			width: 15%;
+			cursor: default;	
 		}	
 		.note {
 			float: left;
@@ -119,6 +121,7 @@
 	padding-left: 3px;
 	padding-top: 3px;
 	width: 160px;
+
  }
  
  .shortcode-expand { 
@@ -137,8 +140,79 @@
  		
 		}
  	}
-  
  
  }
+
+ .manual-box
+ {
+ 	 float: right;
+ 	 margin-bottom: 5px;
+	 border-left: 1px solid $c-border-light; 
+	 height: 100%;
+	 position: absolute;
+	 top: 0;
+	 right: 0;
+	 width: 15%; 
+
+	 
+	 a { 
+ 		box-sizing: border-box;
+	 	font-size: 13px;
+	 	line-height: 13px;
+	 	margin-left: 20%;
+	 	padding-top: 12px;
+	 	position: absolute;
+	 }
+ }
+  
+ .manual-entry { 
+ 	 display: none;
+ 	
+ 	position: absolute; 
+ 	border: 1px solid $c-border-dark;
+ 	background: rgba(255,255,255,1);
+ 
+ 	width: 45%;
+ 	right: 25px;
+ 	z-index: 199;
+ 	box-sizing: border-box;
+ 	padding-bottom: 20px;
+ 	
+ 	h3 { 
+ 		font-size: 18px;
+ 		width: calc(100%);
+ 		box-sizing: border-box;
+ 		padding: 10px 0;
+ 		border-bottom: 1px solid $c-border-light;
+ 		text-align: center;
+ 		margin: 0;
+ 		padding-right: 35px;
+ 		position: relative;
+ 
+ 		
+ 		span { 
+ 		 	box-sizing: border-box;
+			cursor: pointer;
+ 			width: 35px;
+ 			height: 100%;
+ 			font-size: 25px;
+ 			display: inline-block;
+ 			position: absolute; 
+ 			right: 5px;
+ 			top: 0;
+ 			padding-top: 8px;
+ 		}
+ 	}
+ 	
+ 	h4, p, ol, ul { 
+ 		padding: 0 15px;
+ 	}
+ 	h4 { font-size: 16px; }
+ 	p { font-size: 13px; } 
+ 	
+ 
+}
+
+
  
 

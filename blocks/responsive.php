@@ -209,7 +209,7 @@ class responsiveBlock extends maxBlock
 						</div>
 
 											<div class="clear"></div>
-						<p><strong><?php _e("Note:","maxbuttons"); ?> </strong><?php _e(" Auto responsive settings will take a guess only on small screens. To control your responsive settins uncheck this button. This will show more options","maxbuttons"); ?></p>	
+						<p><strong><?php _e("Note:","maxbuttons"); ?> </strong><?php _e(" Auto responsive settings will take a guess only on small screens. To control your responsive settings uncheck this button. This will show more options.","maxbuttons"); ?></p>	
 					</div>
  
 					
