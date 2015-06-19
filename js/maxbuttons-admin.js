@@ -14,12 +14,26 @@ maxAdmin.prototype.init = function () {
 		this.button_id = $('input[name="button_id"]').val(); 
 		
  		// Prevents the output button from being clickable (also in admin list view )	
-		$(".maxbutton-preview").on('click',function(e) { e.preventDefault(); });		
+		$(document).on('click', ".maxbutton-preview", function(e) { e.preventDefault(); });		
 
 		// Fix thickbox behavior
- 		$('.maxbutton_thickbox').on('click', this.fixThickSize);
- 				
-		// ### After this only init for button main edit screen
+ 	//	$('.maxbutton_thickbox').on('click', this.fixThickSize);
+		$('.maxbutton_thickbox').on('click', $.proxy(this.clickAddButton, this));
+		
+ 		// overview input paging
+ 		$('#maxbuttons .input-paging').on('change', $.proxy(this.do_paging, this));
+	
+		$('.manual-toggle').on('click', $.proxy(this.toggleManual, this)); 
+		$('.manual-entry').draggable({ 
+			cancel: 'p, li',
+		}); 
+		
+		/*
+		****
+		 ### After this only init for button main edit screen 
+		****
+		
+		*/
 		if ($('#new-button-form').length == 0) 
 			return; 
 			
@@ -29,22 +43,23 @@ maxAdmin.prototype.init = function () {
 		
 		this.initResponsive(); // responsive edit interface 
 		
-		$("#maxbuttons .output").draggable();
-		$("#view_css_modal").leanModal();
+		$("#maxbuttons .output").draggable({	
+		});
+		$("a[rel*=leanModal]").leanModal( { closeButton: ".modal_close" });
 
 		$('.colorpicker-box').each(function () { 
 			var input = $(this).attr('id').replace('_box',''); 
  
 			$(this).children('span').css('backgroundColor',$('#' + input).val()); 
 		});
+		
+		// init colorpicker
 		this.showColorPicker(); 
 		
 		if ( typeof buttonFieldMap != 'undefined')
 			this.fields = $.parseJSON(buttonFieldMap);
 		
-
-
-		
+ 
  		$('input[type="text"]').on('keyup', $.proxy(this.update_preview,this)); 
  		$('select').on('change', $.proxy(this.update_preview, this)); 
  		$(document).on('colorUpdate', $.proxy(this.update_color, this)); 
@@ -59,7 +74,8 @@ maxAdmin.prototype.init = function () {
 		$('#swap-normal-hover-colors').click($.proxy(this.copy_colors,this,'swap_normal_hover')); 
 		$('#copy-invert-normal-colors').click($.proxy(this.copy_colors,this,'invert')); 		
 		
- 
+		// Expand shortcode tabs for more examples. 
+		$('.shortcode-expand').on('click', this.toggleShortcode); 
 		
 }; // INIT
 
@@ -467,13 +483,14 @@ maxAdmin.prototype.updateDimension = function (target)
 }
 
 		
-maxAdmin.prototype.fixThickSize = function(e)
+maxAdmin.prototype.fixThickSize = function()
 {	
-	e.preventDefault();
-	e.stopPropagation(); 
+	//e.preventDefault();
+	//e.stopPropagation(); 
 	
-	var title = e.target.title; 
+	var title = wp_obj.windowtitle; 
 	var href = '#TB_inline?width=200&height=460&inlineId=select-maxbutton-container';
+
 
 	tb_show(title, href);
 	
@@ -484,6 +501,60 @@ maxAdmin.prototype.fixThickSize = function(e)
 	return false;
 
 }
+
+maxAdmin.prototype.clickAddButton = function (e) 
+{
+	e.preventDefault();
+	e.stopPropagation(); 
+	$(document).off('click','.pagination span'); // prevent multiple events 
+	
+	var self = this; 
+	
+	//$.proxy(this.loadPostEditScreen,this);
+	$(document).on('click','.pagination span', function (e)  // eventception
+	{
+		e.preventDefault();
+		var page = $(e.target).data('page');
+		if (page <= 1) page = 1; 
+		
+		self.loadPostEditScreen(page); 
+	}) ; 
+	
+	this.loadPostEditScreen();
+}
+maxAdmin.prototype.loadPostEditScreen = function(page)
+{
+	if (typeof page == 'undefined') page = 0; 
+	
+	var data = { action: 'getAjaxButtons', 
+				paged : page
+			 }; 
+	var url = wp_obj.ajaxurl;
+ 	var self = this; 
+ 
+ 
+ 	
+	$.ajax({
+	  url: url,
+	  data: data,
+	  success: function (res) 
+	  {
+	  	// self.res = res;
+	  //	console.log(self);
+	  	self.showPostEditScreen(res)
+ 	  }, 
+ 	  
+	});
+
+	return false;
+}
+maxAdmin.prototype.showPostEditScreen = function (res)
+{
+	$('#mb_media_buttons').html(res);
+	this.fixThickSize();
+
+}
+
 maxAdmin.prototype.initResponsive = function()
 {
 	this.checkAutoQuery();	
@@ -534,5 +605,59 @@ maxAdmin.prototype.removeMediaQuery = function(e)
 	var target = e.target;
 
 	$(target).parents('.media_query').fadeOut(function() { $(this).remove() } ); 
+}
+
+maxAdmin.prototype.do_paging = function(e)
+{
+	var page = parseInt($(e.target).val()); 
+
+	if (page <= parseInt($(e.target).attr('max')) )
+	{
+		var url = $(e.target).data("url"); 
+		window.location = url + "&paged=" + page;
+
+	}
+}
+
+
+maxAdmin.prototype.toggleShortcode = function (e)
+{
+	if ($('.shortcode-expand').hasClass('closed'))
+	{
+		$(' .mb-message.shortcode .expanded').css('display','inline-block');
+		$('.shortcode-expand span').removeClass('dashicons-arrow-down').addClass('dashicons-arrow-up'); 
+		$('.shortcode-expand').removeClass('closed').addClass('open');
+	}
+	else
+	{
+		$(' .mb-message.shortcode .expanded').css('display','none');
+		$('.shortcode-expand span').addClass('dashicons-arrow-down').removeClass('dashicons-arrow-up'); 
+		$('.shortcode-expand').addClass('closed').removeClass('open');	
+	}
+ 
+}
+
+maxAdmin.prototype.toggleManual = function (e)
+{
+	e.preventDefault();
+	var $target = $(e.target); 
+	 
+	var subject = $target.data("target"); 
+	//console.log('.manual-entry[data-manual="' + subject + '"]');
+	var $newWindow = $('.manual-entry[data-manual="' + subject + '"]'); 
+
+	if ($newWindow.is(':visible')) 
+	{
+		$newWindow.hide(); 
+		return true;
+	}
+
+	var offset = $('[data-options="' + subject + '"]').offset(); 
+	console.log(offset);
+	$newWindow.css('top', offset.top); 
+	$newWindow.css('right',15);
+	$newWindow.css('left', 'auto');
+//	$newWindow.offset({top: (offset.top), right: 15}); 
+	$newWindow.show();
 }
 

@@ -13,6 +13,12 @@ class maxButtons
 	protected $plugin_path;
 	protected $footer = array();
 	
+	protected static $notices = array(); 
+	
+	protected $mainClasses = array(); 
+	
+	protected static $instance;
+	
 	/* Class constructor 
 	   Add hooks and actions used by this plugin. Sets plugin environment information
 	*/
@@ -23,10 +29,6 @@ class maxButtons
 		$this->plugin_name = trim(basename($this->plugin_path), '/');
 		
 		$this->installed_version = get_option('MAXBUTTONS_VERSION_KEY'); 
-
-	 	if ( version_compare(PHP_VERSION, '5.3.0', '<' ) ) {
-	 		exit("This MaxButtons version requires at least PHP 5.3 . You are running : " . PHP_VERSION); 	 
-	 	}
 	 	
 	 	maxInstall::check_database(); // sigh
 	 	
@@ -35,7 +37,7 @@ class maxButtons
 		add_filter('widget_text', 'do_shortcode');
 		add_shortcode('maxbutton', array($this, 'shortcode')); 
 
-		add_action("mb-footer-css", array($this, 'footer_css'),10,2); 
+		add_action("mb-footer", array($this, 'do_footer'),10,3); 
 		add_action("wp_footer", array($this, "footer")); 
 		
 		add_action('media_buttons_context', array($this,'maxbuttons_media_button'));
@@ -54,12 +56,80 @@ class maxButtons
 			add_action('admin_menu', array($this, 'admin_menu'));
 			add_action('admin_footer', array($this,'media_button_admin_footer'));
 			add_action('admin_footer', array($this, "footer"));
+	
+			// errors in user space. No internal error but user output friendly issues
+			add_action("mb_display_notices", array($this,"display_notices"));
 			
-			
+			add_action("wp_ajax_getAjaxButtons", array('maxButtonsAdmin', 'getAjaxButtons'));
 		}
+		
+		$this->setMainClasses(); // struct for override functionality
+ 		
+ 		// The second the blocks are being loaded, check dbase integrity 
+ 		add_action("mb_blockclassesloaded", array($this, "check_database")); 
  
+ 		self::$instance = $this;
+	}
+	
+	public static function getInstance()
+	{
+		return self::$instance;
 	}
  
+	public function setMainClasses()
+	{
+		$classes = array(
+			"button" => "maxButton",
+			"block" => "maxBlock", 
+			"admin" => "maxButtonsAdmin", 
+			"install" => "maxInstall", 
+			"groups" => "maxGroups"
+		); 
+		
+		$this->mainClasses = $classes; 		
+	
+	}
+	
+	// from block loader action. Checks if all parts of the table are there, or panic if not.
+	public function check_database($blocks)
+	{
+		maxButtonsUtils::addTime("Check database");
+			
+		$sql = "SELECT id,name,status,cache"; 
+		foreach ($blocks as $block => $class) 
+		{
+			$sql .= ", $block"; 
+		} 
+		$sql .= " from " . maxButtonsUtils::get_buttons_table_name() . " limit 1"; 
+		
+		
+ 
+		global $wpdb; 
+		$wpdb->hide_errors();
+		$result = $wpdb->get_results($sql); 
+		 
+	
+		// check this query for errors. If there is an error, one or more database fields are missing. Fix that. 
+		if (isset($wpdb->last_error) && $wpdb->last_error != '') 
+		{
+			//echo $wpdb->last_error;  echo "ERREUR!";
+		 	$install = $this->getClass("install"); 
+			$install::create_database_table();
+			$install::migrate();
+		}
+	 
+		
+		maxButtonsUtils::addTime("End check database");
+	}
+	
+	public function getClass($class)
+	{
+		if (isset($this->mainClasses[$class])) 
+		{
+			$load_class = $this->mainClasses[$class]; 
+			return new $load_class;
+		}
+	}
 	 
 	/* Load the plugin textdomain */
 	public function load_textdomain()
@@ -70,8 +140,8 @@ class maxButtons
 		$locale = apply_filters('plugin_locale', get_locale(), $domain);
 
 		load_textdomain($domain, WP_LANG_DIR.'/maxbuttons/'.$domain.'-'.$locale.'.mo');	
-		load_plugin_textdomain('maxbuttons', false, $this->plugin_name . '/languages/');
-
+		$res = load_plugin_textdomain('maxbuttons', false, $this->plugin_name . '/languages/');
+ 
  	}
  	
  	function addthick()
@@ -186,8 +256,8 @@ class maxButtons
 		if ( strpos($hook,'maxbuttons') === false && $hook != 'post.php' && $hook != 'post-new.php' )
 			return;
   
-				
-		wp_enqueue_style('maxbuttons-css', $this->plugin_url . '/styles.css');
+		wp_enqueue_style('maxbuttons-newcss', $this->plugin_url . 'assets/css/style.css');		
+		wp_enqueue_style('maxbuttons-css', $this->plugin_url . 'styles.css');
 		wp_enqueue_style('maxbuttons-colorpicker-css', $this->plugin_url . 'js/colorpicker/css/colorpicker.css');
 	}
 
@@ -203,6 +273,13 @@ class maxButtons
 		wp_enqueue_script('maxbuttons-modal', $this->plugin_url . 'js/leanModal/jquery.leanModal.min.js', array('jquery'));
 		wp_enqueue_script('maxbutton-admin', $this->plugin_url . 'js/maxbuttons-admin.js', array('jquery'), true); 
 		wp_enqueue_script('maxbutton-js-init', $this->plugin_url . 'js/init.js', array('maxbutton-admin'), true);
+		
+		$local = array();
+		$local["ajaxurl"] = admin_url( 'admin-ajax.php' );
+		$local["maxurl"] = $this->plugin_url; 
+		$local["windowtitle"] = __("Select a MaxButton","maxbuttons"); 
+		
+		wp_localize_script('maxbutton-admin', 'wp_obj', $local);  
 	}	
 	
 	function admin_footer_text($text)
@@ -212,8 +289,11 @@ class maxButtons
 			
 		if ( strpos($_GET["page"],'maxbuttons') === false)
 			return $text; 
-		
-		$text .=  "  <i>" . sprintf("MaxButtons release: %s", MAXBUTTONS_RELEASE) . "</i>"; 
+		$text = '';
+		//$text .=  " <p><i>" . sprintf("MaxButtons release: %s", MAXBUTTONS_RELEASE) . "</i><p>"; 
+		$text .=   sprintf("If you like MaxButtons please give us a  %s★★★★★%s rating!", 
+			"<a href='https://wordpress.org/support/view/plugin-reviews/maxbuttons#postform' target='_blank'>", 
+			"</a>")  ; 
 		return $text; 
 	
 	}
@@ -232,7 +312,7 @@ class maxButtons
 
 	function plugin_action_links($links, $file) {
  
-		if ($file == plugin_basename(dirname(__FILE__) . '/maxbuttons.php')) {
+		if ($file == plugin_basename(dirname(MAXBUTTONS_ROOT_FILE) . '/maxbuttons.php')) {
 			$label = __('Buttons', 'maxbuttons');
 			$dashboard_link = '<a href="' . admin_url() . 'admin.php?page=maxbuttons-controller&action=list">' . $label . '</a>';
 			array_unshift($links, $dashboard_link);
@@ -260,7 +340,7 @@ class maxButtons
 		// Only run in post/page creation and edit screens
 		if (in_array($pagenow, array('post.php', 'page.php', 'post-new.php', 'post-edit.php'))) {
 			$title = __('Add Button', 'maxbuttons');
-			$icon = $this->plugin_url . '/images/mb-peach-icon.png';
+			$icon = $this->plugin_url . 'images/mb-peach-icon.png';
 			$img = '<span class="wp-media-buttons-icon" style="background-image: url(' . $icon . '); width: 16px; height: 16px; margin-top: 1px;"></span>';
 			$output = '<a href="" class="maxbutton_thickbox button" title="' . $title . '" style="padding-left: .4em;">' . $img . ' ' . $title . '</a>'; 
 		}
@@ -268,13 +348,14 @@ class maxButtons
 		return $context . $output;
 }
 
-		function footer_css($id, $code)
+		function do_footer($id, $code, $type = "css")
 		{
-			$this->footer[$id]["css"] = $code; 
+			$this->footer[$id][$type] = $code; 
 			
 		}
 		function footer()
 		{
+
  			if(count($this->footer) == 0) return; // nothing
  				
 			foreach ($this->footer as $id => $part) 
@@ -286,6 +367,48 @@ class maxButtons
 			}
 		
 		}
+		
+		/* 
+			Adds an notice to an notice array for later display on interface 
+			@param $type string message | notice | error | fatal
+			@param $message string User understandable message
+			@param $fatal bool Indication of further panic or not. 
+		
+		*/
+		public static function add_notice($type, $message)
+		{
+			self::$notices[] = array("type" => $type, 
+									"message" => $message
+								); 
+				
+		}
+		
+		/* Display all notices from notice array - Filter: mb_display_notices
+		
+		@param $echo echo the results or silently return.
+		*/
+		public function display_notices($echo = true)
+		{
+			if ($echo == '') $echo = true;
+			$notices = maxButtons::$notices; 
+			$output = ''; 
+			if (count($notices) == 0)
+				return;
+				
+			foreach($notices as $index => $notice)
+			{
+				$type = $notice["type"]; 
+				$message = $notice["message"]; 
+				$output .= "<div class='mb-message $type'> "; 
+				$output .= $message ; 
+				$output .= "</div>"; 
+			
+			} 
+
+			if ($echo) echo $output; 
+			else return $output;
+		}
+		
 }  // class
  
 function maxbuttons_log_me($message) {

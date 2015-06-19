@@ -77,7 +77,7 @@ class maxCSSParser
 		
 		$struct = $this->struct; 
 		$this->data = $data; 
-	
+
  
  		if (isset($data["settings"]))  // room for settings in parser
  		{
@@ -87,7 +87,7 @@ class maxCSSParser
  			unset($this->data["settings"]); 
  		}
 
- 		
+
 		$elements = array_shift($struct); // first element is a 'stub' root.  
 
 		foreach($elements as $el => $el_data)
@@ -123,10 +123,10 @@ class maxCSSParser
 	protected function compile($css)
 	{
 		$scss = new scssc();
-		$scss->setImportPaths(maxButtons::get_plugin_path() . "assets/");
+		$scss->setImportPaths(maxButtons::get_plugin_path() . "assets/scss");
 		//$scss->setFormatter('scss_formatter_compressed');
 		
-		$compile = " @import 'mixins.scss';  " . $css;
+		$compile = " @import '_mixins.scss';  " . $css;
 		maxButtonsUtils::addTime("CSSParser: Compile start ");
  
 		
@@ -152,6 +152,8 @@ class maxCSSParser
 		{	$el_add .= " ." . $element;
  	
  		}
+
+ 		
 	 	if (isset($element_data["responsive"])) 
 	 	{
 	 		$responsive = $element_data["responsive"]; // doing that at the end
@@ -243,7 +245,7 @@ class maxCSSParser
 		
 		$query_array = array(); 
 	
-		
+
 		foreach($responsive as $element => $queries)
 		{
 			foreach($queries as $query => $qdata)
@@ -394,7 +396,7 @@ class maxCSSParser
 		
 		$important = ($this->is_important()) ? "!important" : ""; 
 		
-		if ($color != '')		
+		if ($color != '' && $width > 0)		
 			$values = $this->add_include($values, "box-shadow($left, $top, $width, $color $important) ");			
 	
 		$values = array_diff_key($values, $results);
@@ -411,7 +413,7 @@ class maxCSSParser
 		$color = isset($results["text-shadow-color"]) ? $results["text-shadow-color"] : ''; 
 		$important = ($this->is_important()) ? "!important" : ""; 
 				
-		if ($color != '')
+		if ($color != '' && $width > 0)
 			$values = $this->add_include($values, "text-shadow ($left,$top,$width,$color $important)"); 
 		
 		$values = array_diff_key($values, $results);
@@ -433,7 +435,11 @@ class maxCSSParser
 		$domObj = $domObj->load($domObj->save());
 		
 		$inline = $this->inline;
-
+		
+		// ISSUE #43 Sometimes this breaks 
+		if (! isset($inline[$pseudo])) 
+			return $domObj;
+		
 		foreach($inline[$pseudo] as $element => $styles)
 		{
 			//$element = $element[$pseudo];
