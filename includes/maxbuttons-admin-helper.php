@@ -72,7 +72,7 @@ class maxAdmin
 	static function display_ads()
 	{ ?>
         <div class="ads">
-            <h3><?php _e('Get MaxButtons Pro!', 'maxbuttons'); ?></h3>
+            <h3><?php _e('MaxButtons Pro only $24', 'maxbuttons'); ?></h3>
  
             <p><strong><?php _e('MaxButton Pro bonus features include:', 'maxbuttons'); ?></strong></p>
             <ul>
