@@ -255,8 +255,10 @@ class responsiveBlock extends maxBlock
 							
 							<div class='label'><?php _e("Container float", "maxbuttons"); ?></div>
 							<div class="input"><?php echo maxButtonsUtils::selectify("mq_container_float[]",$container_floats, $fields["mq_container_float"]) ?></div>
+							
+							<?php $mq_hide = (isset($fields["mq_hide"])) ? $fields["mq_hide"] : ''; ?>
 							<div class="label"><?php _e("Hide button on this view","maxbuttons"); ?></div>
-							<div class="input"><input type="checkbox" name="mq_hide[]" value="none" <?php checked('none', $fields["mq_hide"] ) ?> ></div>
+							<div class="input"><input type="checkbox" name="mq_hide[]" value="none" <?php checked('none', $mq_hide ) ?> ></div>
 							
 								
 						</div>
@@ -289,7 +291,7 @@ class responsiveBlock extends maxBlock
 		
 			<div class='media_option_prot'>
 				<div class='media_query'> 
-							<span class='removebutton'><img src="<?php echo maxButtons::get_plugin_url() ?>/assets/icons/remove.png"></span>
+							<span class='removebutton'><img src="<?php echo MB()->get_plugin_url() ?>assets/icons/remove.png"></span>
 							<input type="hidden" name="media_query[]" value=""> 
 							<label class='title'></label>
 							<p class='description'>Description here</p>

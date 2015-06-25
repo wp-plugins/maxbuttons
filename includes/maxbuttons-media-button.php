@@ -26,8 +26,9 @@ global $pagenow;
 	
 	<div id="select-maxbutton-container" style="display:none" >
 		<div class="wrap">
-			<h2 style="padding-top: 3px; padding-left: 40px; background: url(<?php echo maxButtons::get_plugin_url() . 'images/mb-32.png' ?>) no-repeat;">
+			<h2 style="padding-top: 3px; padding-left: 40px; background: url(<?php echo maxButtons::get_plugin_url() . 'images/mb-peach-32.png' ?>) no-repeat;">
 				<?php _e('Insert Button into Editor', 'maxbuttons') ?>
+				
 			</h2>
 			
 			

@@ -26,7 +26,8 @@
   /*.shortcode-container { 
   	max-width: 60%;
   	overflow: hidden;
-  } */ }
+  } */
+  /* Media queries interface */ }
   #maxbuttons .message, #maxbuttons .mb-message {
     border-radius: 3px;
     -moz-border-radius: 3px;
@@ -235,11 +236,14 @@
     width: 15%; }
     #maxbuttons .manual-box a {
       box-sizing: border-box;
-      font-size: 13px;
+      display: inline-block;
+      text-align: center;
+      font-size: 14px;
       line-height: 13px;
-      margin-left: 20%;
-      padding-top: 12px;
-      position: absolute; }
+      width: 100%;
+      line-height: 36px;
+      text-align: center;
+      cursor: pointer; }
   #maxbuttons .manual-entry {
     display: none;
     position: absolute;
@@ -277,6 +281,54 @@
       font-size: 16px; }
     #maxbuttons .manual-entry p {
       font-size: 13px; }
+  #maxbuttons .media_query {
+    width: 28%;
+    /*margin: 15px 0 15px 165px; */
+    margin: 0 20px 15px 0;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    display: inline-block;
+    position: relative;
+    float: left; }
+    #maxbuttons .media_query .removebutton {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+      z-index: 100;
+      padding: 10px 5px; }
+    #maxbuttons .media_query input:after {
+      clear: both; }
+    #maxbuttons .media_query .label {
+      clear: both;
+      margin-bottom: 15px; }
+    #maxbuttons .media_query .custom .label, #maxbuttons .media_query .custom .input {
+      float: left; }
+    #maxbuttons .media_query .custom.hidden {
+      display: none; }
+    #maxbuttons .media_query .description {
+      padding: 15px 0px;
+      text-align: center;
+      min-height: 45px; }
+    #maxbuttons .media_query select {
+      width: 60px; }
+    #maxbuttons .media_query .input input {
+      min-height: 22px;
+      min-width: 40px;
+      margin-top: 0px;
+      height: 28px;
+      padding-top: 2px; }
+  #maxbuttons .option-container .media_query label {
+    display: block;
+    font-size: 16px;
+    text-align: center;
+    cursor: default; }
+  #maxbuttons .media_queries_options .new-query {
+    margin-top: 25px; }
+    #maxbuttons .media_queries_options .new-query select {
+      width: auto; }
+  #maxbuttons .media_option_prot, #maxbuttons #media_desc {
+    display: none; }
   #maxbuttons .system_info {
     width: 90%;
     background-color: #fff;

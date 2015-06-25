@@ -130,9 +130,7 @@ $page_args = $args;
 
 <div id="maxbuttons">
 	<div class="wrap">
-		<div class="icon32">
-			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/mb-32.png" alt="MaxButtons" /></a>
-		</div>
+ 
 		
 		<h2 class="title"><?php _e('MaxButtons: Button List', 'maxbuttons') ?></h2>
 		

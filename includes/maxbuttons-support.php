@@ -126,9 +126,7 @@ function check_charset() {
 
 <div id="maxbuttons">
 	<div class="wrap">
-		<div class="icon32">
-			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>/images/mb-32.png" alt="MaxButtons" /></a>
-		</div>
+ 
 		
 		<h2 class="title"><?php _e('MaxButtons: Support', 'maxbuttons') ?></h2>
 		

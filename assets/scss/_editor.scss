@@ -157,11 +157,17 @@
 	 
 	 a { 
  		box-sizing: border-box;
-	 	font-size: 13px;
+ 		display: inline-block;
+ 		text-align:center;
+	 	font-size: 14px;
 	 	line-height: 13px;
-	 	margin-left: 20%;
-	 	padding-top: 12px;
-	 	position: absolute;
+	 	//margin-left: 20%;
+	 	//padding-top: 12px;
+	 	//position: absolute;
+	 	width: 100%;
+	 	line-height: 36px;
+	 	text-align: center; 
+	 	cursor: pointer;
 	 }
  }
   
@@ -211,6 +217,72 @@
  	p { font-size: 13px; } 
  	
  
+}
+
+
+/* Media queries interface */
+.media_query { 
+	width: 28%; 
+	/*margin: 15px 0 15px 165px; */
+	margin: 0 20px 15px 0;
+	border: 1px solid #ccc;
+	padding: 10px 15px;
+	display: inline-block;
+	position: relative;
+	float:left;
+	.removebutton { 
+		position: absolute;
+		right: 10px; 
+		top: 10px; 
+		cursor: pointer;
+		z-index: 100; // prevent label overlap;
+		padding: 10px 5px; // easier click
+
+	 }
+	input:after {
+		clear: both;
+	}
+	.label {
+		clear: both; 
+		margin-bottom: 15px;
+	}	
+	.custom .label, .custom .input {
+		float: left;
+	}
+	.custom.hidden { display: none; } 
+	.description {
+ 		padding: 15px 0px;
+ 		text-align: center;
+ 		min-height: 45px;
+	 }
+	 select { width: 60px; }
+	.input input { 
+		min-height: 22px; 
+		min-width:40px; 
+		margin-top: 0px;
+		height: 28px;
+		padding-top: 2px;
+	} 
+	 
+} // media_query 
+
+.option-container .media_query label { 
+	display: block;
+	font-size:16px;
+	text-align: center;
+		cursor: default;
+}
+ 
+.media_queries_options .new-query { 
+	margin-top: 25px; 
+	select { 
+		width: auto;
+	}
+}
+ 
+	
+ .media_option_prot, #media_desc {
+	display: none;
 }
 
 

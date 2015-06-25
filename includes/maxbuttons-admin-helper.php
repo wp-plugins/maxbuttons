@@ -79,6 +79,7 @@ class maxAdmin
             <?php // Thought. Is below needed for translation? Since it changes quite often ?>
             
             	<li><strong><?php _e("Button Search!","maxbuttons"); ?></strong></li>
+            	<li><strong><?php _e("Google Event Tracking","maxbuttons"); ?></strong></li>
                 <li><?php _e('Two Lines of Editable Text', 'maxbuttons'); ?></li>
                 <li><?php _e('Pre-Made Button Packs', 'maxbuttons'); ?></li>
                 <li><?php _e('Add An Icon To Your Buttons', 'maxbuttons'); ?></li>

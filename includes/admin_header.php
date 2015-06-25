@@ -19,3 +19,4 @@ global $page_title;
 		<div class="clear"></div>
 		<div class="main">
 			<?php do_action('mb-display-tabs'); ?> 
+			

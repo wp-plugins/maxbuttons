@@ -161,6 +161,7 @@ class maxButton
 		unset($this->button_css);
 		$this->button_css = '';
 		$this->data = array();
+		$this->data = $this->save(array(),false);
 		$this->cache = ''; 
 		$this->button_loaded = false;
 	}

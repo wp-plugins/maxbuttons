@@ -83,7 +83,8 @@ class maxButtons
 			"block" => "maxBlock", 
 			"admin" => "maxButtonsAdmin", 
 			"install" => "maxInstall", 
-			"groups" => "maxGroups"
+			"groups" => "maxGroups",
+
 		); 
 		
 		$this->mainClasses = $classes; 		

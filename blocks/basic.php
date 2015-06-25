@@ -53,8 +53,9 @@ class basicBlock extends maxBlock
 	public function save_fields($data, $post)
 	{	
 		// Possible solution: 
-		$post["url"] = isset($post["url"]) ? urldecode(urldecode($post["url"])) : '';
- 
+	//	$post["url"] = isset($post["url"]) ? urldecode(urldecode($post["url"])) : '';
+ 		$post["url"] = isset($post["url"]) ? urldecode($post["url"]) : '';
+ 		
 		$data = parent::save_fields($data, $post);
 		if (isset($post["name"])) 
 			$data["name"] = sanitize_text_field($post["name"]); 
@@ -78,7 +79,7 @@ class basicBlock extends maxBlock
 			$anchor->target = "_blank"; 
 							
 		if (isset($data["url"]) && $data["url"] != '') 
-			$anchor->href = do_shortcode($data["url"]); 
+			$anchor->href = do_shortcode( esc_url($data["url"]) ); 
 		else  // fixing an iOS problem which renders anchors without URL wrongly. 
 		{
 			$anchor->href = 'javascript:void(0);';

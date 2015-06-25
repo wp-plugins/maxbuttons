@@ -85,4 +85,11 @@ $maxbuttons_font_weights = array(
 	'normal' => __('normal','maxbuttons'),
 	'bold' =>  __('bold','maxbuttons'), 
 );
+$maxbuttons_text_alignments = array(
+	'' => '',
+	'left' => 'left',
+	'center' => 'center',
+	'right' => 'right'
+);
+
 ?>

@@ -204,7 +204,10 @@ class maxButtonsAdmin
 			echo "<span class='col col_insert'> "; 
 			echo "	<a href='#' onclick='insertButtonShortcode($button_id); return false;'>";
 			 _e('Insert This Button', 'maxbuttons'); 
-			 echo "</a> &raquo;</span>  ";
+			 echo "</a> &raquo;
+			 	<br> <span class='small'>[ID: $button_id ]</span>
+			 </span>  ";
+			 
 			echo "<span class='col col_button'><div class='shortcode-container'>";
 			 $button->display(array("mode" => "preview", "load_css" => "inline" ));
 			echo "</div></span>"; 
