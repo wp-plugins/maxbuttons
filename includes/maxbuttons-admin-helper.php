@@ -77,15 +77,13 @@ class maxAdmin
             <p><strong><?php _e('MaxButton Pro bonus features include:', 'maxbuttons'); ?></strong></p>
             <ul>
             <?php // Thought. Is below needed for translation? Since it changes quite often ?>
-            
-            	<li><strong><?php _e("Button Search!","maxbuttons"); ?></strong></li>
-            	<li><strong><?php _e("Google Event Tracking","maxbuttons"); ?></strong></li>
                 <li><?php _e('Two Lines of Editable Text', 'maxbuttons'); ?></li>
-                <li><?php _e('Pre-Made Button Packs', 'maxbuttons'); ?></li>
+                <li><?php _e('Pre-Made Button Packs', 'maxbuttons'); ?></li>            
+            	<li><?php _e("Google Analytics Event Tracking","maxbuttons"); ?></li>
+            	<li><?php _e("Button Search","maxbuttons"); ?></li>
+                <li><?php _e('Responsive Buttons', 'maxbuttons'); ?></li> 
                 <li><?php _e('Add An Icon To Your Buttons', 'maxbuttons'); ?></li>
                 <li><?php _e('Google Web Fonts', 'maxbuttons'); ?></li>
-                <li><?php _e("Font Awesome Icon Support","maxbuttons"); ?></li>
-                <li><?php _e('Responsive Buttons', 'maxbuttons'); ?></li> 
                 <li><?php _e('Our terrific Support', 'maxbuttons'); ?></li>
                 <li><?php _e("Plus More!","maxbuttons"); ?></li>
 
