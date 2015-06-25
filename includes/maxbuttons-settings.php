@@ -28,19 +28,16 @@ if (isset($_POST["reset_cache"]))
 
 if (isset($_POST["remigrate"]))
 {
- 
-	maxInstall::create_database_table();
-	maxInstall::migrate();
+ 	$install = MB()->getClass("install"); 
+	$install::create_database_table();
+	$install::migrate();
 }
-
-
+ 
 ?>
 
 <div id="maxbuttons">
 	<div class="wrap">
-		<div class="icon32">
-			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo MAXBUTTONS_PLUGIN_URL ?>/images/mb-32.png" alt="MaxButtons" /></a>
-		</div>
+ 
 		
 		<h2 class="title"><?php _e('MaxButtons: Settings', 'maxbuttons') ?></h2>
 		
@@ -71,7 +68,7 @@ if (isset($_POST["remigrate"]))
                                     <option value="manage_options" <?php if($maxbuttons_user_level === 'manage_options') { echo 'selected="selected"'; } ?>>Administrator</option>
                                 </select>
                                 <br />
-                                <?php _e('For more details on user roles and permissions, click <a target="_blank" href="http://codex.wordpress.org/Creating_Options_Pages">here</a>.','maxbuttons') ?>
+                                <?php _e('For more details on user roles and permissions, click <a target="_blank" href="https://codex.wordpress.org/Roles_and_Capabilities">here</a>.','maxbuttons') ?>
  
                             </div>
  
@@ -100,7 +97,7 @@ if (isset($_POST["remigrate"]))
         		<div class="inside">
         			<p><?php _e("Maxbuttons caches the style output allowing for lightning fast display of your buttons. In the event 
         			this cache needs to be flushed and rebuilt you can reset the cache here.","maxbuttons"); ?></p>
-        			 <?php submit_button(__("Reset Cache") ); ?>
+        			 <?php submit_button(__("Reset Cache", "maxbuttons") ); ?>
         		</div>
         	</div>
       </form>
@@ -109,8 +106,8 @@ if (isset($_POST["remigrate"]))
       <div class="option-container">
               	<input type="hidden" name="remigrate" value="true" />
       	<div class="title"><?php _e("Retry Database migration","maxbuttons"); ?></div>
-      	<div class="inside"><p><?php _e("In case the upgrade functionality failed to move your old buttons from MaxButtons before version 3, you can do so here manually. <strong>Attention</strong>  The new database table (maxbuttonsv3) *must* be empty, and the old database table *must* contain buttons otherwise this will not run. Run this <strong>at your own risk</strong> - it is strongly advised to make a backup before doing so."); ?></p>	
-      	 <?php submit_button(__("Remigrate") ); ?>
+      	<div class="inside"><p><?php _e("In case the upgrade functionality failed to move your old buttons from MaxButtons before version 3, you can do so here manually. <strong>Attention</strong>  The new database table (maxbuttonsv3) *must* be empty, and the old database table *must* contain buttons otherwise this will not run. Run this <strong>at your own risk</strong> - it is strongly advised to make a backup before doing so.", "maxbuttons"); ?></p>	
+      	 <?php submit_button(__("Remigrate", "maxbuttons") ); ?>
       	</div>
       	        			
       

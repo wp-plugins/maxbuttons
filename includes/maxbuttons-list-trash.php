@@ -1,6 +1,7 @@
 <?php
 $result = '';
 
+exit("Not used"); 
 
 $button = new maxButton(); 
 
@@ -53,11 +54,26 @@ if (isset($_GET['message']) && $_GET['message'] == '1delete') {
 	$result = __('Deleted 1 button.', 'maxbuttons');
 }
 
-$published_buttons = $button->getButtons();
-$published_buttons_count = count($published_buttons);
 
-$trashed_buttons = $button->getButtons(array("status" => "trash"));
-$trashed_buttons_count = count($trashed_buttons);
+
+$args = array();
+if (isset($_GET["orderby"])) 
+	$args["orderby"] = $_GET["orderby"]; 
+if (isset($_GET["order"])) 
+	$args["order"] = $_GET["order"]; 
+
+$mbadmin = MaxButtonsAdmin::getInstance(); 
+
+$args["status"] = "trash"; 
+$args["limit"] = -1;
+
+//$published_buttons = $mbadmin->getButtons($args);
+$published_buttons_count = $mbadmin->getButtonCount($args);
+
+$trashed_buttons = $mbadmin->getButtons($args);
+$trashed_buttons_count = $mbadmin->getButtonCount($args); 
+
+$pagination = $mbadmin->getButtonPages($args); 
 
 
  
@@ -162,4 +178,8 @@ $trashed_buttons_count = count($trashed_buttons);
 			</div>
 		</form>
 	</div>
+	<div class="ad-wrap">
+		<?php do_action("mb-display-ads"); ?> 
+	</div>	
 </div>
+

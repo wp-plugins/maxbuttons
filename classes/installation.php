@@ -1,4 +1,4 @@
-<?php
+<?php 
 class maxInstall
 {
 	 static function activation_hook($network_wide) {
@@ -45,7 +45,9 @@ class maxInstall
 		$created = get_option("MBFREE_CREATED"); 
 		if ($created == '' && $gocreate) 
 		{  update_option("MBFREE_CREATED", time()); 
+
 		}
+        update_option("MBFREE_HOMEURL", home_url()); 
 	}
 	
 	/* Move data from old version database to new version 
@@ -78,8 +80,13 @@ class maxInstall
 		foreach($rows as $row) 
 		{	
 			$data = static::convertOldFields($row);
+			$id = $data["id"]; 
+			global $wpdb; 
+			$wpdb->insert($table, array("id" => $id)); 
+			
 			//$data = apply_filters("mb-migration-data",$data, $row); 
 			$button = new maxButton();
+			$button->set($id);
 			$button->save($data);
 		}
 	}
@@ -88,6 +95,8 @@ class maxInstall
 	{
 			$data = array(); 
 
+			
+			$data["id"] = (isset($row["id"])) ? $row["id"] : -1; 
 			$data["name"] = $row["name"];
 			$data["status"] = isset($row["status"]) ? $row["status"] : 'publish';   // happens with downloadable packs.
 			$data["description"] = $row["description"]; 
@@ -181,61 +190,7 @@ class maxInstall
 					 status varchar(10) default 'publish' NOT NULL, 
 					 cache text, 
 				";
-				/*	name VARCHAR(100) NULL,
-					description VARCHAR(500) NULL,
-					url VARCHAR(250) NULL,
-					text VARCHAR(100) NULL,
-					text_font_family VARCHAR(50) NULL,
-					text_font_size VARCHAR(10) NULL,
-					text_font_style VARCHAR(10) NULL,
-					text_font_weight VARCHAR(10) NULL,
-					text_color VARCHAR(10) NULL,
-					text_color_hover VARCHAR(10) NULL,
-					text_shadow_offset_left VARCHAR(10) NULL,
-					text_shadow_offset_top VARCHAR(10) NULL,
-					text_shadow_width VARCHAR(10) NULL,
-					text_shadow_color VARCHAR(10) NULL,
-					text_shadow_color_hover VARCHAR(10) NULL,
-					text_padding_top VARCHAR(10) NULL,
-					text_padding_bottom VARCHAR(10) NULL,
-					text_padding_left VARCHAR(10) NULL,
-					text_padding_right VARCHAR(10) NULL,
-					border_radius_top_left VARCHAR(10) NULL,
-					border_radius_top_right VARCHAR(10) NULL,
-					border_radius_bottom_left VARCHAR(10) NULL,
-					border_radius_bottom_right VARCHAR(10) NULL,
-					border_style VARCHAR(10) NULL,
-					border_width VARCHAR(10) NULL,
-					border_color VARCHAR(10) NULL,
-					border_color_hover VARCHAR(10) NULL,
-					box_shadow_offset_left VARCHAR(10) NULL,
-					box_shadow_offset_top VARCHAR(10) NULL,
-					box_shadow_width VARCHAR(10) NULL,
-					box_shadow_color VARCHAR(10) NULL,
-					box_shadow_color_hover VARCHAR(10) NULL,
-					gradient_start_color VARCHAR(10) NULL,
-					gradient_start_color_hover VARCHAR(10) NULL,
-					gradient_end_color VARCHAR(10) NULL,
-					gradient_end_color_hover VARCHAR(10) NULL,
-					gradient_stop VARCHAR(2) NULL,
-					gradient_start_opacity VARCHAR(3) NULL,
-					gradient_end_opacity VARCHAR(3) NULL,
-					gradient_start_opacity_hover VARCHAR(3),
-					gradient_end_opacity_hover VARCHAR(3),
-					new_window VARCHAR(10) NULL,
-					container_enabled VARCHAR(5) NULL,
-					container_width VARCHAR(7) NULL,
-					container_margin_top VARCHAR(7) NULL,
-					container_margin_right VARCHAR(7) NULL,
-					container_margin_bottom VARCHAR(7) NULL,
-					container_margin_left VARCHAR(7) NULL,
-					container_alignment VARCHAR(25) NULL,
-					container_center_div_wrap_enabled VARCHAR(5) NULL,
-					nofollow VARCHAR(5) NULL,
-					status VARCHAR(10) DEFAULT 'publish' NOT NULL,
-					external_css VARCHAR(5) NULL,
-					important_css VARCHAR(5) NULL, 
-			);"; */
+				
 
 		foreach($blocks as $block)
 		{
