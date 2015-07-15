@@ -52,7 +52,7 @@ Take your buttons to the next level with [MaxButtons Pro](http://www.maxbuttons.
 * **Google Analytics** Event Tracking for WordPress Buttons- The best way to see you users interactions with buttons in Google Analytics.  No coding needed.
 * **Import/Export** - Useful for backing up and/or moving your buttons. Also, use any of the great free icons listed on our site.
 * **Button Search** - for easier management of large button sets.
-* **[Font Awesome](https://maxbuttons.com/maxbuttons-pro-2-6-now-font-awesome/)** - easiest WordPress integration' 
+* **[Font Awesome](https://maxbuttons.com/maxbuttons-pro-2-6-now-font-awesome/)** - easiest WordPress integration 
 
 
 
