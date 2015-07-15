@@ -148,7 +148,7 @@ $page_args = $args;
 			</div>
 
 			<?php if ($result != '') { ?>
-				<div class="mb-message"><?php echo $result ?></div>
+				<div class="mb-notice mb-message"><?php echo $result ?></div>
 			<?php } ?>
 
 

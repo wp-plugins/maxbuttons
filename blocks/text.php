@@ -22,9 +22,11 @@ class textBlock extends maxBlock
 											  "css" => "font_size_unit",
 											  "csspart" => "mb-text",
 											),
-						"text_align" => array("default" => "left", 
+						"text_align" => array(  
+										"default" => "",
 										 "css" => "text-align",
 										 "csspart" => "mb-text",
+										 
 										 ),
 										 																	  
 						"font_style" => array("default" => "normal",
@@ -92,7 +94,9 @@ class textBlock extends maxBlock
 	{
 		$data = $this->data[$this->blockname]; 
 		$anchor = $domObj->find("a",0); 	
-					
+		
+ 
+		
 	 	if (isset($data["text"]) && $data["text"] != '' || $mode == 'preview') 
 		$anchor->innertext = "<span class='mb-text'>" . do_shortcode($data["text"]) . "</span>"; 
 		return $domObj; 
@@ -167,21 +171,7 @@ class textBlock extends maxBlock
 						<div class="clear"></div>
 					</div>
 
-					<div class="option-design">
-						<div class="label"><?php _e('Size', 'maxbuttons') ?></div>
-						<div class="input">
-							<select id="font_size" name="font_size">
-							<?php
-							foreach ($maxbuttons_font_sizes as $name => $value) {
-								//$selected = ($maxbutton_text_font_size_value == $value) ? 'selected="selected"' : '';
-								echo '<option value="' . $value . '" ' . selected($font_size, $value) . '>' . $name . '</option>';
-							}
-							?>
-							</select>
-						</div>
-						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $font_size_default ?></div>
-						<div class="clear"></div>
-					</div>
+ 
 										
 					<div class="option-design">
 						<div class="label"><?php _e('Text align', 'maxbuttons') ?></div>

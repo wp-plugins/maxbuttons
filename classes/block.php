@@ -45,11 +45,8 @@ abstract class maxBlock
 		@return $data Array
 	*/
 	public function save_fields($data, $post)
-	{
-		if (! isset($this->data[$this->blockname])) 
-			return $data; // this block, not here. 
-			
-		$block = $this->data[$this->blockname]; 
+	{	
+		$block = isset($this->data[$this->blockname]) ? $this->data[$this->blockname] : array(); 
 
 		foreach($this->fields as $field => $options) 
 		{
@@ -111,7 +108,7 @@ abstract class maxBlock
 				$value = isset($data[$field]) ? $data[$field] : ''; 
 				$value = str_replace(array(";"), '', $value);  //sanitize
 				
-				if ( strpos($field_data["default"],"px") && ! strpos($value,"px"))
+				if (isset($field_data["default"]) && strpos($field_data["default"],"px") && ! strpos($value,"px"))
 				{
 					if ($value == '') $value = 0; // pixel values, no empty but 0 
 					$value .= "px"; 
@@ -173,7 +170,7 @@ abstract class maxBlock
  					}
 				}					
 				$map[$field]["css"] = $cssdef; 
-				if ( strpos($field_data["default"],"px") != false )
+				if ( isset($field_data["default"]) && strpos($field_data["default"],"px") != false )
 					$map[$field]["css_unit"] = 'px'; 
 		
 			}

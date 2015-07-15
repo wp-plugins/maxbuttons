@@ -72,27 +72,28 @@ class maxAdmin
 	static function display_ads()
 	{ ?>
         <div class="ads">
-            <h3><?php _e('MaxButtons Pro only $24', 'maxbuttons'); ?></h3>
+            <h3><?php _e('Get MaxButtons Pro', 'maxbuttons'); ?></h3>
  
-            <p><strong><?php _e('MaxButton Pro bonus features include:', 'maxbuttons'); ?></strong></p>
+ 
             <ul>
             <?php // Thought. Is below needed for translation? Since it changes quite often ?>
                 <li><?php _e('Two Lines of Editable Text', 'maxbuttons'); ?></li>
                 <li><?php _e('Pre-Made Button Packs', 'maxbuttons'); ?></li>            
-            	<li><?php _e("Google Analytics Event Tracking","maxbuttons"); ?></li>
+                <li><?php _e("Google Analytics Event Tracking","maxbuttons"); ?></li>           	
             	<li><?php _e("Button Search","maxbuttons"); ?></li>
                 <li><?php _e('Responsive Buttons', 'maxbuttons'); ?></li> 
                 <li><?php _e('Add An Icon To Your Buttons', 'maxbuttons'); ?></li>
                 <li><?php _e('Google Web Fonts', 'maxbuttons'); ?></li>
-                <li><?php _e('Our terrific Support', 'maxbuttons'); ?></li>
-                <li><?php _e("Plus More!","maxbuttons"); ?></li>
+				<li><?php _e('Font Awesome Icons', 'maxbuttons'); ?></li>
+                <li><?php _e('Terrific Support', 'maxbuttons'); ?></li>
+ 
 
             </ul>
-            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=mpb-list-sidebar-21&utm_campaign=inthecart19" target="_blank" ><?php _e('Get MaxButtons Pro Now!', 'maxbuttons'); ?></a>
+            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=mpb-list-sidebar-21&utm_campaign=inthecart19" target="_blank" ><?php _e('Support MaxButtons!', 'maxbuttons'); ?></a>
         </div>
         
         <div class="ads"> 
-        	<h3><?php _e("Everything for $99!","maxbuttons"); ?></h3>
+        	<h3><?php _e("Everything for $99","maxbuttons"); ?></h3>
         	<p>Get a copy of MaxButtons Pro and all of our WordPress Button Packs including over 4,000 Professionally Designed, Production Ready WordPress Buttons in 190 sets.  </p>
             <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=EBWG-sidebar-22&utm_campaign=inthecart60" target="_blank"><?php _e('Get Everything Now!', 'maxbuttons'); ?></a>        	
         </div>
@@ -128,11 +129,12 @@ class maxAdmin
 
 	static function display_pagination($page_args)
 	{
+
 		$mbadmin =  MB()->getClass("admin");  
 		$pag = $mbadmin->getButtonPages($page_args); 
 		if ($pag["first"] == $pag["last"])
 		{	return; }
-		
+
 		extract($pag);
  
 	?>

@@ -259,7 +259,8 @@ class maxButtons
   
 		wp_enqueue_style('maxbuttons-newcss', $this->plugin_url . 'assets/css/style.css');		
 		wp_enqueue_style('maxbuttons-css', $this->plugin_url . 'styles.css');
-		wp_enqueue_style('maxbuttons-colorpicker-css', $this->plugin_url . 'js/colorpicker/css/colorpicker.css');
+	//	wp_enqueue_style('maxbuttons-colorpicker-css', $this->plugin_url . 'js/colorpicker/css/colorpicker.css');
+		wp_enqueue_style('maxbuttons-colorpicker-css', $this->plugin_url . 'js/colpick/css/colpick.css');	
 	}
 
 	function add_admin_scripts($hook) {	
@@ -270,7 +271,8 @@ class maxButtons
 			
 		wp_enqueue_script('jquery-ui-draggable');
  
-		wp_enqueue_script('maxbuttons-colorpicker-js', $this->plugin_url . 'js/colorpicker/colorpicker.js', array('jquery'));
+	//	wp_enqueue_script('maxbuttons-colorpicker-js', $this->plugin_url . 'js/colorpicker/colorpicker.js', array('jquery'));
+	wp_enqueue_script('maxbuttons-colorpicker-js', $this->plugin_url . 'js/colpick/colpick.js', array('jquery'));
 		wp_enqueue_script('maxbuttons-modal', $this->plugin_url . 'js/leanModal/jquery.leanModal.min.js', array('jquery'));
 		wp_enqueue_script('maxbutton-admin', $this->plugin_url . 'js/maxbuttons-admin.js', array('jquery'), true); 
 		wp_enqueue_script('maxbutton-js-init', $this->plugin_url . 'js/init.js', array('maxbutton-admin'), true);

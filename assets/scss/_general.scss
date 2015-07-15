@@ -28,6 +28,9 @@
 		background-color: #ffffe0; 
 		
 	}
+	&.mb-notice { 
+		@extend .shortcode;
+	}
 }
 
 .max-modal {

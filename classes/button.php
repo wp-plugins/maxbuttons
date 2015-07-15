@@ -159,6 +159,7 @@ class maxButton
 	{
 		unset($this->data);
 		unset($this->button_css);
+		$this->id = 0; // clear id
 		$this->button_css = '';
 		$this->data = array();
 		$this->data = $this->save(array(),false);
@@ -174,7 +175,12 @@ class maxButton
 
 			if (array_key_exists($block, $data))  // strangely isset doesn't work
 			{
-				$this->data[$block] = unserialize($data[$block]);
+				$this->data[$block] = maybe_unserialize($data[$block]); // allow to feed unserialized stuff not from dbase
+				/*if (! is_array($this->data[$block])) 
+				{
+					$this->data[$block] = json_decode($data[$block], true);
+				}*/
+ 
 			}
 			else 
 			{

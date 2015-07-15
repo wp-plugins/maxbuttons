@@ -3,7 +3,7 @@ Contributors: maxfoundry, arcware, johnbhartley, basszje
 Tags: button, buttons, css, css3, css3 icon, css button, rounded, call to action, free, icon, icons, link, permalink, plugin, seo, shortcode, shortcodes, shortlinks, wordpress button plugin, wordpress button generator, css3 button plugin, gradient, css3 button generator, css wordpress button, css3 wordpress button, social media button, wordpress buttons plugin, wp button creator, create wordpress buttons, button generator, create button icon,font awesome,fontawesome,responsive,responsive buttons, google, google event tracking, google analytics 
 Requires at least: 3.4
 Tested up to: 4.2.2
-Stable tag: 3.07
+Stable tag: 3.08
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -52,7 +52,7 @@ Take your buttons to the next level with [MaxButtons Pro](http://www.maxbuttons.
 * **Google Analytics** Event Tracking for WordPress Buttons- The best way to see you users interactions with buttons in Google Analytics.  No coding needed.
 * **Import/Export** - Useful for backing up and/or moving your buttons. Also, use any of the great free icons listed on our site.
 * **Button Search** - for easier management of large button sets.
- 
+* **[Font Awesome](https://maxbuttons.com/maxbuttons-pro-2-6-now-font-awesome/)** - easiest WordPress integration' 
 
 
 
@@ -154,6 +154,16 @@ Enable the container option and set the alignment property to either "display: i
 
 
 == Changelog ==
+
+= 3.08 = 
+
+* Text align now defaults to empty
+* New color picker fixing several bugs 
+* Fixed Divi themes / sitebuilder issue with add button 
+* Fixed small interface issue with paging and zero buttons
+* Fixed interface issue with bulk actions notices
+* Fixed various small unset variable issues
+
 
 = 3.07 = 
 

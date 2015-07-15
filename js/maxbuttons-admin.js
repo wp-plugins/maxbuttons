@@ -18,7 +18,7 @@ maxAdmin.prototype.init = function () {
 
 		// Fix thickbox behavior
  	//	$('.maxbutton_thickbox').on('click', this.fixThickSize);
-		$('.maxbutton_thickbox').on('click', $.proxy(this.clickAddButton, this));
+		$(document).on('click','.maxbutton_thickbox', $.proxy(this.clickAddButton, this));
 		
  		// overview input paging
  		$('#maxbuttons .input-paging').on('change', $.proxy(this.do_paging, this));
@@ -44,6 +44,7 @@ maxAdmin.prototype.init = function () {
 		this.initResponsive(); // responsive edit interface 
 		
 		$("#maxbuttons .output").draggable({	
+		
 		});
 		$("a[rel*=leanModal]").leanModal( { closeButton: ".modal_close" });
 
@@ -54,7 +55,7 @@ maxAdmin.prototype.init = function () {
 		});
 		
 		// init colorpicker
-		this.showColorPicker(); 
+		$('.colorpicker-box span').on('click', this.showColorPicker ); 
 		
 		if ( typeof buttonFieldMap != 'undefined')
 			this.fields = $.parseJSON(buttonFieldMap);
@@ -208,9 +209,9 @@ maxAdmin.prototype.copy_colors = function(action, e)
 };
 
 
-maxAdmin.prototype.showColorPicker = function()
+maxAdmin.prototype.showColorPicker = function(e)
 		{
-			$('.colorpicker-box span').ColorPicker({
+			/*$('.colorpicker-box span').ColorPicker({
 
 				'onBeforeShow': function () { 
 					var target = $(this).parent().attr('id'); 
@@ -237,9 +238,49 @@ maxAdmin.prototype.showColorPicker = function()
 				'onShow': function(colpkr) { $(colpkr).fadeIn(500); return false; $(colpkr).css('z-index',500); },
 				'onHide': function(colpkr) { $(colpkr).fadeOut(500); return false; },
 										
+			}); */
+ 
+			//$('.colorpicker-box span').on('click', function () { 
+				$(this).colpick({
+				//flat: true, 
+				layout: 'rgbhex',
+				submit: false, 
+				colorScheme: 'dark', 
+				 
+				
+				'onBeforeShow': function () { 
+					var target = $(this).parent().attr('id'); 
+					target = target.replace('_box',''); 
+ 
+					var val = $('#' + target).val();
+ 
+					$('#colorpicker_current').val(target);
+					if (typeof val == 'undefined' || val == '') 
+						val = '#ffffff';
+					
+					$(this).colpickSetColor(val); 
+				},
+				 'onChange': function(hsb, hex, rgb, el) {
+				 			var current_id = $('#colorpicker_current').val();
+ 
+							var target = $('#' + current_id ); 
+							 
+ 
+							$('#' + current_id).attr('value', '#' + hex);
+							$('#' + current_id + '_box span').css('background-color', '#' + hex);	
+							$(document).trigger('colorUpdate', [target, hex]); 			
+				},
+				'onShow': function(colpkr) { $(colpkr).fadeIn(500); return false; $(colpkr).css('z-index',500); },
+				'onHide': function(colpkr) { $(colpkr).fadeOut(500); return false; },
+										
 			});
-
-		};
+			
+ 
+			$(this).colpickShow(e);
+		//});
+			
+};
+		
 		
 maxAdmin.prototype.update_preview = function(e) 
 		{
@@ -593,7 +634,7 @@ maxAdmin.prototype.addMediaQuery = function()
 	$(new_option).children('.description').text(new_desc);
 	
 	if (new_query !== 'custom') 
-		$(new_option).children('.custom').remove(); 
+		$(new_option).children('.custom').hide(); 
 	
 	$('#new_query :selected').remove();
 	$('.media_queries_options .new_query_space').append(new_option);

@@ -213,7 +213,21 @@ class maxInstall
 		
 		// Reset the cache if there were any left from before
 		$button->reset_cache(); 
+
+		// Collection table
+		$collection_table_name = maxButtonsUtils::get_collection_table_name();
 		
+		$sql = "CREATE TABLE " . $collection_table_name . " ( 
+					meta_id int NOT NULL AUTO_INCREMENT, 
+					collection_id int NOT NULL, 
+					collection_key varchar(255), 
+					collection_value text, 
+					PRIMARY KEY(meta_id) ) 
+					
+				";
+
+		dbDelta($sql);
+				
 		//else exit( __("Something went wrong when creating database table", "maxbuttons") );
 	}
  

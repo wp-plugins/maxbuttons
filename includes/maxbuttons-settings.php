@@ -68,7 +68,10 @@ if (isset($_POST["remigrate"]))
                                     <option value="manage_options" <?php if($maxbuttons_user_level === 'manage_options') { echo 'selected="selected"'; } ?>>Administrator</option>
                                 </select>
                                 <br />
-                                <?php _e('For more details on user roles and permissions, click <a target="_blank" href="https://codex.wordpress.org/Roles_and_Capabilities">here</a>.','maxbuttons') ?>
+                                <?php printf( __('For more details on user roles and permissions, click %s here%s.','maxbuttons'),
+                                '<a target="_blank" href="https://codex.wordpress.org/Roles_and_Capabilities">', 
+                                "</a>"); 
+                                ?>
  
                             </div>
  

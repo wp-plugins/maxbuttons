@@ -129,7 +129,8 @@ class maxButtonsAdmin
 		$total = $this->getButtonCount(array("status" => $args["status"])); 
 		
 		$num_pages = ceil($total / $limit); 
-		
+ 
+		if ($num_pages == 0) $num_pages = 1; // lowest limit, page 1 
 		$output = ''; 
 		$url = $_SERVER['REQUEST_URI'];
 

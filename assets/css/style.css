@@ -37,7 +37,7 @@
     clear: both; }
   #maxbuttons .mb-message.error {
     font-weight: 700; }
-  #maxbuttons .mb-message.shortcode {
+  #maxbuttons .mb-message.shortcode, #maxbuttons .mb-message.mb-notice {
     border: solid 1px #e6db55;
     background-color: #ffffe0; }
   #maxbuttons .max-modal {
@@ -220,9 +220,9 @@
   #maxbuttons .shortcode-expand {
     float: right;
     cursor: pointer; }
-  #maxbuttons .mb-message.shortcode .expanded {
+  #maxbuttons .mb-message.shortcode .expanded, #maxbuttons .mb-message.mb-notice .expanded {
     display: none; }
-    #maxbuttons .mb-message.shortcode .expanded .example strong {
+    #maxbuttons .mb-message.shortcode .expanded .example strong, #maxbuttons .mb-message.mb-notice .expanded .example strong {
       width: 300px;
       display: inline-block; }
   #maxbuttons .manual-box {

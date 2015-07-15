@@ -135,8 +135,9 @@
 	top: 4px;
 	left: 4px;
 }
-.colorpicker { 
+.colorpicker, .colpick { 
 	z-index: 500;
+	background-color: #000;
 }
  
 #maxbuttons .output {

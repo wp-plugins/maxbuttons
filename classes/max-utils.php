@@ -129,6 +129,13 @@ class maxButtonsUtils
 			return $wpdb->prefix . 'maxbuttonsv3'; 
 	}
 
+	static function get_collection_table_name() { 
+		global $wpdb; 
+		return $wpdb->prefix . 'maxbuttons_collections'; 
+	
+	}
+
+
 	static function timeInit()
 	{
 		self::$timer = microtime(true);
