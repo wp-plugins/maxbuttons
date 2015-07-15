@@ -70,145 +70,12 @@
 	font-style: italic;
 	color: #808080;
 }
-#maxbuttons .option-container {
-	margin-bottom: 20px;
-	border: solid 1px #cccccc;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-}
-#maxbuttons .option-container .title {	
-	font-family: inherit;
-	font-size: 14px;
-	font-weight: bold;
-	color: #222222;
-	padding: 9px 8px 9px 8px;
-	text-align: left;
-	text-shadow: 0px 1px 0px #ffffff;
-	background-color: #ffffff;
-}
-#maxbuttons .option-container .inside {
-	padding: 10px 15px 10px 15px;
-	border-top: solid 1px #cccccc;
-	background-color: #ffffff;
-}
-#maxbuttons .option {
-	margin-bottom: 20px;
-}
-#maxbuttons .option .label {
-	float: left;
-	font-weight: bold;
-	padding-left: 3px;
-	width: 100px;
-}
-#maxbuttons .option .note {
-	float: left;
-	font-weight: normal;
-	font-style: italic;
-	color: #808080;
-}
-#maxbuttons .option .input {
-	margin-top: 3px;
-}
-#maxbuttons .option-design {
-	margin-bottom: 5px;
-}
-#maxbuttons .option-design p.note {
-	font-style: italic;
-	color: #808080;
-	padding-left: 3px;
-	margin-bottom: 10px;
-}
-#maxbuttons .option-design .label {
-	float: left;
-	font-weight: bold;
-	padding-left: 3px;
-	padding-top: 3px;
-	width: 160px;
+
 }
 #maxbuttons .gradient-options .option-design .label {
 	width: 190px;
 }
 
-#maxbuttons .media_query { 
-	width: 28%; 
-	/*margin: 15px 0 15px 165px; */
-	margin: 0 20px 15px 0;
-	border: 1px solid #ccc;
-	padding: 10px 15px;
-	display: inline-block;
-	position: relative;
-	float:left;
-	
-}
-
-#maxbuttons .media_query .removebutton { 
-	position: absolute;
-	 right: 10px; 
-	 top: 10px; 
-	cursor: pointer;
-
-}
-#maxbuttons .option-container .media_query label { 
-	display: block;
-	font-size:16px;
-	text-align: center;
-		cursor: default;
-}
-#maxbuttons .media_query input:after {
-	clear: both;
-}
-#maxbuttons .media_query .label {
-	clear: both; 
-	margin-bottom: 15px;
-}
-
-#maxbuttons .media_query .custom .label, #maxbuttons .media_query .custom .input {
-	float: left;
-
-}
- #maxbuttons .media_query .custom .input.max {
- 	/*float: right; */
- 	/*margin-right: 135px; */
- }
- #maxbuttons .media_query .custom .label.max
- { /*width: 70px;  */
-   /* float: right; */
-  /* margin-left: 15px; */
- }
-  #maxbuttons .media_query .custom.hidden { display: none; } 
-  
- #maxbuttons .media_query .description {
- 	padding: 15px 0px;
- 	text-align: center;
- 	min-height: 45px;
- }
- 
-/*
-#maxbuttons .media_query .custom .label { width: 100px; } 
-*/
-
-#maxbuttons .media_query select { width: 60px; }
-#maxbuttons .media_query .input input { 
-	min-height: 22px; 
-	min-width:40px; 
-	margin-top: 0px;
-	height: 28px;
-	padding-top: 2px;
-} 	
-
-#maxbuttons .media_queries_options .new-query { 
-	margin-top: 25px; 
-	
-}
-	
-#maxbuttons .media_queries_options .new-query select { 
-	width: auto;
-}
-	
-#maxbuttons .media_option_prot, #maxbuttons #media_desc {
-	display: none;
-}
 
 #maxbuttons .option-design .input {
 	float: left;
@@ -268,19 +135,11 @@
 	top: 4px;
 	left: 4px;
 }
-.colorpicker { 
+.colorpicker, .colpick { 
 	z-index: 500;
+	background-color: #000;
 }
-#maxbuttons .mb-message {
-	background-color: #ffffe0;
-	border: solid 1px #e6db55;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	padding: 10px;
-	margin: 10px 0px 20px 0px;
-	display: none;
-}
+ 
 #maxbuttons .output {
 	position: fixed;
 	top: 210px;
@@ -462,39 +321,6 @@
 #maxbuttons .tinymce span.raquo {
 	font-size: 14px;
 }
-/* Modal */
-#lean_overlay {
-	position: fixed;
-	z-index: 100;
-	top: 0px;
-	left: 0px;
-	height: 100%;
-	width: 100%;
-	background: #000000;
-	display: none;
-}
-#view_css {
-	display: none;
-	width: 600px;
-	padding: 10px 20px 20px 20px;
-	display: none;
-	background: #ffffff;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
-	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
-	-moz-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.7);
-}
-#view_css textarea#maxbutton-css {
-	width: 600px;
-	height: 400px;
-	font-family: Consolas, 'Courier New', 'Courier';
-	font-size: 13px;
-	white-space: normal;
-	word-wrap: break-word;
-	overflow: none;
-}
 
 .main {
 	width: 72%;
@@ -532,12 +358,7 @@
 	margin-left: 30px;
 }
 
-.ads .button-primary {
-	display: block;
-	margin: 0 auto 20px auto;
-	width: 190px;
-	text-align: center;
-}
+
 
 .ads .fa {
 	margin-right: 5px;
