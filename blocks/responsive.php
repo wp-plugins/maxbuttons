@@ -46,9 +46,9 @@ class responsiveBlock extends maxBlock
 															    "css" => "font-size_unit", 
 															    "csspart" => "mb-text"), 
 															 					
-									"mq_custom_minwidth" => array("default" => 0, 
+									"mq_custom_minwidth" => array("default" => "0", 
 															  "css" => "custom_minwidth"), 
-									"mq_custom_maxwidth" => array("default" => 0, 
+									"mq_custom_maxwidth" => array("default" => "0", 
 															  "css" => "custom_maxwidth"),
 									"mq_hide" 			=> array("default" => '',
 																 "css" => "display", 
@@ -67,7 +67,7 @@ class responsiveBlock extends maxBlock
 			return $css; 
 				
 		$data = $this->data[$this->blockname];
-
+ 
  		
 		if (isset($data["auto_responsive"]) && $data["auto_responsive"] == 1)
 		{	// generate auto_rules for responsive.
@@ -122,8 +122,8 @@ class responsiveBlock extends maxBlock
 			$i++;
 			endforeach;
 		endforeach;
- 
- 
+
+
 		return $css;
 	}
 	
@@ -155,10 +155,10 @@ class responsiveBlock extends maxBlock
 						$media_queries[$query][$c][$field] = $post[$field][$i]; 
 					}
 				}
+
 			}
 		}
-		
-	 
+	
 		$data[$this->blockname]["media_query"] = $media_queries;
 		
 		$data[$this->blockname]["auto_responsive"] = (isset($post["auto_responsive"])) ? $post["auto_responsive"] : 0; 

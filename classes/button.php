@@ -260,6 +260,13 @@ class maxButton
 		{		 
 		
 			$css = $this->cache;
+			// kill media queries from cache
+			if ($mode != 'normal')
+			{
+				$pattern = "/@media.*}/is"; 
+				preg_match($pattern, $css, $matches);
+				$css = preg_replace($pattern, '', $css); 
+			}
 			maxButtonsUtils::addTime("Button: Cache loaded");
 		}
 		else

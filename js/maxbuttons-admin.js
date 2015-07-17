@@ -261,6 +261,7 @@ maxAdmin.prototype.showColorPicker = function(e)
 					$(this).colpickSetColor(val); 
 				},
 				 'onChange': function(hsb, hex, rgb, el) {
+
 				 			var current_id = $('#colorpicker_current').val();
  
 							var target = $('#' + current_id ); 

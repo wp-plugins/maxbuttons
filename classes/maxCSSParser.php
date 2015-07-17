@@ -92,11 +92,11 @@ class maxCSSParser
 
 		foreach($elements as $el => $el_data)
 		{
-			maxButtonsUtils::addTime("CSSParser: Parse $el ");
+
 			$this->parse_part($el,$el_data); 		
 		}
 
-		
+		maxButtonsUtils::addTime("CSSParser: Responsive start ");
 		$this->parse_responsive();
 		maxButtonsUtils::addTime("CSSParser: Parsed responsive ");
 
@@ -144,6 +144,8 @@ class maxCSSParser
 	
 	function parse_part($element, $el_data, $el_add = '')
 	{
+		maxButtonsUtils::addTime("CSSParser: Parse $element ");
+				
 		$tag = $el_data["tag"]; 
 		$element_data = $this->findData($this->data, $element);
 
@@ -244,7 +246,7 @@ class maxCSSParser
 		$output = ''; 
 		
 		$query_array = array(); 
-	
+	//echo "<PRE> Responsive Ar"; print_r($responsive); echo "</PRE>"; 
 
 		foreach($responsive as $element => $queries)
 		{
@@ -255,34 +257,69 @@ class maxCSSParser
 			
 			}}
 		}
-		
+				
 		foreach($query_array as $query => $vdata):
-			foreach($vdata as $index => $data):
-		 
+
 			if ($query == 'custom') 
 			{
-				foreach($data as $element => $values):
-				//	foreach($vdat as $index => $values):
-				
-					if (isset($values["custom_maxwidth"])) 
+
+				// first discover the custom size properties. 
+				foreach($vdata as $index => $data):
+					foreach($data as $element => $values):
+
+					if (isset($values["custom_maxwidth"]) || isset($values["custom_minwidth"])  ) 
 					{
-						$minwidth = $values["custom_minwidth"];
-						$maxwidth = $values["custom_maxwidth"]; 
-						unset($data[$element]["custom_minwidth"]); 
-						unset($data[$element]["custom_maxwidth"]);
-						$qdef = "only screen and (min-width: $minwidth" . "px) and (max-width: $maxwidth" . "px)";  
-						break;
+						 
+						$minwidth = (isset($values["custom_minwidth"])) ? intval($values["custom_minwidth"]) : -1;
+						$maxwidth = (isset($values["custom_maxwidth"])) ? intval($values["custom_maxwidth"]) : -1; 
+						
+ 
+						unset($vdata[$index][$element]["custom_minwidth"]); 
+						unset($vdata[$index][$element]["custom_maxwidth"]);
+						
+ 
+						// make it always an integer 
+						if ($minwidth == '') $minwidth = 0; 
+						if ($maxwidth == '') $maxwidth = 0; 
+						
+						// if minwidth is not set and maxwidth zero or not set - ignore since it would result in an empty media line. 
+						//if ($minwidth <= 0 && $maxwidth <= 0)  
+						//{
+							//continue;
+						//}
+						
+						if ($minwidth > 0 && $maxwidth > 0) 
+							$qdef = "only screen and (min-width: $minwidth" . "px) and (max-width: $maxwidth" . "px)";  
+						if ($minwidth >= 0 && $maxwidth <= 0) 
+							$qdef = "only screen and (min-width: $minwidth" . "px) "; 
+						if ($minwidth <= 0 && $maxwidth > 0)	
+							$qdef = "only screen and (max-width: $maxwidth" . "px) "; 			
+						
+						//break;
 					}	
-				//   endforeach;
+				    endforeach;
 				endforeach;		
 			}
 			else
+			{
 				$qdef = $media_queries[$query]; 
-			
-			
+			}
+
+
+			// never write empty media queries
+			if (! isset($qdef) || $qdef == '')  {
+			//	echo "no qdef: "; print_r($values); echo "<BR>";  
+				continue; 
+			}
+
+
 			$output .= "@media ". $qdef . " { "; 
-			
-			foreach($data as $element => $values):
+
+	
+		foreach($vdata as $index => $data)
+		{
+ 
+			foreach($data as $element => $values) {
 			 //foreach($vdat as $index => $values):
 				$output .= $element . " { "; 
 				$css_end = ';';
@@ -299,12 +336,14 @@ class maxCSSParser
 
 				$output .= " } "; 
 			// endforeach;
-			endforeach;
-			$output .= " } ";  
+			}
+
 		
-		  endforeach;
+		  }
+		  			$output .= " } ";  
+		  			
 		endforeach;
- 
+
 		$this->output_css .= $output;
 	}
 	

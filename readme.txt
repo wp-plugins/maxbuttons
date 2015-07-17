@@ -155,6 +155,12 @@ Enable the container option and set the alignment property to either "display: i
 
 == Changelog ==
 
+= 3.09 = 
+
+* Responsiveness bug fixes
+* Fixed - custom sizes now allow width or height to be zero or not set
+
+
 = 3.08 = 
 
 * Text align now defaults to empty
