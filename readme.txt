@@ -159,6 +159,7 @@ Enable the container option and set the alignment property to either "display: i
 
 * Responsiveness bug fixes
 * Fixed - custom sizes now allow width or height to be zero or not set
+* Fixed rare bug when dbDelta was not properly loaded during installation
 
 
 = 3.08 = 

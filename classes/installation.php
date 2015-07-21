@@ -177,7 +177,9 @@ class maxInstall
 
 	 static function create_database_table() {
 	 //global $maxbuttons_installed_version;
-
+	 
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+		
 		$table_name = maxButtonsUtils::get_buttons_table_name();
 		$button = new maxButton();
 		$blocks = $button->getDefinedBlocks();
@@ -200,14 +202,14 @@ class maxInstall
 		$sql .= " PRIMARY KEY  (id) )"; 
  
 		if (! static::maxbuttons_database_table_exists($table_name)) {
-			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+			//require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 			dbDelta($sql);
 		}
 		
 		if ( static::maxbuttons_database_table_exists($table_name) && (get_option(MAXBUTTONS_VERSION_KEY) != MAXBUTTONS_VERSION_NUM 
 			|| get_option(MAXBUTTONS_VERSION_KEY) == '' ) ){
 		 
-			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+			//require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 			dbDelta($sql);
 		}
 		
