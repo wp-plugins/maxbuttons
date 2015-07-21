@@ -22,7 +22,13 @@ class textBlock extends maxBlock
 											  "css" => "font_size_unit",
 											  "csspart" => "mb-text",
 											),
-																	  
+						"text_align" => array(  
+										"default" => "",
+										 "css" => "text-align",
+										 "csspart" => "mb-text",
+										 
+										 ),
+										 																	  
 						"font_style" => array("default" => "normal",
 											  "css" => "font-style",
 											  "csspart" => 'mb-text'),
@@ -88,7 +94,9 @@ class textBlock extends maxBlock
 	{
 		$data = $this->data[$this->blockname]; 
 		$anchor = $domObj->find("a",0); 	
-					
+		
+ 
+		
 	 	if (isset($data["text"]) && $data["text"] != '' || $mode == 'preview') 
 		$anchor->innertext = "<span class='mb-text'>" . do_shortcode($data["text"]) . "</span>"; 
 		return $domObj; 
@@ -109,6 +117,7 @@ class textBlock extends maxBlock
 		global $maxbuttons_font_sizes; 
 		global $maxbuttons_font_styles; 
 		global $maxbuttons_font_weights; 
+		global $maxbuttons_text_alignments;
  
 		
 ?>
@@ -161,20 +170,22 @@ class textBlock extends maxBlock
 						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $font_size_default ?></div>
 						<div class="clear"></div>
 					</div>
-					
+
+ 
+										
 					<div class="option-design">
-						<div class="label"><?php _e('Style', 'maxbuttons') ?></div>
+						<div class="label"><?php _e('Text align', 'maxbuttons') ?></div>
 						<div class="input">
-							<select id="font_style" name="font_style">
+							<select id="text_align" name="text_align">
 							<?php
-							foreach ($maxbuttons_font_styles as $name => $value) {
+							foreach ($maxbuttons_text_alignments as $name => $value) {
 								//$selected = ($maxbutton_text_font_style_value == $value) ? 'selected="selected"' : '';
-								echo '<option value="' . $value . '" ' . selected($font_style,$value) . '>' . $name . '</option>';
+								echo '<option value="' . $value . '" ' . selected($text_align,$value) . '>' . $name . '</option>';
 							}
 							?>
 							</select>
 						</div>
-						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $font_style_default ?></div>
+						<div class="default"><?php _e('Default:', 'maxbuttons') ?> <?php echo $text_align_default ?></div>
 						<div class="clear"></div>
 					</div>
 					

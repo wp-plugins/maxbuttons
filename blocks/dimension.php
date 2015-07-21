@@ -59,15 +59,15 @@ class dimensionBlock extends maxBlock
 		}
 	?>
 	<div class="option-container">
-		<div class="title"><?php _e('Dimensions', 'maxbuttons-pro') ?></div>
+		<div class="title"><?php _e('Dimensions', 'maxbuttons') ?></div>
 		<div class="inside">
 			<div class="option-design">
-			<div class="label"><?php _e('Button Width', 'maxbuttons-pro') ?></div>
+			<div class="label"><?php _e('Button Width', 'maxbuttons') ?></div>
 			<div class="input"><input class="tiny-nopad" type="text" id="button_width" name="button_width" value="<?php echo maxButtonsUtils::strip_px($button_width) ?>" />px</div>
 			<div class="clear"></div>
 			</div>
 			<div class="option-design">
-			<div class="label"><?php _e('Button Height', 'maxbuttons-pro') ?></div>
+			<div class="label"><?php _e('Button Height', 'maxbuttons') ?></div>
 			<div class="input"><input class="tiny-nopad" type="text" id="button_height" name="button_height" value="<?php echo maxButtonsUtils::strip_px($button_height) ?>" />px</div>
 			<div class="clear"></div>
 			</div>

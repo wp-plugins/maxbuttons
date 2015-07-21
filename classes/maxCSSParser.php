@@ -77,7 +77,7 @@ class maxCSSParser
 		
 		$struct = $this->struct; 
 		$this->data = $data; 
-	
+
  
  		if (isset($data["settings"]))  // room for settings in parser
  		{
@@ -87,16 +87,16 @@ class maxCSSParser
  			unset($this->data["settings"]); 
  		}
 
- 		
+
 		$elements = array_shift($struct); // first element is a 'stub' root.  
 
 		foreach($elements as $el => $el_data)
 		{
-			maxButtonsUtils::addTime("CSSParser: Parse $el ");
+
 			$this->parse_part($el,$el_data); 		
 		}
 
-		
+		maxButtonsUtils::addTime("CSSParser: Responsive start ");
 		$this->parse_responsive();
 		maxButtonsUtils::addTime("CSSParser: Parsed responsive ");
 
@@ -123,10 +123,10 @@ class maxCSSParser
 	protected function compile($css)
 	{
 		$scss = new scssc();
-		$scss->setImportPaths(maxButtons::get_plugin_path() . "assets/");
+		$scss->setImportPaths(maxButtons::get_plugin_path() . "assets/scss");
 		//$scss->setFormatter('scss_formatter_compressed');
 		
-		$compile = " @import 'mixins.scss';  " . $css;
+		$compile = " @import '_mixins.scss';  " . $css;
 		maxButtonsUtils::addTime("CSSParser: Compile start ");
  
 		
@@ -144,6 +144,8 @@ class maxCSSParser
 	
 	function parse_part($element, $el_data, $el_add = '')
 	{
+		maxButtonsUtils::addTime("CSSParser: Parse $element ");
+				
 		$tag = $el_data["tag"]; 
 		$element_data = $this->findData($this->data, $element);
 
@@ -152,6 +154,8 @@ class maxCSSParser
 		{	$el_add .= " ." . $element;
  	
  		}
+
+ 		
 	 	if (isset($element_data["responsive"])) 
 	 	{
 	 		$responsive = $element_data["responsive"]; // doing that at the end
@@ -242,8 +246,8 @@ class maxCSSParser
 		$output = ''; 
 		
 		$query_array = array(); 
-	
-		
+	//echo "<PRE> Responsive Ar"; print_r($responsive); echo "</PRE>"; 
+
 		foreach($responsive as $element => $queries)
 		{
 			foreach($queries as $query => $qdata)
@@ -253,34 +257,69 @@ class maxCSSParser
 			
 			}}
 		}
-		
+				
 		foreach($query_array as $query => $vdata):
-			foreach($vdata as $index => $data):
-		 
+
 			if ($query == 'custom') 
 			{
-				foreach($data as $element => $values):
-				//	foreach($vdat as $index => $values):
-				
-					if (isset($values["custom_maxwidth"])) 
+
+				// first discover the custom size properties. 
+				foreach($vdata as $index => $data):
+					foreach($data as $element => $values):
+
+					if (isset($values["custom_maxwidth"]) || isset($values["custom_minwidth"])  ) 
 					{
-						$minwidth = $values["custom_minwidth"];
-						$maxwidth = $values["custom_maxwidth"]; 
-						unset($data[$element]["custom_minwidth"]); 
-						unset($data[$element]["custom_maxwidth"]);
-						$qdef = "only screen and (min-width: $minwidth" . "px) and (max-width: $maxwidth" . "px)";  
-						break;
+						 
+						$minwidth = (isset($values["custom_minwidth"])) ? intval($values["custom_minwidth"]) : -1;
+						$maxwidth = (isset($values["custom_maxwidth"])) ? intval($values["custom_maxwidth"]) : -1; 
+						
+ 
+						unset($vdata[$index][$element]["custom_minwidth"]); 
+						unset($vdata[$index][$element]["custom_maxwidth"]);
+						
+ 
+						// make it always an integer 
+						if ($minwidth == '') $minwidth = 0; 
+						if ($maxwidth == '') $maxwidth = 0; 
+						
+						// if minwidth is not set and maxwidth zero or not set - ignore since it would result in an empty media line. 
+						//if ($minwidth <= 0 && $maxwidth <= 0)  
+						//{
+							//continue;
+						//}
+						
+						if ($minwidth > 0 && $maxwidth > 0) 
+							$qdef = "only screen and (min-width: $minwidth" . "px) and (max-width: $maxwidth" . "px)";  
+						if ($minwidth >= 0 && $maxwidth <= 0) 
+							$qdef = "only screen and (min-width: $minwidth" . "px) "; 
+						if ($minwidth <= 0 && $maxwidth > 0)	
+							$qdef = "only screen and (max-width: $maxwidth" . "px) "; 			
+						
+						//break;
 					}	
-				//   endforeach;
+				    endforeach;
 				endforeach;		
 			}
 			else
+			{
 				$qdef = $media_queries[$query]; 
-			
-			
+			}
+
+
+			// never write empty media queries
+			if (! isset($qdef) || $qdef == '')  {
+			//	echo "no qdef: "; print_r($values); echo "<BR>";  
+				continue; 
+			}
+
+
 			$output .= "@media ". $qdef . " { "; 
-			
-			foreach($data as $element => $values):
+
+	
+		foreach($vdata as $index => $data)
+		{
+ 
+			foreach($data as $element => $values) {
 			 //foreach($vdat as $index => $values):
 				$output .= $element . " { "; 
 				$css_end = ';';
@@ -297,12 +336,14 @@ class maxCSSParser
 
 				$output .= " } "; 
 			// endforeach;
-			endforeach;
-			$output .= " } ";  
+			}
+
 		
-		  endforeach;
+		  }
+		  			$output .= " } ";  
+		  			
 		endforeach;
- 
+
 		$this->output_css .= $output;
 	}
 	
@@ -394,7 +435,7 @@ class maxCSSParser
 		
 		$important = ($this->is_important()) ? "!important" : ""; 
 		
-		if ($color != '')		
+		if ($color != '' && $width > 0)		
 			$values = $this->add_include($values, "box-shadow($left, $top, $width, $color $important) ");			
 	
 		$values = array_diff_key($values, $results);
@@ -411,7 +452,7 @@ class maxCSSParser
 		$color = isset($results["text-shadow-color"]) ? $results["text-shadow-color"] : ''; 
 		$important = ($this->is_important()) ? "!important" : ""; 
 				
-		if ($color != '')
+		if ($color != '' && $width > 0)
 			$values = $this->add_include($values, "text-shadow ($left,$top,$width,$color $important)"); 
 		
 		$values = array_diff_key($values, $results);
@@ -433,7 +474,11 @@ class maxCSSParser
 		$domObj = $domObj->load($domObj->save());
 		
 		$inline = $this->inline;
-
+		
+		// ISSUE #43 Sometimes this breaks 
+		if (! isset($inline[$pseudo])) 
+			return $domObj;
+		
 		foreach($inline[$pseudo] as $element => $styles)
 		{
 			//$element = $element[$pseudo];
