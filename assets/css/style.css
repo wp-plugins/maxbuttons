@@ -69,6 +69,8 @@
     white-space: normal;
     word-wrap: break-word;
     overflow: none; }
+  #maxbuttons h2.title, #maxbuttons h1.title {
+    float: left; }
   #maxbuttons .tablenav .input-paging {
     width: 55px; }
   #maxbuttons .ads ul li {
@@ -206,6 +208,16 @@
         margin-top: 3px; }
   #maxbuttons .option-design {
     margin-bottom: 5px; }
+    #maxbuttons .option-design .input td div.cell-label {
+      padding: 1px 10px 0px 5px;
+      font-weight: bold;
+      border-bottom: solid 1px #d1d1d1;
+      width: 180px;
+      font-size: 13px; }
+    #maxbuttons .option-design .default-other {
+      font-size: 13px; }
+    #maxbuttons .option-design th, #maxbuttons .option-design td.label {
+      font-size: 13px; }
   #maxbuttons .option-design p.note {
     font-style: italic;
     color: #808080;

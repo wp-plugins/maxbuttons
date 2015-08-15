@@ -13,6 +13,7 @@ class basicBlock extends maxBlock
 							  "new_window" => array("default" => 0),
 							  "nofollow" => array("default" => 0)
 							 ); 
+	protected $protocols = array("http","https",'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet', 'mms', 'rtsp', 'svn', 'tel', 'fax', 'xmpp', "javascript"); 	 // allowed url protocols for esc_url functions
 	
 
 	function __construct()
@@ -54,9 +55,19 @@ class basicBlock extends maxBlock
 	{	
 		// Possible solution: 
 	//	$post["url"] = isset($post["url"]) ? urldecode(urldecode($post["url"])) : '';
- 		$post["url"] = isset($post["url"]) ? urldecode($post["url"]) : '';
+ 
+ 
+ 
  		
 		$data = parent::save_fields($data, $post);
+	
+
+ 
+		// bypassing sanitize text field - causes problems with URLs and spaces
+		$url = isset($post["url"]) ? $post["url"] : ''; 
+		$url = esc_url_raw(str_replace(" ", "%20", $url), $this->protocols);  // str replace - known WP issue with spaces
+		$data[$this->blockname]["url"] = $url;
+ 
 		if (isset($post["name"])) 
 			$data["name"] = sanitize_text_field($post["name"]); 
 		if (isset($post["status"])) 
@@ -79,7 +90,12 @@ class basicBlock extends maxBlock
 			$anchor->target = "_blank"; 
 							
 		if (isset($data["url"]) && $data["url"] != '') 
-			$anchor->href = do_shortcode( esc_url($data["url"]) ); 
+		{
+			$url = $data["url"]; 
+
+			$anchor->href = do_shortcode( esc_url($url, $this->protocols) ); 
+		
+		}
 		else  // fixing an iOS problem which renders anchors without URL wrongly. 
 		{
 			$anchor->href = 'javascript:void(0);';
@@ -140,7 +156,7 @@ class basicBlock extends maxBlock
 						<div class="note"><?php _e('The link when the button is clicked.', 'maxbuttons') ?></div>
 						<div class="clear"></div>
 						<div class="input">
-							<input type="text" id="url" name="url" value="<?php echo esc_url($url) ?>" maxlength="500" class="input_url"/>
+							<input type="text" id="url" name="url" value="<?php echo esc_attr($url) ?>" maxlength="500" class="input_url"/>
 						</div>
 					</div>
  

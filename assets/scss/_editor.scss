@@ -108,7 +108,23 @@
  
  .option-design {
 	margin-bottom: 5px;
+	
+	.input td div.cell-label {
+		padding: 1px 10px 0px 5px;
+		font-weight: bold;
+		border-bottom: solid 1px #d1d1d1;
+		width: 180px;
+		font-size: 13px;
+	}
+	.default-other {  // default text
+		font-size: 13px;
+	}
+	th, td.label { 
+		font-size: 13px; 
+	}
 }
+
+
  .option-design p.note {
 	font-style: italic;
 	color: #808080;

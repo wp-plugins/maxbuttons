@@ -53,7 +53,7 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>/images/mb-peach-icon.png" alt="MaxButtons" /></a>
 		</div>
 		
-		<h2 class="title"><?php _e('MaxButtons: Add/Edit Button', 'maxbuttons') ?></h2>
+		<h1 class="title"><?php _e('MaxButtons: Add/Edit Button', 'maxbuttons') ?></h1>
 		
 		<div class="logo">
 			<?php do_action("mb-display-logo"); ?> 

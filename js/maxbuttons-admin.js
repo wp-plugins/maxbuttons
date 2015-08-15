@@ -1,7 +1,11 @@
  
-var maxAdmin = function (jquery)
+var maxAdmin;
+
+jQuery(document).ready(function($) {
+ 
+maxAdmin = function ()
 {
- 	$ = jquery;
+ //	$ = jquery;
 }
 maxAdmin.prototype = {
  	colorUpdateTime: true,
@@ -271,7 +275,7 @@ maxAdmin.prototype.showColorPicker = function(e)
 							$('#' + current_id + '_box span').css('background-color', '#' + hex);	
 							$(document).trigger('colorUpdate', [target, hex]); 			
 				},
-				'onShow': function(colpkr) { $(colpkr).fadeIn(500); return false; $(colpkr).css('z-index',500); },
+				'onShow': function(colpkr) { $(colpkr).fadeIn(500); $(colpkr).css('z-index',500); return false;  },
 				'onHide': function(colpkr) { $(colpkr).fadeOut(500); return false; },
 										
 			});
@@ -702,4 +706,7 @@ maxAdmin.prototype.toggleManual = function (e)
 //	$newWindow.offset({top: (offset.top), right: 15}); 
 	$newWindow.show();
 }
+
+}); /* END OF JQUERY */
+
 

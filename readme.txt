@@ -1,9 +1,9 @@
 === WordPress Button Plugin MaxButtons ===
 Contributors: maxfoundry, arcware, johnbhartley, basszje, AlanP57
-Tags: button, buttons, css, css3, css3 icon, css button, rounded, call to action, free, icon, icons, link, permalink, plugin, seo, shortcode, shortcodes, shortlinks, wordpress button plugin, wordpress button generator, css3 button plugin, gradient, css3 button generator, css wordpress button, css3 wordpress button, social media button, wordpress buttons plugin, wp button creator, create wordpress buttons, button generator, create button icon,font awesome,fontawesome,responsive,responsive buttons, google, google event tracking, google analytics 
+Tags: button, icon, font awesome, google analytics event tracking, responsive buttons, social media button, wordpress button generator, wordpress button plugin 
 Requires at least: 3.4
-Tested up to: 4.2.2
-Stable tag: 3.09
+Tested up to: 4.3
+Stable tag: 3.10
 
 A CSS3 button generator for WordPress that's powerful and so easy to use that anyone can create beautiful buttons.
 
@@ -154,6 +154,12 @@ Enable the container option and set the alignment property to either "display: i
 
 
 == Changelog ==
+
+= 3.10 = 
+
+* Fixed: Now possible to add javascript to button URL field
+* Fixed: Several JS plugin conflicts ( notably with Sidekick )
+* Fixed: Now able to add spaces to URL 
 
 = 3.09 = 
 

@@ -132,7 +132,7 @@ $page_args = $args;
 	<div class="wrap">
  
 		
-		<h2 class="title"><?php _e('MaxButtons: Button List', 'maxbuttons') ?></h2>
+		<h1 class="title"><?php _e('MaxButtons: Button List', 'maxbuttons') ?></h1>
 		
 		<div class="logo">
 			<?php do_action("mb-display-logo"); ?> 

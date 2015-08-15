@@ -89,7 +89,7 @@ class maxAdmin
  
 
             </ul>
-            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=mpb-list-sidebar-21&utm_campaign=inthecart19" target="_blank" ><?php _e('Support MaxButtons!', 'maxbuttons'); ?></a>
+            <a class="button-primary" href="http://www.maxbuttons.com/pricing/?utm_source=mbf-dashboard&utm_medium=mbf-plugin&utm_content=mpb-list-sidebar-21&utm_campaign=inthecart19" target="_blank" ><?php _e('Buy MaxButtons Pro', 'maxbuttons'); ?></a>
         </div>
         
         <div class="ads"> 

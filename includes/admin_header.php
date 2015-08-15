@@ -9,7 +9,7 @@ global $page_title;
 			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>images/mb-32.png" alt="MaxButtons" /></a>
 		</div>
 		
-		<h2 class="title"><?php echo $page_title ?></h2>
+		<h1 class="title"><?php echo $page_title ?></h1>
 		
 		<div class="logo">
 			<?php do_action("mb-display-logo"); ?> 
