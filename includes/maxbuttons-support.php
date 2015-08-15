@@ -7,15 +7,15 @@ if(is_admin()) {
 }
 
 function maxbuttons_system_label($label, $value, $spaces_between) {
-	$output = $label;
+	$output = "<label>$label</label>";
 	
-	if ($spaces_between > 0) {
+	/*if ($spaces_between > 0) {
 		for ($i = 0; $i < $spaces_between; $i++) {
 			$output .= "&nbsp;";
 		}
-	}
+	} */
 	
-	return $output . $value . " \r\n ";
+	return "<div class='info'>" . $output . trim($value) . "</div>" ;
 }
 
 // http://www.php.net/manual/en/function.get-browser.php#101125.
@@ -126,9 +126,7 @@ function check_charset() {
 
 <div id="maxbuttons">
 	<div class="wrap">
-		<div class="icon32">
-			<a href="http://maxbuttons.com" target="_blank"><img src="<?php echo maxButtons::get_plugin_url() ?>/images/mb-32.png" alt="MaxButtons" /></a>
-		</div>
+ 
 		
 		<h2 class="title"><?php _e('MaxButtons: Support', 'maxbuttons') ?></h2>
 		
@@ -146,10 +144,16 @@ function check_charset() {
     <div class="rss-feed">
           <h3><?php _e('Latest Support Questions', 'maxbuttons'); ?></h3>
               <?php
-               
+              if( ini_get('allow_url_fopen') ): 
+              
+               	try{
                   $content = file_get_contents('https://wordpress.org/support/rss/plugin/maxbuttons');
                   $x = new SimpleXmlElement($content);
-
+				}
+				catch (Exception $e)
+				{
+					echo "EX"; 
+				}
                    
                   echo '<ul >';
                   $i = 0;
@@ -172,7 +176,10 @@ function check_charset() {
                       }
                   }
                   echo '</ul>';
-              
+              	else: 
+              		echo _e("Your server doesn't allow us to catch the latest support questions", "maxbuttons");  
+              	
+              	endif; // ini_get
               ?>
             </div>
 
@@ -180,16 +187,23 @@ function check_charset() {
 
 
     		<h4><?php _e('You may be asked to provide the information below to help troubleshoot your issue.', 'maxbuttons') ?></h4>
+    	 
     <form>	
-    		<textarea class="system-info" readonly="readonly" wrap="off" >
------ Begin System Info ----- &#013;&#010;
+  
+    <div class='system_info'> 
+----- Begin System Info ----- <br />
 
 
 <?php echo maxbuttons_system_label('WordPress Version:', get_bloginfo('version'), 4) ?>
 
 <?php echo maxbuttons_system_label('PHP Version:', PHP_VERSION, 10) ?>
 
-<?php  echo maxbuttons_system_label('MySQL Version:', mysql_get_server_info(), 8) ?>
+<?php
+	global $wpdb;
+	$mysql_version = $wpdb->db_version();
+				
+
+  echo maxbuttons_system_label('MySQL Version:', $mysql_version, 8) ?>
 
 <?php echo maxbuttons_system_label('Web Server:', $_SERVER['SERVER_SOFTWARE'], 11) ?>
 
@@ -236,7 +250,7 @@ foreach ($plugins as $plugin_path => $plugin) {
 }
 ?>
 ----- End System Info -----
-		  </textarea>
+ </div>
 </form>
         </div>
         <div class="ad-wrap">

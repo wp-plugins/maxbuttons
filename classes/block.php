@@ -22,6 +22,7 @@ abstract class maxBlock
 		add_action('mb-data-load', array($this,'set') );
 		
 		add_filter('mb-parse-button', array($this, 'parse_button'),10,2 ); 
+		add_filter('mb-js-blocks', array($this, 'parse_js'), 10, 2); 
 		//add_filter('mb-parse-element-preview', array($this,'parse_element'), 10,2); 
 		
 		add_filter('mb-css-blocks', array($this, 'parse_css'),10,2 ); 
@@ -44,16 +45,14 @@ abstract class maxBlock
 		@return $data Array
 	*/
 	public function save_fields($data, $post)
-	{
-		if (! isset($this->data[$this->blockname])) 
-			return $data; // this block, not here. 
-			
-		$block = $this->data[$this->blockname]; 
-		
+	{	
+		$block = isset($this->data[$this->blockname]) ? $this->data[$this->blockname] : array(); 
+
 		foreach($this->fields as $field => $options) 
 		{
 			$default = (isset($options["default"])) ? $options["default"] : ''; 
-		
+			
+			//$block[$field] = (isset($post[$field])) ? $post[$field] : $default; 
 			$block[$field] = (isset($post[$field])) ? sanitize_text_field($post[$field]) : $default; 
 		}
  
@@ -109,7 +108,7 @@ abstract class maxBlock
 				$value = isset($data[$field]) ? $data[$field] : ''; 
 				$value = str_replace(array(";"), '', $value);  //sanitize
 				
-				if ( strpos($field_data["default"],"px") && ! strpos($value,"px"))
+				if (isset($field_data["default"]) && strpos($field_data["default"],"px") && ! strpos($value,"px"))
 				{
 					if ($value == '') $value = 0; // pixel values, no empty but 0 
 					$value .= "px"; 
@@ -134,7 +133,13 @@ abstract class maxBlock
 		return $css; 		
 	}
 	
-
+	/* Ability to output custom JS for each button */ 
+	public function parse_js($js, $mode = 'normal')
+	{
+		return $js; 
+	}
+	
+	
 	/* Map the Block fields  
 	
 		This function will take the field name and link it to the defined CSS definition to use in providing the live preview in the 
@@ -165,7 +170,7 @@ abstract class maxBlock
  					}
 				}					
 				$map[$field]["css"] = $cssdef; 
-				if ( strpos($field_data["default"],"px") != false )
+				if ( isset($field_data["default"]) && strpos($field_data["default"],"px") != false )
 					$map[$field]["css_unit"] = 'px'; 
 		
 			}

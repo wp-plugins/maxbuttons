@@ -129,6 +129,13 @@ class maxButtonsUtils
 			return $wpdb->prefix . 'maxbuttonsv3'; 
 	}
 
+	static function get_collection_table_name() { 
+		global $wpdb; 
+		return $wpdb->prefix . 'maxbuttons_collections'; 
+	
+	}
+
+
 	static function timeInit()
 	{
 		self::$timer = microtime(true);
@@ -182,26 +189,49 @@ class maxButtonsUtils
 			$timer = self::$timer;
 			$text = ''; 
 			$text .=  "<div id='mb-timer'>"; 
-			$text .= "<p>" . __("MaxButtons Loading Time:","maxbuttons") . "</p>"; 
+			$text .= "<p><strong>" . __("MaxButtons Loading Time:","maxbuttons") . "</strong></p>"; 
+			$prev_time =0;
+			
+			$time_array = array(); 
 			
 			foreach(self::$timings as $timing)
 			{
-				$text .= ($timing["time"] - $timer) . " :: " . $timing["msg"] . " <br /> "; 
+				$cum = ($timing["time"] - $prev_time); 
+				$text .= "<span class='first'>" . ($timing["time"] - $timer) . "</span><span class='second'> " . $timing["msg"] . "</span><span class='third'>$cum</span> <br /> "; 
+				//$time_array[$cum] = $timing["msg"]; 
+				$prev_time = $timing["time"];
 			}
-			$text .= "</div>";
+
+			/*ksort($time_array);
+		
+			$text .= "<br><br><strong>By time taken:</strong><br>"; 
+			foreach($time_array as $timeline)
+			{
+				$text .= "$timeline <br />"; 
+			}
+		*/
+			$text .= "</div><br><br><br>";
 			$text .= "<style>#mb-timer { margin-left: 180px; } 
-			
+					#mb-timer span { 
+						display: inline-block;
+
+					}
+					#mb-timer span.first { 
+						width: 170px; 
+					}
+					#mb-timer span.second { 
+						width: 300px; 
+					}
+					#mb-timer span.third { 
+						width: 100px; 
+					}										
 					</style>"; 
+					
 			echo $text;
+			
+			
 			//return $filter . $text; 
 	}
 }
-
-/*
-function maxbuttons_
-
-
-function maxbuttons_strip_px($value) {
-	return rtrim($value, 'px');
-} */
+ 
 ?>
